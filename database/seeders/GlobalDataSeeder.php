@@ -16,11 +16,11 @@ class GlobalDataSeeder extends Seeder
     {
         // Global Data
         $globalData = array(
-            'website_name' => 'Laravel V8',
+            'website_name' => 'Laravel Web',
             'phone' => '01234567896',
-            'email' => 'info@nexxoom.com',
+            'email' => 'info@example.com',
             'address' => 'Dhaka 1216, Bangladesh',            
-            'copyright' => 'NexXoom',
+            'copyright' => 'Laravel Web',
         );
         foreach ($globalData as $key => $value) {
             BusinessSetting::updateOrCreate(

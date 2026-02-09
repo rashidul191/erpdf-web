@@ -9,7 +9,8 @@
             </a>
         </div>
 
-    </div>      <div class="w-full mt-8">
+    </div>
+    <div class="w-full mt-8">
         <table class="w-full my_table" id="teams-table">
             <thead class="text-center">
                 <tr>
@@ -18,7 +19,8 @@
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Designation') }}</th>
                     <th>{{ __('FB') }}</th>
-                    <th>{{ __('YouTube') }}</th>
+                    <th>{{ __('Twitter') }}</th>
+                    <th>{{ __('Instagram') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -31,13 +33,18 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('admin.team.index') }}',
+                    url: '{{ route('
+                    admin.team.index ') }}',
                     dataSrc(response) {
                         response.data.map(function(item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.team.edit', '@') }}'.replace('@', item
+                                'edit': '{{ route('
+                                admin.team.edit ', '
+                                @ ') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.team.destroy', '@') }}'.replace('@',
+                                'delete': '{{ route('
+                                admin.team.destroy ', '
+                                @ ') }}'.replace('@',
                                     item.id),
                             });
 
@@ -71,7 +78,11 @@
                         orderable: false,
                     },
                     {
-                        data: 'youtube_link',
+                        data: 'twitter_link',
+                        orderable: false,
+                    },
+                    {
+                        data: 'instagram_link',
                         orderable: false,
                     },
 

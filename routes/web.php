@@ -1,12 +1,6 @@
 <?php
 
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\FrontEnd\CartController;
-use App\Http\Controllers\FrontEnd\CheckOutController;
 use App\Http\Controllers\FrontEnd\HomeController;
-use App\Http\Controllers\FrontEnd\ProductController;
-use App\Http\Controllers\FrontEnd\ViewCartController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::redirect('/home', '/');
 
-Route::get('/offers', [PageViewController::class, 'offerPage'])->name('offers-page');
+Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
+
+
+
+/* Page Routes */
+
+// Route::get('/{slug}', [PageViewController::class, 'show'])->name('page.show');
+
+Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
+Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

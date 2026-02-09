@@ -24433,7 +24433,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
-/*! Axios v1.13.4 Copyright (c) 2026 Matt Zabriskie and contributors */
+/*! Axios v1.13.5 Copyright (c) 2026 Matt Zabriskie and contributors */
 
 
 /**
@@ -24451,30 +24451,30 @@ function bind(fn, thisArg) {
 
 // utils is a library of generic helper functions non-specific to axios
 
-const {toString} = Object.prototype;
-const {getPrototypeOf} = Object;
-const {iterator, toStringTag} = Symbol;
+const { toString } = Object.prototype;
+const { getPrototypeOf } = Object;
+const { iterator, toStringTag } = Symbol;
 
-const kindOf = (cache => thing => {
-    const str = toString.call(thing);
-    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+const kindOf = ((cache) => (thing) => {
+  const str = toString.call(thing);
+  return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
 })(Object.create(null));
 
 const kindOfTest = (type) => {
   type = type.toLowerCase();
-  return (thing) => kindOf(thing) === type
+  return (thing) => kindOf(thing) === type;
 };
 
-const typeOfTest = type => thing => typeof thing === type;
+const typeOfTest = (type) => (thing) => typeof thing === type;
 
 /**
- * Determine if a value is an Array
+ * Determine if a value is a non-null object
  *
  * @param {Object} val The value to test
  *
  * @returns {boolean} True if value is an Array, otherwise false
  */
-const {isArray} = Array;
+const { isArray } = Array;
 
 /**
  * Determine if a value is undefined
@@ -24483,7 +24483,7 @@ const {isArray} = Array;
  *
  * @returns {boolean} True if the value is undefined, otherwise false
  */
-const isUndefined = typeOfTest('undefined');
+const isUndefined = typeOfTest("undefined");
 
 /**
  * Determine if a value is a Buffer
@@ -24493,8 +24493,14 @@ const isUndefined = typeOfTest('undefined');
  * @returns {boolean} True if value is a Buffer, otherwise false
  */
 function isBuffer(val) {
-  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
-    && isFunction$1(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+  return (
+    val !== null &&
+    !isUndefined(val) &&
+    val.constructor !== null &&
+    !isUndefined(val.constructor) &&
+    isFunction$1(val.constructor.isBuffer) &&
+    val.constructor.isBuffer(val)
+  );
 }
 
 /**
@@ -24504,8 +24510,7 @@ function isBuffer(val) {
  *
  * @returns {boolean} True if value is an ArrayBuffer, otherwise false
  */
-const isArrayBuffer = kindOfTest('ArrayBuffer');
-
+const isArrayBuffer = kindOfTest("ArrayBuffer");
 
 /**
  * Determine if a value is a view on an ArrayBuffer
@@ -24516,10 +24521,10 @@ const isArrayBuffer = kindOfTest('ArrayBuffer');
  */
 function isArrayBufferView(val) {
   let result;
-  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+  if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
     result = ArrayBuffer.isView(val);
   } else {
-    result = (val) && (val.buffer) && (isArrayBuffer(val.buffer));
+    result = val && val.buffer && isArrayBuffer(val.buffer);
   }
   return result;
 }
@@ -24531,7 +24536,7 @@ function isArrayBufferView(val) {
  *
  * @returns {boolean} True if value is a String, otherwise false
  */
-const isString = typeOfTest('string');
+const isString = typeOfTest("string");
 
 /**
  * Determine if a value is a Function
@@ -24539,7 +24544,7 @@ const isString = typeOfTest('string');
  * @param {*} val The value to test
  * @returns {boolean} True if value is a Function, otherwise false
  */
-const isFunction$1 = typeOfTest('function');
+const isFunction$1 = typeOfTest("function");
 
 /**
  * Determine if a value is a Number
@@ -24548,7 +24553,7 @@ const isFunction$1 = typeOfTest('function');
  *
  * @returns {boolean} True if value is a Number, otherwise false
  */
-const isNumber = typeOfTest('number');
+const isNumber = typeOfTest("number");
 
 /**
  * Determine if a value is an Object
@@ -24557,7 +24562,7 @@ const isNumber = typeOfTest('number');
  *
  * @returns {boolean} True if value is an Object, otherwise false
  */
-const isObject = (thing) => thing !== null && typeof thing === 'object';
+const isObject = (thing) => thing !== null && typeof thing === "object";
 
 /**
  * Determine if a value is a Boolean
@@ -24565,7 +24570,7 @@ const isObject = (thing) => thing !== null && typeof thing === 'object';
  * @param {*} thing The value to test
  * @returns {boolean} True if value is a Boolean, otherwise false
  */
-const isBoolean = thing => thing === true || thing === false;
+const isBoolean = (thing) => thing === true || thing === false;
 
 /**
  * Determine if a value is a plain Object
@@ -24575,12 +24580,18 @@ const isBoolean = thing => thing === true || thing === false;
  * @returns {boolean} True if value is a plain Object, otherwise false
  */
 const isPlainObject = (val) => {
-  if (kindOf(val) !== 'object') {
+  if (kindOf(val) !== "object") {
     return false;
   }
 
   const prototype = getPrototypeOf(val);
-  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(toStringTag in val) && !(iterator in val);
+  return (
+    (prototype === null ||
+      prototype === Object.prototype ||
+      Object.getPrototypeOf(prototype) === null) &&
+    !(toStringTag in val) &&
+    !(iterator in val)
+  );
 };
 
 /**
@@ -24597,7 +24608,10 @@ const isEmptyObject = (val) => {
   }
 
   try {
-    return Object.keys(val).length === 0 && Object.getPrototypeOf(val) === Object.prototype;
+    return (
+      Object.keys(val).length === 0 &&
+      Object.getPrototypeOf(val) === Object.prototype
+    );
   } catch (e) {
     // Fallback for any other objects that might cause RangeError with Object.keys()
     return false;
@@ -24611,7 +24625,7 @@ const isEmptyObject = (val) => {
  *
  * @returns {boolean} True if value is a Date, otherwise false
  */
-const isDate = kindOfTest('Date');
+const isDate = kindOfTest("Date");
 
 /**
  * Determine if a value is a File
@@ -24620,7 +24634,7 @@ const isDate = kindOfTest('Date');
  *
  * @returns {boolean} True if value is a File, otherwise false
  */
-const isFile = kindOfTest('File');
+const isFile = kindOfTest("File");
 
 /**
  * Determine if a value is a Blob
@@ -24629,7 +24643,7 @@ const isFile = kindOfTest('File');
  *
  * @returns {boolean} True if value is a Blob, otherwise false
  */
-const isBlob = kindOfTest('Blob');
+const isBlob = kindOfTest("Blob");
 
 /**
  * Determine if a value is a FileList
@@ -24638,7 +24652,7 @@ const isBlob = kindOfTest('Blob');
  *
  * @returns {boolean} True if value is a File, otherwise false
  */
-const isFileList = kindOfTest('FileList');
+const isFileList = kindOfTest("FileList");
 
 /**
  * Determine if a value is a Stream
@@ -24658,15 +24672,16 @@ const isStream = (val) => isObject(val) && isFunction$1(val.pipe);
  */
 const isFormData = (thing) => {
   let kind;
-  return thing && (
-    (typeof FormData === 'function' && thing instanceof FormData) || (
-      isFunction$1(thing.append) && (
-        (kind = kindOf(thing)) === 'formdata' ||
-        // detect form-data instance
-        (kind === 'object' && isFunction$1(thing.toString) && thing.toString() === '[object FormData]')
-      )
-    )
-  )
+  return (
+    thing &&
+    ((typeof FormData === "function" && thing instanceof FormData) ||
+      (isFunction$1(thing.append) &&
+        ((kind = kindOf(thing)) === "formdata" ||
+          // detect form-data instance
+          (kind === "object" &&
+            isFunction$1(thing.toString) &&
+            thing.toString() === "[object FormData]"))))
+  );
 };
 
 /**
@@ -24676,9 +24691,14 @@ const isFormData = (thing) => {
  *
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */
-const isURLSearchParams = kindOfTest('URLSearchParams');
+const isURLSearchParams = kindOfTest("URLSearchParams");
 
-const [isReadableStream, isRequest, isResponse, isHeaders] = ['ReadableStream', 'Request', 'Response', 'Headers'].map(kindOfTest);
+const [isReadableStream, isRequest, isResponse, isHeaders] = [
+  "ReadableStream",
+  "Request",
+  "Response",
+  "Headers",
+].map(kindOfTest);
 
 /**
  * Trim excess whitespace off the beginning and end of a string
@@ -24687,8 +24707,8 @@ const [isReadableStream, isRequest, isResponse, isHeaders] = ['ReadableStream', 
  *
  * @returns {String} The String freed of excess whitespace
  */
-const trim = (str) => str.trim ?
-  str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+const trim = (str) =>
+  str.trim ? str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 
 /**
  * Iterate over an Array or an Object invoking a function for each item.
@@ -24706,9 +24726,9 @@ const trim = (str) => str.trim ?
  * @param {Boolean} [options.allOwnKeys = false]
  * @returns {any}
  */
-function forEach(obj, fn, {allOwnKeys = false} = {}) {
+function forEach(obj, fn, { allOwnKeys = false } = {}) {
   // Don't bother if no value provided
-  if (obj === null || typeof obj === 'undefined') {
+  if (obj === null || typeof obj === "undefined") {
     return;
   }
 
@@ -24716,7 +24736,7 @@ function forEach(obj, fn, {allOwnKeys = false} = {}) {
   let l;
 
   // Force an array if not already something iterable
-  if (typeof obj !== 'object') {
+  if (typeof obj !== "object") {
     /*eslint no-param-reassign:0*/
     obj = [obj];
   }
@@ -24733,7 +24753,9 @@ function forEach(obj, fn, {allOwnKeys = false} = {}) {
     }
 
     // Iterate over object keys
-    const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+    const keys = allOwnKeys
+      ? Object.getOwnPropertyNames(obj)
+      : Object.keys(obj);
     const len = keys.length;
     let key;
 
@@ -24745,7 +24767,7 @@ function forEach(obj, fn, {allOwnKeys = false} = {}) {
 }
 
 function findKey(obj, key) {
-  if (isBuffer(obj)){
+  if (isBuffer(obj)) {
     return null;
   }
 
@@ -24765,10 +24787,15 @@ function findKey(obj, key) {
 const _global = (() => {
   /*eslint no-undef:0*/
   if (typeof globalThis !== "undefined") return globalThis;
-  return typeof self !== "undefined" ? self : (typeof window !== 'undefined' ? window : __webpack_require__.g)
+  return typeof self !== "undefined"
+    ? self
+    : typeof window !== "undefined"
+      ? window
+      : __webpack_require__.g;
 })();
 
-const isContextDefined = (context) => !isUndefined(context) && context !== _global;
+const isContextDefined = (context) =>
+  !isUndefined(context) && context !== _global;
 
 /**
  * Accepts varargs expecting each argument to be an object, then
@@ -24789,10 +24816,15 @@ const isContextDefined = (context) => !isUndefined(context) && context !== _glob
  * @returns {Object} Result of all merge properties
  */
 function merge(/* obj1, obj2, obj3, ... */) {
-  const {caseless, skipUndefined} = isContextDefined(this) && this || {};
+  const { caseless, skipUndefined } = (isContextDefined(this) && this) || {};
   const result = {};
   const assignValue = (val, key) => {
-    const targetKey = caseless && findKey(result, key) || key;
+    // Skip dangerous property names to prevent prototype pollution
+    if (key === "__proto__" || key === "constructor" || key === "prototype") {
+      return;
+    }
+
+    const targetKey = (caseless && findKey(result, key)) || key;
     if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
       result[targetKey] = merge(result[targetKey], val);
     } else if (isPlainObject(val)) {
@@ -24821,24 +24853,28 @@ function merge(/* obj1, obj2, obj3, ... */) {
  * @param {Boolean} [options.allOwnKeys]
  * @returns {Object} The resulting value of object a
  */
-const extend = (a, b, thisArg, {allOwnKeys}= {}) => {
-  forEach(b, (val, key) => {
-    if (thisArg && isFunction$1(val)) {
-      Object.defineProperty(a, key, {
-        value: bind(val, thisArg),
-        writable: true,
-        enumerable: true,
-        configurable: true
-      });
-    } else {
-      Object.defineProperty(a, key, {
-        value: val,
-        writable: true,
-        enumerable: true,
-        configurable: true
-      });
-    }
-  }, {allOwnKeys});
+const extend = (a, b, thisArg, { allOwnKeys } = {}) => {
+  forEach(
+    b,
+    (val, key) => {
+      if (thisArg && isFunction$1(val)) {
+        Object.defineProperty(a, key, {
+          value: bind(val, thisArg),
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        });
+      } else {
+        Object.defineProperty(a, key, {
+          value: val,
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        });
+      }
+    },
+    { allOwnKeys },
+  );
   return a;
 };
 
@@ -24850,7 +24886,7 @@ const extend = (a, b, thisArg, {allOwnKeys}= {}) => {
  * @returns {string} content value without BOM
  */
 const stripBOM = (content) => {
-  if (content.charCodeAt(0) === 0xFEFF) {
+  if (content.charCodeAt(0) === 0xfeff) {
     content = content.slice(1);
   }
   return content;
@@ -24866,15 +24902,18 @@ const stripBOM = (content) => {
  * @returns {void}
  */
 const inherits = (constructor, superConstructor, props, descriptors) => {
-  constructor.prototype = Object.create(superConstructor.prototype, descriptors);
-  Object.defineProperty(constructor.prototype, 'constructor', {
+  constructor.prototype = Object.create(
+    superConstructor.prototype,
+    descriptors,
+  );
+  Object.defineProperty(constructor.prototype, "constructor", {
     value: constructor,
     writable: true,
     enumerable: false,
-    configurable: true
+    configurable: true,
   });
-  Object.defineProperty(constructor, 'super', {
-    value: superConstructor.prototype
+  Object.defineProperty(constructor, "super", {
+    value: superConstructor.prototype,
   });
   props && Object.assign(constructor.prototype, props);
 };
@@ -24903,13 +24942,20 @@ const toFlatObject = (sourceObj, destObj, filter, propFilter) => {
     i = props.length;
     while (i-- > 0) {
       prop = props[i];
-      if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
+      if (
+        (!propFilter || propFilter(prop, sourceObj, destObj)) &&
+        !merged[prop]
+      ) {
         destObj[prop] = sourceObj[prop];
         merged[prop] = true;
       }
     }
     sourceObj = filter !== false && getPrototypeOf(sourceObj);
-  } while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype);
+  } while (
+    sourceObj &&
+    (!filter || filter(sourceObj, destObj)) &&
+    sourceObj !== Object.prototype
+  );
 
   return destObj;
 };
@@ -24932,7 +24978,6 @@ const endsWith = (str, searchString, position) => {
   const lastIndex = str.indexOf(searchString, position);
   return lastIndex !== -1 && lastIndex === position;
 };
-
 
 /**
  * Returns new array from array like object or null if failed
@@ -24962,12 +25007,12 @@ const toArray = (thing) => {
  * @returns {Array}
  */
 // eslint-disable-next-line func-names
-const isTypedArray = (TypedArray => {
+const isTypedArray = ((TypedArray) => {
   // eslint-disable-next-line func-names
-  return thing => {
+  return (thing) => {
     return TypedArray && thing instanceof TypedArray;
   };
-})(typeof Uint8Array !== 'undefined' && getPrototypeOf(Uint8Array));
+})(typeof Uint8Array !== "undefined" && getPrototypeOf(Uint8Array));
 
 /**
  * For each entry in the object, call the function with the key and value.
@@ -25010,18 +25055,22 @@ const matchAll = (regExp, str) => {
 };
 
 /* Checking if the kindOfTest function returns true when passed an HTMLFormElement. */
-const isHTMLForm = kindOfTest('HTMLFormElement');
+const isHTMLForm = kindOfTest("HTMLFormElement");
 
-const toCamelCase = str => {
-  return str.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,
-    function replacer(m, p1, p2) {
+const toCamelCase = (str) => {
+  return str
+    .toLowerCase()
+    .replace(/[-_\s]([a-z\d])(\w*)/g, function replacer(m, p1, p2) {
       return p1.toUpperCase() + p2;
-    }
-  );
+    });
 };
 
 /* Creating a function that will check if an object has a property. */
-const hasOwnProperty = (({hasOwnProperty}) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+const hasOwnProperty = (
+  ({ hasOwnProperty }) =>
+  (obj, prop) =>
+    hasOwnProperty.call(obj, prop)
+)(Object.prototype);
 
 /**
  * Determine if a value is a RegExp object
@@ -25030,7 +25079,7 @@ const hasOwnProperty = (({hasOwnProperty}) => (obj, prop) => hasOwnProperty.call
  *
  * @returns {boolean} True if value is a RegExp object, otherwise false
  */
-const isRegExp = kindOfTest('RegExp');
+const isRegExp = kindOfTest("RegExp");
 
 const reduceDescriptors = (obj, reducer) => {
   const descriptors = Object.getOwnPropertyDescriptors(obj);
@@ -25054,7 +25103,10 @@ const reduceDescriptors = (obj, reducer) => {
 const freezeMethods = (obj) => {
   reduceDescriptors(obj, (descriptor, name) => {
     // skip restricted props in strict mode
-    if (isFunction$1(obj) && ['arguments', 'caller', 'callee'].indexOf(name) !== -1) {
+    if (
+      isFunction$1(obj) &&
+      ["arguments", "caller", "callee"].indexOf(name) !== -1
+    ) {
       return false;
     }
 
@@ -25064,14 +25116,14 @@ const freezeMethods = (obj) => {
 
     descriptor.enumerable = false;
 
-    if ('writable' in descriptor) {
+    if ("writable" in descriptor) {
       descriptor.writable = false;
       return;
     }
 
     if (!descriptor.set) {
       descriptor.set = () => {
-        throw Error('Can not rewrite read-only method \'' + name + '\'');
+        throw Error("Can not rewrite read-only method '" + name + "'");
       };
     }
   });
@@ -25081,12 +25133,14 @@ const toObjectSet = (arrayOrString, delimiter) => {
   const obj = {};
 
   const define = (arr) => {
-    arr.forEach(value => {
+    arr.forEach((value) => {
       obj[value] = true;
     });
   };
 
-  isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
+  isArray(arrayOrString)
+    ? define(arrayOrString)
+    : define(String(arrayOrString).split(delimiter));
 
   return obj;
 };
@@ -25094,10 +25148,10 @@ const toObjectSet = (arrayOrString, delimiter) => {
 const noop = () => {};
 
 const toFiniteNumber = (value, defaultValue) => {
-  return value != null && Number.isFinite(value = +value) ? value : defaultValue;
+  return value != null && Number.isFinite((value = +value))
+    ? value
+    : defaultValue;
 };
-
-
 
 /**
  * If the thing is a FormData object, return true, otherwise return false.
@@ -25107,14 +25161,18 @@ const toFiniteNumber = (value, defaultValue) => {
  * @returns {boolean}
  */
 function isSpecCompliantForm(thing) {
-  return !!(thing && isFunction$1(thing.append) && thing[toStringTag] === 'FormData' && thing[iterator]);
+  return !!(
+    thing &&
+    isFunction$1(thing.append) &&
+    thing[toStringTag] === "FormData" &&
+    thing[iterator]
+  );
 }
 
 const toJSONObject = (obj) => {
   const stack = new Array(10);
 
   const visit = (source, i) => {
-
     if (isObject(source)) {
       if (stack.indexOf(source) >= 0) {
         return;
@@ -25125,7 +25183,7 @@ const toJSONObject = (obj) => {
         return source;
       }
 
-      if(!('toJSON' in source)) {
+      if (!("toJSON" in source)) {
         stack[i] = source;
         const target = isArray(source) ? [] : {};
 
@@ -25146,10 +25204,13 @@ const toJSONObject = (obj) => {
   return visit(obj, 0);
 };
 
-const isAsyncFn = kindOfTest('AsyncFunction');
+const isAsyncFn = kindOfTest("AsyncFunction");
 
 const isThenable = (thing) =>
-  thing && (isObject(thing) || isFunction$1(thing)) && isFunction$1(thing.then) && isFunction$1(thing.catch);
+  thing &&
+  (isObject(thing) || isFunction$1(thing)) &&
+  isFunction$1(thing.then) &&
+  isFunction$1(thing.catch);
 
 // original code
 // https://github.com/DigitalBrainJS/AxiosPromise/blob/16deab13710ec09779922131f3fa5954320f83ab/lib/utils.js#L11-L34
@@ -25159,31 +25220,34 @@ const _setImmediate = ((setImmediateSupported, postMessageSupported) => {
     return setImmediate;
   }
 
-  return postMessageSupported ? ((token, callbacks) => {
-    _global.addEventListener("message", ({source, data}) => {
-      if (source === _global && data === token) {
-        callbacks.length && callbacks.shift()();
-      }
-    }, false);
+  return postMessageSupported
+    ? ((token, callbacks) => {
+        _global.addEventListener(
+          "message",
+          ({ source, data }) => {
+            if (source === _global && data === token) {
+              callbacks.length && callbacks.shift()();
+            }
+          },
+          false,
+        );
 
-    return (cb) => {
-      callbacks.push(cb);
-      _global.postMessage(token, "*");
-    }
-  })(`axios@${Math.random()}`, []) : (cb) => setTimeout(cb);
-})(
-  typeof setImmediate === 'function',
-  isFunction$1(_global.postMessage)
-);
+        return (cb) => {
+          callbacks.push(cb);
+          _global.postMessage(token, "*");
+        };
+      })(`axios@${Math.random()}`, [])
+    : (cb) => setTimeout(cb);
+})(typeof setImmediate === "function", isFunction$1(_global.postMessage));
 
-const asap = typeof queueMicrotask !== 'undefined' ?
-  queueMicrotask.bind(_global) : ( typeof process !== 'undefined' && process.nextTick || _setImmediate);
+const asap =
+  typeof queueMicrotask !== "undefined"
+    ? queueMicrotask.bind(_global)
+    : (typeof process !== "undefined" && process.nextTick) || _setImmediate;
 
 // *********************
 
-
 const isIterable = (thing) => thing != null && isFunction$1(thing[iterator]);
-
 
 var utils$1 = {
   isArray,
@@ -25242,7 +25306,7 @@ var utils$1 = {
   isThenable,
   setImmediate: _setImmediate,
   asap,
-  isIterable
+  isIterable,
 };
 
 class AxiosError extends Error {
@@ -25718,7 +25782,8 @@ var InterceptorManager$1 = InterceptorManager;
 var transitionalDefaults = {
   silentJSONParsing: true,
   forcedJSONParsing: true,
-  clarifyTimeoutError: false
+  clarifyTimeoutError: false,
+  legacyInterceptorReqResOrdering: true
 };
 
 var URLSearchParams$1 = typeof URLSearchParams !== 'undefined' ? URLSearchParams : AxiosURLSearchParams;
@@ -26698,6 +26763,10 @@ function isAbsoluteURL(url) {
   // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
+  if (typeof url !== 'string') {
+    return false;
+  }
+
   return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
 }
 
@@ -26733,7 +26802,8 @@ function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
   return requestedURL;
 }
 
-const headersToObject = (thing) => thing instanceof AxiosHeaders$1 ? { ...thing } : thing;
+const headersToObject = (thing) =>
+  thing instanceof AxiosHeaders$1 ? { ...thing } : thing;
 
 /**
  * Config-specific merge-function which creates a new config-object
@@ -26822,14 +26892,27 @@ function mergeConfig(config1, config2) {
     socketPath: defaultToConfig2,
     responseEncoding: defaultToConfig2,
     validateStatus: mergeDirectKeys,
-    headers: (a, b, prop) => mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true)
+    headers: (a, b, prop) =>
+      mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true),
   };
 
-  utils$1.forEach(Object.keys({ ...config1, ...config2 }), function computeConfigValue(prop) {
-    const merge = mergeMap[prop] || mergeDeepProperties;
-    const configValue = merge(config1[prop], config2[prop], prop);
-    (utils$1.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
-  });
+  utils$1.forEach(
+    Object.keys({ ...config1, ...config2 }),
+    function computeConfigValue(prop) {
+      if (
+        prop === "__proto__" ||
+        prop === "constructor" ||
+        prop === "prototype"
+      )
+        return;
+      const merge = utils$1.hasOwnProp(mergeMap, prop)
+        ? mergeMap[prop]
+        : mergeDeepProperties;
+      const configValue = merge(config1[prop], config2[prop], prop);
+      (utils$1.isUndefined(configValue) && merge !== mergeDirectKeys) ||
+        (config[prop] = configValue);
+    },
+  );
 
   return config;
 }
@@ -27447,14 +27530,14 @@ const factory = (env) => {
 
       if (err && err.name === 'TypeError' && /Load failed|fetch/i.test(err.message)) {
         throw Object.assign(
-          new AxiosError$1('Network Error', AxiosError$1.ERR_NETWORK, config, request),
+          new AxiosError$1('Network Error', AxiosError$1.ERR_NETWORK, config, request, err && err.response),
           {
             cause: err.cause || err
           }
         )
       }
 
-      throw AxiosError$1.from(err, err && err.code, config, request);
+      throw AxiosError$1.from(err, err && err.code, config, request, err && err.response);
     }
   }
 };
@@ -27679,7 +27762,7 @@ function dispatchRequest(config) {
   });
 }
 
-const VERSION = "1.13.4";
+const VERSION = "1.13.5";
 
 const validators$1 = {};
 
@@ -27847,7 +27930,8 @@ class Axios {
       validator.assertOptions(transitional, {
         silentJSONParsing: validators.transitional(validators.boolean),
         forcedJSONParsing: validators.transitional(validators.boolean),
-        clarifyTimeoutError: validators.transitional(validators.boolean)
+        clarifyTimeoutError: validators.transitional(validators.boolean),
+        legacyInterceptorReqResOrdering: validators.transitional(validators.boolean)
       }, false);
     }
 
@@ -27904,7 +27988,14 @@ class Axios {
 
       synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
 
-      requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+      const transitional = config.transitional || transitionalDefaults;
+      const legacyInterceptorReqResOrdering = transitional && transitional.legacyInterceptorReqResOrdering;
+
+      if (legacyInterceptorReqResOrdering) {
+        requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+      } else {
+        requestInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+      }
     });
 
     const responseInterceptorChain = [];

@@ -15,7 +15,7 @@
         <div class="bg-white p-4">
             <img width="50" id="prevImage" src="{{ $team->image }}">
             <div class="flex flex-wrap justify-center w-full">
-                <x-labeled-input label="Image (300x280px)" type="file"
+                <x-labeled-input label="Image (500x720px)" type="file"
                     accept="image/jpeg,image/png,image/jpg,image/webp" name="image"
                     class="w-full p-1 md:w-1/2 lg:w-1/3"
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
@@ -27,8 +27,14 @@
                     class="w-full p-1 md:w-1/2 lg:w-1/3" />
                 <x-labeled-input name="fb_link" value="{{ $team->fb_link }}" class="w-full p-1 md:w-1/2 lg:w-1/3" />
 
-                <x-labeled-input name="youtube_link" value="{{ $team->youtube_link }}"
-                    class="w-full p-1 md:w-1/2 lg:w-1/3" />                  <div class="w-full pt-4 flex justify-end">
+                <x-labeled-input name="twitter_link" value="{{ $team->twitter_link }}"
+                    class="w-full p-1 md:w-1/2 lg:w-1/3" />
+
+                <x-labeled-input name="instagram_link" value="{{ $team->instagram_link }}"
+                    class="w-full p-1 md:w-1/2 lg:w-1/3" />
+
+
+                <div class="w-full pt-4 flex justify-end">
                     <x-button>{{ __('Update') }}</x-button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ class CreateBusinessSettingsTable extends Migration
         Schema::create('business_settings', function (Blueprint $table) {
             $table->id();
             $table->string('key')->nullable();
-            $table->string('value')->nullable();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
         

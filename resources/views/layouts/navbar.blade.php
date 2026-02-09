@@ -1,153 +1,232 @@
-@php
-    $cartItems = session()->get('cart', []);
-@endphp
+<!-- HEADER START -->
+<header class="site-header header-style-1 mobile-sider-drawer-menu">
+    <div class="sticky-header main-bar-wraper">
+        <div class="main-bar p-t5">
+            <div class="container">
+                <div class="logo-header">
+                    <div class="logo-header-inner logo-header-one">
+                        <a href="{{ route('home.index') }}">
+                            <img src="{{ business_image('logo') }}" alt="{{ business_setting('website_name') }}" />
+                        </a>
+                    </div>
+                </div>
+                <!-- NAV Toggle Button -->
+                <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar icon-bar-first"></span>
+                    <span class="icon-bar icon-bar-two"></span>
+                    <span class="icon-bar icon-bar-three"></span>
+                </button>
+                <!-- ETRA Nav -->
 
-<!-- Navbar -->
-<div id="main-navbar" class="bg-white shadow-lg py-2">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+                <!-- MAIN Vav -->
+                <div class="header-nav navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="{{ route('home.index') }}">Home</a>
+                            <!-- <ul class="sub-menu">
+                                            <li>
+                                                <a href="index.html">Home-1</a>
+                                            </li>
+                                            <li>
+                                                <a href="index-2.html">Home-2</a>
+                                            </li>
+                                            <li>
+                                                <a href="index-3.html">Home-3</a>
+                                            </li>                                            
+                        
+                                        </ul>                                                     -->
+                        </li>
 
-        <div class="w-full flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex-shrink-0">
-                <a href="{{ route('home.index') }}" class="text-2xl font-bold text-blue-600">
-                    <img class="h-12 md:h-16" src="{{ business_image('logo') }}" alt="logo">
-                </a>
+                        <li>
+                            <a href="{{ route('about.index') }}">About</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Post detail</a>
+                            <ul class="sub-menu">
+                                <li><a href="post-image.html">Post Image</a></li>
+                                <li><a href="post-gallery.html">Post Gallery</a></li>
+                                <li><a href="post-video.html">Post Video</a></li>
+                                <li><a href="post-right-sidebar.html">Post Right Sidebar</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="submenu-direction">
+                            <a href="javascript:;">Pages</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="javascript:;">Blog</a>
+                                    <ul class="sub-menu has-child">
+                                        <li><a href="news-grid.html">Blog Grid</a></li>
+                                        <li><a href="news-listing.html">Blog Listing</a></li>
+                                        <li><a href="news-masonry.html">Blog Masonry</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Projects</a>
+                            <ul class="sub-menu">
+                                <li><a href="work-grid.html">Project Grid</a></li>
+                                <li><a href="work-masonry.html">Project Masonry</a></li>
+                                <li><a href="work-carousel.html">Project Carousel</a></li>
+                                <li><a href="project-detail.html">Project Detail</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('contact.index') }}">Contact</a>
+                        </li>
+                        <!-- <li class="submenu-direction">
+                                        <a href="javascript:;">Shortcodes</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="accordian.html">Accordian</a></li>
+                                            <li><a href="button.html">Button</a></li>
+                                            <li><a href="icon_box.html">Icon box style</a></li>
+                                            <li><a href="list_group.html">List group</a></li>
+                                            <li><a href="modal_popup.html">Modal popup</a></li>
+                                            <li><a href="tabs.html">Tabs</a></li>
+                                            <li><a href="table.html">Table</a></li>
+                                            <li><a href="video.html">Video  </a></li>
+                                            <li><a href="icon-font.html">Icon Font </a></li> 
+                                        </ul>                                    
+                                    </li>                                 -->
+                    </ul>
+                </div>
+
+                <div class="extra-nav">
+                    <div class="extra-cell">
+                        <a href="#" class="contact-slide-show text-white"><i class="fa fa-envelope-o"></i></a>
+                    </div>
+                    <div class="extra-cell">
+                        <a href="#search" class=" text-white">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                    <!-- <div class="extra-cell">   
+                                    <a href="javascript:;" class="socialicon_show  text-white">
+                                    	<i class="fa fa-share-alt"></i>
+                                    </a>
+                                </div>   	 -->
+                </div>
+                <!-- ETRA Nav -->
+
+                <!-- Social Nav -->
+                <!-- <div class="social_hide"> 
+                                <div class="side-social-nav">
+                                     <a href="javascript:void(0)" class="socialicon_close">&times;</a>
+                                     <ul class="list-unstyled">
+                                        <li><a href="javascript:void(0);" class="fa fa-facebook"><span class="social-tooltip">Facebook</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-rss"><span class="social-tooltip">Rss</span></a></li>                            
+                                        <li><a href="javascript:void(0);" class="fa fa-linkedin"><span class="social-tooltip">Linkedin</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-google-plus"><span class="social-tooltip">Google Plus</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-instagram"><span class="social-tooltip">Instagram</span></a></li>
+                                    </ul>
+                                </div> 
+                            </div> -->
+
+                <!-- Contact Nav -->
+                <div class="contact-slide-hide">
+                    <div class="contact-nav">
+                        <a href="javascript:void(0)" class="contact_close">&times;</a>
+                        <div class="contact-nav-form p-a30">
+
+                            <form method="POST" action="{{ route('contact-form-message.store') }}">
+                                @csrf
+                                <div class="contact-one m-b30">
+
+                                    <!-- TITLE START -->
+                                    <div class="section-head text-center">
+                                        <h2 class="m-b5" data-title="Form">Get In Touch</h2>
+                                    </div>
+                                    <!-- TITLE END -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group wt-inputicon-box">
+                                                <input name="name" type="text" required class="form-control" placeholder="Name">
+                                                <i class="fs-input-icon sl-icon-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group wt-inputicon-box">
+                                                <input name="email" type="text" class="form-control" required placeholder="Email">
+                                                <i class="fs-input-icon sl-icon-envolope-letter"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group wt-inputicon-box">
+                                                <textarea name="message" rows="3" class="form-control " required placeholder="Message"></textarea>
+                                                <i class="fs-input-icon sl-icon-envolope"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn-half site-button button-lg m-b15">
+                                                    <span>Submit</span><em></em>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="contact-info text-black m-b30">
+                                <!-- TITLE START -->
+                                <div class="section-head text-center">
+                                    <h2 class="m-b5" data-title="Info">Contact Info</h2>
+                                </div>
+                                <!-- TITLE END -->
+                                <ul>
+                                    <li>
+                                        <div class="wt-icon-box-wraper center p-b40">
+                                            <div class="icon-md m-b20"><i class="sl-icon-phone"></i></div>
+                                            <div class="icon-content">
+                                                <h5 class="m-t0 font-weight-500">Phone number</h5>
+                                                <p>{{ business_setting('phone') }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="wt-icon-box-wraper center p-b40">
+                                            <div class="icon-md m-b20"><i class="sl-icon-envolope-letter"></i></div>
+                                            <div class="icon-content">
+                                                <h5 class="m-t0 font-weight-500">Email address</h5>
+                                                <p>{{ business_setting('email') }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="wt-icon-box-wraper center">
+                                            <div class="icon-md m-b20"><i class="sl-icon-map"></i></div>
+                                            <div class="icon-content">
+                                                <h5 class="m-t0 font-weight-500">Address info</h5>
+                                                <p>{{ business_setting('address') }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SITE Search -->
+                <div id="search">
+                    <span class="close"></span>
+                    <form role="search" id="searchform" action="https://thewebmax.org/search" method="get" class="radius-xl">
+                        <div class="input-group">
+                            <input value="" name="q" type="search" placeholder="Type to search" />
+                            <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6 items-center">
-
-                <a href="{{ route('home.index') }}" class="text-gray-700 font-bold hover:text-blue-600">Home</a>
-
-                <!-- Search Form Start -->
-                <x-search-product />
-                <!-- Search Form End --> 
-                @auth
-                    <a href="{{ route('dashboard') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                            <path fill-rule="evenodd"
-                                d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                @else
-                    <a href="/login"><x-button>Login</x-button></a>
-                    <a href="/register"><x-button>Register</x-button></a>
-                @endauth
-
-
-            </div>
-
-            <!-- Mobile Cart & Menu Buttons -->
-            <div class="md:hidden">
-
-                <!-- Search Form Start -->
-                <x-search-product />
-                <!-- Search Form End -->
-
-            </div>
-    </nav>
-</div>
-<!-- Mobile Off-Canvas Cart Panel -->
-
-<!-- JS Script -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        // ✅ Safe element references
-        const mobileMenuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        // ✅ Mobile menu toggle (only if button exists)
-        if (mobileMenuBtn && mobileMenu && menuIcon && closeIcon) {
-            mobileMenuBtn.addEventListener('click', () => {
-                const isOpen = !mobileMenu.classList.contains('hidden');
-                if (isOpen) {
-                    mobileMenu.classList.add('hidden', 'opacity-0', 'scale-y-95');
-                    menuIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                } else {
-                    mobileMenu.classList.remove('hidden', 'opacity-0', 'scale-y-95');
-                    menuIcon.classList.add('hidden');
-                    closeIcon.classList.remove('hidden');
-                }
-            });
-        }
-
-        // ✅ Dropdown toggle (desktop)
-        function toggleDropdown(id) {
-            const dropdown = document.getElementById(`dropdown-${id}`);
-            if (dropdown) {
-                dropdown.classList.toggle('hidden');
-                dropdown.classList.toggle('opacity-0');
-                dropdown.classList.toggle('scale-y-95');
-            }
-        }
-        window.toggleDropdown = toggleDropdown; // so button onclick works
-
-        // ✅ Close dropdown when clicked outside
-        document.addEventListener('click', function(e) {
-            const cartDropdown = document.getElementById('dropdown-desktop-cart');
-            const cartWrapper = document.getElementById('cart-dropdown-wrapper');
-            if (cartDropdown && !cartWrapper.contains(e.target)) {
-                cartDropdown.classList.add('hidden', 'opacity-0', 'scale-y-95');
-            }
-        });
-
-        // ✅ Mobile Cart panel
-        window.openMobileCart = function() {
-            const panel = document.getElementById('mobile-cart-panel');
-            panel?.classList.remove('translate-x-full');
-        };
-
-        window.closeMobileCart = function() {
-            const panel = document.getElementById('mobile-cart-panel');
-            panel?.classList.add('translate-x-full');
-        };
-
-        // ✅ Sticky Navbar on Scroll
-        const navbar = document.getElementById('main-navbar');
-        if (navbar) {
-            const navbarHeight = navbar.offsetHeight;
-            window.addEventListener('scroll', function() {
-                console.log('scrolling....');
-
-                if (window.scrollY > 150) {
-                    navbar.classList.add(
-                        'fixed', 'top-0', 'left-0', 'right-0', 'z-50', 'shadow-md', 'bg-white/95',
-                        'backdrop-blur-md'
-                    );
-                    document.body.style.paddingTop = navbarHeight + 'px';
-                } else {
-                    navbar.classList.remove(
-                        'fixed', 'top-0', 'left-0', 'right-0', 'z-50', 'shadow-md', 'bg-white/95',
-                        'backdrop-blur-md'
-                    );
-                    document.body.style.paddingTop = 0;
-                }
-            });
-        }
-
-    });
-</script>
-
-<!-- Optional smooth animation -->
-<style>
-    @keyframes slideDown {
-        from {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    .animate-slideDown {
-        animation: slideDown 0.3s ease-in-out forwards;
-    }
-</style>
+        </div>
+    </div>
+</header>
+<!-- HEADER END -->

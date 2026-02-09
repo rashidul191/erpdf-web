@@ -47,20 +47,30 @@
                
                 <x-navigation-link :href="route('admin.dashboard')" :text="__('Dashboard')" :icon="icon('dashboard')" />               
 
-                @can('user-read')
+                <!-- @can('user-read')
                     <x-navigation-link :href="route('admin.user.index')" :text="__('User List')" :icon="icon('users')" />
-                @endcan
+                @endcan -->
 
-                <x-navigation-link :text="__('Website Content')" :icon="icon('website')">
-                    <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
-                   
+                <x-navigation-link :text="__('Home Page')" :icon="icon('website')">
+                    <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />                   
+                </x-navigation-link>
+
+                <x-navigation-link :text="__('About Page')" :icon="icon('website')">
+                    <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />                  
+                    <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />                  
+                    <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />                  
+                    <x-navigation-link :href="route('admin.our-story.index')" :text="__('Our Stories')" />                  
+                    <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />                  
                 </x-navigation-link>
            
+                
+                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review List')" />
+                <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" />
 
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">                  
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />
-                    <x-navigation-link :href="route('admin.apps.index')" :text="__('Apps')" />
+                    <!-- <x-navigation-link :href="route('admin.apps.index')" :text="__('Apps')" /> -->
                     {{-- @if (auth()->user()->isA('admin'))
                         <x-navigation-link :href="route('laratrust.roles-assignment.index')" :text="__('Access management')" :class="request()->is('*/permission/*') ? 'active' : ''" />
                     @endif --}}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -8,13 +9,17 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\BusinessSettingController;
+use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OurStoryController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SpecializationController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\ContactFormMessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/get-sub-areas/{area_id}', [\App\Http\Controllers\Admin\UserController::class, 'getSubAreas'])->name('get-sub-areas');
 
     Route::get('/', [DashboardController::class, 'index'])
         ->middleware('auth:admin');
@@ -77,18 +82,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
         Route::resource('register-admin', \App\Http\Controllers\Admin\RegisterAdminController::class);
-
         Route::get('user-search', [\App\Http\Controllers\Admin\UserController::class, 'userSearch'])->name('user-search');
 
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
 
-        /* Home Page Route  */
+        /* Home Page Routes  */
         Route::resource('slider', SliderController::class);
+        Route::resource('client-say', ClientSayController::class);
+
+        /* About Page Routes */
+
+        Route::get('about', [AboutController::class, 'index'])->name('about.index');
+        Route::post('about-right-side', [AboutController::class, 'aboutRightSide'])->name('about.right-side');
+        Route::delete('about-right-side/{id}', [AboutController::class, 'aboutRightSideDelete'])->name('about.right-side.destroy');
+        Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');
+        Route::resource('services', ServiceController::class);
+        Route::resource('our-story', OurStoryController::class);
         Route::resource('team', TeamController::class);
-
-
-
-
+        Route::resource('contact-message', ContactFormMessageController::class);
 
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');

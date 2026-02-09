@@ -18,10 +18,12 @@ class BusinessSettingController extends Controller
     public function socialLinks()
     {
         return view('admin.generale-setting.social-link');
-    }      public function news()
+    }
+    public function news()
     {
         return view('admin.generale-setting.news');
-    }      public function businessSettingUpdate(Request $request)
+    }
+    public function businessSettingUpdate(Request $request)
     {
         $data = $request->except('_token');
         foreach ($data as $key => $value) {
@@ -29,7 +31,7 @@ class BusinessSettingController extends Controller
             if ($request->hasFile($key)) {
                 // Optional: validate the file
                 $request->validate([
-                    $key => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                   $key => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240'
                 ]);
 
                 // Delete old image if exists
@@ -43,7 +45,7 @@ class BusinessSettingController extends Controller
             BusinessSetting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
         return response()->report(true, 'Update Successfully!');
-    }  
+    }
     public function apps()
     {
         return view('admin.generale-setting.apps');

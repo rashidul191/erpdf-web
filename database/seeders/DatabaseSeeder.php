@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'phone' => '01800000000',
-            'password' => Hash::make('nexxoom@1234'),
+            'password' => Hash::make('12345678'),
             'role' => RoleStatus::Admin
         ]);
         $this->call(GlobalDataSeeder::class);

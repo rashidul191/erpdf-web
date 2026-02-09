@@ -15,10 +15,12 @@
                             accept="image/*" name="image" class="w-full p-1"
                             required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                        <x-labeled-input label="Page Link End Point (/products)" name="page_link" class="w-full p-1" />
+                        <x-labeled-input name="title" required class="w-full p-1" />
+
+                        <x-labeled-input label="Page Link End Point (/about)" name="page_link" class="w-full p-1" />
 
                         <label class="inline-flex items-center mt-2">
-                            <input type="checkbox" name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"
+                            <input type="checkbox" checked name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"
                                 class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
                             <span class="text-gray-700 ml-2">Is Home</span>
                         </label>
@@ -39,6 +41,7 @@
                     <tr>
                         <th>{{ __('SL') }}</th>
                         <th>{{ __('Image') }}</th>
+                        <th>{{ __('Title') }}</th>
                         <th>{{ __('Page Link') }}</th>
                         <th>{{ __('Is Home') }}</th>
                         <th>{{ __('Action') }}</th>
@@ -46,7 +49,7 @@
                 </thead>
             </table>
         </div>
-    </div>      <x-slot name="script">
+    </div> <x-slot name="script">
         <script type="text/javascript" src="{{ mix('js/datatable.js') }}"></script>
         <script type="text/javascript">
             $('#categories-table').DataTable({
@@ -57,9 +60,11 @@
                     dataSrc(response) {
                         response.data.map(function(item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.slider.edit', '@') }}'.replace('@', item
+                                'edit': '{{ route('admin.slider.edit', '
+                                @ ') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.slider.destroy', '@') }}'.replace('@',
+                                'delete': '{{ route('admin.slider.destroy', '
+                                @ ') }}'.replace('@',
                                     item.id),
                             });
 
@@ -82,6 +87,9 @@
                     },
                     {
                         data: 'image'
+                    },
+                    {
+                        data: 'title'
                     },
                     {
                         data: 'page_link'

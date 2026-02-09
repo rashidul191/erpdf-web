@@ -14,6 +14,7 @@ class Slider extends Model
 
     protected $fillable = [
         'image',
+        'title',
         'page_link',
         'is_home'
     ];

@@ -20,7 +20,8 @@ class CreateTeamsTable extends Migration
             $table->string('name')->nullable();
             $table->string('designation')->nullable();
             $table->string('fb_link')->nullable();
-            $table->string('youtube_link')->nullable();
+            $table->string('twitter_link')->nullable();
+            $table->string('instagram_link')->nullable();
             $table->timestamps();
         });
     }

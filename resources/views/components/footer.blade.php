@@ -1,117 +1,109 @@
-<footer class="hidden md:block bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        <!-- Brand Info -->
-        <div>
-            <a href="{{ route('home.index') }}">
-                <img src="{{ business_image('logo') }}" alt="Logo" class="w-24 mb-4">
-            </a>
-            <ul class="space-y-3 text-sm">
-                @if (business_setting('phone'))
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-phone-alt mt-1 text-[#f26e21]"></i>
-                        <a href="tel:{{ business_setting('phone') }}" class="hover:text-white">
-                            {{ business_setting('phone') }}
-                        </a>
-                    </li>
-                @endif
-                @if (business_setting('email'))
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-envelope mt-1 text-[#f26e21]"></i>
-                        <a href="mailto:{{ business_setting('email') }}" class="hover:text-white">
-                            {{ business_setting('email') }}
-                        </a>
-                    </li>
-                @endif
-                @if (business_setting('address'))
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-map-marker-alt mt-1 text-[#f26e21]"></i>
-                        <span>{{ business_setting('address') }}</span>
-                    </li>
-                @endif
-            </ul>
-        </div>          <!-- Shop Links -->
-        <div>
-            <h4 class="text-white text-lg font-semibold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-sm">              
-               
-                <li><a href="javascript:void(0)" class="hover:text-white">Best Sellers</a></li>
-                <li><a href="javascript:void(0)" class="hover:text-white">New Arrivals</a></li>
-            </ul>
-        </div>
+<footer class="site-footer footer-large footer-dark	footer-wide">
 
-        <!-- Customer Care -->
-        <div>
-            <h4 class="text-white text-lg font-semibold mb-4">Customer Service</h4>
-            <ul class="space-y-2 text-sm">
-                <li><a href="javascript:void(0)" class="hover:text-white">FAQs</a></li>
-                <li><a href="javascript:void(0)" class="hover:text-white">Contact Us</a></li>
-                <li><a href="javascript:void(0)" class="hover:text-white">Return Policy</a></li>
-                <li><a href="javascript:void(0)" class="hover:text-white">Privacy Policy</a></li>
-            </ul>
-        </div>
+    <!-- FOOTER BLOCKES START -->
+    <div class="footer-top overlay-wraper">
+        <div class="overlay-main"></div>
+        <div class="container">
 
-        <!-- Newsletter & Social -->
-        <div>
-            <h4 class="text-white text-lg font-semibold mb-4">Stay Updated</h4>
-            <form class="flex mb-4">
-                <input type="email" placeholder="Your email" required
-                    class="w-full px-3 py-2 rounded-l bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <button type="submit" class="bg-[#f26e21] text-white px-4 py-2 rounded-r transition">
-                    Subscribe
-                </button>
-            </form>
-            <div class="flex space-x-4 text-xl">
-                @if (business_setting('fb_link'))
-                    <a target="_blank" href="{{ business_setting('fb_link') }}" class="hover:text-blue-400"><i
-                            class="fab fa-facebook"></i></a>
-                @endif
-                @if (business_setting('twitter_link'))
-                    <a target="_blank" href="{{ business_setting('twitter_link') }}" class="hover:text-sky-400"><i
-                            class="fab fa-twitter"></i></a>
-                @endif
-                @if (business_setting('instagram_link'))
-                    <a target="_blank" href="{{ business_setting('instagram_link') }}" class="hover:text-pink-500"><i
-                            class="fab fa-instagram"></i></a>
-                @endif
-                @if (business_setting('youtube_link'))
-                    <a target="_blank" href="{{ business_setting('youtube_link') }}" class="hover:text-red-500"><i
-                            class="fab fa-youtube"></i></a>
-                @endif
-                @if (business_setting('pinterest_link'))
-                    <a target="_blank" href="{{ business_setting('pinterest_link') }}" class="hover:text-red-500">
-                        <i class="fab fa-pinterest"></i></a>
-                @endif
-            </div>
-
-            <div class="pt-3">
-                <p class="text-white font-bold mb-3">Download Our Mobile App:</p>
-
-                @php
-                    $apkSetting = \App\Models\Admin\BusinessSetting::where('key', 'apps')->first();
-                    $apkPath = $apkSetting ? $apkSetting->value : null;
-                @endphp
-
-                @if ($apkPath)
-                    <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-3">
-                        <a href="{{ Storage::url($apkPath) }}" download
-                            class="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-3 py-2 rounded max-w-[180px]">
-                            <i class="fab fa-google-play mr-2"></i> Download App
-                        </a>
+            <div class="news-letter-footer">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="newsletter-f-left">
+                            <h4 class="text-uppercase m-t0 m-b10">Subscribe to our newsletter!</h4>
+                            <p>Never Miss Anything From Construx By Signing Up To Our Newsletter. </p>
+                        </div>
                     </div>
-                @else
-                    <p class="text-gray-400 mt-3 text-sm">No mobile apps available for download at the moment.</p>
-                @endif
+                    <div class="col-lg-6 col-md-12">
+                        <div class="newsletter-f-right text-center">
+                            <form role="search" method="post">
+                                <div class="input-group">
+                                    <input name="news-letter" class="form-control" placeholder="ENTER YOUR EMAIL" type="text">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn-half site-button button-lg"><span>Submit</span><em></em></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="m-b10">
+                <div class="wt-divider bg-gray-dark"></div>
+            </div>
+            <div class="row">
+                <!-- ABOUT COMPANY -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget widget_about">
+                        <!--<h4 class="widget-title">About Company</h4>-->
+                        <div class="logo-footer clearfix p-b15">
+                            <a href="index.html"><img src="images/logo-light.png" alt=""></a>
+                        </div>
+                        <p class="max-w400">Today we can tell you, thanks to your passion, hard work creativity, and expertise, you delivered us the most beautiful house great looks.</p>
 
+                        <ul class="social-icons social-tooltips-outer  wt-social-links">
+                            <li><a href="javascript:void(0);" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-rss"><span class="social-tooltips">Rss</span></a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-linkedin"><span class="social-tooltips">Linkedin</span></a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-google-plus"><span class="social-tooltips">Google Plus</span></a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget widget_services inline-links">
+                        <h4 class="widget-title">Useful links</h4>
+                        <ul>
+                            <li><a href="about-1.html">About</a></li>
+                            <li><a href="post-gallery.html">Gallery</a></li>
+                            <li><a href="news-grid.html">Blog</a></li>
+                            <li><a href="work-masonry.html">Portfolio</a></li>
+                            <li><a href="project-detail.html">Contact Us</a></li>
+                            <li><a href="contact-1.html">FAQ </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget widget_services inline-links">
+                        <h4 class="widget-title">Rooms & Suites</h4>
+                        <ul>
+                            <li><a href="project-detail.html">Classic</a></li>
+                            <li><a href="project-detail.html">Superior</a></li>
+                            <li><a href="project-detail.html">Delux</a></li>
+                            <li><a href="project-detail.html">Master</a></li>
+                            <li><a href="project-detail.html">luxury</a></li>
+                            <li><a href="project-detail.html">Banquet Halls</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget widget_address_outer">
+                        <h4 class="widget-title">Contact Us</h4>
+                        <ul class="widget_address">
+                            <li><i class="sl-icon-map site-text-primary"></i> 92 Princess Road, parkvenue,Greater London, NW18JR, United Kingdom</li>
+                            <li><i class="sl-icon-envolope-letter site-text-primary"></i>sharandemo@gmail.com</li>
+                            <li><i class="sl-icon-phone site-text-primary"></i>(+0091) 912-3456-073</li>
+                            <li><i class="sl-icon-printer site-text-primary"></i>(+0091) 912-3456-084</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
-
-    <!-- Bottom -->
-    <div class="border-t border-gray-700 text-sm text-gray-400 py-4 px-6 text-center">
-        &copy; {{ date('Y') }} {{ business_setting('copyright') ?? business_setting('website_name') }}. All rights reserved. |
-        Developed by
-        <a href="javascript:void(0)" class="text-green-500 hover:underline" target="_blank">
-            NexXoom
-        </a>
+    <!-- FOOTER COPYRIGHT -->
+    <div class="footer-bottom overlay-wraper">
+        <div class="overlay-main"></div>
+        <div class="container">
+            <div class="row">
+                <div class="wt-footer-bot-center">
+                    <span class="copyrights-text">© 2024 Your Company. Designed By Thewebmax.</span>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>

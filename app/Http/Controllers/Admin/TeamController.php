@@ -15,7 +15,8 @@ class TeamController extends Controller
             return datatables(Team::get())->addIndexColumn()->toJson();
         }
         return view('admin.team.index');
-    }      public function create()
+    }
+    public function create()
     {
         return view('admin.team.create');
     }
@@ -27,8 +28,9 @@ class TeamController extends Controller
             'image'         => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
             'name'          => 'required|string|max:255',
             'designation'   => 'required|string|max:255',
-            'fb_link'       => 'nullable|url|max:255',
-            'youtube_link'  => 'nullable|url|max:255',
+            'fb_link'       => 'nullable|string|max:255',
+            'twitter_link'  => 'nullable|string|max:255',
+            'instagram_link'  => 'nullable|string|max:255',
         ]);
 
         return response()->reportTo(
@@ -52,8 +54,9 @@ class TeamController extends Controller
             'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
             'name'          => 'nullable|string|max:255',
             'designation'   => 'nullable|string|max:255',
-            'fb_link'       => 'nullable|url|max:255',
-            'youtube_link'  => 'nullable|url|max:255',
+            'fb_link'       => 'nullable|string|max:255',
+            'twitter_link'  => 'nullable|string|max:255',
+            'instagram_link'  => 'nullable|string|max:255',
 
         ]);          // Return response
         return response()->reportTo(
@@ -61,7 +64,8 @@ class TeamController extends Controller
             'Updated successfully',
             route('admin.team.index')
         );
-    }      public function destroy(Team $team)
+    }
+    public function destroy(Team $team)
     {
         return response()->reportTo(
             $team->delete(),

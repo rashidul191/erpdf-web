@@ -16,8 +16,9 @@ class Team extends Model
         'image',
         'name',
         'designation',
-        'fb_link',      
-        'youtube_link',        
+        'fb_link',
+        'twitter_link',
+        'instagram_link'
     ];
 
     protected $casts = [
