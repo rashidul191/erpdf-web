@@ -56,7 +56,7 @@
                         <h4 class="widget-title">Useful links</h4>
                         <ul>
                             <li><a href="{{ route('about.index') }}">About</a></li>
-                            <li><a href="post-gallery.html">Gallery</a></li>
+                            <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
                             <li><a href="news-grid.html">Blog</a></li>
                             <!-- <li><a href="work-masonry.html">Portfolio</a></li> -->
                             <li><a href="{{ route('contact.index') }}">Contact Us</a></li>

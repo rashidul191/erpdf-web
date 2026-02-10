@@ -64,6 +64,7 @@
                 </x-navigation-link>
            
                 
+                <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" />
                 <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review List')" />
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" />
 

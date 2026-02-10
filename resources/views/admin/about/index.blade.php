@@ -23,7 +23,7 @@
             <div class="w-full
                             pt-4 flex justify-end">
                 <x-button>
-                    {{ __('Update') }}
+                    {{ __('Submit') }}
                 </x-button>
             </div>
 

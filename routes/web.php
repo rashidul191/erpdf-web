@@ -28,6 +28,7 @@ Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageCo
 // Route::get('/{slug}', [PageViewController::class, 'show'])->name('page.show');
 
 Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
+Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
