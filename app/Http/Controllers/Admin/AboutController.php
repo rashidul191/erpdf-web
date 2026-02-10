@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutLeftSide;
 use App\Models\AboutRightSide;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,36 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $data['aboutRightSideImages'] = AboutRightSide::latest()->get();
-
-        // dd($data['aboutRightSideImages']);
+        $data['aboutLeftSideContents'] = AboutLeftSide::oldest()->get();
+        $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
         return view('admin.about.index', $data);
     }
 
     /*  About Section Left Side Methods */
+    public function aboutLeftSide(Request $request)
+    {
+        $validated =  $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024', // Max size 1MB
+            'title' => 'required|string|max:255',
+            'short_description' => 'required|string|max:255',
+        ]);
+
+        return response()->reportTo(
+            AboutLeftSide::create($validated),
+            'Created successfully',
+            route('admin.about.index')
+        );
+    }
+
+    public function aboutLeftSideDelete($id)
+    {
+        $aboutLeftSideContent = AboutLeftSide::findOrFail($id);
+        return response()->reportTo(
+            $aboutLeftSideContent->delete(),
+            'Deleted successfully',
+            route('admin.about.index')
+        );
+    }
 
 
     /*  About Section Right Side Methods */
@@ -35,9 +59,9 @@ class AboutController extends Controller
 
     public function aboutRightSideDelete($id)
     {
-        $aboutRightSideImg = AboutRightSide::findOrFail($id);
+        $aboutRightSideContent = AboutRightSide::findOrFail($id);
         return response()->reportTo(
-            $aboutRightSideImg->delete(),
+            $aboutRightSideContent->delete(),
             'Deleted successfully',
             route('admin.about.index')
         );

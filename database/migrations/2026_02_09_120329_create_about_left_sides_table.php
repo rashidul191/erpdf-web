@@ -17,7 +17,7 @@ class CreateAboutLeftSidesTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
-            $table->text('sub_title')->nullable();
+            $table->longText('short_description')->nullable();
             $table->timestamps();
         });
     }

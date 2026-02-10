@@ -91,8 +91,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('client-say', ClientSayController::class);
 
         /* About Page Routes */
-
         Route::get('about', [AboutController::class, 'index'])->name('about.index');
+        Route::post('about-left-side', [AboutController::class, 'aboutLeftSide'])->name('about.left-side');
+        Route::delete('about-left-side/{id}', [AboutController::class, 'aboutLeftSideDelete'])->name('about.left-side.destroy');
         Route::post('about-right-side', [AboutController::class, 'aboutRightSide'])->name('about.right-side');
         Route::delete('about-right-side/{id}', [AboutController::class, 'aboutRightSideDelete'])->name('about.right-side.destroy');
         Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');

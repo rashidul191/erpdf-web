@@ -14,7 +14,7 @@ class AboutLeftSide extends Model
     protected $fillable = [
         'image',
         'title',
-        'sub_title',
+        'short_description',
     ];
 
     protected $casts = [
