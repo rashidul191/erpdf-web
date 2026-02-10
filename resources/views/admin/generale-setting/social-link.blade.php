@@ -17,9 +17,6 @@
 
                         <x-labeled-input name="youtube_link" type="text"
                             value="{{ business_setting('youtube_link') }}" class="w-full p-1" />
-
-                        <x-labeled-input name="pinterest_link" type="text"
-                            value="{{ business_setting('pinterest_link') }}" class="w-full p-1" />
                     </div>
                     <div class="w-full pt-4 flex justify-end">
                         <x-button>
