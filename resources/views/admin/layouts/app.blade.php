@@ -44,31 +44,36 @@
             </div>
 
             <div class="w-full flex flex-col text-slate-300 nav-links">
-               
-                <x-navigation-link :href="route('admin.dashboard')" :text="__('Dashboard')" :icon="icon('dashboard')" />               
+
+                <x-navigation-link :href="route('admin.dashboard')" :text="__('Dashboard')" :icon="icon('dashboard')" />
 
                 <!-- @can('user-read')
                     <x-navigation-link :href="route('admin.user.index')" :text="__('User List')" :icon="icon('users')" />
                 @endcan -->
 
                 <x-navigation-link :text="__('Home Page')" :icon="icon('website')">
-                    <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />                   
+                    <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                 </x-navigation-link>
 
                 <x-navigation-link :text="__('About Page')" :icon="icon('website')">
-                    <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />                  
-                    <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />                  
-                    <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />                  
-                    <x-navigation-link :href="route('admin.our-story.index')" :text="__('Our Stories')" />                  
-                    <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />                  
+                    <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />
+                    <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />
+                    <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />
+                    <x-navigation-link :href="route('admin.our-story.index')" :text="__('Our Stories')" />
+                    <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />
                 </x-navigation-link>
-           
-                
+
+                <x-navigation-link :text="__('Blog')" :icon="icon('website')">
+                    <x-navigation-link :href="route('admin.blog.index')" :text="__('Blog List')" />
+                    <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
+                </x-navigation-link>
+
+
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" />
                 <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review List')" />
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" />
 
-                <x-navigation-link :text="__('Setting')" :icon="icon('setting')">                  
+                <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />
                     <!-- <x-navigation-link :href="route('admin.apps.index')" :text="__('Apps')" /> -->
@@ -140,17 +145,17 @@
             </header>
             <main class="flex-grow lg:ml-64">
                 @if (isset($header) && $header)
-                    <div class="p-4 bg-white">
-                        {{ $header ?? '' }}
-                    </div>
+                <div class="p-4 bg-white">
+                    {{ $header ?? '' }}
+                </div>
                 @endif
                 @if (session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY))
-                    <x-alert
-                        type="success">{{ session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY) }}</x-alert>
+                <x-alert
+                    type="success">{{ session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY) }}</x-alert>
                 @endif
                 @if (session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY))
-                    <x-alert
-                        type="error">{{ session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY) }}</x-alert>
+                <x-alert
+                    type="error">{{ session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY) }}</x-alert>
                 @endif
                 <div class="p-2 md:p-4">
                     {{ $slot }}

@@ -8,7 +8,11 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessSettingController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -16,8 +20,10 @@ use App\Http\Controllers\Admin\OurStoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SpecializationController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ContactFormMessageController;
+use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -87,6 +93,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
 
+
+        Route::resource('tag', TagController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('brands', BrandController::class);
+
+
         /* Home Page Routes  */
         Route::resource('slider', SliderController::class);
         Route::resource('client-say', ClientSayController::class);
@@ -105,6 +117,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         /* Gallery Page Routes */
         Route::resource('gallery', GalleryController::class);
+
+
+        /* Blog Routes */
+        Route::resource('blog', BlogController::class);
+        Route::resource('blog-categories', BlogCategoryController::class);
+
+
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');
         Route::get('social-links', [BusinessSettingController::class, 'socialLinks'])->name('social-links.index');
