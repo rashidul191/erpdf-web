@@ -297,101 +297,7 @@
         <!-- ROOMS  SLIDER END -->
 
         <!-- OUR BLOG START -->
-        <div class="section-full p-t90 p-b60 bg-white">
-
-            <div class="container">
-
-                <!-- TITLE START -->
-                <div class="section-head text-left">
-                    <h2 class="m-b5" data-title="Blog">Our Latest Blog</h2>
-                    <div class="wt-separator-outer">
-                        <div class="wt-separator site-bg-primary"></div>
-                    </div>
-                </div>
-                <!-- TITLE END -->
-
-                <!-- IMAGE CAROUSEL START -->
-                <div class="section-content">
-
-                    <div class="row">
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog-post latest-blog-1 date-style-2">
-                                <div class="wt-post-media wt-img-effect zoom-slow">
-                                    <a href="post-right-sidebar.html"><img src="images/blog/default/thum4.jpg" alt=""></a>
-                                </div>
-                                <div class="wt-post-info">
-                                    <div class="post-date"> <strong>20 Mar 2024 </strong></div>
-
-                                    <div class="wt-post-meta">
-                                        <ul class="clearfix">
-                                            <li class="post-author">
-                                                <div class="post-author-pic">
-                                                    <span><img src="images/testimonials/pic1.jpg" alt=""></span>
-                                                    <span><strong> By</strong> <a href="post-right-sidebar.html">Loretta Shelton</a></span>
-                                                </div>
-                                            </li>
-                                            <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="post-right-sidebar.html">10 Comment</a> </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="wt-post-title">
-                                        <h3 class="post-title"><a href="post-right-sidebar.html">Your first source for architecture, dsign and art news.</a></h3>
-                                    </div>
-
-                                    <div class="wt-post-text">
-                                        <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusd veritatis quisquam laboriosam asperiores, tenetur, blanditiis,quaerat odit ex exercitationem pariatur.</p>
-                                    </div>
-
-                                    <div class="readmore-line">
-                                        <a href="post-right-sidebar.html" class="site-button-ink site-text-primary font-weight-900 ">Read More</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog-post latest-blog-1 date-style-2">
-                                <div class="wt-post-media wt-img-effect zoom-slow">
-                                    <a href="post-gallery.html"><img src="images/blog/default/thum7.jpg" alt=""></a>
-                                </div>
-                                <div class="wt-post-info">
-                                    <div class="post-date"> <strong>20 Mar 2024 </strong></div>
-
-                                    <div class="wt-post-meta">
-                                        <ul class="clearfix">
-                                            <li class="post-author">
-                                                <div class="post-author-pic">
-                                                    <span><img src="images/testimonials/pic2.jpg" alt=""></span>
-                                                    <span><strong> By</strong> <a href="post-gallery.html">Loretta Shelton</a></span>
-                                                </div>
-                                            </li>
-                                            <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="post-gallery.html">10 Comment</a> </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="wt-post-title">
-                                        <h3 class="post-title"><a href="post-gallery.html">Your first source for architecture, dsign and art news.</a></h3>
-                                    </div>
-
-                                    <div class="wt-post-text">
-                                        <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusd veritatis quisquam laboriosam asperiores, tenetur, blanditiis,quaerat odit ex exercitationem pariatur.</p>
-                                    </div>
-
-                                    <div class="readmore-line">
-                                        <a href="post-gallery.html" class="site-button-ink site-text-primary font-weight-900 ">Read More</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+        @include('front-end.blog-page-section.blogs')
         <!-- OUR BLOG END -->
 
         <!-- OUR SPECIALLIZATION START -->
@@ -402,64 +308,15 @@
         @include('front-end.about-page-section.services')
         <!-- OUR SERVICES END -->
 
-
         <!-- TESTIMONIALS SECTION START -->
-        <div class="section-full p-tb90  overlay-wraper" style="background-image:url('{{ business_image('client_say_bg_img') }}')">
-            <div class="overlay-main opacity-05 bg-black"></div>
-            <div class="container">
-                <div class="section-content">
-
-                    <!-- TITLE START -->
-                    <div class="section-head text-left">
-                        <h2 class="m-b5 text-white" data-title="Clients">Our Client Says</h2>
-                        <div class="wt-separator-outer">
-                            <div class="wt-separator site-bg-primary"></div>
-                        </div>
-                    </div>
-                    <!-- TITLE END -->
-
-                    <!-- TESTIMONIAL 4 START ON BACKGROUND -->
-                    <div class="section-content">
-                        <div class="testimonial-home owl-carousel  owl-btn-top-right">
-
-                            @foreach ($clientSays as $item)
-                            <div class="item">
-                                <div class="testimonial-6">
-                                    <div class="testimonial-pic-block">
-                                        <div class="testimonial-pic">
-                                            <img src="{{ asset($item->image) }}" width="132" height="132" alt="{{ $item->name }}">
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-text clearfix text-white">
-                                        <div class="testimonial-detail ">
-                                            <h4 class="testimonial-name m-t0 m-b10">{{ $item->name }}</h4>
-                                        </div>
-                                        <div class="testimonial-paragraph text-black p-t5">
-                                            <p>“ {!! $item->description !!}</p>
-                                        </div>
-                                        <div class="testimonial-detail ">
-                                            <span class="testimonial-position">{{ $item->address }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('front-end.home.testimonial')
         <!-- TESTIMONIALS SECTION END -->
-
 
         <!-- OUR TEAM START -->
         @include('front-end.about-page-section.ourteam')
-
         <!-- OUR TEAM END -->
 
     </div>
     <!-- CONTENT END -->
-
-
 
 </x-guest-layout>

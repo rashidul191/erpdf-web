@@ -8,6 +8,7 @@ use App\Models\AboutLeftSide;
 use App\Models\AboutRightSide;
 use App\Models\Admin\Slider;
 use App\Models\Admin\Team;
+use App\Models\Blog;
 use App\Models\ClientSay;
 use App\Models\Service;
 
@@ -20,8 +21,8 @@ class HomeController extends Controller
         $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
         $data['services'] = Service::oldest()->get();
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
+        $data['blogs'] = Blog::latest()->limit(2)->get();
         $data['clientSays'] = ClientSay::latest()->get();
-
         return view('front-end.home.index')->with($data);
     }
 }

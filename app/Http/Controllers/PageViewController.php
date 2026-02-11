@@ -6,6 +6,7 @@ use App\Models\AboutLeftSide;
 use App\Models\AboutRightSide;
 use App\Models\Admin\Slider;
 use App\Models\Admin\Team;
+use App\Models\Blog;
 use App\Models\Gallery;
 use App\Models\OurStory;
 use App\Models\Service;
@@ -22,6 +23,11 @@ class PageViewController extends Controller
         $data['services'] = Service::oldest()->get();
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
         return view('front-end.pages.about', $data);
+    }
+
+    public function blogPage(){
+        $data['blogs'] = Blog::latest()->paginate(10);
+        return view('front-end.pages.blog', $data);
     }
 
     public function galleryPage()

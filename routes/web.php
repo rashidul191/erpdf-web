@@ -22,14 +22,13 @@ Route::redirect('/home', '/');
 Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
 
 
-
 /* Page Routes */
-
-// Route::get('/{slug}', [PageViewController::class, 'show'])->name('page.show');
-
 Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
+Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
+Route::get('/blog/{id}', [PageViewController::class, 'blogDetails'])->name('blog.show');
 Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
+
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

@@ -123,7 +123,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
 
-
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');
         Route::get('social-links', [BusinessSettingController::class, 'socialLinks'])->name('social-links.index');
