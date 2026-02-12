@@ -19,7 +19,7 @@
                     <div class="blog-post latest-blog-1 date-style-2">
                         <div class="wt-post-media wt-img-effect zoom-slow">
                             <a href="{{ route('blog.show', $item->id) }}">
-                                <img src="{{ asset($item->image) }}" alt="{{ $item->title }}">
+                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                             </a>
                         </div>
                         <div class="wt-post-info">
@@ -40,7 +40,7 @@
                             <div class="wt-post-title">
                                 <h3 class="post-title">
                                     <a href="{{ route('blog.show', $item->id) }}">
-                                        {{ $item->title }}</a>
+                                        {{ $item->name }}</a>
                                 </h3>
                             </div>
 

@@ -25,9 +25,20 @@ class PageViewController extends Controller
         return view('front-end.pages.about', $data);
     }
 
-    public function blogPage(){
+    public function blogPage()
+    {
         $data['blogs'] = Blog::latest()->paginate(10);
         return view('front-end.pages.blog', $data);
+    }
+
+    public function blogDetails($id)
+    {
+        $data['blog'] = Blog::findOrFail($id);
+        $data['recentBlogs'] = Blog::where('id', '!=', $id)->latest()->take(4)->get();
+        $data['relatedBlogs'] = Blog::where('blog_category_id', $data['blog']->blog_category_id)->where('id', '!=', $id)->latest()->take(4)->get();
+        $data['galleries'] = Gallery::latest()->take(12)->get();
+
+        return view('front-end.pages.blog-details', $data);
     }
 
     public function galleryPage()
