@@ -20,7 +20,7 @@ class AboutController extends Controller
     public function aboutLeftSide(Request $request)
     {
         $validated =  $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024', // Max size 1MB
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240', // Max size 1MB
             'title' => 'required|string|max:255',
             'short_description' => 'required|string|max:255',
         ]);
@@ -47,7 +47,7 @@ class AboutController extends Controller
     public function aboutRightSide(Request $request)
     {
         $validated =  $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024', // Max size 1MB
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240', // Max size 1MB
         ]);
 
         return response()->reportTo(

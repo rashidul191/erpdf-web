@@ -11,6 +11,7 @@ use App\Models\Blog;
 use App\Models\BlogComment;
 use App\Models\Gallery;
 use App\Models\OurStory;
+use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,15 @@ class PageViewController extends Controller
         $data['categories'] = Category::latest()->take(12)->get();
 
         return view('front-end.pages.blog-details', $data);
+    }
+    public function roomDetails($id)
+    {
+        $data['room'] = Room::findOrFail($id);
+        // $data['roomComments'] = RoomComment::where('room_id', $id)->latest()->take(5)->get();
+        $data['recentRooms'] = Room::where('id', '!=', $id)->latest()->take(4)->get();
+        $data['relatedRooms'] = Room::where('room_category_id', $data['room']->room_category_id)->where('id', '!=', $id)->latest()->take(4)->get();
+     
+        return view('front-end.pages.room-details', $data);
     }
 
     public function blogCommentStore(Request $request)

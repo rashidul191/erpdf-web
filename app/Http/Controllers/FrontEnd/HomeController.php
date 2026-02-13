@@ -10,6 +10,8 @@ use App\Models\Admin\Slider;
 use App\Models\Admin\Team;
 use App\Models\Blog;
 use App\Models\ClientSay;
+use App\Models\Room;
+use App\Models\RoomCategory;
 use App\Models\Service;
 
 class HomeController extends Controller
@@ -23,6 +25,10 @@ class HomeController extends Controller
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
         $data['clientSays'] = ClientSay::latest()->get();
+
+        $data['roomCategories'] = RoomCategory::oldest('name')->get();
+        $data['rooms'] = Room::latest()->get();
+
         return view('front-end.home.index')->with($data);
     }
 }

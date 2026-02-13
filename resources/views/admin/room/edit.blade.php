@@ -1,14 +1,14 @@
-<x-admin-app-layout :title="__('Edit Blog')">
+<x-admin-app-layout :title="__('Edit Room')">
 
     <div class="pb-3 flex justify-between">
-        <div class="text-md md:text-2xl">{{ __('Edit Blog') }}</div>
+        <div class="text-md md:text-2xl">{{ __('Edit Room') }}</div>
         <div>
             <a class="text-primary-700 font-semibold bg-red-200 py-2 px-3 rounded"
-                href="{{ route('admin.blog.index') }}">{{ __('Back') }}</a>
+                href="{{ route('admin.room.index') }}">{{ __('Back') }}</a>
         </div>
     </div>
 
-    <form action="{{ route('admin.blog.update', $blog->id) }}"
+    <form action="{{ route('admin.room.update', $room->id) }}"
         method="POST"
         enctype="multipart/form-data"
         class="bg-white p-4 rounded shadow">
@@ -25,19 +25,29 @@
 
                 <!-- Blog Name -->
                 <x-labeled-input
-                    label="Blog Name"
+                    label="Room Name"
                     name="name"
-                    value="{{ old('name', $blog->name) }}"
+                    value="{{ old('name', $room->name) }}"
                     required
                     class="w-full p-1"
                     input-class="bg-transparent border border-gray-300 text-gray-800" />
+
+
+
+                <div class="w-full md:flex p-1">
+                    <x-labeled-input name="price" type="number" min="0" value="{{ old('price', (int)$room->price) }}" required class="w-full md:w-1/3 p-1" />
+
+                    <x-labeled-input name="time_duration" required value="{{ old('time_duration', $room->time_duration) }}" class="w-full md:w-1/3 p-1" />
+
+                    <x-labeled-input name="view" value="{{ old('view', $room->view) }}" class="w-full md:w-1/3 p-1" />
+                </div>
 
                 <!-- Description -->
                 <x-labeled-textarea
                     label="Description"
                     name="description"
                     is-editor="is-editor"
-                    :value="old('description', $blog->description)"></x-labeled-textarea>
+                    :value="old('description', $room->description)"></x-labeled-textarea>
 
             </div>
 
@@ -45,7 +55,7 @@
 
                 {{-- Main Image Preview --}}
                 <img id="prevImage"
-                    src="{{ asset($blog->image) }}"
+                    src="{{ asset($room->image) }}"
                     class="w-20 h-20 object-cover border rounded mb-2">
 
                 <!-- Main Image Upload -->
@@ -70,7 +80,7 @@
 
                     <div class="flex flex-wrap gap-2 mt-2" id="gallery_preview">
                         {{-- OLD GALLERY IMAGES --}}
-                        @foreach ($blog->gallery_image as $image)
+                        @foreach ($room->gallery_image as $image)
                         <div class="relative w-16 h-16 border rounded overflow-hidden">
                             <img src="{{ asset($image) }}" class="w-full h-full object-cover">
 
@@ -91,19 +101,16 @@
                 <!-- Category -->
                 <div class="w-full p-1 mt-4">
                     <label class="font-semibold">Select Category</label>
-                    <select name="blog_category_id"
+                    <select name="room_category_id"
                         class="w-full rounded border-gray-300">
-                        @foreach ($blogCategories as $item)
+                        @foreach ($roomCategories as $item)
                         <option value="{{ $item->id }}"
-                            {{ $blog->blog_category_id == $item->id ? 'selected' : '' }}>
+                            {{ $room->room_category_id == $item->id ? 'selected' : '' }}>
                             {{ $item->name }}
                         </option>
                         @endforeach
                     </select>
                 </div>
-
-                <!-- Short Description -->
-                <x-labeled-textarea label="Short Description" name="short_description" :value="old('short_description', $blog->short_description)" />
             </div>
         </div>
 

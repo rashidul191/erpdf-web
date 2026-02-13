@@ -101,10 +101,9 @@
                 <div class="text-center">
                     <ul class="btn-filter-wrap2">
                         <li class="btn-filter btn-active" data-filter="*">All Rooms</li>
-                        <li class="btn-filter" data-filter=".colum-1">Classic</li>
-                        <li class="btn-filter" data-filter=".colum-1">Superior</li>
-                        <li class="btn-filter" data-filter=".colum-3">Delux</li>
-                        <li class="btn-filter" data-filter=".colum-4">Executive </li>
+                        @foreach ($roomCategories as $item)
+                        <li class="btn-filter" data-filter=".{{ $item->slug }}">{{ $item->name }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -113,182 +112,34 @@
                 <!-- IMAGE CAROUSEL START -->
                 <div class="section-content">
                     <div class="owl-carousel owl-carousel-filter2 owl-btn-bottom-center">
+
+                        @foreach ($rooms as $item )
                         <!-- COLUMNS 1 -->
-                        <div class="item colum-1">
+                        <div class="item {{ $item->category->slug }}">
                             <div class="room-rent-section-outer">
                                 <div class="room-rent-section">
                                     <div class="rooms-pic-section">
                                         <div class="wt-media">
-                                            <img src="images/rooms/pic1.jpg" alt="">
+                                            <img src="{{ $item->image }}" alt="{{ $item->name }}">
                                             <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Classic Balcony Room</h3>
+                                            <h3 class="m-b0 wt-title">{{ $item->name }}</h3>
                                         </div>
 
                                     </div>
                                     <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
+                                        <!-- <span>TK{{ $item->price }}/night</span> -->
+                                        <span>TK{{ $item->price }}</span>
                                         <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
+                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ $item->size }}m² </li>
+                                            <li><i class="fa fa-user"></i> <strong>Duration:</strong> {{ $item->time_duration }} </li>
+                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $item->view }} </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
+                                <a href="{{ route('room.show', [$item->id, $item->slug]) }}" class="btn-half site-button button-lg"><span>More</span><em></em></a>
                             </div>
                         </div>
-
-                        <!-- COLUMNS 2 -->
-                        <div class="item colum-2">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic2.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Superior Double Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$399.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-                        <!-- COLUMNS 3 -->
-                        <div class="item colum-3">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic3.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Balcony Double Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-                        <!-- COLUMNS 4 -->
-                        <div class="item colum-4">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic4.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Delux Double Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-                        <!-- COLUMNS 5 -->
-                        <div class="item colum-3">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic5.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Classic Balcony Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-                        <!-- COLUMNS 6 -->
-                        <div class="item colum-2">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic6.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Superior Double Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-                        <!-- COLUMNS 7 -->
-                        <div class="item colum-1">
-                            <div class="room-rent-section-outer">
-                                <div class="room-rent-section">
-                                    <div class="rooms-pic-section">
-                                        <div class="wt-media">
-                                            <img src="images/rooms/pic7.jpg" alt="">
-                                            <div class="overlay-bx-3"></div>
-                                            <h3 class="m-b0 wt-title">Delux Double Room</h3>
-                                        </div>
-
-                                    </div>
-                                    <div class="room-info-section text-black">
-                                        <span>$299.00/night</span>
-                                        <ul class="clearfix">
-                                            <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
-                                            <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
-                                            <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="room-detail.html" class="btn-half site-button button-lg"><span>More</span><em></em></a>
-                            </div>
-                        </div>
-
-
+                        @endforeach
                     </div>
                 </div>
             </div>

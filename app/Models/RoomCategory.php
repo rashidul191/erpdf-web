@@ -20,4 +20,9 @@ class RoomCategory extends Model
     protected $casts = [
         'image' => ImageField::class . ':room-categories',
     ];
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

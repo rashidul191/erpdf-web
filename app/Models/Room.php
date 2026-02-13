@@ -29,4 +29,9 @@ class Room extends Model
         'image' => ImageField::class . ':room',
         'gallery_image' => MultipleImageField::class . ':rooms/gallery',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(RoomCategory::class, 'room_category_id');
+    }
 }

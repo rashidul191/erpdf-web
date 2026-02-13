@@ -12,9 +12,6 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-
-        // dd(Blog::with(['category:id,name'])->latest()->get());
-
         if ($request->ajax()) {
             return datatables(Blog::with(['category:id,name'])->latest())
                 ->addIndexColumn()
@@ -49,9 +46,9 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image'             => 'required|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'image'             => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
             'gallery_image'     => 'nullable|array',
-            'gallery_image.*'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'gallery_image.*'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             'name'              => 'required|string|max:255',
             'short_description' => 'nullable|string|max:255',
@@ -83,7 +80,7 @@ class BlogController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'image'               => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'image'               => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             // OLD gallery images (hidden inputs) 
             'gallery_image'       => 'nullable|array',
@@ -91,7 +88,7 @@ class BlogController extends Controller
 
             // NEW gallery images (file uploads)
             'gallery_image_new'   => 'nullable|array',
-            'gallery_image_new.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'gallery_image_new.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             'name'                => 'required|string|max:255',
             'short_description'   => 'nullable|string|max:255',
