@@ -3491,7 +3491,7 @@ ol.comment-list li.comment .comment-author .avatar {
 .comment-respond .comment-reply-title {text-transform: uppercase;	font-size: 20px;}
 .comments-area .comment-form {margin:0 -15px;}
 .comments-area .comment-form .comment-notes {	display: none;}
-.comments-area .comment-form p {	width: 33.333%;	float: left;	padding:0 15px;	margin-bottom:30px;	position:relative;	font-weight:600;}
+.comments-area .comment-form p {	width: 50%;	float: left;	padding:0 15px;	margin-bottom:30px;	position:relative;	font-weight:600;}
 .comments-area .comment-form p.form-allowed-tags {width:100%;}
 ol.comment-list li.comment .comment-respond .comment-form p {	padding:0 15px !important;}
 .comments-area .comment-form p label {display: none;	line-height:18px;	margin-bottom:10px;}

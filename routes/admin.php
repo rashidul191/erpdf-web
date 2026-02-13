@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OurStoryController;
+use App\Http\Controllers\Admin\RoomCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SpecializationController;
@@ -123,6 +124,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
 
+        /* Room Routes */
+        // Route::resource('room', BlogController::class);
+        Route::resource('room-categories', RoomCategoryController::class);
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');
         Route::get('social-links', [BusinessSettingController::class, 'socialLinks'])->name('social-links.index');

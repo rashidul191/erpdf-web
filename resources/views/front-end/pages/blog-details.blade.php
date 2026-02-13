@@ -72,7 +72,7 @@
                                     <div class="col-lg-6 col-md-6">
                                         <div class="blog-post latest-blog-1 date-style-2">
                                             <div class="wt-post-media wt-img-effect zoom-slow">
-                                                <a href="{{ route('blog.show', $item->id) }}">
+                                                <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                                     <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                                                 </a>
                                             </div>
@@ -97,7 +97,7 @@
                                                 </div> -->
 
                                                 <div class="wt-post-title">
-                                                    <h3 class="post-title"><a href="{{ route('blog.show', $item->id) }}">{{ $item->name }}</a></h3>
+                                                    <h3 class="post-title"><a href="{{ route('blog.show', [$item->id, $item->slug]) }}">{{ $item->name }}</a></h3>
                                                 </div>
 
                                                 <div class="wt-post-text">
@@ -105,7 +105,7 @@
                                                 </div>
 
                                                 <div class="readmore-line">
-                                                    <a href="{{ route('blog.show', $item->id) }}"
+                                                    <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
                                                         class="site-button-ink site-text-primary font-weight-900 ">Read
                                                         More</a>
                                                 </div>
@@ -117,172 +117,9 @@
                             </div>
                         </div>
 
-                        <div class="clear" id="comment-list">
-                            <div class="comments-area" id="comments">
-                                <h4 class="comments-title">4 Comments</h4>
-                                <div class="p-t30">
-                                    <!-- COMMENT LIST START -->
-                                    <ol class="comment-list p-a30 bg-gray">
-                                        <li class="comment">
-                                            <!-- COMMENT BLOCK -->
-                                            <div class="comment-body">
-                                                <div class="comment-meta">
-                                                    <a href="javascript:void(0);">March 6, 2024 at 7:15 am</a>
-                                                </div>
-                                                <div class="comment-author vcard">
-                                                    <img class="avatar photo" src="images/testimonials/pic1.jpg"
-                                                        alt="">
-                                                    <cite class="fn">Diego</cite>
-                                                    <span class="says">says:</span>
-                                                </div>
-
-                                                <p>Sit amet nibh vulputate cursus a sit amet mauris lorem ipsum
-                                                    dolor sit amet of Lorem Ipsum. Proin gravida nibh vel velit
-                                                    auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                                                    nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis
-                                                    sed odio http://themeforest.net Morbi accumsan ipsum velit. Nam
-                                                    nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris
-                                                    vitae erat </p>
-                                                <div class="reply">
-                                                    <a href="javscript:;"
-                                                        class="comment-reply-link letter-spacing-2 text-uppercase">Read
-                                                        More</a>
-                                                </div>
-                                            </div>
-                                            <!-- SUB COMMENT BLOCK -->
-                                            <ol class="children">
-                                                <li class="comment odd parent">
-
-                                                    <div class="comment-body">
-                                                        <div class="comment-meta">
-                                                            <a href="javascript:void(0);">March 8, 2024 at 9:15
-                                                                am</a>
-                                                        </div>
-                                                        <div class="comment-author vcard">
-                                                            <img class="avatar photo"
-                                                                src="images/testimonials/pic3.jpg" alt="">
-                                                            <cite class="fn">Brayden</cite>
-                                                            <span class="says">says:</span>
-                                                        </div>
-
-                                                        <p>Asperiores, tenetur, blanditiis, quaerat odit ex
-                                                            exercitationem pariatur quibusdam veritatis quisquam
-                                                            laboriosam esse beatae hic perferendis velit deserunt
-                                                            soluta iste repellendus officia in neque veniam debitis
-                                                        </p>
-                                                        <div class="reply">
-                                                            <a href="javscript:;"
-                                                                class="comment-reply-link letter-spacing-2 text-uppercase">Read
-                                                                More</a>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <ol class="children">
-                                                        <li class="comment odd parent">
-                                                            <div class="comment-body">
-                                                                <div class="comment-meta">
-                                                                    <a href="javascript:void(0);">March 9, 2024 at
-                                                                        11:15 am</a>
-                                                                </div>
-                                                                <div class="comment-author vcard">
-                                                                    <img class="avatar photo"
-                                                                        src="images/testimonials/pic2.jpg" alt="">
-                                                                    <cite class="fn">Diego</cite>
-                                                                    <span class="says">says:</span>
-                                                                </div>
-
-                                                                <p>Vel velit auctor aliquet. Aenean sollicitudin,
-                                                                    lorem quis bibendum auctor Lorem ipsum dolor sit
-                                                                    amet of Lorem Ipsum. Proin gravida nibh..</p>
-                                                                <div class="reply">
-                                                                    <a href="javscript:;"
-                                                                        class="comment-reply-link letter-spacing-2 text-uppercase">Read
-                                                                        More</a>
-                                                                </div>
-
-                                                            </div>
-                                                        </li>
-                                                    </ol>
-
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="comment">
-                                            <!-- COMMENT BLOCK -->
-                                            <div class="comment-body">
-                                                <div class="comment-meta">
-                                                    <a href="javascript:void(0);">March 12, 2024 at 7:15 am</a>
-                                                </div>
-                                                <div class="comment-author vcard">
-                                                    <img class="avatar photo" src="images/testimonials/pic1.jpg"
-                                                        alt="">
-                                                    <cite class="fn">Stacy poe</cite>
-                                                    <span class="says">says:</span>
-                                                </div>
-
-                                                <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem
-                                                    pariatur quibusdam veritatis quisquam laboriosam esse beatae hic
-                                                    perferendis velit deserunt soluta iste repellendus officia in
-                                                    neque veniam debitis</p>
-                                                <div class="reply">
-                                                    <a href="javscript:;"
-                                                        class="comment-reply-link letter-spacing-2 text-uppercase">Read
-                                                        More</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                    <!-- COMMENT LIST END -->
-
-                                    <!-- LEAVE A REPLY START -->
-                                    <div class="comment-respond m-t30" id="respond">
-
-                                        <h4 class="comment-reply-title" id="reply-title">Leave a Comments
-                                            <small>
-                                                <a style="display:none;" href="#" id="cancel-comment-reply-link"
-                                                    rel="nofollow">Cancel reply</a>
-                                            </small>
-                                        </h4>
-
-                                        <form class="comment-form" id="commentform" method="post">
-
-                                            <p class="comment-form-author">
-                                                <label for="author">Name <span class="required">*</span></label>
-                                                <input class="form-control" type="text" value="" name="user-comment"
-                                                    placeholder="Author" id="author">
-                                            </p>
-
-                                            <p class="comment-form-email">
-                                                <label for="email">Email <span class="required">*</span></label>
-                                                <input class="form-control" type="text" value="" name="email"
-                                                    placeholder="Email" id="email">
-                                            </p>
-
-                                            <p class="comment-form-url">
-                                                <label for="url">Website</label>
-                                                <input class="form-control" type="text" value="" name="url"
-                                                    placeholder="Website" id="url">
-                                            </p>
-
-                                            <p class="comment-form-comment">
-                                                <label for="comment">Comment</label>
-                                                <textarea class="form-control" rows="8" name="comment"
-                                                    placeholder="Comment" id="comment"></textarea>
-                                            </p>
-
-                                            <p class="form-submit">
-                                                <button class="site-button radius-no text-uppercase font-weight-600"
-                                                    type="button">Submit</button>
-                                            </p>
-
-                                        </form>
-
-                                    </div>
-                                    <!-- LEAVE A REPLY END -->
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Blog Comment Section Start -->
+                        @include('front-end.blog-page-section.blog-comment')
+                        <!-- Blog Comment Section End -->
                         <!-- BLOG END -->
                     </div>
 
@@ -420,20 +257,11 @@
 
                             <!-- TAGS -->
                             <div class="widget widget_tag_cloud">
-                                <h4 class="widget-title">Tags</h4>
+                                <h4 class="widget-title">Categories</h4>
                                 <div class="tagcloud">
-                                    <a href="about-1.html">Trouble </a>
-                                    <a href="about-1.html">Programmers</a>
-                                    <a href="about-1.html">Never</a>
-                                    <a href="about-1.html">Tell</a>
-                                    <a href="about-1.html">Doing</a>
-                                    <a href="about-1.html">Person</a>
-                                    <a href="about-1.html">Inventors Tag</a>
-                                    <a href="about-1.html">Between </a>
-                                    <a href="about-1.html">Abilities</a>
-                                    <a href="about-1.html">Fault </a>
-                                    <a href="about-1.html">Gets </a>
-                                    <a href="about-1.html">Macho</a>
+                                    @foreach ($categories as $item)
+                                    <a href="javascript:void(0);">{{ $item->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -442,13 +270,9 @@
                     </div>
                     <!-- SIDE BAR END -->
                 </div>
-
-
-
             </div>
         </div>
         <!-- SECTION CONTENT END -->
-
     </div>
     <!-- CONTENT END -->
 

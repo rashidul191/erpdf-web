@@ -25,7 +25,8 @@ Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageCo
 /* Page Routes */
 Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
 Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
-Route::get('/blog/{id}', [PageViewController::class, 'blogDetails'])->name('blog.show');
+Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
+Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 

@@ -18,7 +18,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="blog-post latest-blog-1 date-style-2">
                         <div class="wt-post-media wt-img-effect zoom-slow">
-                            <a href="{{ route('blog.show', $item->id) }}">
+                            <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                 <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                             </a>
                         </div>
@@ -39,7 +39,7 @@
 
                             <div class="wt-post-title">
                                 <h3 class="post-title">
-                                    <a href="{{ route('blog.show', $item->id) }}">
+                                    <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                         {{ $item->name }}</a>
                                 </h3>
                             </div>
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="readmore-line">
-                                <a href="{{ route('blog.show', $item->id) }}" class="site-button-ink site-text-primary font-weight-900 ">Read More</a>
+                                <a href="{{ route('blog.show', [$item->id, $item->slug]) }}" class="site-button-ink site-text-primary font-weight-900 ">Read More</a>
                             </div>
 
                         </div>

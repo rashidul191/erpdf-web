@@ -7,9 +7,9 @@ use App\Traits\DeletesImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model
+class RoomCategory extends Model
 {
-     use HasFactory, DeletesImage;
+    use HasFactory, DeletesImage;
 
     protected $fillable = [
         'name',
@@ -18,11 +18,6 @@ class BlogCategory extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':blog-categories',
+        'image' => ImageField::class . ':room-categories',
     ];
-    
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class);
-    // }
 }
