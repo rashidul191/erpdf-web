@@ -68,6 +68,9 @@
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 
+                <x-navigation-link :text="__('Room')" :icon="icon('website')">                    
+                    <x-navigation-link :href="route('admin.room-categories.index')" :text="__('Room Categories')" />
+                </x-navigation-link>
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" />
                 <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review List')" />
