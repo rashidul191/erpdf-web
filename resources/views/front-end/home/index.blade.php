@@ -132,6 +132,7 @@
                                         <ul class="clearfix">
                                             <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ number_format($item->size) }}m² </li>
                                             <li><i class="fa fa-clock-o"></i> <strong>Duration:</strong> {{ $item->time_duration }} </li>
+                                            <li><i class="fa fa-hotel"></i> <strong>Room Type:</strong> {{ $item->type->name }} </li>
                                             <li><i class="fa fa-user"></i> <strong>Adult:</strong> {{ number_format($item->adult) }} </li>
                                             <li><i class="fa fa-users"></i> <strong>Child:</strong> {{ number_format($item->child) }} </li>
                                             <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $item->view }} </li>

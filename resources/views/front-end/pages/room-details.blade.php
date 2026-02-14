@@ -39,6 +39,7 @@
                                 <ul class="list-unstyled text-dark d-md-flex justify-content-between align-items-center">
                                     <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ number_format($room->size) }}m² </li>
                                     <li><i class="fa fa-clock-o"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
+                                    <li><i class="fa fa-hotel"></i> <strong>Room Type:</strong> {{ $room->type->name }} </li>
                                     <li><i class="fa fa-user"></i> <strong>Adult:</strong> {{ number_format($room->adult) }} </li>
                                     <li><i class="fa fa-users"></i> <strong>Child:</strong> {{ number_format($room->child) }} </li>
                                     <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $room->view }} </li>

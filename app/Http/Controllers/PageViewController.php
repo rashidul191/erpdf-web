@@ -67,14 +67,14 @@ class PageViewController extends Controller
     public function roomCategory($id)
     {
         $data['roomCategory'] = RoomCategory::findOrFail($id);
-        $data['rooms'] = Room::where('room_category_id', $id)->latest()->paginate(12);
+        $data['rooms'] = Room::where('room_category_id', $id)->with('type:id,name')->latest()->paginate(12);
 
         return view('front-end.pages.room-category', $data);
     }
 
     public function roomDetails($id)
     {
-        $data['room'] = Room::findOrFail($id);
+        $data['room'] = Room::with('type:id,name')->findOrFail($id);
         $data['roomComments'] = RoomComment::where('room_id', $id)->latest()->take(4)->get();
         $data['recentRooms'] = Room::where('id', '!=', $id)->latest()->take(4)->get();
         $data['relatedRooms'] = Room::where('room_category_id', $data['room']->room_category_id)->where('id', '!=', $id)->latest()->take(4)->get();

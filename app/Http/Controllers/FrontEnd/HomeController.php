@@ -27,7 +27,7 @@ class HomeController extends Controller
         $data['clientSays'] = ClientSay::latest()->get();
 
         $data['roomCategories'] = RoomCategory::oldest('name')->get();
-        $data['rooms'] = Room::latest()->get();
+        $data['rooms'] = Room::with('type:id,name')->latest()->get();
 
         return view('front-end.home.index')->with($data);
     }
