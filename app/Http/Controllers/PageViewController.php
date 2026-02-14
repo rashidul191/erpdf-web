@@ -64,6 +64,17 @@ class PageViewController extends Controller
         return redirect()->back()->with('success', 'Comment successfully!');
     }
 
+    public function blogSearch(Request $request)
+    {
+        $data['searchText'] = $request->input('search_text');
+        $data['blogs'] = Blog::where('name', 'like', '%' . $data['searchText'] . '%')
+            ->orWhere('description', 'like', '%' . $data['searchText'] . '%')
+            ->latest()
+            ->paginate(12);
+
+        return view('front-end.pages.blog-search', $data);
+    }
+
     public function roomCategory($id)
     {
         $data['roomCategory'] = RoomCategory::findOrFail($id);
@@ -84,7 +95,7 @@ class PageViewController extends Controller
 
     public function roomCommentStore(Request $request)
     {
-        
+
         $validated =  $request->validate([
             'room_id' => 'required|exists:rooms,id',
             'name' => 'required|string|max:255',
@@ -98,6 +109,17 @@ class PageViewController extends Controller
             return redirect()->back()->with('error', 'Failed to add comment.');
         }
         return redirect()->back()->with('success', 'Comment successfully!');
+    }
+
+    public function roomSearch(Request $request)
+    {
+        $data['searchText'] = $request->input('search_text');
+        $data['rooms'] = Room::where('name', 'like', '%' . $data['searchText'] . '%')
+            ->orWhere('description', 'like', '%' . $data['searchText'] . '%')
+            ->latest()
+            ->paginate(12);
+
+        return view('front-end.pages.room-search', $data);
     }
 
     public function galleryPage()

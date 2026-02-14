@@ -42,10 +42,10 @@
                         <!-- <p class="max-w400">Today we can tell you, thanks to your passion, hard work creativity, and expertise, you delivered us the most beautiful house great looks.</p> -->
 
                         <ul class="social-icons social-tooltips-outer wt-social-links mt-5">
-                            <li><a target="_blank" href="{{ business_setting('fb_link') }}" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('twitter_link') }}" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('instagram_link') }}" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('youtube_link') }}" class="fa fa-youtube"><span class="social-tooltips">Youtube</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('fb_link') ?? '#' }}" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('twitter_link') ?? '#' }}" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('instagram_link') ?? '#' }}" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('youtube_link') ?? '#' }}" class="fa fa-youtube"><span class="social-tooltips">Youtube</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="widget widget_services inline-links">
                         <h4 class="widget-title">Useful links</h4>
                         <ul>
-                            <li><a href="{{ route('about.index') }}">About</a></li>
+                            <li><a href="{{ route('about.index') }}">About Us</a></li>
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
                             <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
                             <!-- <li><a href="work-masonry.html">Portfolio</a></li> -->

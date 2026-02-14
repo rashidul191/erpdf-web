@@ -27,7 +27,7 @@
                         </li>
 
                         <li class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
-                            <a href="{{ route('about.index') }}">About</a>
+                            <a href="{{ route('about.index') }}">About Us</a>
                         </li>
                         @php
                         $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
@@ -67,7 +67,7 @@
                         </li> -->
 
                         <li class="{{ request()->routeIs('contact.index') ? 'active' : '' }}">
-                            <a href="{{ route('contact.index') }}">Contact</a>
+                            <a href="{{ route('contact.index') }}">Contact Us</a>
                         </li>
                         <!-- <li class="submenu-direction">
                                         <a href="javascript:;">Shortcodes</a>
@@ -206,14 +206,13 @@
                 <!-- SITE Search -->
                 <div id="search">
                     <span class="close"></span>
-                    <form role="search" id="searchform" action="https://thewebmax.org/search" method="get" class="radius-xl">
+                    <form role="search" id="searchform" action="{{ route('room.search') }}" method="get" class="radius-xl">
                         <div class="input-group">
-                            <input value="" name="q" type="search" placeholder="Type to search" />
-                            <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                            <input value="" name="search_text" type="search" placeholder="Type to search" />
+                            <span class="input-group-btn"><button type="submit" class="search-btn"><i class="fa fa-search"></i></button></span>
                         </div>
                     </form>
                 </div>
-
 
             </div>
         </div>

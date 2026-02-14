@@ -36,13 +36,13 @@
                                 <h2>{{ $room->name }}</h2>
                                 <h4>Price: TK {{ number_format($room->price) }}</h4>
 
-                                <ul class="list-unstyled text-dark d-md-flex justify-content-between align-items-center">
-                                    <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ number_format($room->size) }}m² </li>
-                                    <li><i class="fa fa-clock-o"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
-                                    <li><i class="fa fa-hotel"></i> <strong>Room Type:</strong> {{ $room->type->name }} </li>
-                                    <li><i class="fa fa-user"></i> <strong>Adult:</strong> {{ number_format($room->adult) }} </li>
-                                    <li><i class="fa fa-users"></i> <strong>Child:</strong> {{ number_format($room->child) }} </li>
-                                    <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $room->view }} </li>
+                                <ul class="list-unstyled text-dark row row-cols-1 row-cols-md-3 justify-content-between align-items-center">
+                                    <li class="col p-2"><i class="fa fa-expand"></i> <strong>Size:</strong> {{ number_format($room->size) }}m² </li>
+                                    <li class="col p-2"><i class="fa fa-clock-o"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
+                                    <li class="col p-2"><i class="fa fa-hotel"></i> <strong>Room Type:</strong> {{ $room->type->name }} </li>
+                                    <li class="col p-2"><i class="fa fa-user"></i> <strong>Adult:</strong> {{ number_format($room->adult) }} </li>
+                                    <li class="col p-2"><i class="fa fa-users"></i> <strong>Child:</strong> {{ number_format($room->child) }} </li>
+                                    <li class="col p-2"><i class="fa fa-eye"></i> <strong>View:</strong> {{ $room->view }} </li>
                                 </ul>
                                 <p>{!! $room->description !!}</p>
                             </div>
@@ -200,81 +200,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="clear" id="comment-list">
-                    <div class="comments-area" id="comments">
-                        @if ($roomComments->isNotEmpty())
-                        <h4 class="comments-title">{{ $roomComments->count() }} Comments</h4>
-                        @endif
-                        <div class="p-tb30">
-                            @if ($roomComments->isNotEmpty())
-                            <!-- COMMENT LIST START -->
-                            <ol class="comment-list p-a30 bg-gray">
-                                <li class="comment">
-                                    @foreach($roomComments as $item)
-                                    <!-- COMMENT BLOCK -->
-                                    <div class="comment-body">
-                                        <div class="comment-meta">
-                                            <a href="javascript:void(0);">{{ $item->created_at->format('F j, Y \a\t g:i a') }}</a>
-                                        </div>
-                                        <div class="comment-author vcard">
-                                            <img class="avatar photo" src="{{ asset($item->image) }}" alt="">
-                                            <cite class="fn">{{ $item->name }}</cite>
-                                            <br>
-                                            <span>{{ $item->email }}</span>
-                                            <span class="says">says:</span>
-                                        </div>
-
-                                        <p>{!! $item->message !!}</p>
-
-                                    </div>
-                                    @endforeach
-                                </li>
-
-                            </ol>
-                            <!-- COMMENT LIST END -->
-                            @endif
-
-                            <!-- LEAVE A REPLY START -->
-                            <div class="comment-respond m-t30" id="respond">
-
-                                <h2 class="comment-reply-title" id="reply-title">Leave a Comments
-                                    <small>
-                                        <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a>
-                                    </small>
-                                </h2>
-
-                                <form class="comment-form" id="commentform" method="POST" action="{{ route('room.comment.store') }}">
-
-                                    @csrf
-                                    <input type="hidden" name="room_id" value="{{ $room->id }}">
-                                    <p class="comment-form-author">
-                                        <label for="name">Name <span class="required">*</span></label>
-                                        <input class="form-control" type="text" value="{{ old('name') }}" name="name" placeholder="Name" id="name">
-                                    </p>
-
-                                    <p class="comment-form-email">
-                                        <label for="email">Email <span class="required">*</span></label>
-                                        <input class="form-control" type="text" value="{{ old('email') }}" name="email" placeholder="Email" id="email">
-                                    </p>
-
-                                    <p class="comment-form-comment">
-                                        <label for="message">Comment</label>
-                                        <textarea class="form-control" rows="8" name="message" placeholder="Comment" id="message">{{ old('message') }}</textarea>
-                                    </p>
-
-                                    <p class="form-submit">
-                                        <button class="site-button radius-no text-uppercase font-weight-600" type="submit">Submit</button>
-                                    </p>
-
-                                </form>
-
-                            </div>
-                            <!-- LEAVE A REPLY END -->
-                        </div>
-                    </div>
-                </div>
 
 
+                <!-- Room Comment Section Start -->
+                @include('front-end.room-page-section.room-comment')
+                <!-- Room Comment Section End -->
             </div>
         </div>
         <!-- SECTION CONTENT END -->

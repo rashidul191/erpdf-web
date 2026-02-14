@@ -4,13 +4,12 @@
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :title="$roomCategory->name ?? null" />
+        <x-page-banner :title="$searchText" />
         <!-- INNER PAGE BANNER END -->
 
-
-        <!-- ROOMS SLIDER START -->
-       @include('front-end.room-page-section.rooms')
-        <!-- ROOMS  SLIDER END -->
+        <!-- OUR ROOMS START -->
+        @include('front-end.room-page-section.rooms')
+        <!-- OUR ROOMS END -->
 
     </div>
     <!-- CONTENT END -->

@@ -1,6 +1,8 @@
 <div class="section-full p-t90 p-b60 bg-white">
 
     <div class="container">
+
+        @if(request()->routeIs('home.index'))
         <!-- TITLE START -->
         <div class="section-head text-left">
             <h2 class="m-b5" data-title="Blog">Our Latest Blog</h2>
@@ -9,6 +11,7 @@
             </div>
         </div>
         <!-- TITLE END -->
+        @endif
 
         <!-- IMAGE CAROUSEL START -->
         <div class="section-content">

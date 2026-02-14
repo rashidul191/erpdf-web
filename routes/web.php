@@ -31,11 +31,13 @@ Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('con
 /* Blog Routes */
 Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
 Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
+Route::get('/blog-search', [PageViewController::class, 'blogSearch'])->name('blog.search');
 
 /* Room Routes */
 Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->name('room.show');
 Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
 Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->name('room.comment.store');
+Route::get('/room-search', [PageViewController::class, 'roomSearch'])->name('room.search');
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

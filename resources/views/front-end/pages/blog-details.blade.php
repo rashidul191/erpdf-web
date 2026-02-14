@@ -130,9 +130,9 @@
                             <div class="widget ">
                                 <h4 class="widget-title">Search</h4>
                                 <div class="search-bx">
-                                    <form role="search" method="post">
+                                    <form role="search" method="GET" action="{{ route('blog.search') }}">
                                         <div class="input-group">
-                                            <input name="news-letter" type="text" class="form-control"
+                                            <input name="search_text" type="text" class="form-control"
                                                 placeholder="Write your text">
                                             <span class="input-group-btn">
                                                 <button type="submit" class="site-button"><i
