@@ -18,7 +18,7 @@ class RoomCategory extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':room-categories,image/no-image.png',
+        'image' => ImageField::class . ':room-categories,images/no-image.png',
     ];
 
     public function rooms()

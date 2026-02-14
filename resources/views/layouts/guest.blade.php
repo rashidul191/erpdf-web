@@ -53,7 +53,7 @@
 
 
     <!-- Scripts -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="{{ asset('js/app.js') }}" defer></script>
@@ -69,23 +69,41 @@
     @endif
 
     @if (session('success'))
-    <script>
+    <div class="position-fixed top-0 end-0 p-3" style="z-index:9999">
+        <div id="liveToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="bg-success toast-body text-white">
+                {{ session('success') }}
+            </div>
+        </div>
+    </div>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
-            showToast({
-                !!json_encode(session('success')) !!
-            }, 'success');
+            showToast({!!json_encode(session('success'))!!}, 'success');
         });
-    </script>
+    </script> -->
     @endif
 
     @if (session('error'))
-    <script>
+    <div class="position-fixed top-0 end-0 p-3" style="z-index:9999">
+        <div id="liveToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="bg-danger toast-body text-white">
+                {{ session('error') }}
+            </div>
+        </div>
+    </div>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
-            showToast({
-                !!json_encode(session('error')) !!
-            }, 'error');
+            showToast({!!json_encode(session('error'))!!}, 'error');
         });
-    </script>
+    </script> -->
     @endif
     @if (session('warning'))
     <script>
@@ -102,12 +120,12 @@
 
         <!-- BUTTON TOP START -->
         <button class="scroltop"><span class="fa fa-angle-up  relative" id="btn-vibrate"></span></button>
-        
+
         @if (request()->getPathInfo() != '/login' && request()->getPathInfo() != '/register')
         {{-- Footer Section Start  --}}
         <x-footer />
-        {{-- Footer Section End  --}}       
-        
+        {{-- Footer Section End  --}}
+
         @endif
     </div>
 
@@ -170,9 +188,6 @@
     </script>
 
 
-
-
-
     <script src="{{ asset('front-end/assets/js/popper.min.js') }}"></script><!-- BOOTSTRAP.MIN JS -->
     <script src="{{ asset('front-end/assets/js/bootstrap.min.js') }}"></script><!-- BOOTSTRAP.MIN JS -->
     <script src="{{ asset('front-end/assets/js/magnific-popup.min.js') }}"></script><!-- MAGNIFIC-POPUP JS -->
@@ -194,6 +209,18 @@
 
     <!-- REVOLUTION SLIDER SCRIPT FILES -->
     <script src="{{ asset('front-end/assets/js/rev-script-1.js') }}"></script>
+
+
+    <!-- Bootstrap toast js code -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastEl = document.getElementById('liveToast');
+            if (toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        });
+    </script>
 
 
     {{ $script ?? '' }}

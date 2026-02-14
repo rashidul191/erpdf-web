@@ -26,6 +26,8 @@
                     <x-labeled-input name="price" type="number" min="0" required class="w-full md:w-1/4 p-1" />
                     <x-labeled-input name="time_duration" required class="w-full md:w-1/4 p-1" />
                     <x-labeled-input name="size" type="number" min="0" class="w-full md:w-1/4 p-1" />
+                    <x-labeled-input name="adult" type="number" min="0" class="w-full md:w-1/4 p-1" />
+                    <x-labeled-input name="child" type="number" min="0" class="w-full md:w-1/4 p-1" />
                     <x-labeled-input name="view" class="w-full md:w-1/4 p-1" />
                 </div>
 
@@ -59,6 +61,19 @@
                     <div class="flex flex-wrap gap-2 mt-2" id="gallery_preview"></div>
                 </div>
 
+                <!-- Room Type Dropdown -->
+                <div class="w-full p-1">
+                    <label for="room_type_id" class="font-semibold">Select Room Type</label>
+                    <select name="room_type_id" id="room_type_id" class="select2 w-full rounded border-gray-300">
+                        <option value="" disabled selected>Select Room Type</option>
+                        @foreach ($roomTypes as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('room_type_id')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
                 <!-- Category Dropdown -->
                 <div class="w-full p-1">
                     <label for="blog_category_id" class="font-semibold">Select Category</label>
@@ -72,6 +87,8 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+
+
             </div>
         </div>
 

@@ -18,7 +18,7 @@ class BlogCategory extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':blog-categories,image/no-image.png',
+        'image' => ImageField::class . ':blog-categories,images/no-image.png',
     ];
     
     // public function products()

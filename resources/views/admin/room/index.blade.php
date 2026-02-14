@@ -21,7 +21,10 @@
                     <th>{{ __('Price') }}</th>
                     <th>{{ __('Time Duration') }}</th>
                     <th>{{ __('Size') }}</th>
+                    <th>{{ __('Adult') }}</th>
+                    <th>{{ __('Child') }}</th>
                     <th>{{ __('View') }}</th>
+                    <th>{{ __('Room Type') }}</th>
                     <th>{{ __('Category') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
@@ -75,17 +78,33 @@
                         data: 'time_duration'
                     },
                     {
-                        data: 'size'
+                        data: 'size',
+                        defaultContent: '-',
                     },
                     {
-                        data: 'view'
+                        data: 'adult',
+                        defaultContent: '-',
+
+                    },
+                    {
+                        data: 'child',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'view',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'type.name',
+                        defaultContent: '-',
+                        orderable: false,
                     },
 
                     {
                         data: 'category.name',
                         defaultContent: '-',
                         orderable: false,
-                    },
+                    },                    
 
                     {
                         data: 'action',

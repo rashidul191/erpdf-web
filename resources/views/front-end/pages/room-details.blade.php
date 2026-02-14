@@ -190,8 +190,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -201,52 +199,31 @@
                 </div>
                 <div class="clear" id="comment-list">
                     <div class="comments-area" id="comments">
-                        <h2 class="comments-title">4 Comments</h2>
+                        @if ($roomComments->isNotEmpty())
+                        <h4 class="comments-title">{{ $roomComments->count() }} Comments</h4>
+                        @endif
                         <div class="p-tb30">
                             <!-- COMMENT LIST START -->
                             <ol class="comment-list p-a30 bg-gray">
                                 <li class="comment">
+                                    @foreach($roomComments as $item)
                                     <!-- COMMENT BLOCK -->
                                     <div class="comment-body">
                                         <div class="comment-meta">
-                                            <a href="javascript:void(0);">March 6, 2024 at 7:15 am</a>
+                                            <a href="javascript:void(0);">{{ $item->created_at->format('F j, Y \a\t g:i a') }}</a>
                                         </div>
                                         <div class="comment-author vcard">
-                                            <img class="avatar photo" src="images/testimonials/pic1.jpg" alt="">
-                                            <cite class="fn">Diego</cite>
+                                            <img class="avatar photo" src="{{ asset($item->image) }}" alt="">
+                                            <cite class="fn">{{ $item->name }}</cite>
+                                            <br>
+                                            <span>{{ $item->email }}</span>
                                             <span class="says">says:</span>
                                         </div>
 
-                                        <p>Sit amet nibh vulputate cursus a sit amet mauris lorem ipsum dolor sit amet of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio http://themeforest.net Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat </p>
-                                        <div class="reply">
-                                            <a href="javscript:;" class="comment-reply-link letter-spacing-2 text-uppercase">Read More</a>
-                                        </div>
+                                        <p>{!! $item->message !!}</p>
+
                                     </div>
-                                    <!-- SUB COMMENT BLOCK -->
-                                    <ol class="children">
-                                        <li class="comment odd parent">
-
-                                            <div class="comment-body">
-                                                <div class="comment-meta">
-                                                    <a href="javascript:void(0);">March 8, 2024 at 9:15 am</a>
-                                                </div>
-                                                <div class="comment-author vcard">
-                                                    <img class="avatar photo" src="images/testimonials/pic3.jpg" alt="">
-                                                    <cite class="fn">Brayden</cite>
-                                                    <span class="says">says:</span>
-                                                </div>
-
-                                                <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
-                                                <div class="reply">
-                                                    <a href="javscript:;" class="comment-reply-link letter-spacing-2 text-uppercase">Read More</a>
-                                                </div>
-
-                                            </div>
-
-
-
-                                        </li>
-                                    </ol>
+                                    @endforeach
                                 </li>
 
                             </ol>
@@ -261,30 +238,27 @@
                                     </small>
                                 </h2>
 
-                                <form class="comment-form" id="commentform" method="post">
+                                <form class="comment-form" id="commentform" method="POST" action="{{ route('room.comment.store') }}">
 
+                                    @csrf
+                                    <input type="hidden" name="room_id" value="{{ $room->id }}">
                                     <p class="comment-form-author">
-                                        <label for="author">Name <span class="required">*</span></label>
-                                        <input class="form-control" type="text" value="" name="user-comment" placeholder="Author" id="author">
+                                        <label for="name">Name <span class="required">*</span></label>
+                                        <input class="form-control" type="text" value="{{ old('name') }}" name="name" placeholder="Name" id="name">
                                     </p>
 
                                     <p class="comment-form-email">
                                         <label for="email">Email <span class="required">*</span></label>
-                                        <input class="form-control" type="text" value="" name="email" placeholder="Email" id="email">
-                                    </p>
-
-                                    <p class="comment-form-url">
-                                        <label for="url">Website</label>
-                                        <input class="form-control" type="text" value="" name="url" placeholder="Website" id="url">
+                                        <input class="form-control" type="text" value="{{ old('email') }}" name="email" placeholder="Email" id="email">
                                     </p>
 
                                     <p class="comment-form-comment">
-                                        <label for="comment">Comment</label>
-                                        <textarea class="form-control" rows="8" name="comment" placeholder="Comment" id="comment"></textarea>
+                                        <label for="message">Comment</label>
+                                        <textarea class="form-control" rows="8" name="message" placeholder="Comment" id="message">{{ old('message') }}</textarea>
                                     </p>
 
                                     <p class="form-submit">
-                                        <button class="site-button radius-no text-uppercase font-weight-600" type="button">Submit</button>
+                                        <button class="site-button radius-no text-uppercase font-weight-600" type="submit">Submit</button>
                                     </p>
 
                                 </form>

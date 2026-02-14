@@ -1,28 +1,30 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use App\Casts\ImageField;
 use App\Traits\DeletesImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class RoomComment extends Model
 {
     use HasFactory, DeletesImage;
 
     protected $fillable = [
+        'room_id',
         'name',
-        'slug',
+        'email',
+        'message',
         'image',
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':categories,images/no-image.png',
+        'image' => ImageField::class . ':room_comments,images/avatar.png',
     ];
-    
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class);
-    // }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 }

@@ -20,7 +20,7 @@ class Slider extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':sliders,image/no-image.png',
+        'image' => ImageField::class . ':sliders,images/no-image.png',
         'is_home' => IsHomeStatus::class,
     ];
 }

@@ -13,6 +13,6 @@ class Service extends Model
     protected $fillable = ['image', 'title', 'sub_title'];
 
     protected $casts = [
-        'image' => ImageField::class . ':services,image/no-image.png',
+        'image' => ImageField::class . ':services,images/no-image.png',
     ];
 }

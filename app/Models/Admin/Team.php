@@ -22,6 +22,6 @@ class Team extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':team,image/avatar.png',
+        'image' => ImageField::class . ':team,images/avatar.png',
     ];
 }

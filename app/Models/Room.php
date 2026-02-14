@@ -14,10 +14,13 @@ class Room extends Model
 
     protected $fillable = [
         'room_category_id',
+        'room_type_id',
         'name',
         'slug',
         'time_duration',
         'price',
+        'adult',
+        'child',
         'size',
         'view',
         'image',
@@ -26,12 +29,17 @@ class Room extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':room,image/no-image.png',
-        'gallery_image' => MultipleImageField::class . ':rooms/gallery,image/no-image.png',
+        'image' => ImageField::class . ':room,images/no-image.png',
+        'gallery_image' => MultipleImageField::class . ':rooms/gallery,images/no-image.png',
     ];
 
     public function category()
     {
         return $this->belongsTo(RoomCategory::class, 'room_category_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(RoomType::class, 'room_type_id');
     }
 }

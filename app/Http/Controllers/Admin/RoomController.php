@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomCategory;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,10 +14,22 @@ class RoomController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Room::with(['category:id,name'])->latest())
+            return datatables(Room::with(['category:id,name', 'type:id,name'])->latest())
                 ->addIndexColumn()
                 ->addColumn('image', function ($row) {
                     return '<img class="w-12 h-12" src="' . $row->image . '" />';
+                })
+                ->addColumn('price', function ($row) {
+                    return $row->price ? number_format($row->price) : '-';
+                })
+                ->addColumn('size', function ($row) {
+                    return $row->size ? number_format($row->size) : '-';
+                })
+                ->addColumn('adult', function ($row) {
+                    return $row->adult ? number_format($row->adult) : '-';
+                })
+                ->addColumn('child', function ($row) {
+                    return $row->child ? number_format($row->child) : '-';
                 })
                 ->addColumn('gallery_image', function ($row) {
                     $html = '<div class="flex">';
@@ -39,7 +52,8 @@ class RoomController extends Controller
 
     public function create()
     {
-        $data['roomCategories'] = RoomCategory::all();
+        $data['roomCategories'] = RoomCategory::oldest('name')->get();
+        $data['roomTypes'] = RoomType::oldest('name')->get();
         return view('admin.room.create')->with($data);
     }
 
@@ -47,6 +61,7 @@ class RoomController extends Controller
     {
         $validated = $request->validate([
             'room_category_id'       => 'nullable|exists:room_categories,id',
+            'room_type_id'       => 'nullable|exists:room_types,id',
 
             'image'             => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
             'gallery_image'     => 'nullable|array',
@@ -56,6 +71,8 @@ class RoomController extends Controller
             'time_duration' => 'nullable|string|max:255',
             'price' => 'nullable|numeric|min:0',
             'size' => 'nullable|numeric|min:0',
+            'adult' => 'nullable|numeric|min:0',
+            'child' => 'nullable|numeric|min:0',
             'view' => 'nullable|string|max:255',
             'description'       => 'nullable|string',
         ]);
@@ -73,7 +90,8 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         $data['room'] = $room;
-        $data['roomCategories'] = RoomCategory::all();
+        $data['roomCategories'] = RoomCategory::oldest('name')->get();
+        $data['roomTypes'] = RoomType::oldest('name')->get();
 
         return view('admin.room.edit')->with($data);
     }
@@ -84,6 +102,7 @@ class RoomController extends Controller
         // dd($request->all());
         $validated = $request->validate([
             'room_category_id'    => 'nullable|exists:room_categories,id',
+            'room_type_id'    => 'nullable|exists:room_types,id',
             'image'               => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             // OLD gallery images (hidden inputs) 
@@ -98,6 +117,8 @@ class RoomController extends Controller
             'time_duration' => 'nullable|string|max:255',
             'price' => 'nullable|numeric|min:0',
             'size' => 'nullable|numeric|min:0',
+            'adult' => 'nullable|numeric|min:0',
+            'child' => 'nullable|numeric|min:0',
             'view' => 'nullable|string|max:255',
             'description'         => 'nullable|string',
 

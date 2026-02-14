@@ -24,13 +24,18 @@ Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageCo
 /* Page Routes */
 Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
 Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
-Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
-Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
+
+/* Blog Routes */
+Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
+Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
+
+/* Room Routes */
 Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->name('room.show');
 Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
+Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->name('room.comment.store');
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');
@@ -39,7 +44,7 @@ Route::middleware(['auth.multi', 'no-cache'])->group(function () {
         ->only(['create', 'store']);
     Route::resource('profile-update', \App\Http\Controllers\ProfileUpdateController::class)
         ->only(['create', 'store']);
-    
+
     Route::resource('password-update', \App\Http\Controllers\PasswordUpdateController::class)
         ->only(['create', 'store']);
     Route::resource('profile-update', \App\Http\Controllers\ProfileUpdateController::class)

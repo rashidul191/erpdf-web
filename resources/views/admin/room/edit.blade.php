@@ -36,9 +36,10 @@
 
                 <div class="w-full md:flex p-1">
                     <x-labeled-input name="price" type="number" min="0" value="{{ old('price', (int)$room->price) }}" required class="w-full md:w-1/3 p-1" />
-
                     <x-labeled-input name="time_duration" required value="{{ old('time_duration', $room->time_duration) }}" class="w-full md:w-1/3 p-1" />
-
+                    <x-labeled-input name="size" type="number" min="0" value="{{ old('size', (int)$room->size) }}" class="w-full md:w-1/3 p-1" />
+                    <x-labeled-input name="adult" type="number" min="0" value="{{ old('adult', (int)$room->adult) }}" class="w-full md:w-1/3 p-1" />
+                    <x-labeled-input name="child" type="number" min="0" value="{{ old('child', (int)$room->child) }}" class="w-full md:w-1/3 p-1" />
                     <x-labeled-input name="view" value="{{ old('view', $room->view) }}" class="w-full md:w-1/3 p-1" />
                 </div>
 
@@ -97,6 +98,20 @@
                     </div>
                 </div>
 
+
+                <!-- Room Type -->
+                <div class="w-full p-1 mt-4">
+                    <label class="font-semibold">Select Room Type</label>
+                    <select name="room_type_id"
+                        class="w-full rounded border-gray-300">
+                        @foreach ($roomTypes as $item)
+                        <option value="{{ $item->id }}"
+                            {{ $room->room_type_id == $item->id ? 'selected' : '' }}>
+                            {{ $item->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <!-- Category -->
                 <div class="w-full p-1 mt-4">

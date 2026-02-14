@@ -16,10 +16,13 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_category_id')->nullable()->constrained('room_categories');
-            $table->string(column: 'name')->nullable();
+            $table->foreignId('room_type_id')->nullable()->constrained('room_types');
+            $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('time_duration')->nullable();
             $table->decimal('price')->nullable()->default(0);
+            $table->decimal('adult')->nullable()->default(0);
+            $table->decimal('child')->nullable()->default(0);
             $table->decimal('size')->nullable()->default(0);
             $table->string('view')->nullable();
             $table->string('image')->nullable();
