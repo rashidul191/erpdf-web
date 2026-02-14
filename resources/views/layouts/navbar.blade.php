@@ -22,39 +22,29 @@
                 <!-- MAIN Vav -->
                 <div class="header-nav navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
                             <a href="{{ route('home.index') }}">Home</a>
-                            <!-- <ul class="sub-menu">
-                                            <li>
-                                                <a href="index.html">Home-1</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-2.html">Home-2</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-3.html">Home-3</a>
-                                            </li>                                            
-                        
-                                        </ul>                                                     -->
                         </li>
 
-                        <li>
+                        <li class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
                             <a href="{{ route('about.index') }}">About</a>
                         </li>
-                        <li>
-                            <a href="javascript:;">Post detail</a>
+                        @php
+                        $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
+                        @endphp
+                        <li class="{{ request()->routeIs('room-category.*') ? 'active' : '' }}">
+                            <a href="javascript:;">Rooms</a>
                             <ul class="sub-menu">
-                                <li><a href="post-image.html">Post Image</a></li>
-                                <li><a href="post-gallery.html">Post Gallery</a></li>
-                                <li><a href="post-video.html">Post Video</a></li>
-                                <li><a href="post-right-sidebar.html">Post Right Sidebar</a></li>
+                                @foreach ($roomCategories as $item)
+                                <li><a href="{{ route('room-category.show', [$item->id, $item->slug]) }}">{{ $item->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
 
 
-                        <li class="submenu-direction">
-                            <a href="javascript:;">Pages</a>
-                            <ul class="sub-menu">
+                        <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}">
+                            <a href="{{ route('blog.index') }}">Blog</a>
+                            <!-- <ul class="sub-menu">
                                 <li>
                                     <a href="javascript:;">Blog</a>
                                     <ul class="sub-menu has-child">
@@ -64,9 +54,9 @@
                                     </ul>
                                 </li>
 
-                            </ul>
+                            </ul> -->
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="javascript:;">Projects</a>
                             <ul class="sub-menu">
                                 <li><a href="work-grid.html">Project Grid</a></li>
@@ -74,9 +64,9 @@
                                 <li><a href="work-carousel.html">Project Carousel</a></li>
                                 <li><a href="project-detail.html">Project Detail</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
-                        <li>
+                        <li class="{{ request()->routeIs('contact.index') ? 'active' : '' }}">
                             <a href="{{ route('contact.index') }}">Contact</a>
                         </li>
                         <!-- <li class="submenu-direction">

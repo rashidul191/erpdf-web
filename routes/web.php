@@ -30,6 +30,7 @@ Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('galler
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
 Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->name('room.show');
+Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

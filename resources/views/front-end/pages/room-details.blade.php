@@ -1,278 +1,305 @@
 <x-guest-layout>
 
     <!-- CONTENT START -->
-    <div class="page-content">
-
-
+    <div class="page-content ">
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="$blog->image" />
+        <x-page-banner :title="$room->name ?? null" :image="$room->image" />
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENT START -->
-        <div class="section-full p-tb90">
+        <div class="section-full p-tb90 ">
             <div class="container">
-                <div class="row">
 
-                    <div class="col-lg-8 col-md-12">
-                        <!-- BLOG START -->
-                        <div class="blog-post date-style-1 blog-detail text-black">
-                            <div class="wt-post-media clearfix m-b30">
-                                <ul class="grid-post">
-                                    <li>
-                                        <div class="portfolio-item wt-img-effect zoom-slow">
-                                            <img class="img-responsive" src="{{ asset($blog->image) }}" alt="{{ $blog->name }}">
-                                        </div>
-                                    </li>
+                <div class="room-detail-outer">
+                    <div class="wt-post-media">
+                        <!--Fade slider-->
+                        <div class="owl-carousel owl-fade-slider-one owl-btn-vertical-center owl-dots-bottom-right m-b30">
 
-                                    @foreach ($blog->gallery_image as $image )
-                                    <li>
-                                        <div class="portfolio-item wt-img-effect zoom-slow">
-                                            <img class="img-responsive" src="{{ asset($image) }}" alt="">
-                                        </div>
-                                    </li>
-                                    @endforeach
-
-                                </ul>
+                            <div class="item">
+                                <div class="wt-thum-bx">
+                                    <img src="{{ asset($room->image) }}" alt="{{ $room->name }}">
+                                </div>
                             </div>
 
-                            <div class="wt-post-meta ">
-                                <ul>
-                                    <li class="post-date"><i class="fa fa-calendar"></i><strong>{{ $blog->created_at->format('d M') }}</strong>
-                                        <span> {{ $blog->created_at->format('Y') }}</span>
-                                    </li>
-                                    <li class="post-author"><i class="fa fa-user"></i>By <span>Admin</span></li>
-                                    <!-- <li class="post-comment"><i class="fa fa-comment"></i>21 <span>Comment</span> -->
-                                    </li>
-                                </ul>
+                            @foreach ( $room->gallery_image as $image )
+                            <div class="item">
+                                <div class="wt-thum-bx">
+                                    <img src="{{ asset($image) }}" alt="{{ basename($image) }}">
+                                </div>
                             </div>
+                            @endforeach
 
-                            <div class="wt-post-title ">
-                                <h3 class="post-title">{{ $blog->name }}</h3>
-                            </div>
-
-                            <div class="wt-post-text">
-                                <p>{!! $blog->description !!}</p>
-                            </div>
                         </div>
+                        <!--fade slider END-->
+                        <div class="room-facility">
+                            <div class="room-discription">
+                                <h2>{{ $room->name }}</h2>
+                                <h4>Price: TK {{ number_format($room->price) }}</h4>
 
-                        <div class="section-content">
-                            <!-- TITLE START -->
-                            <div class="text-left section-head">
-                                <h2 class="m-b5">Related Post</h2>
-                                <div class="wt-separator-outer">
-                                    <div class="wt-separator site-bg-primary"></div>
-                                </div>
-                            </div>
-                            <!-- TITLE END -->
-                            <!-- BLOG section -->
-                            <div class="section-content">
-                                <div class="row">
-
-                                    @foreach ($relatedBlogs as $item )
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="blog-post latest-blog-1 date-style-2">
-                                            <div class="wt-post-media wt-img-effect zoom-slow">
-                                                <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
-                                                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
-                                                </a>
-                                            </div>
-                                            <div class="wt-post-info">
-                                                <div class="post-date"> <strong>{{ $item->created_at->format('d M Y') }} </strong></div>
-
-                                                <!-- <div class="wt-post-meta">
-                                                    <ul class="clearfix">
-                                                        <li class="post-author">
-                                                            <div class="post-author-pic">
-                                                                <span><img src="images/testimonials/pic1.jpg"
-                                                                        alt=""></span>
-                                                                <span><strong> By</strong> <a
-                                                                        href="post-right-sidebar.html">Loretta
-                                                                        Shelton</a></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="post-comment"><i
-                                                                class="fa fa fa-comments site-text-primary"></i><a
-                                                                href="post-right-sidebar.html">10 Comment</a> </li>
-                                                    </ul>
-                                                </div> -->
-
-                                                <div class="wt-post-title">
-                                                    <h3 class="post-title"><a href="{{ route('blog.show', [$item->id, $item->slug]) }}">{{ $item->name }}</a></h3>
-                                                </div>
-
-                                                <div class="wt-post-text">
-                                                    <p>{!! $item->short_description !!}</p>
-                                                </div>
-
-                                                <div class="readmore-line">
-                                                    <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
-                                                        class="site-button-ink site-text-primary font-weight-900 ">Read
-                                                        More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Blog Comment Section Start -->
-                        @include('front-end.blog-page-section.blog-comment')
-                        <!-- Blog Comment Section End -->
-                        <!-- BLOG END -->
-                    </div>
-
-                    <!-- SIDE BAR START -->
-                    <div class="col-lg-4 col-md-12">
-                        <aside class="side-bar">
-                            <!-- SEARCH -->
-                            <div class="widget ">
-                                <h4 class="widget-title">Search</h4>
-                                <div class="search-bx">
-                                    <form role="search" method="post">
-                                        <div class="input-group">
-                                            <input name="news-letter" type="text" class="form-control"
-                                                placeholder="Write your text">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="site-button"><i
-                                                        class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <!-- OUR GALLERY  -->
-                            <div class="widget widget_gallery mfp-gallery">
-                                <h4 class="widget-title">Our Gallery</h4>
-                                <ul>
-                                    @foreach ($galleries as $item )
-                                    <li>
-                                        <div class="wt-post-thum">
-                                            <a href="{{ asset($item->image) }}" class="mfp-link"><img
-                                                    src="{{ asset($item->image) }}" alt="{{ $item->title }}"></a>
-                                        </div>
-                                    </li>
-                                    @endforeach
+                                <ul class="list-unstyled text-dark d-md-flex justify-content-between align-items-center">
+                                    <li><i class="fa fa-user"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
+                                    <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ $room->size }}m² </li>
+                                    <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $room->view }} </li>
                                 </ul>
+                                <p>{!! $room->description !!}</p>
                             </div>
 
-                            <!-- RECENT POSTS -->
-                            <div class="widget  recent-posts-entry">
-                                <h4 class="widget-title">Recent Posts</h4>
-                                <div class="section-content">
-                                    <div class="widget-post-bx">
-                                        @foreach ($recentBlogs as $item )
-                                        <div class="widget-post clearfix">
-                                            <div class="wt-post-media">
-                                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
-                                            </div>
-                                            <div class="wt-post-info">
-                                                <div class="wt-post-meta">
-                                                    <ul>
-                                                        <li class="post-author">{{ $item->created_at->format('d M') }}</li>
-                                                    </ul>
+                            <!-- <div class="room-amenities m-b30">
+                                <h3>Amenities</h3>
+                                <div class="amenities-list equal-wraper clearfix">
+                                    <ul>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0"> Double bed</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Balcony</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Bathroom</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Shower</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Shampoo and soap</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Hairdryer</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Slippers</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Wardrobe</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Working table</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Mini bar</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Satellite TV</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Telephone</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Wireless connect</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">Air conditioner</h5>
+                                        </li>
+                                        <li class="equal-col">
+                                            <h5 class="m-b0">220 AC</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="room-Rates m-b30">
+                                <h3>Rates</h3>
+                                <div id="no-more-tables">
+                                    <table class="col-md-12 table-bordered table-striped table-condensed cf wt-responsive-table">
+                                        <thead class="cf">
+                                            <tr>
+                                                <th>Season</th>
+                                                <th>Date</th>
+                                                <th class="numeric">Charges</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td data-title="Season">Main season 1</td>
+                                                <td data-title="Date">01 April – 30 June 2024</td>
+                                                <td data-title="Charges" class="numeric">$299.00/night</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td data-title="Season">School holidays</td>
+                                                <td data-title="Date">10 Feb - 20 Mar 2024</td>
+                                                <td data-title="Charges" class="numeric">$299.00/night</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="Season">Weekend only</td>
+                                                <td data-title="Date">Thursday through Sunday</td>
+                                                <td data-title="Charges" class="numeric">$399.00/night</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-title="Season">Christmas & New Year's</td>
+                                                <td data-title="Date">20 Dec 2024 - 10 Jan 2020</td>
+                                                <td data-title="Charges" class="numeric">$499.00/night</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> -->
+
+                            <div class="room-Rates m-b30">
+                                <h3>Reviews</h3>
+                                <div class="review-overview clearfix">
+                                    <div class="review-rate-box">
+                                        <span class="rating-rate-box-total">4.8</span>
+                                        <span class="rating-rate-box-percent">out of 5.0</span>
+                                        <div class="star-Rating-input">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="rating-bars">
+                                        <div class="rate-bar-category">
+                                            <span class="rate-bars-name">Service<strong class="rate-count">4.5</strong></span>
+                                            <div class="rate-bars-line">
+                                                <div class="progress wt-probar-2 radius-md m-b0">
+                                                    <div class="progress-bar site-bg-primary radius-md" role="progressbar" aria-valuenow="85" aria-valuemin="10" aria-valuemax="100" style="width: 85%;">
+                                                        <span class="popOver" data-toggle="tooltips" data-placement="top" title="100%"></span>
+                                                    </div>
                                                 </div>
-                                                <div class="wt-post-header">
-                                                    <h6 class="post-title"> {{ $item->name }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="rate-bar-category">
+                                            <span class="rate-bars-name">Value for Money<strong class="rate-count">4.1</strong></span>
+                                            <div class="rate-bars-line">
+                                                <div class="progress wt-probar-2 radius-md m-b0">
+                                                    <div class="progress-bar site-bg-primary radius-md" role="progressbar" aria-valuenow="70" aria-valuemin="10" aria-valuemax="100" style="width: 70%;">
+                                                        <span class="popOver" data-toggle="tooltips" data-placement="top" title="100%"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <div class="rate-bar-category">
+                                            <span class="rate-bars-name">Location<strong class="rate-count">4.8</strong></span>
+                                            <div class="rate-bars-line">
+                                                <div class="progress wt-probar-2 radius-md m-b0">
+                                                    <div class="progress-bar site-bg-primary radius-md" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100" style="width: 90%;">
+                                                        <span class="popOver" data-toggle="tooltips" data-placement="top" title="100%"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rate-bar-category">
+                                            <span class="rate-bars-name">Cleanliness<strong class="rate-count">2.5</strong></span>
+                                            <div class="rate-bars-line">
+                                                <div class="progress wt-probar-2 radius-md m-b0">
+                                                    <div class="progress-bar site-bg-primary radius-md" role="progressbar" aria-valuenow="35" aria-valuemin="10" aria-valuemax="100" style="width: 35%;">
+                                                        <span class="popOver" data-toggle="tooltips" data-placement="top" title="100%"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- NEWSLETTER -->
-                            <!-- <div class="widget widget_newsletter-2 ">
-                                <h4 class="widget-title">Newsletter</h4>
-                                <div class="newsletter-bx p-a30">
-                                    <div class="newsletter-icon">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-
-                                    <div class="newsletter-content">
-                                        <p>Subscribe to our mailing list to get the update to your email.</p>
-                                    </div>
-                                    <div class="m-t20">
-                                        <form role="search" method="post">
-                                            <div class="input-group">
-                                                <input name="news-letter" class="form-control"
-                                                    placeholder="ENTER YOUR EMAIL" type="text">
-                                                <span class="input-group-btn">
-                                                    <button type="submit" class="site-button"><i
-                                                            class="fa fa-paper-plane-o"></i></button>
-                                                </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- ABOUT AUTHOR -->
-                            <!-- <div class="widget">
-                                <h4 class="widget-title">About Author</h4>
-                                <div class="widget-post m-b15">
-                                    <img src="images/gallery/pic1.jpg" alt="" class="img-responsive">
-                                </div>
-                                <p>We are the dolor sit ametLorem Ipsum Proin gravida nibh vel velit auctor aliquet.
-                                    Aenean sollicitudin, Consequat ipsum, nec sagittis sem nibh id elit nibh vel
-                                    velit auctor aliquet.
-                                    sem nibh Aenean sollicitudin,
-                                </p>
-                            </div> -->
-
-                            <!-- OUR CLIENT -->
-                            <!-- <div class="widget">
-                                <h4 class="widget-title">Our Client</h4>
-                                <div class="owl-carousel widget-client p-t10">
-                              
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/w1.html" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                              
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/w2.html" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/w3.html" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div> -->
-
-                            <!-- TAGS -->
-                            <div class="widget widget_tag_cloud">
-                                <h4 class="widget-title">Categories</h4>
-                                <div class="tagcloud">
-                                    @foreach ($categories as $item)
-                                    <a href="javascript:void(0);">{{ $item->name }}</a>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                        </aside>
-
+                        </div>
                     </div>
-                    <!-- SIDE BAR END -->
                 </div>
+                <div class="clear" id="comment-list">
+                    <div class="comments-area" id="comments">
+                        <h2 class="comments-title">4 Comments</h2>
+                        <div class="p-tb30">
+                            <!-- COMMENT LIST START -->
+                            <ol class="comment-list p-a30 bg-gray">
+                                <li class="comment">
+                                    <!-- COMMENT BLOCK -->
+                                    <div class="comment-body">
+                                        <div class="comment-meta">
+                                            <a href="javascript:void(0);">March 6, 2024 at 7:15 am</a>
+                                        </div>
+                                        <div class="comment-author vcard">
+                                            <img class="avatar photo" src="images/testimonials/pic1.jpg" alt="">
+                                            <cite class="fn">Diego</cite>
+                                            <span class="says">says:</span>
+                                        </div>
+
+                                        <p>Sit amet nibh vulputate cursus a sit amet mauris lorem ipsum dolor sit amet of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio http://themeforest.net Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat </p>
+                                        <div class="reply">
+                                            <a href="javscript:;" class="comment-reply-link letter-spacing-2 text-uppercase">Read More</a>
+                                        </div>
+                                    </div>
+                                    <!-- SUB COMMENT BLOCK -->
+                                    <ol class="children">
+                                        <li class="comment odd parent">
+
+                                            <div class="comment-body">
+                                                <div class="comment-meta">
+                                                    <a href="javascript:void(0);">March 8, 2024 at 9:15 am</a>
+                                                </div>
+                                                <div class="comment-author vcard">
+                                                    <img class="avatar photo" src="images/testimonials/pic3.jpg" alt="">
+                                                    <cite class="fn">Brayden</cite>
+                                                    <span class="says">says:</span>
+                                                </div>
+
+                                                <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
+                                                <div class="reply">
+                                                    <a href="javscript:;" class="comment-reply-link letter-spacing-2 text-uppercase">Read More</a>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </li>
+                                    </ol>
+                                </li>
+
+                            </ol>
+                            <!-- COMMENT LIST END -->
+
+                            <!-- LEAVE A REPLY START -->
+                            <div class="comment-respond m-t30" id="respond">
+
+                                <h2 class="comment-reply-title" id="reply-title">Leave a Comments
+                                    <small>
+                                        <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a>
+                                    </small>
+                                </h2>
+
+                                <form class="comment-form" id="commentform" method="post">
+
+                                    <p class="comment-form-author">
+                                        <label for="author">Name <span class="required">*</span></label>
+                                        <input class="form-control" type="text" value="" name="user-comment" placeholder="Author" id="author">
+                                    </p>
+
+                                    <p class="comment-form-email">
+                                        <label for="email">Email <span class="required">*</span></label>
+                                        <input class="form-control" type="text" value="" name="email" placeholder="Email" id="email">
+                                    </p>
+
+                                    <p class="comment-form-url">
+                                        <label for="url">Website</label>
+                                        <input class="form-control" type="text" value="" name="url" placeholder="Website" id="url">
+                                    </p>
+
+                                    <p class="comment-form-comment">
+                                        <label for="comment">Comment</label>
+                                        <textarea class="form-control" rows="8" name="comment" placeholder="Comment" id="comment"></textarea>
+                                    </p>
+
+                                    <p class="form-submit">
+                                        <button class="site-button radius-no text-uppercase font-weight-600" type="button">Submit</button>
+                                    </p>
+
+                                </form>
+
+                            </div>
+                            <!-- LEAVE A REPLY END -->
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <!-- SECTION CONTENT END -->
+
     </div>
     <!-- CONTENT END -->
 

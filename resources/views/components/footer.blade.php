@@ -33,7 +33,7 @@
             <div class="row">
                 <!-- ABOUT COMPANY -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="widget widget_about">                       
+                    <div class="widget widget_about">
                         <div class="logo-footer clearfix p-b15">
                             <a href="{{ route('home.index') }}">
                                 <img src="{{ business_image('logo') }}" alt="{{ business_setting('website_name') }}">
@@ -56,8 +56,8 @@
                         <h4 class="widget-title">Useful links</h4>
                         <ul>
                             <li><a href="{{ route('about.index') }}">About</a></li>
-                            <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
+                            <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
                             <!-- <li><a href="work-masonry.html">Portfolio</a></li> -->
                             <li><a href="{{ route('contact.index') }}">Contact Us</a></li>
                             <!-- <li><a href="contact-1.html">FAQ </a></li> -->
@@ -65,23 +65,24 @@
                     </div>
                 </div>
 
+                @php
+                $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
+                @endphp
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget_services inline-links">
                         <h4 class="widget-title">Rooms & Suites</h4>
                         <ul>
-                            <li><a href="project-detail.html">Classic</a></li>
-                            <li><a href="project-detail.html">Superior</a></li>
-                            <li><a href="project-detail.html">Delux</a></li>
-                            <li><a href="project-detail.html">Master</a></li>
-                            <!-- <li><a href="project-detail.html">luxury</a></li>
-                            <li><a href="project-detail.html">Banquet Halls</a></li> -->
+                            @foreach ($roomCategories as $category)
+                            <li><a href="{{ route('room-category.show', [$category->id, $category->slug]) }}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget_address_outer">
-                        <h4 class="widget-title">Contact Us</h4>
+                        <h4 class="widget-title">Contact</h4>
                         <ul class="widget_address">
                             <li><i class="sl-icon-map site-text-primary"></i> {!! business_setting('address') !!}</li>
                             <li><i class="sl-icon-envolope-letter site-text-primary"></i>{!! business_setting('email') !!}</li>

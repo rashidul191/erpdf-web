@@ -5,7 +5,7 @@
 
 
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="$blog->image" />
+        <x-page-banner :title="$blog->name ?? null" :image="$blog->image" />
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENT START -->

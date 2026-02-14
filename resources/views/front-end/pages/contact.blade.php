@@ -1,10 +1,10 @@
 <x-guest-layout>
 
     <!-- CONTENT START -->
-    <div class="page-content">
+    <div class="page-content">        
 
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="business_image('contact_banner')" />
+        <x-page-banner :image="business_image('contact_banner') ?? null" />
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENTG START -->

@@ -1,8 +1,9 @@
-@props(['image'=>null])
+@props(['title' => null,'image' => null])
 @php
-$pageTitle = Str::title(str_replace('-', ' ', request()->segment(1)));
+$image = $image ? $image : asset('front-end/assets/images/banner/1.jpg');
+$pageTitle = $title ? $title : \Str::title(str_replace('-', ' ', request()->segment(1)));
 @endphp
-<div class="wt-bnr-inr overlay-wraper bg-parallax bg-top-center" style="background-image:url('{{ $image ?? asset('front-end/assets/images/banner/1.jpg') }}')">
+<div class="wt-bnr-inr overlay-wraper bg-parallax bg-top-center" style="background-image:url('{{ $image }}')">
     <div class="overlay-main bg-black opacity-07"></div>
     <div class="container">
         <div class="wt-bnr-inr-entry">

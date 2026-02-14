@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="room-info-section text-black">
                                         <!-- <span>TK{{ $item->price }}/night</span> -->
-                                        <span>TK{{ $item->price }}</span>
+                                        <span>TK {{ number_format($item->price) }}</span>
                                         <ul class="clearfix">
                                             <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ $item->size }}m² </li>
                                             <li><i class="fa fa-user"></i> <strong>Duration:</strong> {{ $item->time_duration }} </li>

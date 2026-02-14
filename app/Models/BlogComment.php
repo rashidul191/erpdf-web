@@ -19,8 +19,8 @@ class BlogComment extends Model
         'image',
     ];
 
-    protected $casts =[
-        'image' => ImageField::class . ':blog_comments',
+    protected $casts = [
+        'image' => ImageField::class . ':blog_comments,images/avatar.png',
     ];
 
     public function blog()
