@@ -37,8 +37,10 @@
                                 <h4>Price: TK {{ number_format($room->price) }}</h4>
 
                                 <ul class="list-unstyled text-dark d-md-flex justify-content-between align-items-center">
-                                    <li><i class="fa fa-user"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
-                                    <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ $room->size }}m² </li>
+                                    <li><i class="fa fa-expand"></i> <strong>Size:</strong> {{ number_format($room->size) }}m² </li>
+                                    <li><i class="fa fa-clock-o"></i> <strong>Duration:</strong> {{ $room->time_duration }} </li>
+                                    <li><i class="fa fa-user"></i> <strong>Adult:</strong> {{ number_format($room->adult) }} </li>
+                                    <li><i class="fa fa-users"></i> <strong>Child:</strong> {{ number_format($room->child) }} </li>
                                     <li><i class="fa fa-eye"></i> <strong>View:</strong> {{ $room->view }} </li>
                                 </ul>
                                 <p>{!! $room->description !!}</p>
@@ -203,6 +205,7 @@
                         <h4 class="comments-title">{{ $roomComments->count() }} Comments</h4>
                         @endif
                         <div class="p-tb30">
+                            @if ($roomComments->isNotEmpty())
                             <!-- COMMENT LIST START -->
                             <ol class="comment-list p-a30 bg-gray">
                                 <li class="comment">
@@ -228,6 +231,7 @@
 
                             </ol>
                             <!-- COMMENT LIST END -->
+                            @endif
 
                             <!-- LEAVE A REPLY START -->
                             <div class="comment-respond m-t30" id="respond">
