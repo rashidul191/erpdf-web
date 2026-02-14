@@ -10,29 +10,27 @@
         </div>
     </div>
 
-    <div>
+    <div class="bg-white p-4 mt-3 rounded">
         <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data" class="w-full">
             @csrf
-            <div class="bg-white p-4">
-                <div class="w-full">
-                    <img width="50" height="50" id="prevMetaIcon" src="{{ business_image('client_say_bg_img') }}">
-                    <x-labeled-input label="Client Review Image (1600x570px)" type="file"
-                        accept="image/jpeg,image/png,image/jpg,image/webp" name="client_say_bg_img"
-                        class="w-full p-1"
-                        onchange="prevMetaIcon.src=window.URL.createObjectURL(this.files[0])"
-                        value="{{ business_setting('client_say_bg_img') }}" />
-                </div>
-                <div class="w-full pt-4 flex justify-end">
-                    <x-button>
-                        {{ __('Add') }}
-                    </x-button>
-                </div>
+            <div class="w-full">
+                <img width="50" height="50" id="prevMetaIcon" src="{{ business_image('client_say_bg_img') }}">
+                <x-labeled-input label="Client Review BG Image (1900x570px)" type="file"
+                    accept="image/jpeg,image/png,image/jpg,image/webp" name="client_say_bg_img"
+                    class="w-full p-1"
+                    onchange="prevMetaIcon.src=window.URL.createObjectURL(this.files[0])"
+                    value="{{ business_setting('client_say_bg_img') }}" />
+            </div>
+            <div class="w-full pt-4 flex justify-end">
+                <x-button>
+                    {{ __('Add') }}
+                </x-button>
             </div>
         </form>
     </div>
 
 
-    <div class="w-full mt-8">
+    <div class="w-full mt-3">
         <table class="w-full my_table" id="data-table">
             <thead class="text-center">
                 <tr>

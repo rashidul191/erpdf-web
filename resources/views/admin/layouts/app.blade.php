@@ -51,11 +51,11 @@
                     <x-navigation-link :href="route('admin.user.index')" :text="__('User List')" :icon="icon('users')" />
                 @endcan -->
 
-                <x-navigation-link :text="__('Home Page')" :icon="icon('website')">
+                <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                 </x-navigation-link>
 
-                <x-navigation-link :text="__('About Page')" :icon="icon('website')">
+                <x-navigation-link :text="__('About Page')" :icon="icon('about')">
                     <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />
                     <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />
@@ -68,15 +68,15 @@
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 
-                <x-navigation-link :text="__('Room')" :icon="icon('website')">
+                <x-navigation-link :text="__('Room')" :icon="icon('room')">
                     <x-navigation-link :href="route('admin.room.index')" :text="__('Room List')" />
                     <x-navigation-link :href="route('admin.room-categories.index')" :text="__('Room Categories')" />
                     <x-navigation-link :href="route('admin.room-types.index')" :text="__('Room Types')" />
                 </x-navigation-link>
 
-                <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" />
-                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review List')" />
-                <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" />
+                <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
+                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')" :icon="icon('review')"/>
+                <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" :icon="icon('message')" />
 
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />

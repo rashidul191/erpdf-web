@@ -29,7 +29,7 @@
                                     <h4 class="testimonial-name m-t0 m-b10">{{ $item->name }}</h4>
                                 </div>
                                 <div class="testimonial-paragraph text-black p-t5">
-                                    <p>“ {!! $item->description !!}</p>
+                                    <p>“ {!! $item->description !!} ”</p>
                                 </div>
                                 <div class="testimonial-detail ">
                                     <span class="testimonial-position">{{ $item->address }}</span>
