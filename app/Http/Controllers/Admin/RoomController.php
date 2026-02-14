@@ -127,7 +127,13 @@ class RoomController extends Controller
 
         $validated['slug'] = Str::slug($validated['name']);
 
-        dd($validated);
+        $oldGallery = $validated['gallery_image'] ?? [];       // old images (strings)
+        $newGallery = $validated['gallery_image_new'] ?? [];   // new uploads (UploadedFile)
+
+        // Combine old + new → Cast will handle UploadedFile storing automatically
+        $validated['gallery_image'] = array_merge($oldGallery, $newGallery);
+        unset($validated['gallery_image_new']); // new gallery field unset
+
         $room->update($validated);
 
         return response()->reportTo(

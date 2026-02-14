@@ -78,13 +78,12 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'image'               => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
-            // OLD gallery images (hidden inputs) 
+            // OLD gallery images (hidden inputs)
             'gallery_image'       => 'nullable|array',
-            'gallery_image.*'     => 'nullable|string', // old image path, string
+            'gallery_image.*'     => 'nullable|string', // old image paths
 
             // NEW gallery images (file uploads)
             'gallery_image_new'   => 'nullable|array',
@@ -96,10 +95,15 @@ class BlogController extends Controller
             'blog_category_id'    => 'nullable|exists:blog_categories,id',
         ]);
 
-
         $validated['slug'] = Str::slug($validated['name']);
 
-        dd($validated);
+        $oldGallery = $validated['gallery_image'] ?? [];       // old images (strings)
+        $newGallery = $validated['gallery_image_new'] ?? [];   // new uploads (UploadedFile)
+
+        // Combine old + new → Cast will handle UploadedFile storing automatically
+        $validated['gallery_image'] = array_merge($oldGallery, $newGallery);
+        unset($validated['gallery_image_new']); // new gallery field unset
+
         $blog->update($validated);
 
         return response()->reportTo(
@@ -108,6 +112,8 @@ class BlogController extends Controller
             route('admin.blog.index')
         );
     }
+
+
 
 
     public function destroy(Blog $blog)
