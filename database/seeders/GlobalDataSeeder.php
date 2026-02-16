@@ -19,7 +19,7 @@ class GlobalDataSeeder extends Seeder
             'website_name' => 'Laravel Web',
             'phone' => '01234567896',
             'email' => 'info@example.com',
-            'address' => 'Dhaka 1216, Bangladesh',            
+            'address' => 'Dhaka, Bangladesh',            
             'copyright' => 'Laravel Web',
         );
         foreach ($globalData as $key => $value) {

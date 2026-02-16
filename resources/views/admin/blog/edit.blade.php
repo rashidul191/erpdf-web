@@ -119,6 +119,7 @@
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <!-- Gallery Image Preview & Remove JS Code -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const galleryInput = document.getElementById('gallery_image_input');
@@ -175,8 +176,7 @@
                 div.remove();
             }
         </script>
-
-
+        
     </x-slot>
 
 </x-admin-app-layout>
