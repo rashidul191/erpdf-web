@@ -21,6 +21,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="blog-post latest-blog-1 date-style-2">
                         <div class="wt-post-media wt-img-effect zoom-slow">
+
                             <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                 <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                             </a>
@@ -28,19 +29,19 @@
                         <div class="wt-post-info">
                             <div class="post-date"> <strong>{{ $item->created_at->format('d M Y') }} </strong></div>
 
-                            <!-- <div class="wt-post-meta">
+                            <div class="wt-post-meta">
                                 <ul class="clearfix">
                                     <li class="post-author">
                                         <div class="post-author-pic">
-                                            <span><img src="images/testimonials/pic1.jpg" alt=""></span>
-                                            <span><strong> By</strong> <a href="post-right-sidebar.html">Loretta Shelton</a></span>
+                                            <!-- <span><img src="images/testimonials/pic1.jpg" alt=""></span> -->
+                                            <span><strong> By</strong> <a href="javascript:void(0)">Admin</a></span>
                                         </div>
                                     </li>
-                                    <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="post-right-sidebar.html">10 Comment</a> </li>
+                                    <!-- <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="post-right-sidebar.html">10 Comment</a> </li> -->
                                 </ul>
-                            </div> -->
+                            </div>
 
-                            <div class="wt-post-title">
+                            <div class="wt-post-title mt-2">
                                 <h3 class="post-title">
                                     <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                         {{ $item->name }}</a>

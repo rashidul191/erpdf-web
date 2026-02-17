@@ -33,7 +33,7 @@ class ImageField implements CastsAttributes, Castable
             in_array(DeletesImage::class, class_uses($model)),
             new \Exception('Model ' . get_class($model) . ' is not using DeletesImage trait. use it in order to delete image while deleting model')
         );
-        
+
         return $value ? Image::url($value) : asset($this->fallbackImage);
     }
 
@@ -52,7 +52,7 @@ class ImageField implements CastsAttributes, Castable
             in_array(DeletesImage::class, class_uses($model)),
             new \Exception('Model ' . get_class($model) . ' is not using DeletesImage trait. use it in order to delete image while deleting model')
         );
-        
+
         if (isset($attributes[$key]) && $attributes[$key]) {
             Image::delete($attributes[$key]);
         }

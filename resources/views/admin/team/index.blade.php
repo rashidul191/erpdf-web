@@ -33,17 +33,14 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('
-                    admin.team.index ') }}',
+                    url: '{{ route('admin.team.index') }}',
                     dataSrc(response) {
                         response.data.map(function(item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('
-                                admin.team.edit ', '
+                                'edit': '{{ route('admin.team.edit', '
                                 @ ') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('
-                                admin.team.destroy ', '
+                                'delete': '{{ route('admin.team.destroy', '
                                 @ ') }}'.replace('@',
                                     item.id),
                             });

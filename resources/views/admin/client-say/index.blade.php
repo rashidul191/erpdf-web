@@ -51,18 +51,15 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('
-                    admin.client - say.index ') }}',
+                    url: '{{ route('admin.client-say.index') }}',
                     dataSrc(response) {
                         response.data.map(function(item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('
-                                admin.client - say.edit ', '
+                                'edit': '{{ route('admin.client-say.edit', '
 
                                 @ ') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('
-                                admin.client - say.destroy ', '
+                                'delete': '{{ route('admin.client-say.destroy', '
                                 @ ') }}'.replace('@',
                                     item.id),
                             });

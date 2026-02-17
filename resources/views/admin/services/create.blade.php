@@ -16,10 +16,10 @@
             <div class="flex flex-wrap justify-center w-full">
                 <x-labeled-input label="Image (100x100px)" type="file"
                     accept="image/jpeg,image/png,image/jpg,image/webp" name="image"
-                    class="w-full p-1 md:w-1/2" required
+                    class="w-full p-1" required
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
-                <x-labeled-input name="title" required class="w-full p-1 md:w-1/2" />
-                <x-labeled-input name="sub_title" required class="w-full p-1 md:w-1/2" />
+                <x-labeled-input name="title" required class="w-full p-1" />
+                <x-labeled-input name="sub_title" class="w-full p-1" />
                 <div class="w-full pt-4 flex justify-end">
                     <x-button>{{ __('Create') }}</x-button>
                 </div>

@@ -41,7 +41,7 @@
                         </div>
                         <!-- <p class="max-w400">Today we can tell you, thanks to your passion, hard work creativity, and expertise, you delivered us the most beautiful house great looks.</p> -->
 
-                        <ul class="social-icons social-tooltips-outer wt-social-links mt-5">
+                        <ul class="social-icons social-tooltips-outer wt-social-links mt-4">
                             <li><a target="_blank" href="{{ business_setting('fb_link') ?? '#' }}" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
                             <li><a target="_blank" href="{{ business_setting('twitter_link') ?? '#' }}" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>
                             <li><a target="_blank" href="{{ business_setting('instagram_link') ?? '#' }}" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>

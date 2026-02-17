@@ -19,6 +19,10 @@ class SliderController extends Controller
                 ->addColumn('page_link', function ($row) {
                     return $row->page_link  ? url($row->page_link) : '--';
                 })
+                ->addColumn('image', function ($row) {
+                    return '<img class="w-12 h-12" src="' .  $row->image . '" />';
+                })
+                ->rawColumns(['image'])
                 ->toJson();
         }
         return view('admin.slider.index');
@@ -28,10 +32,11 @@ class SliderController extends Controller
     {
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
-            'title' => 'required|string',
+            'title' => 'nullable|string',
             'page_link' => 'nullable|string',
             'is_home' => 'nullable|boolean',
         ]);
+
 
 
         $path = $validated['page_link'] ?? null;
@@ -53,7 +58,6 @@ class SliderController extends Controller
         }
 
         $validated['page_link'] = $path;
-
 
         return response()->reportTo(
             Slider::create($validated),

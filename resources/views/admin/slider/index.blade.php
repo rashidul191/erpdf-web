@@ -11,11 +11,11 @@
                 <div class="bg-white p-4">
                     <img width="100" id="prevImage" src="">
                     <div class="w-full">
-                        <x-labeled-input label="Image (1400x500)" type="file"
+                        <x-labeled-input label="Image (1900x500)" type="file"
                             accept="image/*" name="image" class="w-full p-1"
                             required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                        <x-labeled-input name="title" required class="w-full p-1" />
+                        <x-labeled-input name="title" class="w-full p-1" />
 
                         <x-labeled-input label="Page Link End Point (/about)" name="page_link" class="w-full p-1" />
 
@@ -68,7 +68,7 @@
                                     item.id),
                             });
 
-                            item.image = `<img width="100" src='${item.image}' alt='${item.name}'>`;
+                      
 
                             item.is_home = item.is_home ?
                                 `<span class='bg-green-500 font-bold text-white rounded px-1'>Yes</span>` :
@@ -89,7 +89,8 @@
                         data: 'image'
                     },
                     {
-                        data: 'title'
+                        data: 'title',
+                        defaultContent: '--'
                     },
                     {
                         data: 'page_link'

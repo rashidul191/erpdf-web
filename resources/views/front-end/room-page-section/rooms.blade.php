@@ -12,7 +12,7 @@
          <!-- IMAGE CAROUSEL START -->
          <div class="section-content">
              <div class="row row-cols-1 row-cols-md-3 g-4">
-                 @foreach ($rooms as $item )
+                 @forelse ($rooms as $item )
                  <!-- COLUMNS 1 -->
                  <div class="col item">
                      <div class="room-rent-section-outer">
@@ -41,7 +41,11 @@
                          <a href="{{ route('room.show', [$item->id, $item->slug]) }}" class="btn-half site-button button-lg"><span>More</span><em></em></a>
                      </div>
                  </div>
-                 @endforeach
+                 @empty
+                 <div class="col-12">
+                     <h4 class="text-center text-danger ">No Data Found!</h4>
+                 </div>
+                 @endforelse
              </div>
          </div>
      </div>
