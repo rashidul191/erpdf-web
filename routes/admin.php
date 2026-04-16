@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
+use App\Http\Controllers\Admin\ContentManageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
@@ -98,6 +99,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
         Route::resource('menu', MenuController::class);
+        Route::resource('content-manage', ContentManageController::class);
 
         Route::resource('tag', TagController::class);
         Route::resource('categories', CategoryController::class);

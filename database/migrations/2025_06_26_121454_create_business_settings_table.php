@@ -19,7 +19,7 @@ class CreateBusinessSettingsTable extends Migration
             $table->longText('value')->nullable();
             $table->timestamps();
         });
-        
+
     }
 
     /**

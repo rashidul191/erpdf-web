@@ -55,6 +55,8 @@
 
                 <x-navigation-link :href="route('admin.menu.index')" :text="__('Menu')"
                     :icon="icon('room')" />
+                <x-navigation-link :href="route('admin.content-manage.index')" :text="__('Content Manage')"
+                    :icon="icon('room')" />
 
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
