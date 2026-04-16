@@ -14,9 +14,9 @@ class ServiceController extends Controller
         if ($request->ajax()) {
             return datatables(Service::oldest())
                 ->addIndexColumn()
-                ->addColumn('sub_title', function ($row) {
-                    return Str::limit(strip_tags($row->sub_title ?? '--'), 50);
-                })
+                // ->addColumn('sub_title', function ($row) {
+                //     return Str::limit(strip_tags($row->sub_title ?? '--'), 50);
+                // })
                 ->toJson();
         }
         return view('admin.services.index');

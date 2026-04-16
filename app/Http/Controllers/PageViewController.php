@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CommonStatus;
 use App\Models\AboutLeftSide;
 use App\Models\AboutRightSide;
 use App\Models\Admin\Team;
@@ -27,6 +28,13 @@ class PageViewController extends Controller
         $data['services'] = Service::oldest()->get();
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
         return view('front-end.pages.about', $data);
+    }
+
+
+    public function projectProgress()
+    {
+        $data['projectProgress'] = OurStory::oldest()->get();
+        return view('front-end.pages.project-progress', $data);
     }
 
     public function blogPage()
@@ -73,6 +81,16 @@ class PageViewController extends Controller
             ->paginate(12);
 
         return view('front-end.pages.blog-search', $data);
+    }
+
+
+    public function teamCategory($category_type, $category_name)
+    {
+
+        $data["categoryName"] = $category_name;
+        $data['teams'] = Team::where('category_type', $category_type)->where('status', CommonStatus::Active)->oldest('serial')->paginate(12);
+
+        return view('front-end.pages.team-category', $data);
     }
 
     public function roomCategory($id)

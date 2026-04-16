@@ -11,7 +11,8 @@
                     </div>
                 </div>
                 <!-- NAV Toggle Button -->
-                <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button"
+                    class="navbar-toggler collapsed">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar icon-bar-first"></span>
                     <span class="icon-bar icon-bar-two"></span>
@@ -28,15 +29,28 @@
 
                         <li class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
                             <a href="{{ route('about.index') }}">About Us</a>
+                            <ul class="sub-menu">
+                                @foreach (\App\Enums\TeamCategoryType::getInstances() as $key => $value)
+                                    <li>
+                                        <a
+                                            href="{{ route('team-category.show', [$value->value, \Str::lower($value->key)]) }}">{{  $value->key }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="{{ request()->routeIs('project-progress.index') ? 'active' : '' }}">
+                            <a href="{{ route('project-progress.index') }}">Project Progress</a>
                         </li>
                         @php
-                        $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
+                            $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
                         @endphp
                         <li class="{{ request()->routeIs('room-category.*') ? 'active' : '' }}">
                             <a href="javascript:;">Rooms</a>
                             <ul class="sub-menu">
                                 @foreach ($roomCategories as $item)
-                                <li><a href="{{ route('room-category.show', [$item->id, $item->slug]) }}">{{ $item->name }}</a></li>
+                                    <li><a
+                                            href="{{ route('room-category.show', [$item->id, $item->slug]) }}">{{ $item->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -80,8 +94,8 @@
                                             <li><a href="tabs.html">Tabs</a></li>
                                             <li><a href="table.html">Table</a></li>
                                             <li><a href="video.html">Video  </a></li>
-                                            <li><a href="icon-font.html">Icon Font </a></li> 
-                                        </ul>                                    
+                                            <li><a href="icon-font.html">Icon Font </a></li>
+                                        </ul>
                                     </li>                                 -->
                     </ul>
                 </div>
@@ -95,7 +109,7 @@
                             <i class="fa fa-search"></i>
                         </a>
                     </div>
-                    <!-- <div class="extra-cell">   
+                    <!-- <div class="extra-cell">
                                     <a href="javascript:;" class="socialicon_show  text-white">
                                     	<i class="fa fa-share-alt"></i>
                                     </a>
@@ -104,17 +118,17 @@
                 <!-- ETRA Nav -->
 
                 <!-- Social Nav -->
-                <!-- <div class="social_hide"> 
+                <!-- <div class="social_hide">
                                 <div class="side-social-nav">
                                      <a href="javascript:void(0)" class="socialicon_close">&times;</a>
                                      <ul class="list-unstyled">
                                         <li><a href="javascript:void(0);" class="fa fa-facebook"><span class="social-tooltip">Facebook</span></a></li>
-                                        <li><a href="javascript:void(0);" class="fa fa-rss"><span class="social-tooltip">Rss</span></a></li>                            
+                                        <li><a href="javascript:void(0);" class="fa fa-rss"><span class="social-tooltip">Rss</span></a></li>
                                         <li><a href="javascript:void(0);" class="fa fa-linkedin"><span class="social-tooltip">Linkedin</span></a></li>
                                         <li><a href="javascript:void(0);" class="fa fa-google-plus"><span class="social-tooltip">Google Plus</span></a></li>
                                         <li><a href="javascript:void(0);" class="fa fa-instagram"><span class="social-tooltip">Instagram</span></a></li>
                                     </ul>
-                                </div> 
+                                </div>
                             </div> -->
 
                 <!-- Contact Nav -->
@@ -135,19 +149,22 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group wt-inputicon-box">
-                                                <input name="name" type="text" required class="form-control" placeholder="Name">
+                                                <input name="name" type="text" required class="form-control"
+                                                    placeholder="Name">
                                                 <i class="fs-input-icon sl-icon-user"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group wt-inputicon-box">
-                                                <input name="email" type="text" class="form-control" required placeholder="Email">
+                                                <input name="email" type="text" class="form-control" required
+                                                    placeholder="Email">
                                                 <i class="fs-input-icon sl-icon-envolope-letter"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group wt-inputicon-box">
-                                                <textarea name="message" rows="3" class="form-control " required placeholder="Message"></textarea>
+                                                <textarea name="message" rows="3" class="form-control " required
+                                                    placeholder="Message"></textarea>
                                                 <i class="fs-input-icon sl-icon-envolope"></i>
                                             </div>
                                         </div>
@@ -206,10 +223,12 @@
                 <!-- SITE Search -->
                 <div id="search">
                     <span class="close"></span>
-                    <form role="search" id="searchform" action="{{ route('room.search') }}" method="get" class="radius-xl">
+                    <form role="search" id="searchform" action="{{ route('room.search') }}" method="get"
+                        class="radius-xl">
                         <div class="input-group">
                             <input value="" name="search_text" type="search" placeholder="Type to search" />
-                            <span class="input-group-btn"><button type="submit" class="search-btn"><i class="fa fa-search"></i></button></span>
+                            <span class="input-group-btn"><button type="submit" class="search-btn"><i
+                                        class="fa fa-search"></i></button></span>
                         </div>
                     </form>
                 </div>

@@ -35,8 +35,10 @@
 </head>
 
 <body class="font-sans antialiased text-[0.8125rem]">
-    <div class="flex min-h-screen bg-gray-200" x-data="{ sidebarOpen: window.innerWidth >= 1024, width: window.innerWidth }"
-        x-on:resize.window="width = window.innerWidth; sidebarOpen = window.innerWidth >= 1024" x-init="$watch('sidebarOpen', value => document.querySelector('body').classList[value ? 'add' : 'remove']('overflow-hidden'))">
+    <div class="flex min-h-screen bg-gray-200"
+        x-data="{ sidebarOpen: window.innerWidth >= 1024, width: window.innerWidth }"
+        x-on:resize.window="width = window.innerWidth; sidebarOpen = window.innerWidth >= 1024"
+        x-init="$watch('sidebarOpen', value => document.querySelector('body').classList[value ? 'add' : 'remove']('overflow-hidden'))">
         <sidebar class="bg-slate-800 h-screen w-64 overflow-y-scroll scrollbar-hide fixed z-10 transition duration-300"
             :class="{ '-translate-x-64': !sidebarOpen }">
             <div class="p-4 md:pl-4 flex md:flex-row-reverse justify-between items-center flex-wrap">
@@ -51,6 +53,9 @@
                     <x-navigation-link :href="route('admin.user.index')" :text="__('User List')" :icon="icon('users')" />
                 @endcan -->
 
+                <x-navigation-link :href="route('admin.menu.index')" :text="__('Menu')"
+                    :icon="icon('room')" />
+
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                 </x-navigation-link>
@@ -59,9 +64,12 @@
                     <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />
                     <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />
-                    <x-navigation-link :href="route('admin.our-story.index')" :text="__('Our Stories')" />
+
                     <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />
                 </x-navigation-link>
+
+                <x-navigation-link :href="route('admin.our-story.index')" :text="__('Project Progress')"
+                    :icon="icon('room')" />
 
                 <x-navigation-link :text="__('Blog')" :icon="icon('website')">
                     <x-navigation-link :href="route('admin.blog.index')" :text="__('Blog List')" />
@@ -75,15 +83,18 @@
                 </x-navigation-link>
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
-                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')" :icon="icon('review')"/>
-                <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')" :icon="icon('message')" />
+                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')"
+                    :icon="icon('review')" />
+                <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')"
+                    :icon="icon('message')" />
 
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />
                     <!-- <x-navigation-link :href="route('admin.apps.index')" :text="__('Apps')" /> -->
                     {{-- @if (auth()->user()->isA('admin'))
-                        <x-navigation-link :href="route('laratrust.roles-assignment.index')" :text="__('Access management')" :class="request()->is('*/permission/*') ? 'active' : ''" />
+                    <x-navigation-link :href="route('laratrust.roles-assignment.index')" :text="__('Access management')"
+                        :class="request()->is('*/permission/*') ? 'active' : ''" />
                     @endif --}}
                     <x-navigation-link :href="route('admin.password-update.create')" :text="__('Update password')" />
                 </x-navigation-link>
@@ -150,17 +161,15 @@
             </header>
             <main class="flex-grow lg:ml-64">
                 @if (isset($header) && $header)
-                <div class="p-4 bg-white">
-                    {{ $header ?? '' }}
-                </div>
+                    <div class="p-4 bg-white">
+                        {{ $header ?? '' }}
+                    </div>
                 @endif
                 @if (session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY))
-                <x-alert
-                    type="success">{{ session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY) }}</x-alert>
+                    <x-alert type="success">{{ session(\App\Mixin\ResponseMixin::SUCCESS_MESSAGE_SESSION_KEY) }}</x-alert>
                 @endif
                 @if (session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY))
-                <x-alert
-                    type="error">{{ session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY) }}</x-alert>
+                    <x-alert type="error">{{ session(\App\Mixin\ResponseMixin::ERROR_MESSAGE_SESSION_KEY) }}</x-alert>
                 @endif
                 <div class="p-2 md:p-4">
                     {{ $slot }}
@@ -193,7 +202,7 @@
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace(document.querySelector('[is-editor="is-editor"]'));
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             if (typeof CKEDITOR !== 'undefined') {
                 // Find the instance of CKEditor and set the configuration
                 for (var instance in CKEDITOR.instances) {
@@ -213,7 +222,7 @@
             if (!inputEl || !detailsDiv) return;
 
             // Focus করলে div show
-            inputEl.addEventListener('focus', function() {
+            inputEl.addEventListener('focus', function () {
                 if (this.value.length < 1) {
                     detailsDiv.innerHTML = `<p class="text-gray-500">Type something to search...</p>`;
                 }
@@ -221,7 +230,7 @@
             });
 
             // টাইপ করলে AJAX সার্চ
-            inputEl.addEventListener('input', function() {
+            inputEl.addEventListener('input', function () {
                 let value = this.value;
 
                 if (value.length < 1) {
@@ -258,7 +267,7 @@
             });
 
             // blur করলে hide
-            inputEl.addEventListener('blur', function() {
+            inputEl.addEventListener('blur', function () {
                 setTimeout(() => {
                     detailsDiv.classList.add('hidden');
                 }, 200);
@@ -270,7 +279,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.select2').select2();
             $('.select2-multiple').select2();
         });

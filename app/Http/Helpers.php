@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin\BusinessSetting;
+use Illuminate\Support\Str;
 
 
 if (!function_exists('icon')) {
@@ -66,14 +67,65 @@ if (!function_exists('icon')) {
     }
 }
 
-if (!function_exists("business_setting")) {
+/*
+|--------------------------------------------------------------------------
+| Business Settings Helper
+|--------------------------------------------------------------------------
+*/
+
+if (!function_exists('business_setting')) {
+
     function business_setting($key, $default = null)
     {
-        return BusinessSetting::where('key', $key)->value('value') ?? $default;
+        static $cache = [];
+
+        if (array_key_exists($key, $cache)) {
+            return $cache[$key];
+        }
+
+        $value = BusinessSetting::where('key', $key)->value('value');
+
+        $cache[$key] = $value ?? $default;
+
+        return $cache[$key];
     }
+}
+
+if (!function_exists('business_image')) {
 
     function business_image($key)
     {
-        return business_setting($key) ? asset('storage/' . business_setting($key)) : '';
+        $value = business_setting($key);
+
+        return $value
+            ? asset('storage/' . $value)
+            : '';
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Slug Generator Helper
+|--------------------------------------------------------------------------
+*/
+
+if (!function_exists('generateSlug')) {
+
+    function generateSlug($model, $name, $column = 'slug')
+    {
+
+        $slug = Str::slug($name);
+        $original = $slug;
+        $count = 1;
+
+        $query = $model::query();
+
+        while ($query->where($column, $slug)->exists()) {
+            $slug = $original . '-' . $count;
+            $count++;
+        }
+
+        return $slug;
     }
 }

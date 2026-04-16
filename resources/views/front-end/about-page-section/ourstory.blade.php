@@ -2,7 +2,7 @@
     <div class="container">
         <!-- TITLE START -->
         <div class="section-head text-center">
-            <h2 class="m-b5">Our Story</h2>
+            <h2 class="m-b5">Project Progress</h2>
             <div class="wt-separator-outer">
                 <div class="wt-separator site-bg-primary"></div>
             </div>
@@ -10,7 +10,7 @@
         <!-- TITLE END -->
         <div class="section-content our-story">
 
-        @foreach ( $ourStories as $item )
+        @foreach ( $projectProgress as $item )
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="our-story-pic-block">

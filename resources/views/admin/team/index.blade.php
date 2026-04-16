@@ -5,7 +5,7 @@
         <div>
             <a href="{{ route('admin.team.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                + {{ __('Create Team') }}
+                + {{ __('Create') }}
             </a>
         </div>
 
@@ -18,9 +18,12 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Designation') }}</th>
-                    <th>{{ __('FB') }}</th>
+                    <th>{{ __('Categroy Type') }}</th>
+                    <th>{{ __('Serial') }}</th>
+                    <th>{{ __('Status') }}</th>
+                    {{-- <th>{{ __('FB') }}</th>
                     <th>{{ __('Twitter') }}</th>
-                    <th>{{ __('Instagram') }}</th>
+                    <th>{{ __('Instagram') }}</th> --}}
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -35,14 +38,10 @@
                 ajax: {
                     url: '{{ route('admin.team.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.team.edit', '
-                                @ ') }}'.replace('@', item
-                                    .id),
-                                'delete': '{{ route('admin.team.destroy', '
-                                @ ') }}'.replace('@',
-                                    item.id),
+                                'edit': '{{ route('admin.team.edit', '@') }}'.replace('@', item.id),
+                                'delete': '{{ route('admin.team.destroy', '@') }}'.replace('@', item.id),
                             });
 
                             item.image = `<img width="50" src='${item.image}' alt='${item.name}'>`;
@@ -54,40 +53,52 @@
                 },
 
                 columns: [{
-                        data: 'serial',
-                        orderable: true,
-                        searchable: false
-                    },
-                    {
-                        data: 'image',
-                        orderable: false,
-                    },
-                    {
-                        data: 'name',
-                        orderable: false,
-                    },
-                    {
-                        data: 'designation',
-                        orderable: false,
-                    },
-                    {
-                        data: 'fb_link',
-                        orderable: false,
-                    },
-                    {
-                        data: 'twitter_link',
-                        orderable: false,
-                    },
-                    {
-                        data: 'instagram_link',
-                        orderable: false,
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image',
+                    orderable: false,
+                },
+                {
+                    data: 'name',
+                    orderable: false,
+                },
+                {
+                    data: 'designation',
+                    orderable: false,
+                },
+                {
+                    data: 'category_type',
+                    orderable: false,
+                },
+                {
+                    data: 'serial',
+                    orderable: false,
+                },
+                {
+                    data: 'status',
+                    orderable: false,
+                },
+                // {
+                //     data: 'fb_link',
+                //     orderable: false,
+                // },
+                // {
+                //     data: 'twitter_link',
+                //     orderable: false,
+                // },
+                // {
+                //     data: 'instagram_link',
+                //     orderable: false,
+                // },
 
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>

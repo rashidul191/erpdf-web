@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OurStoryController;
 use App\Http\Controllers\Admin\RoomCategoryController;
 use App\Http\Controllers\Admin\RoomController;
@@ -94,6 +95,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('user-search', [\App\Http\Controllers\Admin\UserController::class, 'userSearch'])->name('user-search');
 
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
+
+
+        Route::resource('menu', MenuController::class);
 
         Route::resource('tag', TagController::class);
         Route::resource('categories', CategoryController::class);

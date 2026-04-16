@@ -7,7 +7,7 @@
         <!-- SLIDER END -->
 
         <!--BOOKING SECTION START-->
-        <div class="section-full p-t25 booking-bar">
+        {{-- <div class="section-full p-t25 booking-bar">
             <div class="container">
                 <div class="booking-bar-inner site-bg-primary">
                     <div class="booking-fram-name">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--BOOKING SECTION END-->
 
         <!-- WELCOME SECTION START -->
@@ -86,7 +86,7 @@
         <!-- WELCOME  SECTION END -->
 
         <!-- ROOMS SLIDER START -->
-        <div class="section-full p-tb90 bg-gray">
+        {{-- <div class="section-full p-tb90 bg-gray">
             <div class="container">
 
                 <!-- TITLE START -->
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
         <!-- ROOMS  SLIDER END -->
 
         <!-- OUR BLOG START -->
@@ -163,11 +163,11 @@
         <!-- OUR SERVICES END -->
 
         <!-- TESTIMONIALS SECTION START -->
-        @include('front-end.home.testimonial')
+        {{-- @include('front-end.home.testimonial') --}}
         <!-- TESTIMONIALS SECTION END -->
 
         <!-- OUR TEAM START -->
-        @include('front-end.about-page-section.ourteam')
+        {{-- @include('front-end.about-page-section.ourteam') --}}
         <!-- OUR TEAM END -->
 
     </div>
