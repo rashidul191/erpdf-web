@@ -28,6 +28,9 @@ Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index')
 Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
+Route::get('/menu-page/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
+Route::get('/detail-page/{slug}', [PageViewController::class, 'detailPage'])->name('detail-page.index');
+
 
 /* Blog Routes */
 Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');

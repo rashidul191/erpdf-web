@@ -9,6 +9,7 @@ use App\Models\Admin\Team;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\ContentManage;
 use App\Models\Gallery;
 use App\Models\OurStory;
 use App\Models\Room;
@@ -57,7 +58,7 @@ class PageViewController extends Controller
 
     public function blogCommentStore(Request $request)
     {
-        $validated =  $request->validate([
+        $validated = $request->validate([
             'blog_id' => 'required|exists:blogs,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -114,7 +115,7 @@ class PageViewController extends Controller
     public function roomCommentStore(Request $request)
     {
 
-        $validated =  $request->validate([
+        $validated = $request->validate([
             'room_id' => 'required|exists:rooms,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -149,5 +150,21 @@ class PageViewController extends Controller
     public function contactPage()
     {
         return view('front-end.pages.contact');
+    }
+
+
+    public function menuPage($slug)
+    {
+
+        dd($slug);
+
+    }
+
+    public function detailPage($slug)
+    {
+
+        $content = ContentManage::where('slug', $slug)->first();
+
+        return view('front-end.pages.content-detail', compact('content'));
     }
 }
