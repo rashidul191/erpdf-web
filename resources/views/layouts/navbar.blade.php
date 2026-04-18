@@ -1,7 +1,13 @@
 @php
-    $menus = \App\Models\Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'subMenus.page'])->oldest('serial')->get();
-    // dd($menus);
-
+    $menus = \App\Models\Menu::whereNull('menu_id')
+        ->whereNull('sub_menu_id')
+        ->with([
+            'page',
+            'subMenus.page',
+            'subMenus.subOfSubMenus.page' // 🔥 important
+        ])
+        ->oldest('serial')
+        ->get();
 @endphp
 <!-- HEADER START -->
 {{-- <x-slot name="style"> --}}

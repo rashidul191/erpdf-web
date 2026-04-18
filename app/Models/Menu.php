@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'page_id',
         'menu_id',
@@ -21,28 +22,37 @@ class Menu extends Model
         'status' => CommonStatus::class,
     ];
 
+    // 🔗 Page
     public function page()
     {
         return $this->belongsTo(Page::class);
-        // return $this->belongsTo(Page::class, 'id');
     }
+
+    // ======================
+    // 🔹 LEVEL 1 → LEVEL 2
+    // ======================
 
     public function subMenus()
     {
         return $this->hasMany(Menu::class, 'menu_id', 'id');
     }
+
     public function menu()
     {
-        return $this->belongsTo(Menu::class, 'menu_id');
+        return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
+
+    // ======================
+    // 🔹 LEVEL 2 → LEVEL 3
+    // ======================
 
     public function subOfSubMenus()
     {
         return $this->hasMany(Menu::class, 'sub_menu_id', 'id');
     }
+
     public function subMenu()
     {
-        return $this->belongsTo(Menu::class, 'sub_menu_id');
+        return $this->belongsTo(Menu::class, 'sub_menu_id', 'id');
     }
-
 }

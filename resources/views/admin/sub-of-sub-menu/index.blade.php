@@ -17,7 +17,6 @@
                     {{-- <th>{{ __('Image') }}</th> --}}
                     <th>{{ __('Sub Menu Name') }}</th>
                     <th>{{ __('Sub of Sub Menu Name') }}</th>
-                    <th>{{ __('Slug') }}</th>
                     <th>{{ __('Serial') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
@@ -43,8 +42,6 @@
                                 //     item.id),
                             });
 
-                            item.image =
-                                `<img width="50" src='${item.image}' alt='${item.name}'>`; // console.log(item.sup_category[0].name);
                             return item;
                         });
                         return response.data;
@@ -60,11 +57,9 @@
                     data: 'sub_menu_name',
                 },
                 {
-                    data: 'name',
+                    data: 'page.title',
                 },
-                {
-                    data: 'slug',
-                },
+
                 {
                     data: 'serial',
                     defaultContent: '-'

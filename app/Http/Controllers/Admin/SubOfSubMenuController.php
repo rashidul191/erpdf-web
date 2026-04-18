@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CommonStatus;
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
 use App\Models\Menu;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,12 +14,8 @@ class SubOfSubMenuController extends Controller
     public function index(Request $request)
     {
 
-        // $subMenus = Menu::whereNull('menu_id')->whereNotNull('sub_menu_id')->with(['subMenu:id,name'])->oldest('name')->oldest('serial')->get();
-
-        //     dd($subMenus[0]->subMenu->name);
-
         if ($request->ajax()) {
-            return datatables(Menu::whereNull('menu_id')->whereNotNull('sub_menu_id')->with(['subMenu:id,name'])->oldest('name')->oldest('serial'))
+            return datatables(Menu::whereNull('menu_id')->whereNotNull('sub_menu_id')->with(['page', 'subMenu.page'])->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
                     $color = match ($row->status->value) {
@@ -31,7 +28,7 @@ class SubOfSubMenuController extends Controller
                 })
                 // ✅ FIX HERE
                 ->addColumn('sub_menu_name', function ($row) {
-                    return $row->subMenu?->name ?? '-';
+                    return $row->subMenu?->page->title ?? '-';
                 })
                 ->rawColumns(['status'])
                 ->toJson();
@@ -41,25 +38,21 @@ class SubOfSubMenuController extends Controller
 
     public function create()
     {
-        $subMenus = Menu::whereNotNull('menu_id')->whereNull('sub_menu_id')->get();
+        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
+        $subMenus = Menu::whereNotNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
 
-        return view('admin.sub-of-sub-menu.create', compact('subMenus'));
+        return view('admin.sub-of-sub-menu.create', compact('subMenus', 'pages'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'page_id' => 'nullable|integer|exists:pages,id',
             'menu_id' => 'nullable|integer|exists:menus,id',
             'sub_menu_id' => 'nullable|integer|exists:menus,id',
-
-            'name' => 'required|string',
             'serial' => 'nullable|integer',
             'status' => 'required|integer',
         ]);
-
-        $validated['slug'] = generateSlug(Menu::class, $validated['name']);
-
-        // dd($validated['slug']);
 
         return response()->reportTo(
             Menu::create($validated),
@@ -68,30 +61,34 @@ class SubOfSubMenuController extends Controller
         );
     }
 
-    public function edit(Menu $menu)
+    public function edit(Menu $subOfSubMenu)
     {
-        return view('admin.sub-of-sub-menu.edit', compact('menu'));
+
+        $pages = Page::where('status', CommonStatus::Active())
+            ->where(function ($query) use ($subOfSubMenu) {
+                $query->whereDoesntHave('menu') // unused pages
+                    ->orWhere('id', $subOfSubMenu->page_id); // 🔥 include current one
+            })
+            ->oldest('title')
+            ->get();
+        $subMenus = Menu::whereNotNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
+        return view('admin.sub-of-sub-menu.edit', compact('subOfSubMenu', 'pages', 'subMenus'));
     }
 
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, Menu $subOfSubMenu)
     {
         // Validate input
         $validated = $request->validate([
+            'page_id' => 'nullable|integer|exists:pages,id',
             'menu_id' => 'nullable|integer|exists:menus,id',
             'sub_menu_id' => 'nullable|integer|exists:menus,id',
-            'name' => 'required|string',
             'serial' => 'nullable|integer',
             'status' => 'required|integer',
         ]);
 
-        // is change name
-        if ($menu->name !== $validated['name']) {
-            $validated['slug'] = generateSlug(Menu::class, $validated['name']);
-        }
-
         // Return response
         return response()->reportTo(
-            $menu->update($validated),
+            $subOfSubMenu->update($validated),
             'Updated successfully',
             route('admin.sub-of-sub-menu.index')
         );
