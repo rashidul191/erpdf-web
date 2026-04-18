@@ -14,18 +14,16 @@
             @csrf
             <div class="flex flex-wrap justify-center w-full">
 
-                <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
-                    @foreach (\App\Enums\CommonStatus::getInstances() as $value)
-                        <option value="{{ $value->value }}" {{ \App\Enums\CommonStatus::Active()->value == $value->value ? 'selected' : '' }}>
-                            {{ $value->key }}
+                <x-labeled-select label="Select Page Title" name="page_id" required class="w-full md:w-1/2 p-1">
+                    <option value="" disabled selected>Select Page Title</option>
+                    @foreach ($pages as $page)
+                        <option value="{{$page->id }}">
+                            {{ $page->title }}
                         </option>
                     @endforeach
                 </x-labeled-select>
 
                 <x-labeled-input name="serial" type="number" class="w-full p-1 md:w-1/2" />
-                <x-labeled-input name="name" required class="w-full p-1" />
-
-
 
                 <div class="w-full pt-4 flex justify-end">
                     <x-button>{{ __('Create') }}</x-button>

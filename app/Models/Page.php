@@ -8,18 +8,18 @@ use App\Traits\DeletesImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContentManage extends Model
+class Page extends Model
 {
     use HasFactory, DeletesImage;
 
     protected $fillable = [
-        'menu_id',
         'title',
         'slug',
         'image',
         'status',
         'short_description',
         'description',
+        'others',
     ];
 
     protected $casts = [
@@ -27,9 +27,9 @@ class ContentManage extends Model
         'status' => CommonStatus::class,
     ];
 
-    public function menu()
+    public function menus()
     {
-        return $this->belongsTo(Menu::class, 'menu_id');
+        return $this->hasMany(Menu::class, 'page_id');
     }
 
 }

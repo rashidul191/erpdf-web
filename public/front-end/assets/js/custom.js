@@ -5,19 +5,19 @@ All JavaScript fuctions Start
 /*--------------------------------------------------------------------------------------------
 	document.ready ALL FUNCTION START
 ---------------------------------------------------------------------------------------------*/
- /* 
+ /*
 
-	> Top Search bar Show Hide function by = custom.js  
-	> On scroll content animated function by = Viewportchecker.js 	
-	> Video responsive function by = custom.js 
+	> Top Search bar Show Hide function by = custom.js
+	> On scroll content animated function by = Viewportchecker.js
+	> Video responsive function by = custom.js
 	> magnificPopup function	by = magnific-popup.js
 	> magnificPopup for video function	by = magnific-popup.js
 	> Vertically center Bootstrap modal popup function by = custom.js
 	> Main menu sticky on top  when scroll down function by = custom.js
-	> page scroll top on button click function by = custom.js	
-	> input type file function by = custom.js	 
+	> page scroll top on button click function by = custom.js
+	> input type file function by = custom.js
 	> input Placeholder in IE9 function by = custom.js
-	> footer fixed on bottom function by = custom.js	
+	> footer fixed on bottom function by = custom.js
 	> accordion active calss function by = custom.js
     > Nav submenu show hide on mobile by = custom.js
 	> Vertical Nav submenu show hide on mobile by = custom.js
@@ -28,31 +28,31 @@ All JavaScript fuctions Start
 	> home_carousel_2 Full Screen with no margin function by = owl.carousel.js
 	> home_projects_filter Full Screen with no margin function by = owl.carousel.js
 	> Home page testimonial function by = owl.carousel.js
-    > home_client_carouse function by = owl.carousel.js 
+    > home_client_carouse function by = owl.carousel.js
 	> work carousel  function by = owl.carousel.js
     > Hover Tab  function
     > Fade slider for home function by = owl.carousel.js ========================== //
-	
+
     > Portfolio Carousel no margin function by = owl.carousel.js ========================== //
 
-	
- */	
+
+ */
 
 /*--------------------------------------------------------------------------------------------
 	window on load ALL FUNCTION START
 ---------------------------------------------------------------------------------------------*/
- /* 
+ /*
 	 > equal each box
-	 > text animation function 
+	 > text animation function
 	 > masonry function function by = isotope.pkgd.min.js
 	 > page loader function by = custom.js
- */	
- 
+ */
+
 /*--------------------------------------------------------------------------------------------
 	Window Scroll ALL FUNCTION START
 ---------------------------------------------------------------------------------------------*/
  /*
- 	 > Window on scroll header color fill 
+ 	 > Window on scroll header color fill
  */
 
 /*--------------------------------------------------------------------------------------------
@@ -60,33 +60,33 @@ All JavaScript fuctions Start
 ---------------------------------------------------------------------------------------------*/
 
 (function ($) {
-	
+
     'use strict';
 /*--------------------------------------------------------------------------------------------
 	document.ready ALL FUNCTION START
----------------------------------------------------------------------------------------------*/	
+---------------------------------------------------------------------------------------------*/
 
 
-//  > Top Search bar Show Hide function by = custom.js =================== //	
+//  > Top Search bar Show Hide function by = custom.js =================== //
 	 function site_search(){
-			jQuery('a[href="#search"]').on('click', function(event) {                    
+			jQuery('a[href="#search"]').on('click', function(event) {
 			jQuery('#search').addClass('open');
 			jQuery('#search > form > input[type="search"]').focus();
 		});
-					
+
 		jQuery('#search, #search button.close').on('click keyup', function(event) {
 			if (event.target === this || event.target.className === 'close') {
 				jQuery(this).removeClass('open');
 			}
-		});  
-	 }	
-	 
-	 
-// > Video responsive function by = custom.js ========================= //	
-	function video_responsive(){	
+		});
+	 }
+
+
+// > Video responsive function by = custom.js ========================= //
+	function video_responsive(){
 		jQuery('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-		jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');	
-	}  
+		jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+	}
 
 // > magnificPopup function	by = magnific-popup.js =========================== //
 	function magnific_popup(){
@@ -106,21 +106,21 @@ All JavaScript fuctions Start
        });
 	}
 
-// > magnificPopup for video function	by = magnific-popup.js ===================== //	
-	function magnific_video(){	
+// > magnificPopup for video function	by = magnific-popup.js ===================== //
+	function magnific_video(){
 		jQuery('.mfp-video').magnificPopup({
 			type: 'iframe',
 		});
 	}
 
 // Vertically center Bootstrap modal popup function by = custom.js ==============//
-	function popup_vertical_center(){	
+	function popup_vertical_center(){
 		jQuery(function() {
 			function reposition() {
 				var modal = jQuery(this),
 				dialog = modal.find('.modal-dialog');
 				modal.css('display', 'block');
-				// Dividing by two centers the modal exactly, but dividing by three 
+				// Dividing by two centers the modal exactly, but dividing by three
 				// or four works better for larger screens.
 				dialog.css("margin-top", Math.max(0, (jQuery(window).height() - dialog.height()) / 2));
 			}
@@ -133,7 +133,7 @@ All JavaScript fuctions Start
 		});
 	}
 
-// > Main menu sticky on top  when scroll down function by = custom.js ========== //		
+// > Main menu sticky on top  when scroll down function by = custom.js ========== //
 	function sticky_header(){
 		if(jQuery('.sticky-header').length){
 			var sticky = new Waypoint.Sticky({
@@ -144,8 +144,8 @@ All JavaScript fuctions Start
 
 
 
-	
-// > page scroll top on button click function by = custom.js ===================== //	
+
+// > page scroll top on button click function by = custom.js ===================== //
 	function scroll_top(){
 		jQuery("button.scroltop").on('click', function() {
 			jQuery("html, body").animate({
@@ -164,7 +164,7 @@ All JavaScript fuctions Start
 		});
 	}
 
-// > input type file function by = custom.js ========================== //	 	 
+// > input type file function by = custom.js ========================== //
 	function input_type_file_form(){
 		jQuery(document).on('change', '.btn-file :file', function() {
 			var input = jQuery(this),
@@ -181,10 +181,10 @@ All JavaScript fuctions Start
 			} else {
 				if (log) alert(log);
 			}
-		});	
+		});
 	}
 
-// > input Placeholder in IE9 function by = custom.js ======================== //	
+// > input Placeholder in IE9 function by = custom.js ======================== //
 	function placeholderSupport(){
 	/* input placeholder for ie9 & ie8 & ie7 */
 		jQuery.support.placeholder = ('placeholder' in document.createElement('input'));
@@ -206,10 +206,10 @@ All JavaScript fuctions Start
 			});
 		}
 		/*fix for IE7 and IE8 end */
-	}	
+	}
 
 
-// > footer fixed on bottom function by = custom.js ======================== //	
+// > footer fixed on bottom function by = custom.js ======================== //
 	function footer_fixed() {
 	  jQuery('.site-footer').css('display', 'block');
 	  jQuery('.site-footer').css('height', 'auto');
@@ -218,7 +218,7 @@ All JavaScript fuctions Start
 	  jQuery('.site-footer').css('height', footerHeight);
 	}
 
-// > accordion active calss function by = custom.js ========================= //	
+// > accordion active calss function by = custom.js ========================= //
 	function accordion_active() {
 		$('.acod-head a').on('click', function() {
 			$('.acod-head').removeClass('acc-actives');
@@ -227,7 +227,7 @@ All JavaScript fuctions Start
 			$(this).parent().addClass('acc-actives'); //just to make a visual sense
 			($(this).parents('.acod-head').attr('class'));
 		 });
-	}	
+	}
 
 // > Nav submenu show hide on mobile by = custom.js
 	//  function mobile_nav(){
@@ -240,13 +240,13 @@ All JavaScript fuctions Start
 	// 		});
 	// 		ev.stopPropagation();
 	// 	});
-		
+
 	// 	jQuery('.has-child').on('click',function(ev) {
 	// 	   jQuery(this).find(jQuery('.sub-menu')).slideToggle('fast', function(){
 	// 		jQuery(this).parent().toggleClass('nav-active');
 	// 	   });
 	// 	});
-		
+
 	// }
 
 	//________Nav submenu show hide on mobile by = custom.js________//
@@ -270,7 +270,7 @@ All JavaScript fuctions Start
 	}
 	//________Mobile side drawer function by = custom.js________//
 	function mobile_side_drawer(){
-		jQuery('#mobile-side-drawer').on('click', function () { 
+		jQuery('#mobile-side-drawer').on('click', function () {
 			jQuery('.mobile-sider-drawer-menu').toggleClass('active');
 		});
 	}
@@ -278,7 +278,7 @@ All JavaScript fuctions Start
 
 // > home_projects_filter Full Screen with no margin function by = owl.carousel.js ========================== //
 	function home_projects_filter(){
-		
+
 		var owl = jQuery('.owl-carousel-filter').owlCarousel({
 		loop:false,
 		autoplay:true,
@@ -295,17 +295,17 @@ All JavaScript fuctions Start
 			},
 			991:{
 				items:2
-			},			
+			},
 			1200:{
 				items:2
-			},			
+			},
 			1366:{
 				items:4
-			}			
+			}
 
 		    }
 		})
-		
+
 		/* Filter Nav */
 
 		/* Filter Nav */
@@ -320,13 +320,13 @@ All JavaScript fuctions Start
 			jQuery(this).addClass('btn-active').siblings().removeClass('btn-active');
 
 			/* Filter */
-			owl.owlFilter(filter_data, function(_owl) { 
-				jQuery(_owl).find('.item').each(owlAnimateFilter); 
+			owl.owlFilter(filter_data, function(_owl) {
+				jQuery(_owl).find('.item').each(owlAnimateFilter);
 			});
 		})
-	
-	
-	
+
+
+
 	}
 // > Date select function by = owl.carousel.js ========================== //
 	function booking_date_cal(){
@@ -334,10 +334,10 @@ All JavaScript fuctions Start
       // options here
     });
   }
-	
+
 // > home_projects_filter Full Screen with no margin function by = owl.carousel.js ========================== //
 	function home_projects_filter2(){
-		
+
 		var owl = jQuery('.owl-carousel-filter2').owlCarousel({
 		loop:false,
 		autoplay:true,
@@ -354,16 +354,16 @@ All JavaScript fuctions Start
 			},
 			991:{
 				items:2
-			},			
+			},
 			1200:{
 				items:2
-			},			
+			},
 			1366:{
 				items:3
-			}		
+			}
 		    }
 		})
-		
+
 		/* Filter Nav */
 
 		/* Filter Nav */
@@ -378,18 +378,18 @@ All JavaScript fuctions Start
 			jQuery(this).addClass('btn-active').siblings().removeClass('btn-active');
 
 			/* Filter */
-			owl.owlFilter(filter_data, function(_owl) { 
-				jQuery(_owl).find('.item').each(owlAnimateFilter); 
+			owl.owlFilter(filter_data, function(_owl) {
+				jQuery(_owl).find('.item').each(owlAnimateFilter);
 			});
 		})
-	
-	
-	
-	}	
-	
+
+
+
+	}
+
 // > home_projects_filter Full Screen with no margin function by = owl.carousel.js ========================== //
 	function home_projects_filter3(){
-		
+
 		var owl = jQuery('.owl-carousel-filter3').owlCarousel({
 		loop:false,
 		autoplay:false,
@@ -406,16 +406,16 @@ All JavaScript fuctions Start
 			},
 			991:{
 				items:2
-			},			
+			},
 			1200:{
 				items:2
-			},			
+			},
 			1366:{
 				items:4
-			}		
+			}
 		    }
 		})
-		
+
 		/* Filter Nav */
 
 		/* Filter Nav */
@@ -430,15 +430,15 @@ All JavaScript fuctions Start
 			jQuery(this).addClass('btn-active').siblings().removeClass('btn-active');
 
 			/* Filter */
-			owl.owlFilter(filter_data, function(_owl) { 
-				jQuery(_owl).find('.item').each(owlAnimateFilter); 
+			owl.owlFilter(filter_data, function(_owl) {
+				jQuery(_owl).find('.item').each(owlAnimateFilter);
 			});
 		})
-	
-	
-	
-	}		
-	
+
+
+
+	}
+
 // Home page testimonial function by = owl.carousel.js ========================== //
 	function testimonial_home(){
 	jQuery('.testimonial-home').owlCarousel({
@@ -457,7 +457,7 @@ All JavaScript fuctions Start
 			}
 		}
 	});
-	}	
+	}
 
 
 // Home page About Slider function by = owl.carousel.js ========================== //
@@ -479,9 +479,9 @@ All JavaScript fuctions Start
 		}
 	});
 	}
-	
-	
-			
+
+
+
 //  home_client_carouse function by = owl.carousel.js ========================== //
 	function home_client_carousel(){
 	jQuery('.home-client-carousel').owlCarousel({
@@ -496,7 +496,7 @@ All JavaScript fuctions Start
 			},
 			480:{
 				items:3
-			},			
+			},
 			767:{
 				items:4
 			},
@@ -505,7 +505,7 @@ All JavaScript fuctions Start
 			}
 		}
 	});
-	}	
+	}
 
 
 //  home_client_carouse function by = owl.carousel.js ========================== //
@@ -523,7 +523,7 @@ All JavaScript fuctions Start
 			},
 			480:{
 				items:3
-			},			
+			},
 			767:{
 				items:4
 			},
@@ -532,7 +532,7 @@ All JavaScript fuctions Start
 			}
 		}
 	});
-	}		
+	}
 // > work carousel  function by = owl.carousel.js ========================== //
 	function work_carousel(){
 	jQuery('.work-carousel').owlCarousel({
@@ -551,30 +551,30 @@ All JavaScript fuctions Start
 			991:{
 				items:2
 			}
-			
+
 		}
 	});
-	}	
+	}
 
 
 	function social_slide(){
-	jQuery('.socialicon_show').on('click', function () {	
+	jQuery('.socialicon_show').on('click', function () {
 		jQuery('.social_hide').animate({'right': '0px'});
 	});
-	jQuery('.socialicon_close').on('click', function () {	
+	jQuery('.socialicon_close').on('click', function () {
 		jQuery('.social_hide').animate({'right': '-70px'});
-	});		
-	};	
-	
-	
+	});
+	};
+
+
 	function contact_slide(){
-	jQuery('.contact-slide-show').on('click', function () {	
+	jQuery('.contact-slide-show').on('click', function () {
 		jQuery('.contact-slide-hide').animate({'right': '0px'});
 	});
-	jQuery('.contact_close').on('click', function () {	
+	jQuery('.contact_close').on('click', function () {
 		jQuery('.contact-slide-hide').animate({'right': '-100%'});
-	});		
-	};		
+	});
+	};
 
 
 
@@ -604,7 +604,7 @@ All JavaScript fuctions Start
 		nav:false,
 		dots:true,
 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-	})	
+	})
 }
 
 // Fade slider function by = owl.carousel.js ========================== //
@@ -623,20 +623,20 @@ All JavaScript fuctions Start
 	})
 }
 
-	
+
 // > Hover back  function ========================== //
-	
-	function hover_tab(){	
+
+	function hover_tab(){
 		jQuery('.bgcall-block').on('mouseover', function() {
 			var index = $('.bgcall-block').index(this);
 			jQuery('.bg-changer .section-bg').removeClass('active').eq(index).addClass('active');
-		});	
+		});
 	}
 /*--------------------------------------------------------------------------------------------
 	Window on load ALL FUNCTION START
 ---------------------------------------------------------------------------------------------*/
 	// text animation function
-	
+
 	var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
         this.el = el;
@@ -694,9 +694,9 @@ All JavaScript fuctions Start
         document.body.appendChild(css);
     };
 
-// > masonry function function by = isotope.pkgd.min.js ========================= //	
+// > masonry function function by = isotope.pkgd.min.js ========================= //
 	function masonryBox() {
-        if ( jQuery().isotope ) {      
+        if ( jQuery().isotope ) {
             var $container = jQuery('.portfolio-wrap');
                 $container.isotope({
                     itemSelector: '.masonry-item',
@@ -704,7 +704,7 @@ All JavaScript fuctions Start
 					originLeft: true
                 });
 
-            jQuery('.masonry-filter li').on('click',function() {                           
+            jQuery('.masonry-filter li').on('click',function() {
                 var selector = jQuery(this).find("a").attr('data-filter');
                 jQuery('.masonry-filter li').removeClass('active');
                 jQuery(this).addClass('active');
@@ -712,20 +712,20 @@ All JavaScript fuctions Start
                 return false;
             });
     	};
-	}	
+	}
 
 
 // > page loader function by = custom.js ========================= //
 	function page_loader() {
 		$('.loading-area').fadeOut(1000)
 	};
-	
+
 
 
 	function social_tooltips(){
-		jQuery(function () { 
+		jQuery(function () {
 		  jQuery('[data-toggle="tooltip"]').tooltip();
-		}) ; 
+		}) ;
 	}
 
 
@@ -740,17 +740,17 @@ All JavaScript fuctions Start
         } else {
             $(".is-fixed").removeClass("color-fill");
         }
-    };	
+    };
 
 /*--------------------------------------------------------------------------------------------
 	document.ready ALL FUNCTION START
 ---------------------------------------------------------------------------------------------*/
 	jQuery(document).ready(function() {
-		social_slide(), 
-		// > Top Search bar Show Hide function by = custom.js  		
+		social_slide(),
+		// > Top Search bar Show Hide function by = custom.js
 		site_search(),
 		contact_slide()
-		// > Video responsive function by = custom.js 
+		// > Video responsive function by = custom.js
 		video_responsive(),
 		// > magnificPopup function	by = magnific-popup.js
 		magnific_popup(),
@@ -758,31 +758,31 @@ All JavaScript fuctions Start
 		magnific_video(),
 		// > Vertically center Bootstrap modal popup function by = custom.js
 		popup_vertical_center();
-		// > Main menu sticky on top  when scroll down function by = custom.js		
+		// > Main menu sticky on top  when scroll down function by = custom.js
 		sticky_header(),
-		
-		// > page scroll top on button click function by = custom.js	
+
+		// > page scroll top on button click function by = custom.js
 		scroll_top(),
-		// > input type file function by = custom.js	 	
+		// > input type file function by = custom.js
 		input_type_file_form(),
-		// > input Placeholder in IE9 function by = custom.js		
+		// > input Placeholder in IE9 function by = custom.js
 		placeholderSupport(),
-		// > footer fixed on bottom function by = custom.js	
+		// > footer fixed on bottom function by = custom.js
 		footer_fixed(),
-		// > accordion active calss function by = custom.js ========================= //			
+		// > accordion active calss function by = custom.js ========================= //
 		accordion_active(),
 		// > Nav submenu on off function by = custome.js ===================//
 		mobile_nav(),
 		// > Mobile side drawer function by = custom.js________//
 		mobile_side_drawer(),
-		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  // 
+		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  //
 		// > Date select function by = owl.carousel.js ========================== //
-		booking_date_cal(),		 
+		booking_date_cal(),
 		home_projects_filter(),
-		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  //  
+		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  //
 		home_projects_filter2(),
-		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  //  
-		home_projects_filter3(),					
+		//  home_projects_filter() Full Screen with no margin function by = owl.carousel.js ==========================  //
+		home_projects_filter3(),
 		// Home page testimonial function by = owl.carousel.js ========================== //
 		testimonial_home(),
 		// Home page About Slider function by = owl.carousel.js ========================== //
@@ -794,16 +794,16 @@ All JavaScript fuctions Start
 		widget_client(),
 		// Fade slider function by = owl.carousel.js ========================== //
 		owl_fade_slider(),
-		hover_tab()	
-	}); 
+		hover_tab()
+	});
 
 /*--------------------------------------------------------------------------------------------
 	Window Load START
 ---------------------------------------------------------------------------------------------*/
 	jQuery(window).on('load', function () {
-		// > masonry function function by = isotope.pkgd.min.js		
+		// > masonry function function by = isotope.pkgd.min.js
 		masonryBox(),
-		// > page loader function by = custom.js		
+		// > page loader function by = custom.js
 		page_loader(),
 		// > work carousel  function by = owl.carousel.js
 		work_carousel(),
@@ -816,16 +816,16 @@ All JavaScript fuctions Start
 ===========================*/
 
 	jQuery(window).on('scroll', function () {
-	// > Window on scroll header color fill 
+	// > Window on scroll header color fill
 		color_fill_header()
 	});
-	
+
 /*===========================
 	Window Resize ALL FUNCTION START
 ===========================*/
 
 	jQuery(window).on('resize', function () {
-	// > footer fixed on bottom function by = custom.js		 
+	// > footer fixed on bottom function by = custom.js
 	 	footer_fixed(),
 		home_projects_filter2()
 	});
@@ -834,7 +834,7 @@ All JavaScript fuctions Start
 	Document on  Submit FUNCTION START
 ===========================*/
 
-	// > Contact form function by = custom.js	
+	// > Contact form function by = custom.js
 	jQuery(document).on('submit', 'form.cons-contact-form', function(e){
 		e.preventDefault();
 		var form = jQuery(this);
@@ -853,17 +853,17 @@ All JavaScript fuctions Start
 				if(data['success']){
 				jQuery("<div class='alert alert-success'>"+data['message']+"</div>").insertBefore('form.cons-contact-form');
 				}else{
-				jQuery("<div class='alert alert-danger'>"+data['message']+"</div>").insertBefore('form.cons-contact-form');	
+				jQuery("<div class='alert alert-danger'>"+data['message']+"</div>").insertBefore('form.cons-contact-form');
 				}
 			}
 		});
 		jQuery('.cons-contact-form').trigger("reset");
 		return false;
-	});	
+	});
 
 /*===========================
 	Document on  Submit FUNCTION END
-===========================*/	
+===========================*/
 
 //=== Switcher panal slide function	=====================//
 
@@ -873,12 +873,12 @@ All JavaScript fuctions Start
 
 //=== Switcher panal slide function	=====================//
 
-jQuery('.vnav-btn').on('click', function () { 
+jQuery('.vnav-btn').on('click', function () {
 	jQuery('.nav-sidebar').toggleClass('active');
 	jQuery('.nav-transparent-area').animate({'right': '100%'});
-	
+
 });
-jQuery('.vnav-close, .nav-transparent-area').on('click', function () { 
+jQuery('.vnav-close, .nav-transparent-area').on('click', function () {
 	jQuery('.nav-sidebar').removeClass('active');
 	jQuery('.nav-transparent-area').animate({'right': '-500'});
 });

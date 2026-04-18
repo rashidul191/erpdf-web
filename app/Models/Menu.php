@@ -10,13 +10,39 @@ class Menu extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'slug',
+        'page_id',
         'serial',
-        'status'
+        'status',
+        'sub_menu_id',
+        'sub_of_sub_menu_id',
     ];
 
     protected $casts = [
         'status' => CommonStatus::class,
     ];
+
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+        // return $this->belongsTo(Page::class, 'id');
+    }
+
+    public function subMenus()
+    {
+        return $this->hasMany(Menu::class, 'menu_id', 'id');
+    }
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class, 'menu_id');
+    }
+
+    public function subOfSubMenus()
+    {
+        return $this->hasMany(Menu::class, 'sub_menu_id', 'id');
+    }
+    public function subMenu()
+    {
+        return $this->belongsTo(Menu::class, 'sub_menu_id');
+    }
+
 }

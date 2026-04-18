@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentManagesTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,13 @@ class CreateContentManagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('content_manages', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->nullable()->constrained('menus');
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('image')->nullable();
+            $table->foreignId('page_id')->nullable()->constrained('pages');
+            $table->foreignId('sub_menu_id')->nullable()->constrained('menus');
+            $table->foreignId('sub_of_sub_menu_id')->nullable()->constrained('menus');
+            $table->integer('serial')->nullable();
             $table->unsignedTinyInteger('status')->nullable()->default(CommonStatus::Active);
-            $table->longText('short_description')->nullable();
-            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateContentManagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_manages');
+        Schema::dropIfExists('menus');
     }
 }

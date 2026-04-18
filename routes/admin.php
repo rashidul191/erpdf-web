@@ -19,12 +19,15 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OurStoryController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoomCategoryController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SpecializationController;
+use App\Http\Controllers\Admin\SubMenuController;
+use App\Http\Controllers\Admin\SubOfSubMenuController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ContactFormMessageController;
@@ -99,7 +102,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
         Route::resource('menu', MenuController::class);
-        Route::resource('content-manage', ContentManageController::class);
+        Route::resource('sub-menu', SubMenuController::class);
+        Route::resource('sub-of-sub-menu', SubOfSubMenuController::class);
+
+        Route::resource('page', PageController::class);
 
         Route::resource('tag', TagController::class);
         Route::resource('categories', CategoryController::class);

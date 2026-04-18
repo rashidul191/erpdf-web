@@ -17,7 +17,7 @@
         <div class="section-content">
 
             <div class="row">
-                @foreach ($blogs as $item)
+                @forelse($blogs as $item)
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-post latest-blog-1 date-style-2">
                             <div class="wt-post-media wt-img-effect zoom-slow">
@@ -60,7 +60,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="text-center">
+                        <h3 class="text-danger">Data Not Found!</h3>
+                    </div>
+                @endforelse
             </div>
             @if (request()->routeIs('blog.index'))
                 <!-- Pagination Start -->

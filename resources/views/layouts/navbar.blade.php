@@ -1,4 +1,115 @@
+@php
+    $menus = \App\Models\Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with(['subMenus.subOfSubMenus'])->oldest('serial')->get();
+    // dd($menus);
+
+@endphp
 <!-- HEADER START -->
+{{-- <x-slot name="style"> --}}
+    <style>
+        /* ======================
+   SUB MENU (1st level)
+====================== */
+        .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background: #fff;
+            min-width: 220px;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav li:hover>.sub-menu {
+            display: block;
+        }
+
+        /* ======================
+   SUB MENU LI
+====================== */
+        .sub-menu li {
+            position: relative;
+        }
+
+        /* ======================
+   SUB OF SUB MENU (RIGHT SIDE FLYOUT)
+====================== */
+        .sub-of-sub-menu {
+            list-style: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            display: none;
+            background: #fff;
+            min-width: 220px;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* hover open for desktop */
+        .sub-menu li:hover>.sub-of-sub-menu {
+            display: block;
+        }
+
+        .submenu-arrow {
+            display: none;
+        }
+
+        /* ======================
+   MOBILE FIX (NO BREAK DESIGN)
+====================== */
+
+        /* ======================
+   MOBILE ONLY ENHANCEMENT
+====================== */
+
+        /* MOBILE ONLY */
+        @media (max-width: 991px) {
+
+            .sub-of-sub-menu {
+                display: none;
+                padding-left: 15px;
+            }
+
+            .sub-of-sub-menu.show {
+                display: block !important;
+                animation: fadeSlide 0.25s ease;
+            }
+
+            @keyframes fadeSlide {
+                from {
+                    opacity: 0;
+                    transform: translateY(-5px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .sub-menu li {
+                position: relative;
+            }
+
+            .submenu-arrow {
+                display: inline;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: 0.3s;
+                z-index: 10;
+            }
+
+            .sub-menu li.active>.submenu-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+    {{--
+</x-slot> --}}
 <header class="site-header header-style-1 mobile-sider-drawer-menu">
     <div class="sticky-header main-bar-wraper">
         <div class="main-bar p-t5">
@@ -38,9 +149,36 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="{{ request()->routeIs('project-progress.index') ? 'active' : '' }}">
+
+                        @foreach ($menus as $menu)
+                            <li
+                                class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $menu->slug ? 'active' : '' }}">
+                                <a href="{{ route('menu-page.index', $menu->slug) }}">{{ $menu->name }}</a>
+                                @if($menu->subMenus->isNotEmpty())
+                                    <ul class="sub-menu">
+                                        @foreach ($menu->subMenus as $subMenu)
+                                            <li>
+                                                <a href="#">{{ $subMenu->name }}</a>
+                                                @if($subMenu->subOfSubMenus->isNotEmpty())
+                                                    <ul class="sub-of-sub-menu">
+                                                        @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
+                                                            <li>
+                                                                <a href="">{{ $subOfSubMenu->name }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+
+
+                        {{-- <li class="{{ request()->routeIs('project-progress.index') ? 'active' : '' }}">
                             <a href="{{ route('project-progress.index') }}">Project Progress</a>
-                        </li>
+                        </li> --}}
                         @php
                             $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
                         @endphp
@@ -56,20 +194,10 @@
                         </li>
 
 
-                        <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}">
+                        {{-- <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}">
                             <a href="{{ route('blog.index') }}">Blog</a>
-                            <!-- <ul class="sub-menu">
-                                <li>
-                                    <a href="javascript:;">Blog</a>
-                                    <ul class="sub-menu has-child">
-                                        <li><a href="news-grid.html">Blog Grid</a></li>
-                                        <li><a href="news-listing.html">Blog Listing</a></li>
-                                        <li><a href="news-masonry.html">Blog Masonry</a></li>
-                                    </ul>
-                                </li>
+                        </li> --}}
 
-                            </ul> -->
-                        </li>
                         <!-- <li>
                             <a href="javascript:;">Projects</a>
                             <ul class="sub-menu">
@@ -238,3 +366,48 @@
     </div>
 </header>
 <!-- HEADER END -->
+{{-- <x-slot name="script"> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.querySelectorAll(".sub-menu li").forEach(item => {
+
+                let child = item.querySelector(".sub-of-sub-menu");
+
+                if (child) {
+
+                    // avoid duplicate arrow
+                    if (!item.querySelector(".submenu-arrow")) {
+
+                        let arrow = document.createElement("span");
+                        arrow.classList.add("submenu-arrow");
+                        arrow.innerHTML = "&#9656;";
+
+                        item.appendChild(arrow);
+
+                        arrow.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // close siblings
+                            item.parentElement.querySelectorAll(".sub-of-sub-menu").forEach(el => {
+                                if (el !== child) {
+                                    el.classList.remove("show");
+                                    if (el.parentElement) {
+                                        el.parentElement.classList.remove("active");
+                                    }
+                                }
+                            });
+
+                            // toggle current
+                            child.classList.toggle("show");
+                            item.classList.toggle("active");
+                        });
+                    }
+                }
+            });
+
+        });
+    </script>
+    {{--
+</x-slot> --}}

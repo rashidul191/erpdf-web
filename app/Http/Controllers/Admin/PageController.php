@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
-use App\Models\ContentManage;
+use App\Models\Page;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ContentManageController extends Controller
+class PageController extends Controller
 {
     public function index(Request $request)
     {
+        // dd(Page::latest()->get());
         if ($request->ajax()) {
-            return datatables(ContentManage::with(['menu:id,name'])->latest())
+            return datatables(Page::latest())
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
                     $color = match ($row->status->value) {
@@ -28,46 +29,46 @@ class ContentManageController extends Controller
                 ->rawColumns(['status'])
                 ->toJson();
         }
-        return view('admin.content-manage.index');
+        return view('admin.page.index');
     }
 
     public function create()
     {
-        $menus = Menu::oldest('name')->get();
-        return view('admin.content-manage.create', compact('menus'));
+
+        return view('admin.page.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'menu_id' => 'required|integer|exists:menus,id',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
             'status' => 'required|integer',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
+            'others' => 'nullable|string',
 
         ]);
 
-        $validated['slug'] = generateSlug(ContentManage::class, $validated['title']);
+        $validated['slug'] = generateSlug(Page::class, $validated['title']);
 
         return response()->reportTo(
-            ContentManage::create($validated),
+            Page::create($validated),
             'Created successfully',
-            route('admin.content-manage.index')
+            route('admin.page.index')
         );
     }
 
-    public function edit(ContentManage $contentManage)
+    public function edit(Page $page)
     {
-        $menus = Menu::oldest('name')->get();
-        return view('admin.content-manage.edit', compact('contentManage', 'menus'));
+
+        return view('admin.page.edit', compact('page', ));
     }
 
-    public function update(Request $request, ContentManage $contentManage)
+    public function update(Request $request, Page $page)
     {
 
-    // dd($request->all());
+        // dd($request->all());
         // Validate input
         $validated = $request->validate([
             'menu_id' => 'required|integer|exists:menus,id',
@@ -76,30 +77,31 @@ class ContentManageController extends Controller
             'status' => 'required|integer',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
+            'others' => 'nullable|string',
         ]);
 
 
 
         // is change name
-        if ($contentManage->title !== $validated['title']) {
-            $validated['slug'] = generateSlug(ContentManage::class, $validated['title']);
+        if ($page->title !== $validated['title']) {
+            $validated['slug'] = generateSlug(Page::class, $validated['title']);
         }
 
         // Return response
         return response()->reportTo(
-            $contentManage->update($validated),
+            $page->update($validated),
             'Updated successfully',
-            route('admin.content-manage.index')
+            route('admin.page.index')
         );
     }
 
 
-    public function destroy(ContentManage $contentManage)
+    public function destroy(Page $page)
     {
         return response()->reportTo(
-            $contentManage->delete(),
+            $page->delete(),
             'Deleted successfully',
-            route('admin.content-manage.index')
+            route('admin.page.index')
         );
     }
 }

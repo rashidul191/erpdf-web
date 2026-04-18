@@ -23,13 +23,12 @@ Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageCo
 
 /* Page Routes */
 Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
-Route::get('/project-progress', [PageViewController::class, 'projectProgress'])->name('project-progress.index');
-Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
+
+// Route::get('/project-progress', [PageViewController::class, 'projectProgress'])->name('project-progress.index');
+// Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
+
 Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
 Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
-
-Route::get('/menu-page/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
-Route::get('/detail-page/{slug}', [PageViewController::class, 'detailPage'])->name('detail-page.index');
 
 
 /* Blog Routes */
@@ -44,6 +43,17 @@ Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->nam
 Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
 Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->name('room.comment.store');
 Route::get('/room-search', [PageViewController::class, 'roomSearch'])->name('room.search');
+
+
+// Dynamic Menu Content
+Route::get('/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
+// Route::get('/menu-page/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
+
+
+
+Route::get('/detail-page/{slug}', [PageViewController::class, 'detailPage'])->name('detail-page.index');
+
+
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

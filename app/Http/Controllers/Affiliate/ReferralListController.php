@@ -10,11 +10,12 @@ class ReferralListController extends Controller
 {
     public function __invoke(Request $request)
     {
-        if ($request->ajax()) {
-            return datatables(
-                Auth::user()->referrals()->select(['id','referrer_id','username','created_at','status'])
-            )->addIndexColumn()->toJson();
-        }
+        dd('ReferralListController');
+        // if ($request->ajax()) {
+        //     return datatables(
+        //         Auth::user()->referrals()->(['id','referrer_id','username','created_at','status'])
+        //     )->addIndexColumn()->toJson();
+        // }
 
         return view('affiliate.list.index');
     }

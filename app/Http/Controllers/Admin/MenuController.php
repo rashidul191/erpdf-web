@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CommonStatus;
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
 use App\Models\Menu;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,18 +14,8 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Menu::oldest('name')->oldest('serial'))
+            return datatables(Menu::whereNull('sub_menu_id')->whereNull('sub_of_sub_menu_id')->with('page')->oldest('serial'))
                 ->addIndexColumn()
-                ->addColumn('status', function ($row) {
-                    $color = match ($row->status->value) {
-                        0 => 'text-red-500',
-                        1 => 'text-green-500',
-                        default => 'text-gray-600',
-                    };
-
-                    return "<span class='text-sm {$color}'>" . $row->status->description . "</span>";
-                })
-                ->rawColumns(['status'])
                 ->toJson();
         }
         return view('admin.menu.index');
@@ -32,20 +23,17 @@ class MenuController extends Controller
 
     public function create()
     {
-        return view('admin.menu.create');
+        $pages = Page::where('status', CommonStatus::Active())->oldest('title')->get();
+        // dd($pages);
+        return view('admin.menu.create', compact('pages'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
+            'page_id' => 'required|integer|exists:pages,id',
             'serial' => 'nullable|integer',
-            'status' => 'required|integer',
         ]);
-
-        $validated['slug'] = generateSlug(Menu::class, $validated['name']);
-
-        // dd($validated['slug']);
 
         return response()->reportTo(
             Menu::create($validated),
@@ -63,15 +51,9 @@ class MenuController extends Controller
     {
         // Validate input
         $validated = $request->validate([
-            'name' => 'required|string',
+            'page_id' => 'required|integer|exists:pages,id',
             'serial' => 'nullable|integer',
-            'status' => 'required|integer',
         ]);
-
-        // is change name
-        if ($menu->name !== $validated['name']) {
-            $validated['slug'] = generateSlug(Menu::class, $validated['name']);
-        }
 
         // Return response
         return response()->reportTo(
@@ -82,7 +64,7 @@ class MenuController extends Controller
     }
 
 
-    // public function destroy(BlogCategory $blogCategory)
+    // public function destroy(Menu $blogCategory)
     // {
     //     return response()->reportTo(
     //         $blogCategory->delete(),

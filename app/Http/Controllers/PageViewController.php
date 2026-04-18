@@ -156,6 +156,13 @@ class PageViewController extends Controller
     public function menuPage($slug)
     {
 
+
+        if ($slug === 'news') {
+            return $this->blogPage();
+        } elseif ($slug === 'project-progress') {
+            return $this->projectProgress();
+        }
+
         dd($slug);
 
     }
@@ -164,7 +171,6 @@ class PageViewController extends Controller
     {
 
         $content = ContentManage::where('slug', $slug)->first();
-
         return view('front-end.pages.content-detail', compact('content'));
     }
 }

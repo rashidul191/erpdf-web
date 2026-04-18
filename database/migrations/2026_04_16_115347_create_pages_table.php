@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenusTable extends Migration
+class CreatePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,15 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->string('slug')->unique();
-            $table->integer('serial')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedTinyInteger('status')->nullable()->default(CommonStatus::Active);
+            $table->longText('short_description')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('others')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('pages');
     }
 }

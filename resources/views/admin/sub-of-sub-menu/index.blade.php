@@ -1,8 +1,8 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between mb-2">
-        <div class="text-xl">{{ __('Menu List') }}</div>
+        <div class="text-xl">{{ __('Sub of Sub Menu List') }}</div>
         <div>
-            <a href="{{ route('admin.menu.create') }}"
+            <a href="{{ route('admin.sub-of-sub-menu.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 + {{ __('Create') }}
             </a>
@@ -15,8 +15,11 @@
                 <tr>
                     <th>{{ __('SL') }}</th>
                     {{-- <th>{{ __('Image') }}</th> --}}
-                    <th>{{ __('Menu Name') }}</th>
+                    <th>{{ __('Sub Menu Name') }}</th>
+                    <th>{{ __('Sub of Sub Menu Name') }}</th>
+                    <th>{{ __('Slug') }}</th>
                     <th>{{ __('Serial') }}</th>
+                    <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -30,17 +33,18 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('admin.menu.index') }}',
+                    url: '{{ route('admin.sub-of-sub-menu.index') }}',
                     dataSrc(response) {
                         response.data.map(function (item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.menu.edit', '@') }}'.replace('@', item
+                                'edit': '{{ route('admin.sub-of-sub-menu.edit', '@') }}'.replace('@', item
                                     .id),
-                                // 'delete': '{{ route('admin.menu.destroy', '@') }}'.replace('@',
+                                // 'delete': '{{ route('admin.sub-of-sub-menu.destroy', '@') }}'.replace('@',
                                 //     item.id),
                             });
 
-
+                            item.image =
+                                `<img width="50" src='${item.image}' alt='${item.name}'>`; // console.log(item.sup_category[0].name);
                             return item;
                         });
                         return response.data;
@@ -53,11 +57,20 @@
                     searchable: false
                 },
                 {
-                    data: 'page.title',
+                    data: 'sub_menu_name',
                 },
-
+                {
+                    data: 'name',
+                },
+                {
+                    data: 'slug',
+                },
                 {
                     data: 'serial',
+                    defaultContent: '-'
+                },
+                {
+                    data: 'status',
                     defaultContent: '-'
                 },
 
