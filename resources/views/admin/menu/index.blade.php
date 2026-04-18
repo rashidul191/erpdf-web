@@ -17,6 +17,7 @@
                     {{-- <th>{{ __('Image') }}</th> --}}
                     <th>{{ __('Menu Name') }}</th>
                     <th>{{ __('Serial') }}</th>
+                    <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -58,6 +59,10 @@
 
                 {
                     data: 'serial',
+                    defaultContent: '-'
+                },
+                {
+                    data: 'status',
                     defaultContent: '-'
                 },
 

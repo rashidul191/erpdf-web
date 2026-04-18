@@ -1,5 +1,5 @@
 @php
-    $menus = \App\Models\Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with(['subMenus.subOfSubMenus'])->oldest('serial')->get();
+    $menus = \App\Models\Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'subMenus.page'])->oldest('serial')->get();
     // dd($menus);
 
 @endphp
@@ -152,18 +152,18 @@
 
                         @foreach ($menus as $menu)
                             <li
-                                class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $menu->slug ? 'active' : '' }}">
-                                <a href="{{ route('menu-page.index', $menu->slug) }}">{{ $menu->name }}</a>
+                                class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $menu->page->slug ? 'active' : '' }}">
+                                <a href="{{ route('menu-page.index', $menu->page->slug) }}">{{ $menu->page->title }}</a>
                                 @if($menu->subMenus->isNotEmpty())
                                     <ul class="sub-menu">
                                         @foreach ($menu->subMenus as $subMenu)
                                             <li>
-                                                <a href="#">{{ $subMenu->name }}</a>
+                                                <a href="#">{{ $subMenu->page->title }}</a>
                                                 @if($subMenu->subOfSubMenus->isNotEmpty())
                                                     <ul class="sub-of-sub-menu">
                                                         @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
                                                             <li>
-                                                                <a href="">{{ $subOfSubMenu->name }}</a>
+                                                                <a href="">{{ $subOfSubMenu->page->title }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>

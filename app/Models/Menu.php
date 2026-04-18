@@ -11,10 +11,10 @@ class Menu extends Model
     use HasFactory;
     protected $fillable = [
         'page_id',
+        'menu_id',
+        'sub_menu_id',
         'serial',
         'status',
-        'sub_menu_id',
-        'sub_of_sub_menu_id',
     ];
 
     protected $casts = [

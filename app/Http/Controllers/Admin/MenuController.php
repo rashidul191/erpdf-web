@@ -14,8 +14,18 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Menu::whereNull('sub_menu_id')->whereNull('sub_of_sub_menu_id')->with('page')->oldest('serial'))
+            return datatables(Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->oldest('serial'))
                 ->addIndexColumn()
+                 ->addColumn('status', function ($row) {
+                    $color = match ($row->status->value) {
+                        0 => 'text-red-500',
+                        1 => 'text-green-500',
+                        default => 'text-gray-600',
+                    };
+
+                    return "<span class='text-sm {$color}'>" . $row->status->description . "</span>";
+                })
+                ->rawColumns(['status'])
                 ->toJson();
         }
         return view('admin.menu.index');
@@ -33,6 +43,7 @@ class MenuController extends Controller
         $validated = $request->validate([
             'page_id' => 'required|integer|exists:pages,id',
             'serial' => 'nullable|integer',
+            'status' => 'nullable|integer',
         ]);
 
         return response()->reportTo(
@@ -42,10 +53,20 @@ class MenuController extends Controller
         );
     }
 
+
     public function edit(Menu $menu)
     {
-        return view('admin.menu.edit', compact('menu'));
+        $pages = Page::where('status', CommonStatus::Active())
+            ->where(function ($query) use ($menu) {
+                $query->whereDoesntHave('menu') // unused pages
+                    ->orWhere('id', $menu->page_id); // 🔥 include current one
+            })
+            ->oldest('title')
+            ->get();
+
+        return view('admin.menu.edit', compact('menu', 'pages'));
     }
+
 
     public function update(Request $request, Menu $menu)
     {
@@ -53,6 +74,7 @@ class MenuController extends Controller
         $validated = $request->validate([
             'page_id' => 'required|integer|exists:pages,id',
             'serial' => 'nullable|integer',
+            'status' => 'nullable|integer',
         ]);
 
         // Return response

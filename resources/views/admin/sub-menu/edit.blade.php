@@ -14,7 +14,7 @@
             @method('PUT')
             <div class="flex flex-wrap justify-center w-full">
 
-                <x-labeled-select name="status" required class="w-full md:w-1/3 p-1">
+                <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ $subMenu->status->value == $value->value ? 'selected' : '' }}>
                             {{ $value->key }}
@@ -22,20 +22,28 @@
                     @endforeach
                 </x-labeled-select>
 
-                <x-labeled-select label="Select Main Menu" name="menu_id" required class="w-full md:w-1/3 p-1">
-                    <option value="" disabled>Select Main Menu</option>
+                <x-labeled-input name="serial" value="{{ $subMenu->serial }}" type="number"
+                    class="w-full md:w-1/2 p-1" />
 
+                <x-labeled-select label="Select Main Menu" name="menu_id" required class="w-full md:w-1/2 p-1">
+                    <option value="" disabled>Select Main Menu</option>
                     @foreach ($menus as $item)
                         <option value="{{ $item->id }}" {{ $item->id == $subMenu->menu_id ? 'selected' : '' }}>
-                            {{ $item->name }}
+                            {{ $item->page->title }}
                         </option>
                     @endforeach
                 </x-labeled-select>
 
-                <x-labeled-input name="serial" value="{{ $subMenu->serial }}" type="number"
-                    class="w-full md:w-1/3 p-1" />
+                <x-labeled-select label="Select Sub Menu Name" name="page_id" required class="w-full md:w-1/2 p-1">
+                    <option value="" disabled selected>Select Sub Menu Name</option>
+                    @foreach ($pages as $page)
+                        <option value="{{$page->id }}">
+                            {{ $page->title }}
+                        </option>
+                    @endforeach
+                </x-labeled-select>
 
-                <x-labeled-input name="name" value="{{ $subMenu->name }}" required class="w-full p-1" />
+
 
 
                 <div class="w-full pt-4 flex justify-end">

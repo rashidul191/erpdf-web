@@ -18,6 +18,7 @@
                     <th>{{ __('Main Menu Name') }}</th>
                     <th>{{ __('Sub Menu Name') }}</th>
                     <th>{{ __('Serial') }}</th>
+                    <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -54,14 +55,14 @@
                     orderable: false,
                     searchable: false
                 },
+
                 {
-                    data: 'menu.name',
+                    data: 'menu.page.title',
+                    defaultContent: '-'
                 },
                 {
-                    data: 'name',
-                },
-                {
-                    data: 'slug',
+                    data: 'page.title',
+                    defaultContent: '-'
                 },
                 {
                     data: 'serial',

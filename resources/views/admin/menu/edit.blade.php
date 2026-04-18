@@ -14,6 +14,15 @@
             @method('PUT')
             <div class="flex flex-wrap justify-center w-full">
 
+                <x-labeled-select label="Select Menu Name" name="page_id" required class="w-full p-1">
+                    <option value="" {{ !$menu->page_id ? 'disabled ' : '' }}>Select Menu Name</option>
+                    @foreach ($pages as $page)
+                        <option value="{{$page->id }}" {{ $page->id == $menu->page_id ? 'selected' : '' }}>
+                            {{ $page->title }}
+                        </option>
+                    @endforeach
+                </x-labeled-select>
+
                 <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ $menu->status->value == $value->value ? 'selected' : '' }}>
@@ -22,10 +31,9 @@
                     @endforeach
                 </x-labeled-select>
 
+
+
                 <x-labeled-input name="serial" value="{{ $menu->serial }}" type="number" class="w-full md:w-1/2 p-1" />
-                <x-labeled-input name="name" value="{{ $menu->name }}" required class="w-full p-1" />
-
-
 
                 <div class="w-full pt-4 flex justify-end">
                     <x-button>{{ __('Update') }}</x-button>
