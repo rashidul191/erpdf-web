@@ -27,7 +27,7 @@ class Page extends Model
         'status' => CommonStatus::class,
     ];
 
-    public function menus()
+    public function menu()
     {
         return $this->hasMany(Menu::class, 'page_id');
     }

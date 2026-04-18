@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,17 +11,9 @@ class SubMenuController extends Controller
 {
     public function index(Request $request)
     {
-        // dd(Menu::whereNotNull('menu_id')
-        //     ->whereNull('sub_menu_id')
-        //     ->with(['menu:id,name'])
-        //     ->oldest('name')
-        //     ->oldest('serial')
-        //     ->get());
+
         if ($request->ajax()) {
             return datatables(Menu::whereNotNull('menu_id')
-                ->whereNull('sub_menu_id')
-                ->with(['menu:id,name'])
-                ->oldest('name')
                 ->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {

@@ -17,9 +17,7 @@
                     {{-- <th>{{ __('Image') }}</th> --}}
                     <th>{{ __('Main Menu Name') }}</th>
                     <th>{{ __('Sub Menu Name') }}</th>
-                    <th>{{ __('Slug') }}</th>
                     <th>{{ __('Serial') }}</th>
-                    <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>

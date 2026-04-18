@@ -23,7 +23,7 @@ class MenuController extends Controller
 
     public function create()
     {
-        $pages = Page::where('status', CommonStatus::Active())->oldest('title')->get();
+        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
         // dd($pages);
         return view('admin.menu.create', compact('pages'));
     }
