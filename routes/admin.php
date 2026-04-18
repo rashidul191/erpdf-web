@@ -101,6 +101,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
 
 
+        Route::resource('navmenu', MenuController::class);
+
         Route::resource('menu', MenuController::class);
         Route::resource('sub-menu', SubMenuController::class);
         Route::resource('sub-of-sub-menu', SubOfSubMenuController::class);

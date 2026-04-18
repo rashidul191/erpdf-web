@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             'role' => RoleStatus::Admin
         ]);
         $this->call(GlobalDataSeeder::class);
+        $this->call(PageDataSeeder::class);
         $this->call(LaratrustSeeder::class);
 
         $user->attachRole(Role::whereName('user')->first());

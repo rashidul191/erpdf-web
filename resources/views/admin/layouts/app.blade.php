@@ -56,15 +56,15 @@
 
 
                 <x-navigation-link :text="__('Menu Manage')" :icon="icon('room')">
-                    <x-navigation-link :href="route('admin.menu.index')" :text="__('Main Menu')" />
-                    <x-navigation-link :href="route('admin.sub-menu.index')" :text="__('Sub Menu')" />
+                    <x-navigation-link :href="route('admin.menu.index')" :text="__('Nav Menu')" />
+                    {{-- <x-navigation-link :href="route('admin.sub-menu.index')" :text="__('Sub Menu')" />
                     <x-navigation-link :href="route('admin.sub-of-sub-menu.index')" :text="__('Sub of Sub Menu')" />
+                    --}}
 
 
                 </x-navigation-link>
 
-                <x-navigation-link :href="route('admin.page.index')" :text="__('Pages')"
-                    :icon="icon('room')" />
+                <x-navigation-link :href="route('admin.page.index')" :text="__('Pages')" :icon="icon('room')" />
 
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
