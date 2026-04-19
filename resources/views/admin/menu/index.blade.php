@@ -1,7 +1,7 @@
 <x-admin-app-layout>
     <div class="w-full flex flex-wrap">
         <div class="w-full md:w-1/3 p-3">
-           <x-menu-manage></x-menu-manage>
+            <x-menu-manage></x-menu-manage>
         </div>
         <div class="w-full md:w-2/3">
             <div class="w-full flex justify-between mb-2">
@@ -61,7 +61,7 @@
                     searchable: false
                 },
                 {
-                    data: 'page.title',
+                    data: 'menu_name',
                 },
 
                 {

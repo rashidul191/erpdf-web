@@ -1,5 +1,5 @@
 @php
-    $menus = \App\Models\Menu::whereNull('menu_id')
+    $menus = \App\Models\Menu::whereNull('menu_id')->orWhere('is_custom', \App\Enums\IsAgreeStatus::Yes())
         ->whereNull('sub_menu_id')
         ->with([
             'page',
@@ -8,6 +8,9 @@
         ])
         ->oldest('serial')
         ->get();
+
+
+    // dd($menus[0]);
 @endphp
 <!-- HEADER START -->
 {{-- <x-slot name="style"> --}}
@@ -156,35 +159,104 @@
                             </ul>
                         </li>
 
-                        @foreach ($menus as $menu)
-                            <li
-                                class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $menu->page->slug ? 'active' : '' }}">
-                                <a href="{{ route('menu-page.index', $menu->page->slug) }}">{{ $menu->page->title }}</a>
-                                @if($menu->subMenus->isNotEmpty())
-                                    <ul class="sub-menu">
-                                        @foreach ($menu->subMenus as $subMenu)
-                                            <li>
-                                                <a href="#">{{ $subMenu->page->title }}</a>
-                                                @if($subMenu->subOfSubMenus->isNotEmpty())
-                                                    <ul class="sub-of-sub-menu">
-                                                        @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
-                                                            <li>
-                                                                <a href="">{{ $subOfSubMenu->page->title }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
+                        {{-- @foreach ($menus as $menu)
+                        <li
+                            class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $menu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $menu->slug : $menu->page->slug ? 'active' : '' }}">
+                            <a
+                                href="{{ route('menu-page.index', $menu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $menu->slug : $menu->page->slug) }}">{{
+                                $menu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $menu->slug : $menu->page->title
+                                }}</a>
+                            @if($menu->subMenus->isNotEmpty())
+                            <ul class="sub-menu">
+                                @foreach ($menu->subMenus as $subMenu)
+                                <li>
+                                    <a
+                                        href="{{ route('menu-page.index', $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $subMenu->slug : $subMenu->page->slug) }}">{{
+                                        $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $subMenu->slug :
+                                        $subMenu->page->title }}</a>
+                                    @if($subMenu->subOfSubMenus->isNotEmpty())
+                                    <ul class="sub-of-sub-menu">
+                                        @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
+                                        <li>
+                                            <a
+                                                href="{{ route('menu-page.index', $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? $subOfSubMenu->slug : $subOfSubMenu->page->slug) }}">{{
+                                                $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ?
+                                                $subOfSubMenu->slug : $subOfSubMenu->page->title }}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
+                        @endforeach --}}
+
+
+                        @foreach ($menus as $menu)
+
+                            @php
+                                $isCustom = $menu->is_custom == \App\Enums\IsAgreeStatus::Yes();
+                                $slug = $isCustom ? $menu->slug : ($menu->page->slug ?? '');
+                                $title = $isCustom ? $menu->name : ($menu->page->title ?? '');
+                            @endphp
+
+                            <li
+                                class="{{ request()->routeIs('menu-page.index') && request()->route('slug') == $slug ? 'active' : '' }}">
+
+                                <a href="{{ route('menu-page.index', $slug) }}">
+                                    {{ $title }}
+                                </a>
+
+                                @if($menu->subMenus->isNotEmpty())
+                                    <ul class="sub-menu">
+
+                                        @foreach ($menu->subMenus as $subMenu)
+
+                                            @php
+                                                $isCustom = $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
+                                                $subSlug = $isCustom ? $subMenu->slug : ($subMenu->page->slug ?? '');
+                                                $subTitle = $isCustom ? $subMenu->name : ($subMenu->page->title ?? '');
+                                            @endphp
+
+                                            <li>
+                                                <a href="{{ route('menu-page.index', $subSlug) }}">
+                                                    {{ $subTitle }}
+                                                </a>
+
+                                                @if($subMenu->subOfSubMenus->isNotEmpty())
+                                                    <ul class="sub-of-sub-menu">
+
+                                                        @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
+
+                                                            @php
+                                                                $isCustom = $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
+                                                                $subOfSubSlug = $isCustom ? $subOfSubMenu->slug : ($subOfSubMenu->page->slug ?? '');
+                                                                $subOfSubTitle = $isCustom ? $subOfSubMenu->name : ($subOfSubMenu->page->title ?? '');
+                                                            @endphp
+
+                                                            <li>
+                                                                <a href="{{ route('menu-page.index', $subOfSubSlug) }}">
+                                                                    {{ $subOfSubTitle }}
+                                                                </a>
+                                                            </li>
+
+                                                        @endforeach
+
+                                                    </ul>
+                                                @endif
+
+                                            </li>
+
+                                        @endforeach
+
+                                    </ul>
                                 @endif
+
                             </li>
+
                         @endforeach
-
-
-                        {{-- <li class="{{ request()->routeIs('project-progress.index') ? 'active' : '' }}">
-                            <a href="{{ route('project-progress.index') }}">Project Progress</a>
-                        </li> --}}
                         @php
                             $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
                         @endphp
@@ -198,39 +270,6 @@
                                 @endforeach
                             </ul>
                         </li>
-
-
-                        {{-- <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}">
-                            <a href="{{ route('blog.index') }}">Blog</a>
-                        </li> --}}
-
-                        <!-- <li>
-                            <a href="javascript:;">Projects</a>
-                            <ul class="sub-menu">
-                                <li><a href="work-grid.html">Project Grid</a></li>
-                                <li><a href="work-masonry.html">Project Masonry</a></li>
-                                <li><a href="work-carousel.html">Project Carousel</a></li>
-                                <li><a href="project-detail.html">Project Detail</a></li>
-                            </ul>
-                        </li> -->
-
-                        <li class="{{ request()->routeIs('contact.index') ? 'active' : '' }}">
-                            <a href="{{ route('contact.index') }}">Contact Us</a>
-                        </li>
-                        <!-- <li class="submenu-direction">
-                                        <a href="javascript:;">Shortcodes</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="accordian.html">Accordian</a></li>
-                                            <li><a href="button.html">Button</a></li>
-                                            <li><a href="icon_box.html">Icon box style</a></li>
-                                            <li><a href="list_group.html">List group</a></li>
-                                            <li><a href="modal_popup.html">Modal popup</a></li>
-                                            <li><a href="tabs.html">Tabs</a></li>
-                                            <li><a href="table.html">Table</a></li>
-                                            <li><a href="video.html">Video  </a></li>
-                                            <li><a href="icon-font.html">Icon Font </a></li>
-                                        </ul>
-                                    </li>                                 -->
                     </ul>
                 </div>
 

@@ -31,12 +31,12 @@ class DashboardController extends Controller
         $cards = [
             // Card::make('Total Users', User::count()),
             Card::make('Total Slider', Slider::count()),
-            Card::make('Total Blogs', Blog::count()),
-            Card::make('Total Rooms', Room::count()),
-            Card::make('Total Galleries', Gallery::count()),
+            Card::make('Total News', Blog::count()),
+            Card::make('Total Room', Room::count()),
+            // Card::make('Total Galleries', Gallery::count()),
             Card::make('Total Members', Team::count()),
-            Card::make('Total Services', Service::count()),
-            Card::make('Total Reviews', ClientSay::count()),
+            // Card::make('Total Services', Service::count()),
+            // Card::make('Total Reviews', ClientSay::count()),
         ];
 
         return view('admin.dashboard', compact('cards'));

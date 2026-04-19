@@ -1,11 +1,11 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between">
-        <div class="text-xl">{{ __('Blog List') }}</div>
+        <div class="text-xl">{{ __('News List') }}</div>
 
         <div>
             <a href="{{ route('admin.blog.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                + {{ __('Create Blog') }}
+                + {{ __('Create') }}
             </a>
         </div>
     </div>
@@ -18,7 +18,7 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Gallery Image') }}</th>
                     <th>{{ __('Name') }}</th>
-                    <th>{{ __('Blog Category') }}</th>
+                    <th>{{ __('Category') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>

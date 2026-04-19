@@ -56,7 +56,7 @@
 
 
                 <x-navigation-link :text="__('Menu Manage')" :icon="icon('room')">
-                    <x-navigation-link :href="route('admin.menu.index')" :text="__('Nav Menu')" />
+                    <x-navigation-link :href="route('admin.menu.index')" :text="__('Navbar Menu')" />
                     {{-- <x-navigation-link :href="route('admin.sub-menu.index')" :text="__('Sub Menu')" />
                     <x-navigation-link :href="route('admin.sub-of-sub-menu.index')" :text="__('Sub of Sub Menu')" />
                     --}}
@@ -81,8 +81,8 @@
                 <x-navigation-link :href="route('admin.our-story.index')" :text="__('Project Progress')"
                     :icon="icon('room')" />
 
-                <x-navigation-link :text="__('Blog')" :icon="icon('website')">
-                    <x-navigation-link :href="route('admin.blog.index')" :text="__('Blog List')" />
+                <x-navigation-link :text="__('News')" :icon="icon('website')">
+                    <x-navigation-link :href="route('admin.blog.index')" :text="__('News List')" />
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 

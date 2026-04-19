@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\CommonStatus;
+use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Page;
@@ -16,7 +17,10 @@ class MenuController extends Controller
         if ($request->ajax()) {
             return datatables(Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->oldest('serial'))
                 ->addIndexColumn()
-                 ->addColumn('status', function ($row) {
+                ->addColumn('menu_name', function ($row) {
+                    return $row->is_custom == IsAgreeStatus::Yes() ? $row->name : $row->page->title;
+                })
+                ->addColumn('status', function ($row) {
                     $color = match ($row->status->value) {
                         0 => 'text-red-500',
                         1 => 'text-green-500',
@@ -40,11 +44,31 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'page_id' => 'required|integer|exists:pages,id',
+
+        $rules = [
+            'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
             'status' => 'nullable|integer',
-        ]);
+        ];
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+        $validated = $request->validate($rules);
+
+
+        // dd($validated);
+
+        if ($validated['is_custom'] == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
+
 
         return response()->reportTo(
             Menu::create($validated),
@@ -71,11 +95,33 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         // Validate input
-        $validated = $request->validate([
-            'page_id' => 'required|integer|exists:pages,id',
+        // $validated = $request->validate([
+        //     'page_id' => 'required|integer|exists:pages,id',
+        //     'serial' => 'nullable|integer',
+        //     'status' => 'nullable|integer',
+        // ]);
+
+        $rules = [
+            'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
             'status' => 'nullable|integer',
-        ]);
+        ];
+
+        if ($rules['is_custom'] == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+        $validated = $request->validate($rules);
+
+        if ($validated['is_custom'] == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
+
 
         // Return response
         return response()->reportTo(

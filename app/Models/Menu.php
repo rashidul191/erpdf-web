@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\CommonStatus;
+use App\Enums\IsAgreeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,12 +15,16 @@ class Menu extends Model
         'page_id',
         'menu_id',
         'sub_menu_id',
+        'name',
+        'slug',
         'serial',
+        'is_custom',
         'status',
     ];
 
     protected $casts = [
         'status' => CommonStatus::class,
+        'is_custom' => IsAgreeStatus::class,
     ];
 
     // 🔗 Page

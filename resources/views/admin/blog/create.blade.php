@@ -1,7 +1,7 @@
-<x-admin-app-layout :title="__('Create Blog')">
+<x-admin-app-layout :title="__('Create News')">
 
     <div class="pb-3 flex justify-between">
-        <div class="text-md md:text-2xl">{{ __('Create Blog') }}</div>
+        <div class="text-md md:text-2xl">{{ __('Create News') }}</div>
         <div>
             <a class="text-primary-700 font-semibold bg-red-200 py-2 px-3 rounded"
                 href="{{ route('admin.blog.index') }}">{{ __('Back') }}</a>
@@ -20,7 +20,7 @@
         <div class="w-full md:flex items-start justify-between md:space-x-4">
             <div class="w-full md:w-2/3">
                 <!-- Blog Name -->
-                <x-labeled-input label="Blog Name" name="name" required class="w-full p-1 "
+                <x-labeled-input name="name" required class="w-full p-1 "
                     input-class="bg-transparent border border-gray-300 text-gray-800 placeholder-gray-500" />
                 <!--  Descriptions -->
                 <x-labeled-textarea label="Description" name="description" is-editor="is-editor"
