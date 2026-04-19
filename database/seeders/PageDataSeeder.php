@@ -34,6 +34,10 @@ class PageDataSeeder extends Seeder
                 'slug' => 'gallery',
             ],
             [
+                'title' => 'FAQ',
+                'slug' => 'faq',
+            ],
+            [
                 'title' => 'Rooms',
                 'slug' => 'rooms',
             ],
