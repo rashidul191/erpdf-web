@@ -54,21 +54,19 @@ class MenuController extends Controller
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $rules['name'] = 'required|string';
             $rules['slug'] = 'nullable|string';
+
         } else {
             $rules['page_id'] = 'required|integer|exists:pages,id';
         }
 
+
         $validated = $request->validate($rules);
 
-
-        // dd($validated);
-
-        if ($validated['is_custom'] == IsAgreeStatus::Yes) {
+        if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
                 ? generateSlug(Menu::class, $validated['slug'])
                 : generateSlug(Menu::class, $validated['name']);
         }
-
 
         return response()->reportTo(
             Menu::create($validated),
@@ -107,20 +105,23 @@ class MenuController extends Controller
             'status' => 'nullable|integer',
         ];
 
-        if ($rules['is_custom'] == IsAgreeStatus::Yes) {
+        if ($request->is_custom == IsAgreeStatus::Yes) {
             $rules['name'] = 'required|string';
             $rules['slug'] = 'nullable|string';
+
         } else {
             $rules['page_id'] = 'required|integer|exists:pages,id';
         }
 
+
         $validated = $request->validate($rules);
 
-        if ($validated['is_custom'] == IsAgreeStatus::Yes) {
+        if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
                 ? generateSlug(Menu::class, $validated['slug'])
                 : generateSlug(Menu::class, $validated['name']);
         }
+
 
 
         // Return response

@@ -22,16 +22,24 @@ class PageDataSeeder extends Seeder
                 'slug' => 'news',
             ],
             [
-                'title' => 'Project Progress',
-                'slug' => 'project-progress',
+                'title' => 'About Us',
+                'slug' => 'about-us',
+            ],
+            [
+                'title' => 'Contact Us',
+                'slug' => 'contact-us',
             ],
             [
                 'title' => 'Gallery',
                 'slug' => 'gallery',
             ],
             [
-                'title' => 'Contact Us',
-                'slug' => 'contact-us',
+                'title' => 'Rooms',
+                'slug' => 'rooms',
+            ],
+            [
+                'title' => 'Project Progress',
+                'slug' => 'project-progress',
             ],
         );
         foreach ($pages as $page) {

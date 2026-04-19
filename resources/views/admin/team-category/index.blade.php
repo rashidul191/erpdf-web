@@ -1,10 +1,10 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between mb-2">
-        <div class="text-xl">{{ __('Room Categories') }}</div>
+        <div class="text-xl">{{ __('Team Categories') }}</div>
     </div>
     {{-- Create Form Start --}}
     <div class="bg-white p-2 rounded">
-        <form action="{{ route('admin.room-categories.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.team-categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <img width="50" id="prevImage" src="">
             <div class="flex flex-wrap justify-center w-full">
@@ -41,13 +41,13 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('admin.room-categories.index') }}',
+                    url: '{{ route('admin.team-categories.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.room-categories.edit', '@') }}'.replace('@', item
+                                'edit': '{{ route('admin.team-categories.edit', '@') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.room-categories.destroy', '@') }}'.replace('@',
+                                'delete': '{{ route('admin.team-categories.destroy', '@') }}'.replace('@',
                                     item.id),
                             });
 
@@ -60,27 +60,27 @@
                 },
 
                 columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'image'
-                    },
-                    {
-                        data: 'name',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'custom_slug',
-                        defaultContent: '-'
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image'
+                },
+                {
+                    data: 'name',
+                    defaultContent: '-'
+                },
+                {
+                    data: 'custom_slug',
+                    defaultContent: '-'
+                },
 
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>

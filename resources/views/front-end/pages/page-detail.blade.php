@@ -16,11 +16,13 @@
 
                             <!-- BLOG START -->
                             <div class="card shadow-sm border-0">
-                                <!-- Image -->
-                                <div class="overflow-hidden">
-                                    <img src="{{ asset($content->image) }}" alt="{{ $content->title }}"
-                                        class="card-img-top img-fluid" style="height: 400px; object-fit: cover;">
-                                </div>
+                                @if($content->image)
+                                    <!-- Image -->
+                                    <div class="overflow-hidden">
+                                        <img src="{{ asset($content->image) }}" alt="{{ $content->title }}"
+                                            class="card-img-top img-fluid" style="height: 400px; object-fit: cover;">
+                                    </div>
+                                @endif
 
                                 <div class="card-body p-5">
 

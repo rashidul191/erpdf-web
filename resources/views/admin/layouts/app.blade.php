@@ -75,8 +75,16 @@
                     <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />
 
-                    <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />
+
                 </x-navigation-link>
+
+                 <x-navigation-link :text="__('Team')" :icon="icon('about')">
+                    <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />
+                    <x-navigation-link :href="route('admin.team-categories.index')" :text="__('Team Categories')" />
+                </x-navigation-link>
+
+
+
 
                 <x-navigation-link :href="route('admin.our-story.index')" :text="__('Project Progress')"
                     :icon="icon('room')" />

@@ -18,7 +18,7 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Designation') }}</th>
-                    <th>{{ __('Categroy Type') }}</th>
+                    <th>{{ __('Categroy') }}</th>
                     <th>{{ __('Serial') }}</th>
                     <th>{{ __('Status') }}</th>
                     {{-- <th>{{ __('FB') }}</th>
@@ -70,8 +70,9 @@
                     orderable: false,
                 },
                 {
-                    data: 'category_type',
+                    data: 'category.name',
                     orderable: false,
+                    defaultContent: '-'
                 },
                 {
                     data: 'serial',

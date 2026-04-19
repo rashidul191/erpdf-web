@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\CommonStatus;
+use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Page;
@@ -17,6 +18,12 @@ class SubOfSubMenuController extends Controller
         if ($request->ajax()) {
             return datatables(Menu::whereNull('menu_id')->whereNotNull('sub_menu_id')->with(['page', 'subMenu.page'])->oldest('serial'))
                 ->addIndexColumn()
+                ->addColumn('sub_menu_name', function ($row) {
+                    return $row->subMenu->is_custom == IsAgreeStatus::Yes() ? $row->subMenu->name : $row->subMenu->page->title;
+                })
+                ->addColumn('sub_of_sub_menu_name', function ($row) {
+                    return $row->is_custom == IsAgreeStatus::Yes() ? $row->name : $row->page->title;
+                })
                 ->addColumn('status', function ($row) {
                     $color = match ($row->status->value) {
                         0 => 'text-red-500',
@@ -25,10 +32,6 @@ class SubOfSubMenuController extends Controller
                     };
 
                     return "<span class='text-sm {$color}'>" . $row->status->description . "</span>";
-                })
-                // ✅ FIX HERE
-                ->addColumn('sub_menu_name', function ($row) {
-                    return $row->subMenu?->page->title ?? '-';
                 })
                 ->rawColumns(['status'])
                 ->toJson();
@@ -46,13 +49,30 @@ class SubOfSubMenuController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'page_id' => 'nullable|integer|exists:pages,id',
+        $rules = [
+            'is_custom' => 'nullable|integer',
+            'serial' => 'nullable|integer',
+            'status' => 'nullable|integer',
             'menu_id' => 'nullable|integer|exists:menus,id',
             'sub_menu_id' => 'nullable|integer|exists:menus,id',
-            'serial' => 'nullable|integer',
-            'status' => 'required|integer',
-        ]);
+        ];
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+
+        $validated = $request->validate($rules);
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
 
         return response()->reportTo(
             Menu::create($validated),
@@ -78,13 +98,30 @@ class SubOfSubMenuController extends Controller
     public function update(Request $request, Menu $subOfSubMenu)
     {
         // Validate input
-        $validated = $request->validate([
-            'page_id' => 'nullable|integer|exists:pages,id',
+        $rules = [
+            'is_custom' => 'nullable|integer',
+            'serial' => 'nullable|integer',
+            'status' => 'nullable|integer',
             'menu_id' => 'nullable|integer|exists:menus,id',
             'sub_menu_id' => 'nullable|integer|exists:menus,id',
-            'serial' => 'nullable|integer',
-            'status' => 'required|integer',
-        ]);
+        ];
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+
+        $validated = $request->validate($rules);
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
 
         // Return response
         return response()->reportTo(

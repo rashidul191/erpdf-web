@@ -13,42 +13,86 @@
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="flex flex-wrap justify-center w-full">
 
+            <div x-data="{
+            isCustom: {{ $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? 'true' : 'false' }}
+        }" class="flex flex-wrap justify-center w-full">
+
+                <!-- Checkbox -->
+                <div class="w-full flex items-center space-x-4 p-2">
+                    <input type="checkbox" id="is_custom" name="is_custom" value="{{ \App\Enums\IsAgreeStatus::Yes }}"
+                        x-model="isCustom" {{ $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? 'checked' : '' }}>
+
+                    <label for="is_custom" class="text-lg font-semibold">Is Custom</label>
+                </div>
+
+                <!-- Select Sub Menu -->
+                <x-labeled-select label="Select Sub Menu" name="sub_menu_id" class="w-full p-1"
+                    x-bind:required="!isCustom">
+
+                    <option value="" disabled>Select Sub Menu</option>
+
+                    @foreach ($subMenus as $item)
+                                    <option value="{{ $item->id }}" {{ $item->id == $subOfSubMenu->sub_menu_id ? 'selected' : '' }}>
+
+                                        {{ $item->is_custom == \App\Enums\IsAgreeStatus::Yes()
+                        ? $item->name
+                        : $item->page->title }}
+
+                                    </option>
+                    @endforeach
+
+                </x-labeled-select>
+
+                <!-- If NOT custom -->
+                <div class="w-full" x-show="!isCustom">
+
+                    <x-labeled-select label="Select Page" name="page_id" class="w-full p-1"
+                        x-bind:required="!isCustom">
+
+                        <option value="" disabled>Select Sub Of Sub Menu Name</option>
+
+                        @foreach ($pages as $page)
+                            <option value="{{ $page->id }}" {{ $page->id == $subOfSubMenu->page_id ? 'selected' : '' }}>
+                                {{ $page->title }}
+                            </option>
+                        @endforeach
+
+                    </x-labeled-select>
+
+                </div>
+
+                <!-- If custom -->
+                <div class="w-full flex flex-wrap" x-show="isCustom">
+
+                    <x-labeled-input label="Sub Of Sub Menu Name" name="name" class="w-full p-1 md:w-1/2"
+                        value="{{ $subOfSubMenu->name }}" x-bind:required="isCustom" />
+
+                    <x-labeled-input label="Sub Of Sub Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
+                        value="{{ $subOfSubMenu->slug }}" />
+
+                </div>
+
+                <!-- Status -->
                 <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
+
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ $subOfSubMenu->status->value == $value->value ? 'selected' : '' }}>
                             {{ $value->key }}
                         </option>
                     @endforeach
+
                 </x-labeled-select>
 
-                <x-labeled-input name="serial" value="{{ $subOfSubMenu->serial }}" type="number"
-                    class="w-full md:w-1/2 p-1" />
+                <!-- Serial -->
+                <x-labeled-input name="serial" type="number" class="w-full md:w-1/2 p-1"
+                    value="{{ $subOfSubMenu->serial }}" />
 
-
-                <x-labeled-select label="Select Sub Menu" name="sub_menu_id" required class="w-full md:w-1/2 p-1">
-                    <option value="" disabled>Select Sub Menu</option>
-                    @foreach ($subMenus as $item)
-                        <option value="{{ $item->id }}" {{ $item->id == $subOfSubMenu->menu_id ? 'selected' : '' }}>
-                            {{ $item->page->title }}
-                        </option>
-                    @endforeach
-                </x-labeled-select>
-
-                <x-labeled-select label="Select Sub Of Sub Menu Name" name="page_id" required class="w-full md:w-1/2 p-1">
-                    <option value="" disabled selected>Select Sub Of Sub Menu Name</option>
-                    @foreach ($pages as $page)
-                        <option value="{{$page->id }}" {{ $page->id == $subOfSubMenu->page_id ? 'selected' : '' }}>
-                            {{ $page->title }}
-                        </option>
-                    @endforeach
-                </x-labeled-select>
-
-
+                <!-- Submit -->
                 <div class="w-full pt-4 flex justify-end">
-                    <x-button>{{ __('Update') }}</x-button>
+                    <x-button>Update</x-button>
                 </div>
+
             </div>
         </form>
     </div>

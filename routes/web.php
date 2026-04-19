@@ -19,16 +19,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::redirect('/home', '/');
 
+// Dynamic Menu Content
+Route::get('/{slug}', [PageViewController::class, 'page'])->name('page.index');
+
 Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
 
 /* Page Routes */
-Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
+// Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
 
 // Route::get('/project-progress', [PageViewController::class, 'projectProgress'])->name('project-progress.index');
 // Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
 
-Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
-Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
+// Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
+// Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
 
 
 /* Blog Routes */
@@ -36,22 +39,13 @@ Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->nam
 Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/blog-search', [PageViewController::class, 'blogSearch'])->name('blog.search');
 
-Route::get('/team-category/{category_type}/{category_name}', [PageViewController::class, 'teamCategory'])->name('team-category.show');
+Route::get('/team-category/{id}/{slug}', [PageViewController::class, 'teamCategory'])->name('team-category.show');
 
 /* Room Routes */
 Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->name('room.show');
 Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
 Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->name('room.comment.store');
 Route::get('/room-search', [PageViewController::class, 'roomSearch'])->name('room.search');
-
-
-// Dynamic Menu Content
-Route::get('/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
-// Route::get('/menu-page/{slug}', [PageViewController::class, 'menuPage'])->name('menu-page.index');
-
-
-
-Route::get('/detail-page/{slug}', [PageViewController::class, 'detailPage'])->name('detail-page.index');
 
 
 

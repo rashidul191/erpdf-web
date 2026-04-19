@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\CommonStatus;
+use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Page;
@@ -17,6 +18,12 @@ class SubMenuController extends Controller
         if ($request->ajax()) {
             return datatables(Menu::whereNotNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'menu.page'])->oldest('serial'))
                 ->addIndexColumn()
+                ->addColumn('main_menu_name', function ($row) {
+                    return $row->menu->is_custom == IsAgreeStatus::Yes() ? $row->menu->name : $row->menu->page->title;
+                })
+                ->addColumn('sub_menu_name', function ($row) {
+                    return $row->is_custom == IsAgreeStatus::Yes() ? $row->name : $row->page->title;
+                })
                 ->addColumn('status', function ($row) {
                     $color = match ($row->status->value) {
                         0 => 'text-red-500',
@@ -36,7 +43,6 @@ class SubMenuController extends Controller
     public function create()
     {
         $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
-        // dd($pages);
         $menus = Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
         return view('admin.sub-menu.create', compact('menus', 'pages'));
     }
@@ -44,16 +50,30 @@ class SubMenuController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-        $validated = $request->validate([
-            'page_id' => 'required|integer|exists:pages,id',
-            'menu_id' => 'nullable|integer|exists:menus,id',
-            'sub_menu_id' => 'nullable|integer|exists:menus,id',
+        $rules = [
+            'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
-            'status' => 'required|integer',
-        ]);
+            'status' => 'nullable|integer',
+            'menu_id' => 'nullable|integer|exists:menus,id',
+        ];
 
-        // dd($validated['slug']);
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+
+        $validated = $request->validate($rules);
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
+
 
         return response()->reportTo(
             Menu::create($validated),
@@ -81,13 +101,29 @@ class SubMenuController extends Controller
     public function update(Request $request, Menu $subMenu)
     {
         // Validate input
-        $validated = $request->validate([
-            'page_id' => 'required|integer|exists:pages,id',
-            'menu_id' => 'nullable|integer|exists:menus,id',
-            'sub_menu_id' => 'nullable|integer|exists:menus,id',
+        $rules = [
+            'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
-            'status' => 'required|integer',
-        ]);
+            'status' => 'nullable|integer',
+            'menu_id' => 'nullable|integer|exists:menus,id',
+        ];
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+
+        $validated = $request->validate($rules);
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(Menu::class, $validated['slug'])
+                : generateSlug(Menu::class, $validated['name']);
+        }
 
 
 

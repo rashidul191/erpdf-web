@@ -17,9 +17,11 @@
                         <div class="newsletter-f-right text-center">
                             <form role="search" method="post">
                                 <div class="input-group">
-                                    <input name="news-letter" class="form-control" placeholder="ENTER YOUR EMAIL" type="text">
+                                    <input name="news-letter" class="form-control" placeholder="ENTER YOUR EMAIL"
+                                        type="text">
                                     <span class="input-group-btn">
-                                        <button type="submit" class="btn-half site-button button-lg"><span>Submit</span><em></em></button>
+                                        <button type="submit"
+                                            class="btn-half site-button button-lg"><span>Submit</span><em></em></button>
                                     </span>
                                 </div>
                             </form>
@@ -42,10 +44,14 @@
                         <!-- <p class="max-w400">Today we can tell you, thanks to your passion, hard work creativity, and expertise, you delivered us the most beautiful house great looks.</p> -->
 
                         <ul class="social-icons social-tooltips-outer wt-social-links mt-4">
-                            <li><a target="_blank" href="{{ business_setting('fb_link') ?? '#' }}" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('twitter_link') ?? '#' }}" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('instagram_link') ?? '#' }}" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
-                            <li><a target="_blank" href="{{ business_setting('youtube_link') ?? '#' }}" class="fa fa-youtube"><span class="social-tooltips">Youtube</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('fb_link') ?? '#' }}"
+                                    class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('twitter_link') ?? '#' }}"
+                                    class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('instagram_link') ?? '#' }}"
+                                    class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
+                            <li><a target="_blank" href="{{ business_setting('youtube_link') ?? '#' }}"
+                                    class="fa fa-youtube"><span class="social-tooltips">Youtube</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,29 +60,28 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget_services inline-links">
                         <h4 class="widget-title">Useful links</h4>
-                        <ul>
-                            <li><a href="{{ route('about.index') }}">About Us</a></li>
-                            {{-- <li><a href="{{ route('blog.index') }}">Blog</a></li> --}}
-                            <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
-                            <!-- <li><a href="work-masonry.html">Portfolio</a></li> -->
-                            <li><a href="{{ route('contact.index') }}">Contact Us</a></li>
-                            <!-- <li><a href="contact-1.html">FAQ </a></li> -->
-                        </ul>
+                        {{-- <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul> --}}
                     </div>
                 </div>
 
                 @php
-                $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
+                    $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
                 @endphp
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget_services inline-links">
                         <h4 class="widget-title">Rooms & Suites</h4>
-                        <ul>
+                        {{-- <ul>
                             @foreach ($roomCategories as $category)
-                            <li><a href="{{ route('room-category.show', [$category->id, $category->slug]) }}">{{ $category->name }}</a></li>
+                                <li><a
+                                        href="{{ route('room-category.show', [$category->id, $category->slug]) }}">{{ $category->name }}</a>
+                                </li>
                             @endforeach
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
 
@@ -85,7 +90,9 @@
                         <h4 class="widget-title">Contact</h4>
                         <ul class="widget_address">
                             <li><i class="sl-icon-map site-text-primary"></i> {!! business_setting('address') !!}</li>
-                            <li><i class="sl-icon-envolope-letter site-text-primary"></i>{!! business_setting('email') !!}</li>
+                            <li><i
+                                    class="sl-icon-envolope-letter site-text-primary"></i>{!! business_setting('email') !!}
+                            </li>
                             <li><i class="sl-icon-phone site-text-primary"></i>{!! business_setting('phone') !!}</li>
                         </ul>
                     </div>
@@ -99,7 +106,9 @@
         <div class="container">
             <div class="row">
                 <div class="wt-footer-bot-center">
-                    <span class="copyrights-text">&copy; 2020 - {{ date('Y') }} {!! business_setting('copyright') ?? business_setting('website_name') !!}. Developed By <a style="color: #c19b76;" href="https://sawebsoft.com/" target="_blank">SA WebSoft</a></span>
+                    <span class="copyrights-text">&copy; 2020 - {{ date('Y') }}
+                        {!! business_setting('copyright') ?? business_setting('website_name') !!}. Developed By <a
+                            style="color: #c19b76;" href="https://sawebsoft.com/" target="_blank">SA WebSoft</a></span>
                 </div>
             </div>
         </div>

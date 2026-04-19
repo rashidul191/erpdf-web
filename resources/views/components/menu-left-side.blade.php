@@ -1,4 +1,4 @@
-<ul class="space-y-2 h-full bg-white p-4 ">
+<ul class="space-y-2 bg-white p-4 ">
 
     <li>
         <a href="{{ route('admin.menu.index') }}" class="block px-4 py-2 rounded-md text-sm font-medium transition duration-200

@@ -1,7 +1,7 @@
 <x-admin-app-layout>
     <div class="w-full flex flex-wrap">
         <div class="w-full md:w-1/3 p-3">
-            <x-menu-manage></x-menu-manage>
+            <x-menu-left-side></x-menu-left-side>
         </div>
         <div class="w-full md:w-2/3">
             <div class="w-full flex justify-between mb-2">
@@ -9,7 +9,7 @@
                 <div>
                     <a href="{{ route('admin.menu.create') }}"
                         class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        + {{ __('Create') }}
+                        + {{ __('Add Menu') }}
                     </a>
                 </div>
             </div>

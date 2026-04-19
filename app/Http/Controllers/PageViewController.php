@@ -12,6 +12,7 @@ use App\Models\BlogComment;
 use App\Models\ContentManage;
 use App\Models\Gallery;
 use App\Models\OurStory;
+use App\Models\Page;
 use App\Models\Room;
 use App\Models\RoomCategory;
 use App\Models\RoomComment;
@@ -20,6 +21,35 @@ use Illuminate\Http\Request;
 
 class PageViewController extends Controller
 {
+
+
+    public function page($slug)
+    {
+
+        // custom page
+        if ($slug === 'news' || $slug === 'blog') {
+            return $this->blogPage();
+        } elseif ($slug === 'about-us' || $slug === 'about') {
+            return $this->aboutPage();
+        } elseif ($slug === 'contact-us' || $slug === 'contact') {
+            return $this->contactPage();
+        } elseif ($slug === 'rooms' || $slug === 'room') {
+            return $this->roomPage();
+        } elseif ($slug === 'gallery') {
+            return $this->galleryPage();
+        } elseif ($slug === 'project-progress') {
+            return $this->projectProgress();
+        }
+
+        // dynamic page
+        return $this->pageDetail($slug);
+    }
+
+    public function pageDetail($slug)
+    {
+        $content = Page::where('slug', $slug)->first();
+        return view('front-end.pages.page-detail', compact('content'));
+    }
 
     public function aboutPage()
     {
@@ -85,13 +115,21 @@ class PageViewController extends Controller
     }
 
 
-    public function teamCategory($category_type, $category_name)
+    public function teamCategory($id, $category_name)
     {
 
-        $data["categoryName"] = $category_name;
-        $data['teams'] = Team::where('category_type', $category_type)->where('status', CommonStatus::Active)->oldest('serial')->paginate(12);
+
+        $data['teams'] = Team::where('team_category_id', $id)->where('status', CommonStatus::Active)->oldest('serial')->paginate(12);
 
         return view('front-end.pages.team-category', $data);
+    }
+
+    public function roomPage()
+    {
+        $data['rooms'] = Room::with('type:id,name')->latest()->paginate(12);
+        // dd('this is rooms page comming soon....');
+
+        return view('front-end.pages.room', $data);
     }
 
     public function roomCategory($id)
@@ -153,24 +191,5 @@ class PageViewController extends Controller
     }
 
 
-    public function menuPage($slug)
-    {
 
-
-        if ($slug === 'news') {
-            return $this->blogPage();
-        } elseif ($slug === 'project-progress') {
-            return $this->projectProgress();
-        }
-
-        dd($slug);
-
-    }
-
-    public function detailPage($slug)
-    {
-
-        $content = ContentManage::where('slug', $slug)->first();
-        return view('front-end.pages.content-detail', compact('content'));
-    }
 }

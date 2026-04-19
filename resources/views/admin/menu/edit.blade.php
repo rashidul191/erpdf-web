@@ -12,31 +12,63 @@
         <form action="{{ route('admin.menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="flex flex-wrap justify-center w-full">
 
-                <x-labeled-select label="Select Menu Name" name="page_id" required class="w-full p-1">
-                    <option value="" {{ !$menu->page_id ? 'disabled ' : '' }}>Select Menu Name</option>
-                    @foreach ($pages as $page)
-                        <option value="{{$page->id }}" {{ $page->id == $menu->page_id ? 'selected' : '' }}>
-                            {{ $page->title }}
-                        </option>
-                    @endforeach
-                </x-labeled-select>
+            <div x-data="{
+            isCustom: {{ $menu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? 'true' : 'false' }}
+        }" class="flex flex-wrap justify-center w-full">
 
+                <!-- Checkbox -->
+                <div class="w-full flex items-center space-x-4 p-2">
+                    <input type="checkbox" id="is_custom" name="is_custom" value="{{ \App\Enums\IsAgreeStatus::Yes }}"
+                        x-model="isCustom" {{ $menu->is_custom == \App\Enums\IsAgreeStatus::Yes() ? 'checked' : '' }}>
+
+                    <label for="is_custom" class="text-lg font-semibold">Is Custom</label>
+                </div>
+
+                <!-- If NOT custom -->
+                <div class="w-full" x-show="!isCustom">
+                    <x-labeled-select label="Select Menu Name" name="page_id" class="w-full p-1"
+                        x-bind:required="!isCustom">
+
+                        <option value="" disabled>Select Menu Name</option>
+
+                        @foreach ($pages as $page)
+                            <option value="{{ $page->id }}" {{ $page->id == $menu->page_id ? 'selected' : '' }}>
+                                {{ $page->title }}
+                            </option>
+                        @endforeach
+
+                    </x-labeled-select>
+                </div>
+
+                <!-- If custom -->
+                <div class="w-full flex flex-wrap" x-show="isCustom">
+
+                    <x-labeled-input label="Menu Name" name="name" class="w-full p-1 md:w-1/2"
+                        x-bind:required="isCustom" value="{{ $menu->name }}" />
+
+                    <x-labeled-input label="Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
+                        value="{{ $menu->slug }}" />
+
+                </div>
+
+                <!-- Status -->
                 <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
+
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ $menu->status->value == $value->value ? 'selected' : '' }}>
                             {{ $value->key }}
                         </option>
                     @endforeach
+
                 </x-labeled-select>
 
+                <!-- Serial -->
+                <x-labeled-input name="serial" type="number" class="w-full p-1 md:w-1/2" value="{{ $menu->serial }}" />
 
-
-                <x-labeled-input name="serial" value="{{ $menu->serial }}" type="number" class="w-full md:w-1/2 p-1" />
-
+                <!-- Submit -->
                 <div class="w-full pt-4 flex justify-end">
-                    <x-button>{{ __('Update') }}</x-button>
+                    <x-button>Update</x-button>
                 </div>
             </div>
         </form>

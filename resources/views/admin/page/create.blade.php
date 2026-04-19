@@ -14,7 +14,7 @@
             @csrf
             <div class="flex flex-wrap justify-center w-full">
 
-                <div class="w-full">
+                <div class="w-full md:w-1/2 p-1">
                     <img width="50" id="prevImage" src="">
                     <x-labeled-input label="Image (500x720px)" type="file"
                         accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"

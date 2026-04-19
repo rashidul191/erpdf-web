@@ -26,10 +26,10 @@
                     @endforeach
                 </x-labeled-select>
 
-                <x-labeled-select label="Team Category" name="category_type" required class="w-full md:w-1/4 p-1">
+                <x-labeled-select label="Team Category" name="team_category_id" required class="w-full md:w-1/4 p-1">
                     <option value="" disabled selected>Select Team Category</option>
-                    @foreach (\App\Enums\TeamCategoryType::getInstances() as $key => $value)
-                        <option value="{{ $value->value }}">{{ $key }}</option>
+                    @foreach ($teamCategories as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </x-labeled-select>
 

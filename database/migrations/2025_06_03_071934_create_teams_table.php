@@ -16,8 +16,8 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_category_id')->nullable()->constrained('team_categories');
             $table->unsignedTinyInteger('serial')->nullable();
-            $table->unsignedTinyInteger('category_type')->nullable();
             $table->string('image')->nullable();
             $table->string('name');
             $table->string('designation')->nullable();

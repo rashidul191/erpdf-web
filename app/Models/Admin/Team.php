@@ -4,7 +4,6 @@ namespace App\Models\Admin;
 
 use App\Casts\ImageField;
 use App\Enums\CommonStatus;
-use App\Enums\TeamCategoryType;
 use App\Traits\DeletesImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,8 +13,8 @@ class Team extends Model
     use HasFactory, DeletesImage;
 
     protected $fillable = [
+        'team_category_id',
         'serial',
-        'category_type',
         'image',
         'name',
         'designation',
@@ -29,8 +28,12 @@ class Team extends Model
 
     protected $casts = [
         'image' => ImageField::class . ':team,images/avatar.png',
-        'category_type' => TeamCategoryType::class,
         'status' => CommonStatus::class,
 
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(TeamCategory::class, 'team_category_id');
+    }
 }

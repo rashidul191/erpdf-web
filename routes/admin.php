@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\SpecializationController;
 use App\Http\Controllers\Admin\SubMenuController;
 use App\Http\Controllers\Admin\SubOfSubMenuController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\TeamCategoryController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ContactFormMessageController;
 use Illuminate\Support\Facades\Route;
@@ -119,13 +120,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         /* About Page Routes */
         Route::get('about', [AboutController::class, 'index'])->name('about.index');
-        Route::post('about-left-side', [AboutController::class, 'aboutLeftSide'])->name('about.left-side');
+        Route::post('about-left-side', [AboutController::class, 'aboutLeftSideStore'])->name('about.left-side.store');
+        Route::get('about-left-side/{id}', [AboutController::class, 'aboutLeftSideEdit'])->name('about.left-side.edit');
+        Route::post('about-left-side/{id}', [AboutController::class, 'aboutLeftSideUpdate'])->name('about.left-side.update');
         Route::delete('about-left-side/{id}', [AboutController::class, 'aboutLeftSideDelete'])->name('about.left-side.destroy');
         Route::post('about-right-side', [AboutController::class, 'aboutRightSide'])->name('about.right-side');
         Route::delete('about-right-side/{id}', [AboutController::class, 'aboutRightSideDelete'])->name('about.right-side.destroy');
+
         Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');
         Route::resource('services', ServiceController::class);
         Route::resource('our-story', OurStoryController::class);
+        Route::resource('team-categories', TeamCategoryController::class);
         Route::resource('team', TeamController::class);
         Route::resource('contact-message', ContactFormMessageController::class);
 

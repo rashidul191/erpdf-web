@@ -17,17 +17,40 @@ class AboutController extends Controller
     }
 
     /*  About Section Left Side Methods */
-    public function aboutLeftSide(Request $request)
+    public function aboutLeftSideStore(Request $request)
     {
-        $validated =  $request->validate([
+        $validated = $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240', // Max size 1MB
             'title' => 'required|string|max:255',
-            'short_description' => 'required|string|max:255',
+            'short_description' => 'nullable|string|max:255',
         ]);
 
         return response()->reportTo(
             AboutLeftSide::create($validated),
             'Created successfully',
+            route('admin.about.index')
+        );
+    }
+
+    public function aboutLeftSideEdit($id)
+    {
+        $aboutLeftContent = AboutLeftSide::findOrFail($id);
+        return view('admin.about.about-edit', compact('aboutLeftContent'));
+    }
+
+    public function aboutLeftSideUpdate(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240', // Max size 1MB
+            'title' => 'required|string|max:255',
+            'short_description' => 'nullable|string|max:255',
+        ]);
+
+        $aboutLeftContent = AboutLeftSide::findOrFail($id);
+
+        return response()->reportTo(
+            $aboutLeftContent->update($validated),
+            'Updated successfully',
             route('admin.about.index')
         );
     }
@@ -46,7 +69,7 @@ class AboutController extends Controller
     /*  About Section Right Side Methods */
     public function aboutRightSide(Request $request)
     {
-        $validated =  $request->validate([
+        $validated = $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240', // Max size 1MB
         ]);
 

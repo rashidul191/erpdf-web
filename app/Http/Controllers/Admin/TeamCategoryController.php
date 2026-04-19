@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RoomCategory;
+use App\Models\Admin\TeamCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class RoomCategoryController extends Controller
+class TeamCategoryController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(RoomCategory::oldest('name'))
+            return datatables(TeamCategory::oldest('name'))
                 ->addIndexColumn()
                 ->addColumn('custom_slug', function ($row) {
-                    return '/room-category/' . $row->id . '/' . $row->slug;
+                    return '/team-category/' . $row->id . '/' . $row->slug;
                 })
                 ->toJson();
         }
-        return view('admin.room-category.index');
+        return view('admin.team-category.index');
     }
 
     public function create()
@@ -37,18 +37,18 @@ class RoomCategoryController extends Controller
         $validated['slug'] = Str::slug($validated['name']);
 
         return response()->reportTo(
-            RoomCategory::create($validated),
+            TeamCategory::create($validated),
             'Created successfully',
-            route('admin.room-categories.index')
+            route('admin.team-categories.index')
         );
     }
 
-    public function edit(RoomCategory $roomCategory)
+    public function edit(TeamCategory $teamCategory)
     {
-        return view('admin.room-category.edit', compact('roomCategory'));
+        return view('admin.team-category.edit', compact('$teamCategory'));
     }
 
-    public function update(Request $request, RoomCategory $roomCategory)
+    public function update(Request $request, TeamCategory $teamCategory)
     {
         // Validate input
         $validated = $request->validate([
@@ -62,17 +62,17 @@ class RoomCategoryController extends Controller
 
         // Return response
         return response()->reportTo(
-            $roomCategory->update($validated),
+            $teamCategory->update($validated),
             'Updated successfully',
-            route('admin.room-categories.index')
+            route('admin.team-categories.index')
         );
     }
-    public function destroy(RoomCategory $roomCategory)
+    public function destroy(TeamCategory $teamCategory)
     {
         return response()->reportTo(
-            $roomCategory->delete(),
+            $teamCategory->delete(),
             'Deleted successfully',
-            route('admin.room-categories.index')
+            route('admin.team-categories.index')
         );
     }
 }

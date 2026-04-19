@@ -9,12 +9,11 @@
     </div>
 
     <div class="bg-white p-4 rounded">
-        <form action="{{ route('admin.page.update', $page->id) }}" method="POST"
-            enctype="multipart/form-data">
+        <form action="{{ route('admin.page.update', $page->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="flex flex-wrap justify-center w-full">
-                <div class="w-full">
+            <div class="flex flex-wrap justify-center w-full items-end">
+                <div class="w-full md:w-1/2 p-1">
                     <img width="50" id="prevImage" src="{{ asset($page->image) }}">
                     <x-labeled-input label="Image (500x720px)" type="file"
                         accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
@@ -30,18 +29,16 @@
                 </x-labeled-select>
 
 
-                <x-labeled-input name="title" value="{{ old('title', $page->title) }}" required
-                    class="w-full p-1" />
+                <x-labeled-input name="title" value="{{ old('title', $page->title) }}" required class="w-full p-1" />
 
                 <x-labeled-textarea label="Short Description" name="short_description" is-editor="is-editor"
-                    :value="old('short_description', $page->short_description)"
-                    class="w-full p-1"></x-labeled-textarea>
+                    :value="old('short_description', $page->short_description)" class="w-full p-1"></x-labeled-textarea>
 
                 <x-labeled-textarea label="Description" name="description" is-editor="is-editor"
                     :value="old('description', $page->description)" class="w-full p-1"></x-labeled-textarea>
 
-                <x-labeled-textarea label="Others" name="others"
-                    :value="old('others', $page->description)" class="w-full p-1"></x-labeled-textarea>
+                <x-labeled-textarea label="Others" name="others" :value="old('others', $page->description)"
+                    class="w-full p-1"></x-labeled-textarea>
 
                 <div class="w-full pt-4 flex justify-end">
                     <x-button>{{ __('Create') }}</x-button>

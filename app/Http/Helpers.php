@@ -112,16 +112,35 @@ if (!function_exists('business_image')) {
 
 if (!function_exists('generateSlug')) {
 
+    // function generateSlug($model, $name, $column = 'slug')
+    // {
+
+    //     $slug = Str::slug($name);
+    //     $original = $slug;
+    //     $count = 1;
+
+    //     $query = $model::query();
+
+    //     while ($query->where($column, $slug)->exists()) {
+    //         $slug = $original . '-' . $count;
+    //         $count++;
+    //     }
+
+    //     return $slug;
+    // }
+
     function generateSlug($model, $name, $column = 'slug')
     {
+        // শুধু trim করবো, slash preserve করবো
+        $slug = trim($name);
 
-        $slug = Str::slug($name);
+        // optional: multiple spaces clean
+        $slug = preg_replace('/\s+/', ' ', $slug);
+
         $original = $slug;
         $count = 1;
 
-        $query = $model::query();
-
-        while ($query->where($column, $slug)->exists()) {
+        while ($model::where($column, $slug)->exists()) {
             $slug = $original . '-' . $count;
             $count++;
         }

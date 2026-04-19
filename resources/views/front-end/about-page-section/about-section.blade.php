@@ -35,8 +35,8 @@
                         </div>
                         @endforeach
                     </div>
-                    @if(request()->routeIs('home.index'))
-                    <a href="{{ route('about.index') }}" class="btn-half site-button button-lg m-b30"><span>More About</span><em></em></a>
+                    @if(request()->routeIs('home.index') && request()->route('slug') == 'about-us' ? 'active' : '' )
+                    <a href="{{ route('page.index', 'about-us') }}" class="btn-half site-button button-lg m-b30"><span>More About</span><em></em></a>
                     @endif
                 </div>
 
