@@ -56,34 +56,26 @@
                     </div>
                 </div>
 
-
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="widget widget_services inline-links">
-                        <h4 class="widget-title">Useful links</h4>
-                        {{-- <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul> --}}
-                    </div>
-                </div>
-
                 @php
-                    $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
+                    $menuManages = \App\Models\MenuManage::oldest('serial')->get();
+                    // dd($menuManage);
                 @endphp
 
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="widget widget_services inline-links">
-                        <h4 class="widget-title">Rooms & Suites</h4>
-                        {{-- <ul>
-                            @foreach ($roomCategories as $category)
-                                <li><a
-                                        href="{{ route('room-category.show', [$category->id, $category->slug]) }}">{{ $category->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul> --}}
+                @forelse ($menuManages as $index => $item)
+                    <div
+                        class=" {{ $menuManages->count() == 1 ? 'col-lg-6' : ($menuManages->count() == 2 ? 'col-lg-3' : 'col-lg-2') }} col-md-6 col-sm-6">
+                        <div class="widget widget_services inline-links">
+                            <h4 class="widget-title">{{ $item->name }}</h4>
+                            <ul>
+                                @foreach ($item->menus as $menu)
+                                    <li><a href="{{ route('page.index', $menu->page->slug) }}">{{ $menu->page->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                @empty
+
+                @endforelse
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget_address_outer">

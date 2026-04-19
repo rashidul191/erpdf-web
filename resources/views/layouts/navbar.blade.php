@@ -1,5 +1,5 @@
 @php
-    $menus = \App\Models\Menu::whereNull('menu_id')
+    $menus = \App\Models\MenuItem::whereNull('menu_id')
         ->whereNull('sub_menu_id')
         ->with([
             'page',

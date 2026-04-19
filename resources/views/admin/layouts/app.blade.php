@@ -57,11 +57,7 @@
 
                 <x-navigation-link :text="__('Menu Manage')" :icon="icon('room')">
                     <x-navigation-link :href="route('admin.menu.index')" :text="__('Navbar Menu')" />
-                    {{-- <x-navigation-link :href="route('admin.sub-menu.index')" :text="__('Sub Menu')" />
-                    <x-navigation-link :href="route('admin.sub-of-sub-menu.index')" :text="__('Sub of Sub Menu')" />
-                    --}}
-
-
+                    <x-navigation-link :href="route('admin.menu-manage.index')" :text="__('Footer Menu')" />
                 </x-navigation-link>
 
                 <x-navigation-link :href="route('admin.page.index')" :text="__('Pages')" :icon="icon('room')" />
@@ -78,7 +74,7 @@
 
                 </x-navigation-link>
 
-                 <x-navigation-link :text="__('Team')" :icon="icon('about')">
+                <x-navigation-link :text="__('Team')" :icon="icon('about')">
                     <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />
                     <x-navigation-link :href="route('admin.team-categories.index')" :text="__('Team Categories')" />
                 </x-navigation-link>

@@ -29,7 +29,7 @@ class Page extends Model
 
     public function menu()
     {
-        return $this->hasMany(Menu::class, 'page_id');
+        return $this->hasMany(MenuItem::class, 'page_id');
     }
 
 }

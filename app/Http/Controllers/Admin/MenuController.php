@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\CommonStatus;
 use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,7 +15,7 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->oldest('serial'))
+            return datatables(MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('menu_name', function ($row) {
                     return $row->is_custom == IsAgreeStatus::Yes() ? $row->name : $row->page->title;
@@ -64,19 +64,19 @@ class MenuController extends Controller
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(Menu::class, $validated['slug'])
-                : generateSlug(Menu::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'])
+                : generateSlug(MenuItem::class, $validated['name']);
         }
 
         return response()->reportTo(
-            Menu::create($validated),
+            MenuItem::create($validated),
             'Created successfully',
             route('admin.menu.index')
         );
     }
 
 
-    public function edit(Menu $menu)
+    public function edit(MenuItem $menu)
     {
         $pages = Page::where('status', CommonStatus::Active())
             ->where(function ($query) use ($menu) {
@@ -118,8 +118,8 @@ class MenuController extends Controller
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(Menu::class, $validated['slug'])
-                : generateSlug(Menu::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'])
+                : generateSlug(MenuItem::class, $validated['name']);
         }
 
 

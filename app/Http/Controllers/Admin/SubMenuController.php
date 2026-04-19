@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\CommonStatus;
 use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,7 +16,7 @@ class SubMenuController extends Controller
     {
 
         if ($request->ajax()) {
-            return datatables(Menu::whereNotNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'menu.page'])->oldest('serial'))
+            return datatables(MenuItem::whereNotNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'menu.page'])->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('main_menu_name', function ($row) {
                     return $row->menu->is_custom == IsAgreeStatus::Yes() ? $row->menu->name : $row->menu->page->title;
@@ -43,7 +43,7 @@ class SubMenuController extends Controller
     public function create()
     {
         $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
-        $menus = Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
+        $menus = MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
         return view('admin.sub-menu.create', compact('menus', 'pages'));
     }
 
@@ -70,13 +70,13 @@ class SubMenuController extends Controller
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(Menu::class, $validated['slug'])
-                : generateSlug(Menu::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'])
+                : generateSlug(MenuItem::class, $validated['name']);
         }
 
 
         return response()->reportTo(
-            Menu::create($validated),
+            MenuItem::create($validated),
             'Created successfully',
             route('admin.sub-menu.index')
         );
@@ -92,7 +92,7 @@ class SubMenuController extends Controller
             })
             ->oldest('title')
             ->get();
-        $menus = Menu::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
+        $menus = MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
 
 
         return view('admin.sub-menu.edit', compact('subMenu', 'pages', 'menus'));
@@ -121,8 +121,8 @@ class SubMenuController extends Controller
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(Menu::class, $validated['slug'])
-                : generateSlug(Menu::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'])
+                : generateSlug(MenuItem::class, $validated['name']);
         }
 
 

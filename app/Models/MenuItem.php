@@ -7,7 +7,7 @@ use App\Enums\IsAgreeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class MenuItem extends Model
 {
     use HasFactory;
 
@@ -39,12 +39,12 @@ class Menu extends Model
 
     public function subMenus()
     {
-        return $this->hasMany(Menu::class, 'menu_id', 'id');
+        return $this->hasMany(MenuItem::class, 'menu_id', 'id');
     }
 
     public function menu()
     {
-        return $this->belongsTo(Menu::class, 'menu_id', 'id');
+        return $this->belongsTo(MenuItem::class, 'menu_id', 'id');
     }
 
     // ======================
@@ -53,11 +53,11 @@ class Menu extends Model
 
     public function subOfSubMenus()
     {
-        return $this->hasMany(Menu::class, 'sub_menu_id', 'id');
+        return $this->hasMany(MenuItem::class, 'sub_menu_id', 'id');
     }
 
     public function subMenu()
     {
-        return $this->belongsTo(Menu::class, 'sub_menu_id', 'id');
+        return $this->belongsTo(MenuItem::class, 'sub_menu_id', 'id');
     }
 }
