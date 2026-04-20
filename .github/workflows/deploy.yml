@@ -38,6 +38,7 @@ jobs:
 
             # ── PROJECT PATH (YOUR REAL SERVER PATH) ───────
             PROJECT_PATH=/home/vxcfoodandbevera/amanatwhitepalace.com
+            GITHUB_PATH=SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
 
             echo "📁 PROJECT: $PROJECT_PATH"
 
@@ -52,11 +53,11 @@ jobs:
             # ── Init repo if not exists ─────────────────────
             if [ ! -d ".git" ]; then
               git init
-              git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
+              git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/$GITHUB_PATH
             fi
 
             # ── Sync latest code ────────────────────────────
-            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
+            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/$GITHUB_PATH
             git fetch origin main
             git reset --hard origin/main
 
@@ -64,7 +65,7 @@ jobs:
             git update-index --assume-unchanged .env 2>/dev/null || true
 
             # ── Install dependencies ────────────────────────
-            $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction
+            $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
 
             # ── Laravel Commands ────────────────────────────
 
@@ -74,6 +75,7 @@ jobs:
 
             $PHP_BIN artisan config:clear
             $PHP_BIN artisan config:cache
+            $PHP_BIN artisan cache:clear
 
             $PHP_BIN artisan view:clear
             $PHP_BIN artisan view:cache
