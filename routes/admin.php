@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\ContentManageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MenuManageController;
@@ -120,6 +121,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('brands', BrandController::class);
 
+
         /* Home Page Routes  */
         Route::resource('slider', SliderController::class);
         Route::resource('client-say', ClientSayController::class);
@@ -138,6 +140,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('our-story', OurStoryController::class);
         Route::resource('team-categories', TeamCategoryController::class);
         Route::resource('team', TeamController::class);
+
+        Route::resource('faq', FAQController::class);
         Route::resource('contact-message', ContactFormMessageController::class);
 
         /* Gallery Page Routes */

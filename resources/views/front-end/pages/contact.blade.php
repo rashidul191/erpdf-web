@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <!-- CONTENT START -->
-    <div class="page-content">        
+    <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
         <x-page-banner :image="business_image('contact_banner') ?? null" />
@@ -64,11 +64,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input name="email" type="text" class="form-control" required placeholder="Email">
+                                        <input name="email" type="text" class="form-control" required
+                                            placeholder="Email">
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea name="message" rows="4" class="form-control " required placeholder="Message"></textarea>
+                                        <textarea name="message" rows="4" class="form-control " required
+                                            placeholder="Message"></textarea>
                                     </div>
 
                                     <div class="text-right">
@@ -85,12 +87,12 @@
 
                 @if(business_setting('google_map_embed_code'))
 
-                <div class="gmap-outline">
-                    <div class="google-map-gray google-map">
-                        {!! business_setting('google_map_embed_code') !!}
-                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1671883239943!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                    <div class="gmap-outline">
+                        <div class="google-map-gray google-map">
+                            {!! business_setting('google_map_embed_code') !!}
+                            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1671883239943!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>

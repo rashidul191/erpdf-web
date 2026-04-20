@@ -10,6 +10,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
 use App\Models\ContentManage;
+use App\Models\FAQ;
 use App\Models\Gallery;
 use App\Models\OurStory;
 use App\Models\Page;
@@ -37,6 +38,8 @@ class PageViewController extends Controller
             return $this->roomPage();
         } elseif ($slug === 'gallery') {
             return $this->galleryPage();
+        } elseif ($slug === 'faq') {
+            return $this->faqPage();
         } elseif ($slug === 'project-progress') {
             return $this->projectProgress();
         }
@@ -188,6 +191,12 @@ class PageViewController extends Controller
     public function contactPage()
     {
         return view('front-end.pages.contact');
+    }
+
+    public function faqPage()
+    {
+        $faqs = FAQ::latest()->get();
+        return view('front-end.pages.faq', compact('faqs'));
     }
 
 
