@@ -10,7 +10,7 @@ jobs:
     environment: vxc_cpnael
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -20,18 +20,36 @@ jobs:
           key: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
           port: 21098
           script: |
+            # ── Safety ────────────────────────────────────────────
             git config --global --add safe.directory /home/vxcfoodandbevera/amanatwhitepalace.com
             cd /home/vxcfoodandbevera/amanatwhitepalace.com
-            git fetch origin main
-            git checkout -- public
-            git checkout -- storage
+
+            # ── Init repo if not already a git repo ───────────────
+            if [ ! -d ".git" ]; then
+              git init
+              git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
+              git fetch origin main
+              git checkout -b main --track origin/main
+            fi
+
+            # ── Update remote URL with token (in case it changed) ─
+            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
+
+            # ── Protect important files/folders ───────────────────
             git update-index --assume-unchanged .env
             git update-index --assume-unchanged public
             git update-index --assume-unchanged storage
-            git pull origin main
-            composer install --no-dev --optimize-autoloader
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan view:cache
-            php artisan route:cache
-            php artisan storage:link
+
+            # ── Pull latest code ──────────────────────────────────
+            git fetch origin main
+            git reset --hard origin/main
+
+            # ── Install dependencies ──────────────────────────────
+            /usr/local/bin/php82 /usr/local/bin/composer install --no-dev --optimize-autoloader
+
+            # ── Laravel commands ──────────────────────────────────
+            /usr/local/bin/php82 artisan migrate --force
+            /usr/local/bin/php82 artisan config:cache
+            /usr/local/bin/php82 artisan view:cache
+            /usr/local/bin/php82 artisan route:cache
+            /usr/local/bin/php82 artisan storage:link
