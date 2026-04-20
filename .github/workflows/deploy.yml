@@ -20,36 +20,40 @@ jobs:
           key: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
           port: 21098
           script: |
+            PHP_BIN=/opt/cpanel/ea-php82/root/usr/bin/php
+            COMPOSER_BIN=/usr/local/bin/composer
+
             # ── Safety ────────────────────────────────────────────
-            git config --global --add safe.directory /home/vxcfoodandbevera/amanatwhitepalace.com
-            cd /home/vxcfoodandbevera/amanatwhitepalace.com
+            git config --global --add safe.directory /root/amanatwhitepalace.com
+            cd /root/amanatwhitepalace.com
 
             # ── Init repo if not already a git repo ───────────────
             if [ ! -d ".git" ]; then
               git init
               git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
               git fetch origin main
-              git checkout -b main --track origin/main
+              git reset --hard origin/main
             fi
 
-            # ── Update remote URL with token (in case it changed) ─
+            # ── Update remote URL with token ──────────────────────
             git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
-
-            # ── Protect important files/folders ───────────────────
-            git update-index --assume-unchanged .env
-            git update-index --assume-unchanged public
-            git update-index --assume-unchanged storage
 
             # ── Pull latest code ──────────────────────────────────
             git fetch origin main
             git reset --hard origin/main
 
+            # # ── Protect .env storage public after reset ───────────
+            # git update-index --assume-unchanged .env 2>/dev/null || true
+            # git update-index --assume-unchanged public 2>/dev/null || true
+            # git update-index --assume-unchanged storage 2>/dev/null || true
+
             # ── Install dependencies ──────────────────────────────
-            /usr/local/bin/php82 /usr/local/bin/composer install --no-dev --optimize-autoloader
+            $PHP_BIN $COMPOSER_BIN install --no-dev --optimize-autoloader
 
             # ── Laravel commands ──────────────────────────────────
-            /usr/local/bin/php82 artisan migrate --force
-            /usr/local/bin/php82 artisan config:cache
-            /usr/local/bin/php82 artisan view:cache
-            /usr/local/bin/php82 artisan route:cache
-            /usr/local/bin/php82 artisan storage:link
+            $PHP_BIN artisan migrate --force
+            $PHP_BIN artisan db:seed --force
+            $PHP_BIN artisan config:cache
+            $PHP_BIN artisan view:cache
+            $PHP_BIN artisan route:cache
+            $PHP_BIN artisan storage:link
