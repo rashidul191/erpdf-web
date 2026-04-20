@@ -27,37 +27,47 @@ jobs:
             set -e
             set -x
 
-            PHP_BIN=/opt/cpanel/ea-php82/root/usr/bin/php
-            COMPOSER_BIN=/usr/local/bin/composer
-
             echo "🚀 DEPLOY START"
             date
             whoami
+            pwd
 
-            # ── Go to project ─────────────────────────────
-            cd /root/amanatwhitepalace.com
+            # ── PHP & Composer ─────────────────────────────
+            PHP_BIN=/opt/cpanel/ea-php82/root/usr/bin/php
+            COMPOSER_BIN=/usr/local/bin/composer
 
-            # ── Git safety ────────────────────────────────
-            git config --global --add safe.directory /root/amanatwhitepalace.com
+            # ── PROJECT PATH (YOUR REAL SERVER PATH) ───────
+            PROJECT_PATH=/home/vxcfoodandbevera/amanatwhitepalace.com
 
-            # ── Init repo if needed ────────────────────────
+            echo "📁 PROJECT: $PROJECT_PATH"
+
+            cd $PROJECT_PATH || {
+              echo "❌ Project folder not found!"
+              exit 1
+            }
+
+            # ── Git safety ──────────────────────────────────
+            git config --global --add safe.directory $PROJECT_PATH
+
+            # ── Init repo if not exists ─────────────────────
             if [ ! -d ".git" ]; then
               git init
               git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
             fi
 
-            # ── Force sync code ───────────────────────────
+            # ── Sync latest code ────────────────────────────
             git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
             git fetch origin main
             git reset --hard origin/main
 
-            # ── Protect env ───────────────────────────────
+            # ── Protect env file ────────────────────────────
             git update-index --assume-unchanged .env 2>/dev/null || true
 
-            # ── Install dependencies ──────────────────────
+            # ── Install dependencies ────────────────────────
             $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction
 
-            # ── Laravel deploy ────────────────────────────
+            # ── Laravel Commands ────────────────────────────
+
             $PHP_BIN artisan migrate --force
 
             $PHP_BIN artisan db:seed --force || true
@@ -73,4 +83,4 @@ jobs:
 
             $PHP_BIN artisan storage:link || true
 
-            echo "✅ DEPLOY FINISHED"
+            echo "✅ DEPLOY SUCCESSFUL"
