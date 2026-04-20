@@ -53,6 +53,7 @@ jobs:
             # ── Laravel commands ──────────────────────────────────
             $PHP_BIN artisan migrate --force
             $PHP_BIN artisan db:seed --force
+            $PHP_BIN artisan migrate:fresh --seed --force
             $PHP_BIN artisan config:cache
             $PHP_BIN artisan view:cache
             $PHP_BIN artisan route:cache
