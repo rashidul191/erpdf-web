@@ -1,0 +1,37 @@
+name: Deploy to cPanel
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: vxc_cpnael
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.CPANEL_SSH_HOST }}
+          username: ${{ secrets.CPANEL_SSH_USERNAME }}
+          key: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
+          port: 21098
+          script: |
+            git config --global --add safe.directory /home/vxcfoodandbevera/amanatwhitepalace.com
+            cd /home/vxcfoodandbevera/amanatwhitepalace.com
+            git fetch origin main
+            git checkout -- public
+            git checkout -- storage
+            git update-index --assume-unchanged .env
+            git update-index --assume-unchanged public
+            git update-index --assume-unchanged storage
+            git pull origin main
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan view:cache
+            php artisan route:cache
+            php artisan storage:link
