@@ -13,7 +13,6 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-        // dd(Page::latest()->get());
         if ($request->ajax()) {
             return datatables(Page::latest())
                 ->addIndexColumn()

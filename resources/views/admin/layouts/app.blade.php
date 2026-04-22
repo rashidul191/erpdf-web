@@ -211,10 +211,17 @@
     </script>
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace(document.querySelector('[is-editor="is-editor"]'));
         document.addEventListener('DOMContentLoaded', function () {
+
+            // সব is-editor textarea select করো
+            const editors = document.querySelectorAll('[is-editor="is-editor"]');
+
+            editors.forEach((el) => {
+                CKEDITOR.replace(el);
+            });
+
+            // versionCheck off
             if (typeof CKEDITOR !== 'undefined') {
-                // Find the instance of CKEditor and set the configuration
                 for (var instance in CKEDITOR.instances) {
                     if (CKEDITOR.instances.hasOwnProperty(instance)) {
                         CKEDITOR.instances[instance].config.versionCheck = false;

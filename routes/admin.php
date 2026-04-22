@@ -14,7 +14,6 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
-use App\Http\Controllers\Admin\ContentManageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -109,7 +108,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('menu-manage', MenuManageController::class);
         Route::post('footer-menu', [MenuManageController::class, 'footerMenuStore'])->name('footer-menu.store');
         Route::delete('footer-menu/{menu_manage_id}/{id}', [MenuManageController::class, 'footerMenuDestroy'])->name('footer-menu.destroy');
-
 
         Route::resource('menu', MenuController::class);
         Route::resource('sub-menu', SubMenuController::class);
