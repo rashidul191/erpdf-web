@@ -45,7 +45,7 @@ class TeamCategoryController extends Controller
 
     public function edit(TeamCategory $teamCategory)
     {
-        return view('admin.team-category.edit', compact('$teamCategory'));
+        return view('admin.team-category.edit', compact('teamCategory'));
     }
 
     public function update(Request $request, TeamCategory $teamCategory)
