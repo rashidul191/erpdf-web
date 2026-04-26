@@ -54,13 +54,11 @@
 
                 <!-- Status -->
                 <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
-
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ $menu->status->value == $value->value ? 'selected' : '' }}>
                             {{ $value->key }}
                         </option>
                     @endforeach
-
                 </x-labeled-select>
 
                 <!-- Serial -->

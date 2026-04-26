@@ -131,17 +131,30 @@ if (!function_exists('generateSlug')) {
 
     function generateSlug($model, $name, $column = 'slug')
     {
-        // শুধু trim করবো, slash preserve করবো
-        $slug = trim($name);
+        // 1. lowercase + trim
+        $slug = strtolower(trim($name));
 
-        // optional: multiple spaces clean
+        // 2. space normalize
         $slug = preg_replace('/\s+/', ' ', $slug);
+
+        // 3. if custom slug contains "/", keep structure but clean parts
+        if (str_contains($slug, '/')) {
+            $parts = explode('/', $slug);
+            $parts = array_map(function ($part) {
+                return strtolower(trim($part));
+            }, $parts);
+
+            $slug = implode('/', $parts);
+        } else {
+            // normal slug convert
+            $slug = str_replace(' ', '-', $slug);
+        }
 
         $original = $slug;
         $count = 1;
 
         while ($model::where($column, $slug)->exists()) {
-            $slug = $original . '-' . $count;
+            $slug = $original . '/' . $count;
             $count++;
         }
 
