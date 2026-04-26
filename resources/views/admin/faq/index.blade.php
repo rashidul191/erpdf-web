@@ -9,6 +9,23 @@
             </a>
         </div>
     </div>
+    <div class="w-full mt-4 bg-white p-4 rounded">
+        <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data"
+            class="w-full">
+            @csrf
+            <img width="50" height="50" id="preFAQPageBannerImg" src="{{ business_image('faq_page_banner_img') }}">
+            <x-labeled-input label="Page Banner Image (1920x800px)" type="file"
+                accept="image/jpeg,image/png,image/jpg,image/webp" name="faq_page_banner_img" class="w-full p-1"
+                onchange="preFAQPageBannerImg.src=window.URL.createObjectURL(this.files[0])"
+                value="{{ business_setting('faq_page_banner_img') }}" />
+            <div class="w-full pt-2 flex justify-end">
+                <x-button>
+                    {{ __('Submit') }}
+                </x-button>
+            </div>
+
+        </form>
+    </div>
 
     <div class="w-full mt-3">
         <table class="w-full my_table" id="data-table">

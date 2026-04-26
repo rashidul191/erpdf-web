@@ -27,7 +27,7 @@
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="business_image('faq_banner') ?? null" />
+        <x-page-banner :image="business_image('faq_page_banner_img') ?? null" />
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENTG START -->
