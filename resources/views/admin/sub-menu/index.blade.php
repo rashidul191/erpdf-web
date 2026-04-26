@@ -47,8 +47,8 @@
                             item.action = actionIcons({
                                 'edit': '{{ route('admin.sub-menu.edit', '@') }}'.replace('@', item
                                     .id),
-                                // 'delete': '{{ route('admin.sub-menu.destroy', '@') }}'.replace('@',
-                                //     item.id),
+                                'delete': '{{ route('admin.sub-menu.destroy', '@') }}'.replace('@',
+                                    item.id),
                             });
 
                             item.image =

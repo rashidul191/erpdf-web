@@ -132,12 +132,11 @@ class SubOfSubMenuController extends Controller
     }
 
 
-    // public function destroy(BlogCategory $blogCategory)
-    // {
-    //     return response()->reportTo(
-    //         $blogCategory->delete(),
-    //         'Deleted successfully',
-    //         route('admin.blog-categories.index')
-    //     );
-    // }
+    public function destroy(MenuItem $subOfSubMenu)
+    {
+        return response()->report(
+            $subOfSubMenu->delete(),
+            'Deleted successfully',
+        );
+    }
 }

@@ -131,12 +131,11 @@ class MenuController extends Controller
     }
 
 
-    // public function destroy(Menu $blogCategory)
-    // {
-    //     return response()->reportTo(
-    //         $blogCategory->delete(),
-    //         'Deleted successfully',
-    //         route('admin.blog-categories.index')
-    //     );
-    // }
+    public function destroy(MenuItem $menu)
+    {
+        return response()->report(
+            $menu->delete(),
+            'Deleted successfully',
+        );
+    }
 }

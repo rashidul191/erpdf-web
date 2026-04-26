@@ -72,7 +72,6 @@ jobs:
 
             # ── Laravel Commands ────────────────────────────
 
-            $PHP_BIN artisan migrate:fresh --force
             $PHP_BIN artisan migrate --force
             $PHP_BIN artisan db:seed --force || true
 
