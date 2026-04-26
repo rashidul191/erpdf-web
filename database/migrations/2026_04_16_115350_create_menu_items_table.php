@@ -17,9 +17,21 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->nullable()->constrained('pages');
-            $table->foreignId('menu_id')->nullable()->constrained('menu_items');
-            $table->foreignId('sub_menu_id')->nullable()->constrained('menu_items');
+
+            $table->foreignId('page_id')
+                ->nullable()
+                ->constrained('pages')
+                ->nullOnDelete();
+
+            $table->foreignId('menu_id')
+                ->nullable()
+                ->constrained('menu_items')
+                ->cascadeOnDelete();
+
+            $table->foreignId('sub_menu_id')
+                ->nullable()
+                ->constrained('menu_items')
+                ->cascadeOnDelete();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->integer('serial')->nullable();
