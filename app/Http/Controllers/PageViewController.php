@@ -120,7 +120,7 @@ class PageViewController extends Controller
 
     public function teamCategory($id, $category_name)
     {
-
+        $data['categoryName'] = $category_name;
 
         $data['teams'] = Team::where('team_category_id', $id)->where('status', CommonStatus::Active)->oldest('serial')->paginate(12);
 
