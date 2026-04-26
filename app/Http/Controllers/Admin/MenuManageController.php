@@ -80,8 +80,8 @@ class MenuManageController extends Controller
     //         'is_custom' => 'nullable|integer',
     //         'serial' => 'nullable|integer',
     //         'status' => 'nullable|integer',
-    //         'menu_id' => 'nullable|integer|exists:menus,id',
-    //         'sub_menu_id' => 'nullable|integer|exists:menus,id',
+    //         'menu_id' => 'nullable|integer|exists:menu_items,id',
+    //         'sub_menu_id' => 'nullable|integer|exists:menu_items,id',
     //     ];
 
     //     if ($request->is_custom == IsAgreeStatus::Yes) {

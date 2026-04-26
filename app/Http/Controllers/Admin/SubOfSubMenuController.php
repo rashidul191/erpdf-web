@@ -53,8 +53,8 @@ class SubOfSubMenuController extends Controller
             'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
             'status' => 'nullable|integer',
-            'menu_id' => 'nullable|integer|exists:menus,id',
-            'sub_menu_id' => 'nullable|integer|exists:menus,id',
+            'menu_id' => 'nullable|integer|exists:menu_items,id',
+            'sub_menu_id' => 'nullable|integer|exists:menu_items,id',
         ];
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
@@ -81,7 +81,7 @@ class SubOfSubMenuController extends Controller
         );
     }
 
-    public function edit(Menu $subOfSubMenu)
+    public function edit(MenuItem $subOfSubMenu)
     {
 
         $pages = Page::where('status', CommonStatus::Active())
@@ -95,15 +95,15 @@ class SubOfSubMenuController extends Controller
         return view('admin.sub-of-sub-menu.edit', compact('subOfSubMenu', 'pages', 'subMenus'));
     }
 
-    public function update(Request $request, Menu $subOfSubMenu)
+    public function update(Request $request, MenuItem $subOfSubMenu)
     {
         // Validate input
         $rules = [
             'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
             'status' => 'nullable|integer',
-            'menu_id' => 'nullable|integer|exists:menus,id',
-            'sub_menu_id' => 'nullable|integer|exists:menus,id',
+            'menu_id' => 'nullable|integer|exists:menu_items,id',
+            'sub_menu_id' => 'nullable|integer|exists:menu_items,id',
         ];
 
         if ($request->is_custom == IsAgreeStatus::Yes) {

@@ -90,7 +90,7 @@ class MenuController extends Controller
     }
 
 
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, MenuItem $menu)
     {
         // Validate input
         // $validated = $request->validate([
@@ -121,8 +121,6 @@ class MenuController extends Controller
                 ? generateSlug(MenuItem::class, $validated['slug'])
                 : generateSlug(MenuItem::class, $validated['name']);
         }
-
-
 
         // Return response
         return response()->reportTo(

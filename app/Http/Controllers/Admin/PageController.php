@@ -70,7 +70,7 @@ class PageController extends Controller
         // dd($request->all());
         // Validate input
         $validated = $request->validate([
-            'menu_id' => 'required|integer|exists:menus,id',
+            'menu_id' => 'required|integer|exists:menu_items,id',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
             'status' => 'required|integer',
