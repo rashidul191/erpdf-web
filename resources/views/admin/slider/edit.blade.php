@@ -20,10 +20,10 @@
                         accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                         oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                    <x-labeled-input name="title" value="{{ $slider->title }}" class="w-full p-1" />
+                    <x-labeled-input name="title" value="{!! $slider->title !!}" class="w-full p-1" />
 
-                    <x-labeled-input label="Page Link End Point (/products)" name="page_link"
-                        value="{{ $slider->page_link }}" class="w-full p-1" />
+                    <x-labeled-input label="Page Link" name="page_link"
+                        value="{!! $slider->page_link !!}" class="w-full p-1" />
 
                     <label class="inline-flex items-center mt-2">
                         <input type="checkbox" name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"

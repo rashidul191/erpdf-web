@@ -22,13 +22,7 @@ class HomeController extends Controller
         $data['aboutLeftSideContents'] = AboutLeftSide::oldest()->get();
         $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
         $data['services'] = Service::oldest()->get();
-        $data['teams'] = Team::orderBy('serial', 'asc')->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
-        $data['clientSays'] = ClientSay::latest()->get();
-
-        $data['roomCategories'] = RoomCategory::oldest('name')->get();
-        $data['rooms'] = Room::with('type:id,name')->latest()->get();
-
         return view('front-end.home.index')->with($data);
     }
 }

@@ -11,13 +11,13 @@
                 <div class="bg-white p-4">
                     <img width="100" id="prevImage" src="">
                     <div class="w-full">
-                        <x-labeled-input label="Image (1900x500)" type="file"
-                            accept="image/*" name="image" class="w-full p-1"
-                            required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
+                        <x-labeled-input label="Image (1900x500)" type="file" accept="image/*" name="image"
+                            class="w-full p-1" required
+                            oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
                         <x-labeled-input name="title" class="w-full p-1" />
 
-                        <x-labeled-input label="Page Link End Point (/about)" name="page_link" class="w-full p-1" />
+                        <x-labeled-input label="Page Link" name="page_link" class="w-full p-1" />
 
                         <label class="inline-flex items-center mt-2">
                             <input type="checkbox" checked name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"
@@ -58,7 +58,7 @@
                 ajax: {
                     url: '{{ route('admin.slider.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
                             item.action = actionIcons({
                                 'edit': '{{ route('admin.slider.edit', '
                                 @ ') }}'.replace('@', item
@@ -68,7 +68,7 @@
                                     item.id),
                             });
 
-                      
+
 
                             item.is_home = item.is_home ?
                                 `<span class='bg-green-500 font-bold text-white rounded px-1'>Yes</span>` :
@@ -81,30 +81,30 @@
                 },
 
                 columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'image'
-                    },
-                    {
-                        data: 'title',
-                        defaultContent: '--'
-                    },
-                    {
-                        data: 'page_link'
-                    },
-                    {
-                        data: 'is_home',
-                        searchable: false
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image'
+                },
+                {
+                    data: 'title',
+                    defaultContent: '--'
+                },
+                {
+                    data: 'page_link'
+                },
+                {
+                    data: 'is_home',
+                    searchable: false
+                },
 
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>

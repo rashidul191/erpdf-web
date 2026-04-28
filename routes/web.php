@@ -48,7 +48,6 @@ Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->n
 Route::get('/room-search', [PageViewController::class, 'roomSearch'])->name('room.search');
 
 
-
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');
 
