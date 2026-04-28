@@ -30,7 +30,6 @@
                     x-bind:required="!isCustom">
 
                     <option value="" disabled>Select Main Menu</option>
-
                     @foreach ($menus as $item)
                                     <option value="{{ $item->id }}" {{ $item->id == $subMenu->menu_id ? 'selected' : '' }}>
 
@@ -53,7 +52,7 @@
 
                         @foreach ($pages as $page)
                             <option value="{{ $page->id }}" {{ $page->id == $subMenu->page_id ? 'selected' : '' }}>
-                                {{ $page->title }}
+                                {!! $page->title !!}
                             </option>
                         @endforeach
 
@@ -65,10 +64,10 @@
                 <div class="w-full flex flex-wrap" x-show="isCustom">
 
                     <x-labeled-input label="Sub Menu Name" name="name" class="w-full p-1 md:w-1/2"
-                        value="{{ $subMenu->name }}" x-bind:required="isCustom" />
+                        value="{!! $subMenu->name !!}" x-bind:required="isCustom" />
 
                     <x-labeled-input label="Sub Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
-                        value="{{ $subMenu->slug }}" />
+                        value="{!! $subMenu->slug !!}" />
 
                 </div>
 

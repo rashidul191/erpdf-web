@@ -58,6 +58,24 @@ class MenuManageController extends Controller
     }
 
 
+    public function update(Request $request, MenuManage $menuManage)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'serial' => 'nullable|integer',
+            'menu_type' => 'nullable|integer',
+        ]);
+
+        $validated['slug'] = generateSlug(MenuManage::class, $validated['name'], $menuManage);
+
+        return response()->reportTo(
+            $menuManage->update($validated),
+            'Update successfully',
+            route('admin.menu-manage.index')
+        );
+    }
+
+
     public function footerMenuStore(Request $request)
     {
         $validated = $request->validate([

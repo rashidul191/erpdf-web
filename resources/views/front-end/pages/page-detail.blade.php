@@ -23,7 +23,6 @@
                                 @endif
 
                                 <div class="card-body p-5">
-
                                     <!-- Title -->
                                     <h3 class="card-title mb-3 fw-bold">
                                         {{ $content->title }}

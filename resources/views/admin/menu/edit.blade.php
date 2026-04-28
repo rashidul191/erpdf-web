@@ -45,10 +45,10 @@
                 <div class="w-full flex flex-wrap" x-show="isCustom">
 
                     <x-labeled-input label="Menu Name" name="name" class="w-full p-1 md:w-1/2"
-                        x-bind:required="isCustom" value="{{ $menu->name }}" />
+                        x-bind:required="isCustom" value="{!!  $menu->name !!}" />
 
                     <x-labeled-input label="Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
-                        value="{{ $menu->slug }}" />
+                        value="{!! $menu->slug !!}" />
 
                 </div>
 

@@ -78,7 +78,7 @@ class PageController extends Controller
 
         // is change name
         if ($page->title !== $validated['title']) {
-            $validated['slug'] = generateSlug(Page::class, $validated['title']);
+            $validated['slug'] = generateSlug(Page::class, $validated['title'], $page);
         }
         // Return response
         return response()->reportTo(

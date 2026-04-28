@@ -129,35 +129,32 @@ if (!function_exists('generateSlug')) {
     //     return $slug;
     // }
 
-    function generateSlug($model, $name, $column = 'slug')
+
+    function generateSlug($model, $inputSlug, $item = null, $column = 'slug')
     {
-        // 1. lowercase + trim
-        $slug = strtolower(trim($name));
-
-        // 2. space normalize
+        // normalize input (keep user intention)
+        $slug = trim(strtolower($inputSlug));
         $slug = preg_replace('/\s+/', ' ', $slug);
+        $slug = str_replace(' ', '-', $slug);
 
-        // 3. if custom slug contains "/", keep structure but clean parts
-        if (str_contains($slug, '/')) {
-            $parts = explode('/', $slug);
-            $parts = array_map(function ($part) {
-                return strtolower(trim($part));
-            }, $parts);
-
-            $slug = implode('/', $parts);
-        } else {
-            // normal slug convert
-            $slug = str_replace(' ', '-', $slug);
+        // ✅ যদি update হয় এবং slug change না হয় → old return
+        if ($item->slug != null && $item->slug === $slug) {
+            return $item->slug;
         }
 
         $original = $slug;
         $count = 1;
 
-        while ($model::where($column, $slug)->exists()) {
-            $slug = $original . '/' . $count;
+        while (
+            $model::where($column, $slug)
+                ->when($item->id, fn($q) => $q->where('id', '!=', $item->id))
+                ->exists()
+        ) {
+            $slug = $original . '-' . $count;
             $count++;
         }
 
         return $slug;
     }
+
 }

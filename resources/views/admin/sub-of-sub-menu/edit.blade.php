@@ -47,14 +47,13 @@
                 <!-- If NOT custom -->
                 <div class="w-full" x-show="!isCustom">
 
-                    <x-labeled-select label="Select Page" name="page_id" class="w-full p-1"
-                        x-bind:required="!isCustom">
+                    <x-labeled-select label="Select Page" name="page_id" class="w-full p-1" x-bind:required="!isCustom">
 
                         <option value="" disabled>Select Sub Of Sub Menu Name</option>
 
                         @foreach ($pages as $page)
                             <option value="{{ $page->id }}" {{ $page->id == $subOfSubMenu->page_id ? 'selected' : '' }}>
-                                {{ $page->title }}
+                                {!! $page->title !!}
                             </option>
                         @endforeach
 
@@ -66,10 +65,10 @@
                 <div class="w-full flex flex-wrap" x-show="isCustom">
 
                     <x-labeled-input label="Sub Of Sub Menu Name" name="name" class="w-full p-1 md:w-1/2"
-                        value="{{ $subOfSubMenu->name }}" x-bind:required="isCustom" />
+                        value="{!! $subOfSubMenu->name !!}" x-bind:required="isCustom" />
 
                     <x-labeled-input label="Sub Of Sub Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
-                        value="{{ $subOfSubMenu->slug }}" />
+                        value="{!! $subOfSubMenu->slug !!}" />
 
                 </div>
 

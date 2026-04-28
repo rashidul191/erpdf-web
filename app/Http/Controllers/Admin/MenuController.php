@@ -59,14 +59,19 @@ class MenuController extends Controller
             $rules['page_id'] = 'required|integer|exists:pages,id';
         }
 
-
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
+            // $page = Page::findOrFail($validated['page_id']);
+            // $validated['name'] = $page->title;
+            // $validated['slug'] = $page->slug;
+
             $validated['slug'] = !empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])
                 : generateSlug(MenuItem::class, $validated['name']);
         }
+
+
 
         return response()->reportTo(
             MenuItem::create($validated),
@@ -92,13 +97,6 @@ class MenuController extends Controller
 
     public function update(Request $request, MenuItem $menu)
     {
-        // Validate input
-        // $validated = $request->validate([
-        //     'page_id' => 'required|integer|exists:pages,id',
-        //     'serial' => 'nullable|integer',
-        //     'status' => 'nullable|integer',
-        // ]);
-
         $rules = [
             'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
@@ -116,11 +114,19 @@ class MenuController extends Controller
 
         $validated = $request->validate($rules);
 
-        if ($request->is_custom == IsAgreeStatus::Yes) {
+        if ($request->is_custom == IsAgreeStatus::No) {
+            // dd('no');
+            $validated['name'] = null;
+            $validated['slug'] = null;
+
+            $validated['is_custom'] = IsAgreeStatus::No;
+        } else {
+            // dd('yes', $menu, $validated['slug']);
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(MenuItem::class, $validated['slug'])
-                : generateSlug(MenuItem::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'], $menu)
+                : generateSlug(MenuItem::class, $validated['name'], $menu);
         }
+
 
         // Return response
         return response()->reportTo(
@@ -129,7 +135,6 @@ class MenuController extends Controller
             route('admin.menu.index')
         );
     }
-
 
     public function destroy(MenuItem $menu)
     {

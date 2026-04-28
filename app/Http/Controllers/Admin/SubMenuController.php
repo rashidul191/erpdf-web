@@ -65,15 +65,17 @@ class SubMenuController extends Controller
             $rules['page_id'] = 'required|integer|exists:pages,id';
         }
 
-
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
+            // $page = Page::findOrFail($validated['page_id']);
+            // $validated['name'] = $page->title;
+            // $validated['slug'] = $page->slug;
+
             $validated['slug'] = !empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])
                 : generateSlug(MenuItem::class, $validated['name']);
         }
-
 
         return response()->reportTo(
             MenuItem::create($validated),
@@ -117,13 +119,15 @@ class SubMenuController extends Controller
 
         $validated = $request->validate($rules);
 
-        if ($request->is_custom == IsAgreeStatus::Yes) {
+        if ($request->is_custom == IsAgreeStatus::No) {
+            $validated['name'] = null;
+            $validated['slug'] = null;
+            $validated['is_custom'] = IsAgreeStatus::No;
+        } else {
             $validated['slug'] = !empty($validated['slug'])
-                ? generateSlug(MenuItem::class, $validated['slug'])
-                : generateSlug(MenuItem::class, $validated['name']);
+                ? generateSlug(MenuItem::class, $validated['slug'], $subMenu)
+                : generateSlug(MenuItem::class, $validated['name'], $subMenu);
         }
-
-
 
         // Return response
         return response()->reportTo(
