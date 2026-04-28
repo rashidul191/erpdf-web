@@ -93,8 +93,8 @@
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
                 <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />
-                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')"
-                    :icon="icon('review')" />
+                {{-- <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')"
+                    :icon="icon('review')" /> --}}
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')"
                     :icon="icon('message')" />
 

@@ -55,12 +55,9 @@
                     dataSrc(response) {
                         response.data.map(function(item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.client-say.edit', '
-
-                                @ ') }}'.replace('@', item
+                                'edit': '{{ route('admin.client-say.edit', '@') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.client-say.destroy', '
-                                @ ') }}'.replace('@',
+                                'delete': '{{ route('admin.client-say.destroy', '@') }}'.replace('@',
                                     item.id),
                             });
 
