@@ -24,8 +24,8 @@ class Page extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':content,images/no-image.png',
-        'page_banner_image' => ImageField::class . ':content,banner_image/no-image.png',
+        'image' => ImageField::class . ':content/image,images/no-image.png',
+        'page_banner_image' => ImageField::class . ':content/banner_image,images/no-image.png',
         'status' => CommonStatus::class,
     ];
 

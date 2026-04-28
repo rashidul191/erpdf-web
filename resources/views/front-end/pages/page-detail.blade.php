@@ -3,7 +3,7 @@
     <!-- CONTENT START -->
     <div class="page-content">
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="$content->page_banner_image ?? null" />
+        <x-page-banner :image="$content->getRawOriginal('page_banner_image') ?? null" />
         <!-- INNER PAGE BANNER END -->
         @if($content)
             <!-- SECTION CONTENT START -->
@@ -14,7 +14,7 @@
 
                             <!-- BLOG START -->
                             <div class="card shadow-sm border-0">
-                                @if($content->image)
+                                @if($content->getRawOriginal('image'))
                                     <!-- Image -->
                                     <div class="overflow-hidden">
                                         <img src="{{ asset($content->image) }}" alt="{{ $content->title }}"
