@@ -33,20 +33,19 @@ class PageController extends Controller
 
     public function create()
     {
-
         return view('admin.page.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'page_banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
             'status' => 'required|integer',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'others' => 'nullable|string',
-
         ]);
 
         $validated['slug'] = generateSlug(Page::class, $validated['title']);
@@ -67,10 +66,8 @@ class PageController extends Controller
     public function update(Request $request, Page $page)
     {
 
-        // dd($request->all());
-        // Validate input
         $validated = $request->validate([
-            'menu_id' => 'required|integer|exists:menu_items,id',
+            'page_banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
             'status' => 'required|integer',
@@ -79,13 +76,10 @@ class PageController extends Controller
             'others' => 'nullable|string',
         ]);
 
-
-
         // is change name
         if ($page->title !== $validated['title']) {
             $validated['slug'] = generateSlug(Page::class, $validated['title']);
         }
-
         // Return response
         return response()->reportTo(
             $page->update($validated),

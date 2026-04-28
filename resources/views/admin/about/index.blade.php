@@ -8,7 +8,7 @@
             class="w-full">
             @csrf
             <img width="50" height="50" id="preAboutBannerImg" src="{{ business_image('about_page_banner_img') }}">
-            <x-labeled-input label="Page Banner Image (1920x800px)" type="file"
+            <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
                 accept="image/jpeg,image/png,image/jpg,image/webp" name="about_page_banner_img" class="w-full p-1"
                 onchange="preAboutBannerImg.src=window.URL.createObjectURL(this.files[0])"
                 value="{{ business_setting('about_page_banner_img') }}" />
@@ -93,7 +93,8 @@
                                 <td class="p-1 text-center flex items-center justify-center space-x-2">
 
                                     <div>
-                                        <a href="{{ route('admin.about.left-side.edit', $item->id)}}" class="bg-blue-500  text-white font-medium py-1 px-3 rounded">Edit</a>
+                                        <a href="{{ route('admin.about.left-side.edit', $item->id)}}"
+                                            class="bg-blue-500  text-white font-medium py-1 px-3 rounded">Edit</a>
                                     </div>
 
                                     <form action="{{ route('admin.about.left-side.destroy', $item->id) }}" method="POST">

@@ -11,12 +11,12 @@
     </div>
 
     <div class="w-full mt-4 bg-white p-4 rounded">
-        <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data" class="w-full">
+        <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data"
+            class="w-full">
             @csrf
             <img width="50" height="50" id="preGalleryBannerImg" src="{{ business_image('gallery_page_banner_img') }}">
-            <x-labeled-input label="Page Banner Image (1920x800px)" type="file"
-                accept="image/jpeg,image/png,image/jpg,image/webp" name="gallery_page_banner_img"
-                class="w-full p-1"
+            <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
+                accept="image/jpeg,image/png,image/jpg,image/webp" name="gallery_page_banner_img" class="w-full p-1"
                 onchange="preGalleryBannerImg.src=window.URL.createObjectURL(this.files[0])"
                 value="{{ business_setting('gallery_page_banner_img') }}" />
             <div class="w-full pt-2 flex justify-end">
@@ -36,9 +36,8 @@
                 <img width="50" id="prevImage" src="">
                 <div class="flex flex-wrap justify-center w-full">
                     <x-labeled-input label="Image (800x500px)" type="file"
-                        accept="image/jpeg,image/png,image/jpg,image/webp" name="image"
-                        class="w-full md:w-1/2 p-1" required
-                        oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
+                        accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full md:w-1/2 p-1"
+                        required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
                     <x-labeled-input name="title" class="w-full md:w-1/2 p-1" />
 
@@ -71,7 +70,7 @@
                 ajax: {
                     url: '{{ route('admin.gallery.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
                             item.action = actionIcons({
                                 'delete': '{{ route('admin.gallery.destroy', '
                                 @ ') }}'.replace('@',
@@ -87,24 +86,24 @@
                 },
 
                 columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'image',
-                        orderable: false,
-                    },
-                    {
-                        data: 'title',
-                        orderable: false,
-                        defaultContent: '--',
-                    },
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image',
+                    orderable: false,
+                },
+                {
+                    data: 'title',
+                    orderable: false,
+                    defaultContent: '--',
+                },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>

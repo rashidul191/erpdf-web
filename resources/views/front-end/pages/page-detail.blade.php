@@ -1,13 +1,11 @@
 <x-guest-layout>
 
-
     <!-- CONTENT START -->
     <div class="page-content">
+        <!-- INNER PAGE BANNER -->
+        <x-page-banner :image="$content->page_banner_image ?? null" />
+        <!-- INNER PAGE BANNER END -->
         @if($content)
-            <!-- INNER PAGE BANNER -->
-            {{-- <x-page-banner :image="business_image('contact_banner') ?? null" /> --}}
-            <!-- INNER PAGE BANNER END -->
-
             <!-- SECTION CONTENT START -->
             <div class="section-full py-5 bg-light">
                 <div class="container">

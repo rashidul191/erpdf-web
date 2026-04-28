@@ -12,7 +12,7 @@
 
                     <div class="flex flex-wrap items-center w-full md:w-1/2">
                         <img width="50" height="50" id="preRoomImg" src="{{ business_image('spe_room_img') }}">
-                        <x-labeled-input label="Room Image (1920x800px)" type="file"
+                        <x-labeled-input label="Room Image (1600x600px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="spe_room_img"
                             class="w-full md:w-[89%] p-1"
                             onchange="preRoomImg.src=window.URL.createObjectURL(this.files[0])"
@@ -21,7 +21,7 @@
                     <div class="flex flex-wrap items-center w-full md:w-1/2">
                         <img width="50" height="50" id="preRestaurantImg"
                             src="{{ business_image('spe_restaurant_img') }}">
-                        <x-labeled-input label="Restaurant Image (1920x800px)" type="file"
+                        <x-labeled-input label="Restaurant Image (1600x600px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="spe_restaurant_img"
                             class="w-full md:w-[89%] p-1"
                             onchange="preRestaurantImg.src=window.URL.createObjectURL(this.files[0])"
@@ -30,7 +30,7 @@
 
                     <div class="flex flex-wrap items-center w-full md:w-1/2">
                         <img width="50" height="50" id="preLuxuryImg" src="{{ business_image('spe_luxury_img') }}">
-                        <x-labeled-input label="Luxury Image (1920x800px)" type="file"
+                        <x-labeled-input label="Luxury Image (1600x600px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="spe_luxury_img"
                             class="w-full md:w-[89%] p-1"
                             onchange="preLuxuryImg.src=window.URL.createObjectURL(this.files[0])"
@@ -39,7 +39,7 @@
                     <div class="flex flex-wrap items-center w-full md:w-1/2">
                         <img width="50" height="50" id="preMeetingHallImg"
                             src="{{ business_image('spe_meeting_hall_img') }}">
-                        <x-labeled-input label="Meeting Hall Image (1920x800px)" type="file"
+                        <x-labeled-input label="Meeting Hall Image (1600x600px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="spe_meeting_hall_img"
                             class="w-full md:w-[89%] p-1"
                             onchange="preMeetingHallImg.src=window.URL.createObjectURL(this.files[0])"

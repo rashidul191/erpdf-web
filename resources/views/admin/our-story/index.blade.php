@@ -14,7 +14,7 @@
         class="w-full bg-white p-2 rounded mt-4">
         @csrf
         <img width="50" height="50" id="prePPBannerImg" src="{{ business_image('pp_page_banner_img') }}">
-        <x-labeled-input label="Page Banner Image (1920x800px)" type="file"
+        <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
             accept="image/jpeg,image/png,image/jpg,image/webp" name="pp_page_banner_img" class="w-full p-1"
             onchange="prePPBannerImg.src=window.URL.createObjectURL(this.files[0])"
             value="{{ business_setting('pp_page_banner_img') }}" />

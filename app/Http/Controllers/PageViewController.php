@@ -22,11 +22,8 @@ use Illuminate\Http\Request;
 
 class PageViewController extends Controller
 {
-
-
     public function page($slug)
     {
-
         // custom page
         if ($slug === 'news' || $slug === 'blog') {
             return $this->blogPage();
@@ -44,6 +41,7 @@ class PageViewController extends Controller
             return $this->projectProgress();
         }
 
+
         // dynamic page
         return $this->pageDetail($slug);
     }
@@ -51,6 +49,7 @@ class PageViewController extends Controller
     public function pageDetail($slug)
     {
         $content = Page::where('slug', $slug)->first();
+
         return view('front-end.pages.page-detail', compact('content'));
     }
 
