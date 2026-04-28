@@ -24,7 +24,6 @@
                                     class="text-xs text-blue-500 hover:underline ml-2">
                                     Edit
                                 </a>
-
                             </li>
                         @endforeach
                     </ul>
@@ -33,7 +32,7 @@
 
         </div>
 
-        @if($menuManages->count() <= 1)
+        @if($menuManages->count() <= 1 || $editMenu != null)
             {{-- Create Form Start --}}
             <div class="w-full md:w-2/3 bg-white p-2 rounded">
                 <form action="{{ isset($editMenu)
@@ -41,7 +40,6 @@
             : route('admin.menu-manage.store') }}" method="POST">
 
                     @csrf
-
                     @isset($editMenu)
                         @method('PUT')
                     @endisset

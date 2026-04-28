@@ -17,9 +17,7 @@ class MenuManageController extends Controller
     public function index(Request $request)
     {
         $menuManages = MenuManage::oldest('serial')->get();
-
         $editMenu = null;
-
         if ($request->has('id')) {
             $editMenu = MenuManage::findOrFail($request->id);
         }
@@ -58,56 +56,6 @@ class MenuManageController extends Controller
 
         return view('admin.menu-manage.show', compact('menuMange', 'menuManages', 'pages'));
     }
-
-    // public function edit(Menu $subOfSubMenu)
-    // {
-
-    //     $pages = Page::where('status', CommonStatus::Active())
-    //         ->where(function ($query) use ($subOfSubMenu) {
-    //             $query->whereDoesntHave('menu') // unused pages
-    //                 ->orWhere('id', $subOfSubMenu->page_id); // 🔥 include current one
-    //         })
-    //         ->oldest('title')
-    //         ->get();
-    //     $subMenus = MenuItem::whereNotNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
-    //     return view('admin.menu-manage.edit', compact('subOfSubMenu', 'pages', 'subMenus'));
-    // }
-
-    // public function update(Request $request, Menu $subOfSubMenu)
-    // {
-    //     // Validate input
-    //     $rules = [
-    //         'is_custom' => 'nullable|integer',
-    //         'serial' => 'nullable|integer',
-    //         'status' => 'nullable|integer',
-    //         'menu_id' => 'nullable|integer|exists:menu_items,id',
-    //         'sub_menu_id' => 'nullable|integer|exists:menu_items,id',
-    //     ];
-
-    //     if ($request->is_custom == IsAgreeStatus::Yes) {
-    //         $rules['name'] = 'required|string';
-    //         $rules['slug'] = 'nullable|string';
-
-    //     } else {
-    //         $rules['page_id'] = 'required|integer|exists:pages,id';
-    //     }
-
-
-    //     $validated = $request->validate($rules);
-
-    //     if ($request->is_custom == IsAgreeStatus::Yes) {
-    //         $validated['slug'] = !empty($validated['slug'])
-    //             ? generateSlug(MenuItem::class, $validated['slug'])
-    //             : generateSlug(MenuItem::class, $validated['name']);
-    //     }
-
-    //     // Return response
-    //     return response()->reportTo(
-    //         $subOfSubMenu->update($validated),
-    //         'Updated successfully',
-    //         route('admin.menu-manage.index')
-    //     );
-    // }
 
 
     public function footerMenuStore(Request $request)

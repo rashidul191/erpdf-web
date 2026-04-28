@@ -60,15 +60,11 @@
                     dataSrc(response) {
                         response.data.map(function (item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.slider.edit', '
-                                @ ') }}'.replace('@', item
+                                'edit': '{{ route('admin.slider.edit', '@') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.slider.destroy', '
-                                @ ') }}'.replace('@',
+                                'delete': '{{ route('admin.slider.destroy', '@') }}'.replace('@',
                                     item.id),
                             });
-
-
 
                             item.is_home = item.is_home ?
                                 `<span class='bg-green-500 font-bold text-white rounded px-1'>Yes</span>` :

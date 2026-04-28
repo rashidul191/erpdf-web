@@ -85,6 +85,6 @@ jobs:
             $PHP_BIN artisan route:clear
             $PHP_BIN artisan route:cache
 
-            $PHP_BIN artisan storage:link || true
+            # $PHP_BIN artisan storage:link || true
 
             echo "✅ DEPLOY SUCCESSFUL"
