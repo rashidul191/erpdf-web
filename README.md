@@ -5,3 +5,4 @@
 - Vite
 - Multi Guard (User & Admin)
 - Select2
+# stc-bank-web
