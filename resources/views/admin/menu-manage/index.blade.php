@@ -32,7 +32,7 @@
 
         </div>
 
-        @if($menuManages->count() <= 1 || $editMenu != null)
+        @if($menuManages->count() <= 2 || $editMenu != null)
             {{-- Create Form Start --}}
             <div class="w-full md:w-2/3 bg-white p-2 rounded">
                 <form action="{{ isset($editMenu)

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\CommonStatus;
-use App\Enums\IsAgreeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

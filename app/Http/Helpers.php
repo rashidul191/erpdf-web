@@ -112,14 +112,14 @@ if (!function_exists('business_image')) {
 
 if (!function_exists('generateSlug')) {
 
-    // function generateSlug($model, $name, $column = 'slug')
+    // function generateSlug($modelName, $name, $column = 'slug')
     // {
 
     //     $slug = Str::slug($name);
     //     $original = $slug;
     //     $count = 1;
 
-    //     $query = $model::query();
+    //     $query = $modelName::query();
 
     //     while ($query->where($column, $slug)->exists()) {
     //         $slug = $original . '-' . $count;
@@ -130,24 +130,24 @@ if (!function_exists('generateSlug')) {
     // }
 
 
-    function generateSlug($model, $inputSlug, $item = null, $column = 'slug')
+    function generateSlug($modelName, $inputSlug, $storeSingleData = null, $column = 'slug')
     {
-        // normalize input (keep user intention)
+        // normalize input
         $slug = trim(strtolower($inputSlug));
         $slug = preg_replace('/\s+/', ' ', $slug);
         $slug = str_replace(' ', '-', $slug);
 
-        // ✅ যদি update হয় এবং slug change না হয় → old return
-        if ($item->slug != null && $item->slug === $slug) {
-            return $item->slug;
+        // ✅ update case → slug same হলে return
+        if ($storeSingleData && $storeSingleData->slug === $slug) {
+            return $slug;
         }
 
         $original = $slug;
         $count = 1;
 
         while (
-            $model::where($column, $slug)
-                ->when($item->id, fn($q) => $q->where('id', '!=', $item->id))
+            $modelName::where($column, $slug)
+                ->when($storeSingleData, fn($q) => $q->where('id', '!=', $storeSingleData->id))
                 ->exists()
         ) {
             $slug = $original . '-' . $count;
