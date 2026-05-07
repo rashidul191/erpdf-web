@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use App\Casts\ImageField;
-use App\Enums\RoleStatus;
-use App\Enums\UserStatus;
-use App\Models\FrontEnd\Order;
+use App\Enums\UserStatus;;
 use App\Traits\DeletesImage;
 use BenSampo\Enum\Traits\QueriesFlaggedEnums;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -1,6 +1,6 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between">
-        <div class="text-xl">{{ __('Project Progress') }}</div>
+        <div class="text-xl">{{ __('Out Store') }}</div>
 
         <div>
             <a href="{{ route('admin.our-story.create') }}"

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\FrontEnd\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,29 +24,12 @@ Route::get('/{slug}', [PageViewController::class, 'page'])->name('page.index');
 
 Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
 
-/* Page Routes */
-// Route::get('/about-us', [PageViewController::class, 'aboutPage'])->name('about.index');
-
-// Route::get('/project-progress', [PageViewController::class, 'projectProgress'])->name('project-progress.index');
-// Route::get('/blog', [PageViewController::class, 'blogPage'])->name('blog.index');
-
-// Route::get('/gallery', [PageViewController::class, 'galleryPage'])->name('gallery.index');
-// Route::get('/contact-us', [PageViewController::class, 'contactPage'])->name('contact.index');
-
-
 /* Blog Routes */
 Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
 Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');
 Route::get('/blog-search', [PageViewController::class, 'blogSearch'])->name('blog.search');
 
 Route::get('/team-category/{id}/{slug}', [PageViewController::class, 'teamCategory'])->name('team-category.show');
-
-/* Room Routes */
-Route::get('/room/{id}/{slug}', [PageViewController::class, 'roomDetails'])->name('room.show');
-Route::get('/room-category/{id}/{slug}', [PageViewController::class, 'roomCategory'])->name('room-category.show');
-Route::post('/room-comment', [PageViewController::class, 'roomCommentStore'])->name('room.comment.store');
-Route::get('/room-search', [PageViewController::class, 'roomSearch'])->name('room.search');
-
 
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');

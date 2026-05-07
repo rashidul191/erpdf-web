@@ -77,19 +77,12 @@
                     <x-navigation-link :href="route('admin.team-categories.index')" :text="__('Team Categories')" />
                 </x-navigation-link>
 
-                <x-navigation-link :href="route('admin.our-story.index')" :text="__('Project Progress')"
-                    :icon="icon('room')" />
-
                 <x-navigation-link :text="__('News')" :icon="icon('website')">
                     <x-navigation-link :href="route('admin.blog.index')" :text="__('News List')" />
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 
-                <x-navigation-link :text="__('Room')" :icon="icon('room')">
-                    <x-navigation-link :href="route('admin.room.index')" :text="__('Room List')" />
-                    <x-navigation-link :href="route('admin.room-categories.index')" :text="__('Room Categories')" />
-                    <x-navigation-link :href="route('admin.room-types.index')" :text="__('Room Types')" />
-                </x-navigation-link>
+
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
                 <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />

@@ -37,14 +37,7 @@ class PageDataSeeder extends Seeder
                 'title' => 'FAQ',
                 'slug' => 'faq',
             ],
-            [
-                'title' => 'Rooms',
-                'slug' => 'rooms',
-            ],
-            [
-                'title' => 'Project Progress',
-                'slug' => 'project-progress',
-            ],
+
         );
         foreach ($pages as $page) {
             Page::firstOrCreate(

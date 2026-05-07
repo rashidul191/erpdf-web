@@ -146,24 +146,7 @@
                         <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
                             <a href="{{ route('home.index') }}">Home</a>
                         </li>
-
                         <x-menu-item :menus="$menus" />
-
-
-                        {{-- @php
-                        $roomCategories = \App\Models\RoomCategory::oldest('name')->get();
-                        @endphp
-                        <li class="{{ request()->routeIs('room-category.*') ? 'active' : '' }}">
-                            <a href="javascript:;">Rooms</a>
-                            <ul class="sub-menu">
-                                @foreach ($roomCategories as $item)
-                                <li><a href="{{ route('room-category.show', [$item->id, $item->slug]) }}">{{ $item->name
-                                        }}</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </li> --}}
-
                     </ul>
                 </div>
 
@@ -290,7 +273,7 @@
                 <!-- SITE Search -->
                 <div id="search">
                     <span class="close"></span>
-                    <form role="search" id="searchform" action="{{ route('room.search') }}" method="get"
+                    <form role="search" id="searchform" action="" method="get"
                         class="radius-xl">
                         <div class="input-group">
                             <input value="" name="search_text" type="search" placeholder="Type to search" />

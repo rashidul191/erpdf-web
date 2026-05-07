@@ -21,9 +21,6 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MenuManageController;
 use App\Http\Controllers\Admin\OurStoryController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\RoomCategoryController;
-use App\Http\Controllers\Admin\RoomController;
-use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SpecializationController;
@@ -148,11 +145,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /* Blog Routes */
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
-
-        /* Room Routes */
-        Route::resource('room', RoomController::class);
-        Route::resource('room-categories', RoomCategoryController::class);
-        Route::resource('room-types', RoomTypeController::class);
 
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');

@@ -7,12 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Slider;
 use App\Models\Admin\Team;
 use App\Models\Blog;
-use App\Models\ClientSay;
-use App\Models\Gallery;
-use App\Models\Room;
-use App\Models\Service;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -32,7 +26,6 @@ class DashboardController extends Controller
             // Card::make('Total Users', User::count()),
             Card::make('Total Slider', Slider::count()),
             Card::make('Total News', Blog::count()),
-            Card::make('Total Room', Room::count()),
             // Card::make('Total Galleries', Gallery::count()),
             Card::make('Total Members', Team::count()),
             // Card::make('Total Services', Service::count()),

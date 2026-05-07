@@ -1,7 +1,7 @@
-<x-admin-app-layout :title="__('Create Project Progress')">
+<x-admin-app-layout :title="__('Create Out Store')">
 
     <div class="pb-3 flex justify-between">
-        <div class="text-md md:text-2xl">{{ __('Create Project Progress') }}</div>
+        <div class="text-md md:text-2xl">{{ __('Create Out Store') }}</div>
         <div>
             <a class="text-primary-700 font-semibold bg-red-200 py-2 px-3 rounded"
                 href="{{ route('admin.our-story.index') }}">{{ __('Back') }}</a>
@@ -21,7 +21,7 @@
                     placeholder="2026-2030" />
 
                 <x-labeled-input name="title" required class="w-full p-1" />
-                
+
                 <x-labeled-textarea label="Description" name="description" is-editor="is-editor" class="w-full p-1" />
 
 
