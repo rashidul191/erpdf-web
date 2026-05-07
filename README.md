@@ -1,8 +1,11 @@
-## 5Star Hotel Web Application
+# stc-bank-web
 
 - Laravel 8.0
 - TailwindCSS v3
 - Vite
 - Multi Guard (User & Admin)
 - Select2
-# stc-bank-web
+
+## Copyright
+
+2026 All rights reserved by [Rashidul Islam](https://github.com/rashidul191).
