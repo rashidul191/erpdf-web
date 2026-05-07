@@ -23,7 +23,8 @@ class HomeController extends Controller
 
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
 
-        $data['faqs'] = FAQ::latest()->limit(4)->get();    
+        $data['faqs'] = FAQ::latest()->limit(4)->get();
+
         return view('front-end.home.index')->with($data);
     }
 }
