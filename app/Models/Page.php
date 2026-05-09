@@ -37,4 +37,9 @@ class Page extends Model
         return $this->hasMany(MenuItem::class, 'page_id');
     }
 
+    public function getRawImage($image)
+    {
+        return $this->getRawOriginal($image);
+    }
+
 }

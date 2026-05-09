@@ -3,7 +3,11 @@
     <!-- CONTENT START -->
     <div class="page-content">
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="$content ? $content->getRawOriginal('page_banner_image') : null" />
+        @php
+            $pageBannerImage = getRawImage($content, 'page_banner_image', true);
+        @endphp
+        <x-page-banner :image="$pageBannerImage ?? null" />
+
         <!-- INNER PAGE BANNER END -->
         @if($content != null)
             <!-- SECTION CONTENT START -->

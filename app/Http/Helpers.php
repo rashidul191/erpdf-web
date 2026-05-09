@@ -156,5 +156,26 @@ if (!function_exists('generateSlug')) {
 
         return $slug;
     }
+}
 
+
+if (!function_exists('getRawImage')) {
+
+    function getRawImage($model, string $field = 'image', bool $raw = false)
+    {
+        if (!$model) {
+            return null;
+        }
+
+        // RAW DB value
+        if ($raw) {
+            $value = $model->getRawOriginal($field);
+            return $value ?: null;
+        }
+
+        // normal value
+        $value = $model->$field ?? null;
+        return $value;
+
+    }
 }

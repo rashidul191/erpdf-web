@@ -2,13 +2,12 @@
 
     <!-- CONTENT START -->
     <div class="page-content">
-
         <!-- INNER PAGE BANNER -->
-         <x-page-banner :image="business_image('about_page_banner_img')"/>
+        <x-page-banner :image="business_image('about_page_banner_img')" />
         <!-- INNER PAGE BANNER END -->
 
         <!-- WELCOME SECTION START -->
-          @include('front-end.about-page-section.about-section')
+        @include('front-end.about-page-section.about-section')
         <!-- WELCOME  SECTION END -->
 
         <!-- OUR SPECIALLIZATION START -->

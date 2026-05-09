@@ -49,7 +49,7 @@
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                             oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
                     </div>
-                    <x-labeled-textarea label="Others" name="others" :value="old('others', $page->description)"
+                    <x-labeled-textarea label="Others" name="others" :value="old('others', $page->others)"
                         class="w-full p-1"></x-labeled-textarea>
                     <x-labeled-select name="page_layout_type" required class="w-full p-1">
                         @foreach (\App\Enums\PageLayoutType::getInstances() as $value)

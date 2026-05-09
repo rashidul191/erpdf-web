@@ -1,27 +1,40 @@
-@props(['title' => null,'image' => null])
+@props(['title' => null, 'image' => null])
+
 @php
-$image = $image ? $image : asset('front-end/assets/images/banner/1.jpg');
-$pageTitle = $title ? $title : \Str::title(str_replace('-', ' ', request()->segment(1)));
+    $finalImage = $image ?? '/images/banner-img.jpg';
+    $pageTitle = $title ? $title : \Str::title(str_replace('-', ' ', request()->segment(1)));
 @endphp
-<div class="wt-bnr-inr overlay-wraper bg-parallax bg-top-center" style="background-image:url('{{ $image }}')">
-    <div class="overlay-main bg-black opacity-07"></div>
-    <div class="container">
-        <div class="wt-bnr-inr-entry">
-            <div class="banner-title-outer">
-                <div class="banner-title-name">
-                    <h2 class="text-white  font-80 font-weight-900">{{ $pageTitle }}</h2>
-                </div>
-            </div>
-            <!-- BREADCRUMB ROW -->
 
-            <div>
-                <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="{{ route('home.index') }}">Home</a></li>
-                    <li>{{ $pageTitle }}</li>
-                </ul>
+<section class="position-relative text-white">
+
+    <!-- Background Image -->
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+        <img src="{{ asset($finalImage) }}" class="w-100 h-100 object-fit-cover" style="object-fit:cover;" alt="">
+        <div class="bg-dark opacity-50 position-absolute top-0 start-0 w-100 h-100"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="container position-relative py-5">
+        <div class="row align-items-center" style="min-height: 250px;">
+
+            <div class="col-12 text-center">
+                <h2 class="fw-bold mb-3">{{ $pageTitle }}</h2>
+
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center bg-transparent p-0 mb-0 fs-6">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('home.index') }}" class="text-white text-decoration-none">
+                                Home <span class="icofont icofont-double-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            {{ $pageTitle }}
+                        </li>
+                    </ol>
+                </nav>
             </div>
 
-            <!-- BREADCRUMB ROW END -->
         </div>
     </div>
-</div>
+</section>
