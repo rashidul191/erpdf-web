@@ -6,14 +6,15 @@
         $slug = $isCustom ? $menu->slug : ($menu->page->slug ?? '');
         $title = $isCustom ? $menu->name : ($menu->page->title ?? '');
     @endphp
-    <li class="{{ request()->routeIs('page.index') && request()->route('slug') == $slug ? 'active' : '' }}">
+    <li
+        class="{{ request()->routeIs('page.index') && request()->route('slug') == $slug ? 'active' : ''   }} {{ $menu->subMenus->isNotEmpty() ? 'dropdown' : '' }}">
 
         <a href="{{ route('page.index', $slug) }}">
             {{ $title }}
         </a>
 
         @if($menu->subMenus->isNotEmpty())
-            <ul class="sub-menu">
+            <ul>
 
                 @foreach ($menu->subMenus as $subMenu)
 
@@ -23,16 +24,14 @@
                         $subTitle = $isCustom ? $subMenu->name : ($subMenu->page->title ?? '');
                     @endphp
 
-                    <li>
+                    <li class="{{ $subMenu->subOfSubMenus->isNotEmpty() ? 'submenu' : ''  }} ">
                         <a href="{{ route('page.index', $subSlug) }}">
                             {{ $subTitle }}
                         </a>
 
                         @if($subMenu->subOfSubMenus->isNotEmpty())
-                            <ul class="sub-of-sub-menu">
-
+                            <ul class="subofsubmenu">
                                 @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
-
                                     @php
                                         $isCustom = $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
                                         $subOfSubSlug = $isCustom ? $subOfSubMenu->slug : ($subOfSubMenu->page->slug ?? '');

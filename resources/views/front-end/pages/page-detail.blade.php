@@ -3,9 +3,9 @@
     <!-- CONTENT START -->
     <div class="page-content">
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :image="$content->getRawOriginal('page_banner_image') ?? null" />
+        <x-page-banner :image="$content ? $content->getRawOriginal('page_banner_image') : null" />
         <!-- INNER PAGE BANNER END -->
-        @if($content)
+        @if($content != null)
             <!-- SECTION CONTENT START -->
             <div class="section-full py-5 bg-light">
                 <div class="container">

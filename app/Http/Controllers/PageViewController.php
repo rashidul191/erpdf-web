@@ -40,6 +40,8 @@ class PageViewController extends Controller
     {
         $content = Page::where('slug', $slug)->first();
 
+        // dd($content);
+
         return view('front-end.pages.page-detail', compact('content'));
     }
 
