@@ -18,12 +18,9 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Designation') }}</th>
-                    <th>{{ __('Categroy') }}</th>
                     <th>{{ __('Serial') }}</th>
+                    <th>{{ __('Team Categroy') }}</th>
                     <th>{{ __('Status') }}</th>
-                    {{-- <th>{{ __('FB') }}</th>
-                    <th>{{ __('Twitter') }}</th>
-                    <th>{{ __('Instagram') }}</th> --}}
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -69,13 +66,16 @@
                     data: 'designation',
                     orderable: false,
                 },
+
+
                 {
-                    data: 'category.name',
+                    data: 'serial',
                     orderable: false,
                     defaultContent: '-'
                 },
+
                 {
-                    data: 'serial',
+                    data: 'categories',
                     orderable: false,
                 },
                 {

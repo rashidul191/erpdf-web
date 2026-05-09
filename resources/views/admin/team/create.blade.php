@@ -8,17 +8,31 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.team.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.team.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-4">
         @csrf
+        <div class="mb-4">
+            <h2 class="font-semibold text-lg">Select Team Category</h2>
 
-        <div class="bg-white p-4">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
+                @foreach ($teamCategories as $item)
+                    <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+
+                        <input type="checkbox" name="team_category_id[]" value="{{ $item->id }}" {{ in_array($item->id, old('team_category_id', [])) ? 'checked' : '' }}>
+
+                        <span class="font-semibold text-md">{{ $item->name }}</span>
+                    </label>
+                @endforeach
+            </div>
+
+        </div>
+        <div>
             <img width="50" id="prevImage" src="">
             <div class="flex flex-wrap justify-center w-full">
-                <x-labeled-input label="Image (500x720px)" type="file"
-                    accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1 md:w-1/2 lg:w-1/4"
-                    required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
+                <x-labeled-input label="Image (220x250px)" type="file"
+                    accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1 md:w-1/3" required
+                    oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                <x-labeled-select name="status" required class="w-full md:w-1/4 p-1">
+                <x-labeled-select name="status" required class="w-full md:w-1/3 p-1">
                     @foreach (\App\Enums\CommonStatus::getInstances() as $value)
                         <option value="{{ $value->value }}" {{ \App\Enums\CommonStatus::Active()->value == $value->value ? 'selected' : '' }}>
                             {{ $value->key }}
@@ -26,15 +40,7 @@
                     @endforeach
                 </x-labeled-select>
 
-                <x-labeled-select label="Team Category" name="team_category_id" required class="w-full md:w-1/4 p-1">
-                    <option value="" disabled selected>Select Team Category</option>
-                    @foreach ($teamCategories as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </x-labeled-select>
-
-                <x-labeled-input name="serial" type="number" min="1" class="w-full p-1 md:w-1/2 lg:w-1/4" />
-
+                <x-labeled-input name="serial" type="number" min="1" class="w-full p-1 md:w-1/3" />
                 <x-labeled-input name="name" required class="w-full p-1 md:w-1/2 lg:w-1/3" />
                 <x-labeled-input name="designation" required class="w-full p-1 md:w-1/2 lg:w-1/3" />
                 <x-labeled-input name="fb_link" class="w-full p-1 md:w-1/2 lg:w-1/3" />

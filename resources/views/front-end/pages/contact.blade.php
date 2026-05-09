@@ -1,11 +1,8 @@
 <x-guest-layout>
 
-
-
     <!-- INNER PAGE BANNER -->
     <x-page-banner :image="business_image('contact_banner') ?? null" />
     <!-- INNER PAGE BANNER END -->
-
 
     <!-- Map Section -->
     <div class="map-section">

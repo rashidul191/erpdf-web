@@ -38,14 +38,14 @@
 
                     <div class="w-full p-1">
                         <img width="50" id="prevBannerImage" src="{{ asset($page->page_banner_image) }}">
-                        <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
+                        <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="page_banner_image"
                             class="w-full p-1"
                             oninput="prevBannerImage.src=window.URL.createObjectURL(this.files[0])" />
                     </div>
                     <div class="w-full p-1">
                         <img width="50" id="prevImage" src="{{ asset($page->image) }}">
-                        <x-labeled-input label="Image (1400x400px)" type="file"
+                        <x-labeled-input label="Image (1200x400px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                             oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
                     </div>
@@ -53,7 +53,7 @@
                         class="w-full p-1"></x-labeled-textarea>
                     <x-labeled-select name="page_layout_type" required class="w-full p-1">
                         @foreach (\App\Enums\PageLayoutType::getInstances() as $value)
-                            <option value="{{ $value->value }}" {{ $page->status->value == $value->value ? 'selected' : '' }}>
+                            <option value="{{ $value->value }}" {{ $page->page_layout_type->value == $value->value ? 'selected' : '' }}>
                                 {{ $value->description }}
                             </option>
                         @endforeach

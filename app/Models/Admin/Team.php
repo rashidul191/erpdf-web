@@ -13,7 +13,7 @@ class Team extends Model
     use HasFactory, DeletesImage;
 
     protected $fillable = [
-        'team_category_id',
+        // 'team_category_id',
         'serial',
         'image',
         'name',
@@ -32,8 +32,14 @@ class Team extends Model
 
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(TeamCategory::class, 'team_category_id');
+        return $this->belongsToMany(
+            TeamCategory::class,
+            'team_join_team_categories',
+            'team_id',
+            'team_category_id'
+        )->withTimestamps();
     }
+
 }

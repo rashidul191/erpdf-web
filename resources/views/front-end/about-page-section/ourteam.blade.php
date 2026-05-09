@@ -1,67 +1,85 @@
-<div class="section-full p-t90 p-b60 bg-white">
+<style>
+    .team-img-box {
+        margin: 0 auto;
+        width: 220px;
+        height: 250px;
+        /* same height for all */
+        overflow: hidden;
+    }
+
+    .team-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* important */
+    }
+
+    @media screen and (max-width: 768px) {
+        .team-img-box {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+</style>
+@php
+    $top = $teams->first();
+    $bottom = $teams->skip(1);
+@endphp
+
+<div class="section-full pt-5 pb-5 bg-white">
     <div class="container">
 
-        <!-- TITLE START -->
-        {{-- <div class="section-head text-left">
-            <h2 class="  m-b5" data-title="Team">Our Team</h2>
-            <div class="wt-separator-outer">
-                <div class="wt-separator site-bg-primary"></div>
-            </div>
-        </div> --}}
-        <!-- TITLE END -->
+        <!-- TOP -->
+        @if($top)
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-4 col-md-6">
 
-        <!-- IMAGE CAROUSEL START -->
-        <div class="our-team-two">
-            <div class="row d-flex justify-content-center">
-                @forelse ($teams as $item)
-                    <div class="col-lg-4 col-md-6 m-b30">
-                        <div class="wt-team-arc2">
+                    <div class="wt-team-arc2 text-center">
 
-                            <div class="wt-media">
-                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
-                                <div class="team-social-center">
-                                    <ul class="team-social-icon">
-                                        @if($item->fb_link)
-                                            <li><a href="{{ $item->fb_link }}" class="fa fa-facebook"></a></li>
-                                        @endif
-
-                                        @if($item->linkedin_link)
-                                            <li><a href="{{ $item->linkedin_link }}" class="fa fa-linkedin"></a></li>
-                                        @endif
-
-                                        @if($item->twitter_link)
-                                            <li> <a href="{{ $item->twitter_link }}" class="fa fa-twitter"></a> </li>
-                                        @endif
-
-                                        @if($item->instagram_link)
-                                            <li><a href="{{ $item->instagram_link }}" class="fa fa-instagram"></a></li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="wt-info">
-                                <div class="team-detail  text-center">
-                                    <h4 class="m-t0">{{ $item->name }}</h4>
-                                    <p>{{ $item->designation }}</p>
-                                </div>
-                            </div>
-
+                        <div class="wt-media team-img-box">
+                            <img src="{{ asset($top->image) }}" class="w-100">
                         </div>
-                    </div>
-                @empty
-                    <div class="text-center">
-                        <h3 class="text-danger">Data Not Found!</h3>
-                    </div>
-                @endforelse
 
-                <div class="d-flex justify-content-center align-items-center">
-                    <div>
-                        {{ $teams->links('pagination::bootstrap-4') }}
+                        <div class="wt-info mt-3">
+                            <h4>{{ $top->name }}</h4>
+                            <p>{{ $top->designation }}</p>
+                        </div>
+
                     </div>
+
                 </div>
-
             </div>
+        @endif
+
+
+        <!-- BOTTOM -->
+        <div class="row justify-content-center">
+
+            @foreach($bottom as $team)
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <div class="wt-team-arc2 text-center">
+
+                        <div class="wt-media team-img-box">
+                            <img src="{{ asset($team->image) }}" class="w-100">
+                        </div>
+
+                        <div class="wt-info mt-3">
+                            <h4>{{ $team->name }}</h4>
+                            <p>{{ $team->designation }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            @endforeach
+
         </div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $teams->links('pagination::bootstrap-4') }}
+        </div>
+
     </div>
 </div>

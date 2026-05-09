@@ -8,7 +8,7 @@
             class="w-full">
             @csrf
             <img width="50" height="50" id="preAboutBannerImg" src="{{ business_image('about_page_banner_img') }}">
-            <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
+            <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
                 accept="image/jpeg,image/png,image/jpg,image/webp" name="about_page_banner_img" class="w-full p-1"
                 onchange="preAboutBannerImg.src=window.URL.createObjectURL(this.files[0])"
                 value="{{ business_setting('about_page_banner_img') }}" />

@@ -21,8 +21,8 @@ class TeamCategory extends Model
         'image' => ImageField::class . ':team-categories,images/no-image.png',
     ];
 
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class);
-    // }
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
 }

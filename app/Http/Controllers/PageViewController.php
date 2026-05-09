@@ -6,13 +6,15 @@ use App\Enums\CommonStatus;
 use App\Models\AboutLeftSide;
 use App\Models\AboutRightSide;
 use App\Models\Admin\Team;
+use App\Models\Admin\TeamJoinTeamCategory;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
 use App\Models\FAQ;
 use App\Models\Gallery;
 use App\Models\OurStory;
-use App\Models\Page;;
+use App\Models\Page;
+;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -39,9 +41,6 @@ class PageViewController extends Controller
     public function pageDetail($slug)
     {
         $content = Page::where('slug', $slug)->first();
-
-        // dd($content);
-
         return view('front-end.pages.page-detail', compact('content'));
     }
 
@@ -107,7 +106,12 @@ class PageViewController extends Controller
     {
         $data['categoryName'] = $category_name;
 
-        $data['teams'] = Team::where('team_category_id', $id)->where('status', CommonStatus::Active)->oldest('serial')->paginate(12);
+        $data['teams'] = Team::whereHas('categories', function ($q) use ($id) {
+            $q->where('team_categories.id', $id);
+        })
+            ->where('status', CommonStatus::Active)
+            ->orderBy('serial', )
+            ->paginate(12);
 
         return view('front-end.pages.team-category', $data);
     }

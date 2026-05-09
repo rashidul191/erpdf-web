@@ -10,27 +10,34 @@
 
         <!-- INNER PAGE BANNER END -->
         @if($content != null)
-            <!-- SECTION CONTENT START -->
-            <div class="section-full py-5 bg-light">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
+                <!-- SECTION CONTENT START -->
+                <div class="section-full py-5 bg-light">
+                    <div class="container">
+                        <!-- Content START -->
+                        <div class="card shadow-sm border-0">
+                            <div class="row">
+                                <!-- Title -->
+                                {{-- <div
+                                    class="col-12 {{ $content->page_layout_type->value == \App\Enums\PageLayoutType::OneColumn ? 'col-md-12' : 'col-md-6' }}">
+                                    <h3 class="card-title mb-3 fw-bold p-5">
+                                        {{ $content->title }}
+                                    </h3>
+                                </div> --}}
 
-                            <!-- BLOG START -->
-                            <div class="card shadow-sm border-0">
-                                @if($content->getRawOriginal('image'))
-                                    <!-- Image -->
-                                    <div class="overflow-hidden">
+                                @if($content->getRawOriginal('image')) <!-- Image -->
+                                    <div
+                                        class="col-12 {{ $content->page_layout_type->value == \App\Enums\PageLayoutType::OneColumn ? 'col-md-12' : 'col-md-4' }} overflow-hidden">
                                         <img src="{{ asset($content->image) }}" alt="{{ $content->title }}"
                                             class="card-img-top img-fluid" style="height: 400px; object-fit: cover;">
                                     </div>
                                 @endif
 
-                                <div class="card-body p-5">
-                                    <!-- Title -->
+                                <div class="col-12 {{ $content->page_layout_type->value == \App\Enums\PageLayoutType::OneColumn ? 'col-md-12' : 'col-md-8' }} p-5">
+
                                     <h3 class="card-title mb-3 fw-bold">
                                         {{ $content->title }}
                                     </h3>
+
 
                                     <!-- Short Description -->
                                     @if($content->short_description)
@@ -54,18 +61,17 @@
 
                                 </div>
                             </div>
-                            <!-- BLOG END -->
-
                         </div>
+                        <!-- Content END -->
                     </div>
                 </div>
             </div>
             <!-- SECTION CONTENT END -->
         @else
-            <div class="section-full py-5 my-5 text-center">
-                <h2 class="text-danger py-5 my-5">Content Not Aviable!</h2>
-            </div>
-        @endif
+        <div class="section-full py-5 my-5 text-center">
+            <h2 class="text-danger py-5 my-5">Content Not Aviable!</h2>
+        </div>
+    @endif
 
     </div>
     <!-- CONTENT END -->

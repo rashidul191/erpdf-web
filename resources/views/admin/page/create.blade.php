@@ -34,14 +34,14 @@
                     </x-labeled-select>
                     <div class="w-full p-1">
                         <img width="50" id="prevBannerImage" src="">
-                        <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
+                        <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="page_banner_image"
                             class="w-full p-1"
                             oninput="prevBannerImage.src=window.URL.createObjectURL(this.files[0])" />
                     </div>
                     <div class="w-full p-1">
                         <img width="50" id="prevImage" src="">
-                        <x-labeled-input label="Image (1400x400px)" type="file"
+                        <x-labeled-input label="Image (1200x400px)" type="file"
                             accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                             oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
                     </div>
