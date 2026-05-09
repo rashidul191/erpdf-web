@@ -16,6 +16,40 @@
         visibility: visible !important;
         opacity: 100 !important;
     }
+
+    @media (max-width: 991px) {
+
+        /* Level 3 hidden */
+        .submenu .subofsubmenu {
+            display: none;
+            padding-left: 15px;
+            margin-top: 5px;
+        }
+
+        /* show when active */
+        .submenu.open>.subofsubmenu {
+            display: block !important;
+        }
+
+        /* arrow */
+        .submenu-arrow {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .submenu.open>.submenu-arrow {
+            transform: rotate(90deg);
+        }
+
+        .submenu {
+            position: relative;
+        }
+    }
 </style>
 
 <!-- Main Header-->
@@ -63,7 +97,6 @@
     <div class="header-upper">
         <div class="auto-container">
             <div class="inner-container clearfix">
-
                 <div class="pull-left logo-box">
                     <div class="logo">
                         <a href="{{ route('home.index') }}">
@@ -92,19 +125,6 @@
                                     <a href="{{ route('home.index') }}">Home</a>
                                 </li>
                                 <x-menu-item :menus="$menus" />
-                                <li class="dropdown">
-                                    <a href="#">About</a>
-                                    <ul>
-                                        <li class="submenu">
-                                            <a href="#">About sub menu</a>
-                                            <ul class="subofsubmenu">
-                                                <li>
-                                                    <a href="#">About Sub of Sub menu</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -140,3 +160,40 @@
 
 </header>
 <!--End Main Header -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        if (window.innerWidth <= 991) {
+            document.querySelectorAll(".submenu").forEach(function (item) {
+                let childMenu = item.querySelector(".subofsubmenu");
+                if (!childMenu) return;
+                // avoid duplicate arrow
+                if (!item.querySelector(".submenu-arrow")) {
+
+                    let arrow = document.createElement("span");
+                    arrow.classList.add("submenu-arrow");
+                    arrow.innerHTML = "&#9656;";
+
+                    item.appendChild(arrow);
+
+                    arrow.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // close siblings
+                        let parent = item.closest("ul");
+                        parent.querySelectorAll(".submenu").forEach(function (el) {
+                            if (el !== item) {
+                                el.classList.remove("open");
+                            }
+                        });
+
+                        // toggle current
+                        item.classList.toggle("open");
+                    });
+                }
+            });
+        }
+    });
+</script>

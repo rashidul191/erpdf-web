@@ -47,6 +47,15 @@
                     </div>
                     <x-labeled-textarea label="Others" name="others" :value="old('others')"
                         class="w-full p-1"></x-labeled-textarea>
+
+
+                    <x-labeled-select name="page_layout_type" required class="w-full p-1">
+                        @foreach (\App\Enums\PageLayoutType::getInstances() as $value)
+                            <option value="{{ $value->value }}" {{ \App\Enums\PageLayoutType::OneColumn()->value == $value->value ? 'selected' : '' }}>
+                                {{ $value->description }}
+                            </option>
+                        @endforeach
+                    </x-labeled-select>
                 </div>
             </div>
             <div class="w-full pt-4 flex justify-end">

@@ -35,6 +35,7 @@
                             </option>
                         @endforeach
                     </x-labeled-select>
+
                     <div class="w-full p-1">
                         <img width="50" id="prevBannerImage" src="{{ asset($page->page_banner_image) }}">
                         <x-labeled-input label="Page Banner Image (1600x600px)" type="file"
@@ -50,6 +51,13 @@
                     </div>
                     <x-labeled-textarea label="Others" name="others" :value="old('others', $page->description)"
                         class="w-full p-1"></x-labeled-textarea>
+                    <x-labeled-select name="page_layout_type" required class="w-full p-1">
+                        @foreach (\App\Enums\PageLayoutType::getInstances() as $value)
+                            <option value="{{ $value->value }}" {{ $page->status->value == $value->value ? 'selected' : '' }}>
+                                {{ $value->description }}
+                            </option>
+                        @endforeach
+                    </x-labeled-select>
                 </div>
             </div>
 

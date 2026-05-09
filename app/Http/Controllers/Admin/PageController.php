@@ -25,7 +25,10 @@ class PageController extends Controller
 
                     return "<span class='text-sm {$color}'>" . $row->status->description . "</span>";
                 })
-                ->rawColumns(['status'])
+                ->addColumn('page_layout_type', function ($row) {
+                    return $row->page_layout_type->description;
+                })
+                ->rawColumns(['status', 'page_layout_type'])
                 ->toJson();
         }
         return view('admin.page.index');
@@ -42,7 +45,8 @@ class PageController extends Controller
             'page_banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
-            'status' => 'required|integer',
+            'status' => 'required|numeric',
+            'page_layout_type' => 'required|numeric',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'others' => 'nullable|string',
@@ -59,7 +63,6 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
-
         return view('admin.page.edit', compact('page', ));
     }
 
@@ -70,7 +73,8 @@ class PageController extends Controller
             'page_banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string',
-            'status' => 'required|integer',
+            'status' => 'required|numeric',
+            'page_layout_type' => 'required|numeric',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'others' => 'nullable|string',

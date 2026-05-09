@@ -17,6 +17,7 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Title') }}</th>
                     <th>{{ __('Slug') }}</th>
+                    <th>{{ __('Page Layout') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
@@ -62,6 +63,11 @@
                 },
                 {
                     data: 'slug',
+                },
+
+                {
+                    data: 'page_layout_type',
+                    defaultContent: '-'
                 },
                 {
                     data: 'status',
