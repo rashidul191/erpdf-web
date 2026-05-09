@@ -17,7 +17,7 @@
     {!! $dynamicSEO->meta_script !!}
     <!--- Dynamic SEO Mete End --->
     @else --}}
-    
+
     <!--- Generated Mete Start --->
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="keyword" content="Laravel Dynamic Websit">
@@ -31,8 +31,9 @@
     <link href="{{ asset('front-end/assets/css/responsive.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
+    {{--
     <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin> --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;500;600;700;900&amp;family=Libre+Baskerville:wght@400;700&amp;family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&amp;family=Sacramento&amp;display=swap"
         rel="stylesheet">
