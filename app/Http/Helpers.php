@@ -99,7 +99,7 @@ if (!function_exists('business_image')) {
 
         return $value
             ? asset('storage/' . $value)
-            : '';
+            : null;
     }
 }
 

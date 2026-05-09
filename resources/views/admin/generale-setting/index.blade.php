@@ -33,6 +33,8 @@
 
                     <x-labeled-input name="address" type="text" value="{!! business_setting('address') !!}"
                         class="w-full md:w-1/2  p-1 " />
+                    <x-labeled-input name="office_time" type="text" value="{!! business_setting('office_time') !!}"
+                        class="w-full md:w-1/2  p-1 " />
 
                     <x-labeled-textarea label="Google Map Embed code" name="google_map_embed_code" type="text"
                         value="{!! business_setting('google_map_embed_code') !!}" class="w-full md:w-1/2 p-1" />

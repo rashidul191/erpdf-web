@@ -125,6 +125,8 @@
                                     <a href="{{ route('home.index') }}">Home</a>
                                 </li>
                                 <x-menu-item :menus="$menus" />
+
+                              
                             </ul>
                         </div>
                     </nav>

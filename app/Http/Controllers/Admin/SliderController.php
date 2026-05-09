@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Enums\CommonStatus;
 use App\Enums\IsHomeStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Slider;
@@ -76,7 +74,7 @@ class SliderController extends Controller
         // Validate input
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
-            'title' => 'required|string',
+            'title' => 'nullable|string',
             'page_link' => 'nullable|string',
             'is_home' => 'nullable|boolean',
         ]);

@@ -2,6 +2,7 @@
 
     <!-- CONTENT START -->
     <div class="page-content">
+
         <!-- INNER PAGE BANNER -->
         <x-page-banner :image="business_image('about_page_banner_img')" />
         <!-- INNER PAGE BANNER END -->
