@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 @php
-                    $menuManages = \App\Models\MenuManage::oldest('serial')->get();
+                    $menuManages = \App\Models\MenuManage::with('menuItems')->oldest('serial')->get();
                 @endphp
 
                 @forelse ($menuManages as $index => $item)
@@ -40,8 +40,22 @@
                         <div class="footer-widget links-widget">
                             <h5 class="widget-title">{{ $item->name }}</h5>
                             <ul>
-                                @foreach ($item->menus as $menu)
-                                    <li><a href="{{ route('page.index', $menu->page->slug) }}">{{ $menu->page->title }}</a></li>
+                                @foreach ($item->menuItems as $menu)
+
+                                    @if($menu->is_custom == \App\Enums\IsAgreeStatus::Yes())
+                                        <li>
+                                            <a href="{{ route('page.index', $menu->slug) }}">
+                                                {{ $menu->name }}
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ route('page.index', $menu->page->slug ?? '#') }}">
+                                                {{ $menu->page->title }}
+                                            </a>
+                                        </li>
+                                    @endif
+
                                 @endforeach
                             </ul>
                         </div>

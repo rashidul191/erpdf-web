@@ -42,7 +42,6 @@ class MenuManageController extends Controller
 
     public function show($id)
     {
-
         $menuMange = MenuManage::with('menuItems')->findOrFail($id);
         $menuManages = MenuManage::oldest('serial')->get();
         $pages = Page::get();

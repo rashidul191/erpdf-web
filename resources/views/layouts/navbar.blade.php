@@ -1,15 +1,6 @@
 @php
-    // $menus = \App\Models\MenuItem::whereNull('menu_id')
-    //     ->whereNull('sub_menu_id')
-    //     ->with([
-    //         'page',
-    //         'subMenus.page',
-    //         'subMenus.subOfSubMenus.page' // 🔥 important
-    //     ])
-    //     ->oldest('serial')
-    //     ->get();
-
     $menus = \App\Models\MenuItem::whereNull('menu_id')
+        ->whereNull('menu_manage_id')
         ->whereNull('sub_menu_id')
         ->with([
             'page',
@@ -113,8 +104,7 @@
                         <li><a href="mailto:{!! business_setting('email')  !!}"><span
                                     class="icon icofont-envelope"></span> {!! business_setting('email') !!}</a>
                         </li>
-                        <li><a href="tel:{!! business_setting('phone')  !!}"><span
-                                    class="icon icofont-phone"></span>
+                        <li><a href="tel:{!! business_setting('phone')  !!}"><span class="icon icofont-phone"></span>
                                 {!! business_setting('phone') !!}</a></li>
                         <li><a href="contact.html"><span class="icon icofont-clock-time"></span>
                                 {!! business_setting('office_time') !!}</a></li>

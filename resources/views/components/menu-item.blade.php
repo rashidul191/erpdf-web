@@ -3,7 +3,7 @@
 
     @php
         $isCustom = $menu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-        $slug = $isCustom ? $menu->slug : ($menu->page->slug ?? '');
+        $slug = $isCustom ? $menu->slug : ($menu->page->slug ?? '#');
         $title = $isCustom ? $menu->name : ($menu->page->title ?? '');
     @endphp
     <li
@@ -18,7 +18,7 @@
                 @foreach ($menu->subMenus as $subMenu)
                     @php
                         $isCustom = $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-                        $subSlug = $isCustom ? $subMenu->slug : ($subMenu->page->slug ?? '');
+                        $subSlug = $isCustom ? $subMenu->slug : ($subMenu->page->slug ?? '#');
                         $subTitle = $isCustom ? $subMenu->name : ($subMenu->page->title ?? '');
                     @endphp
 
@@ -31,7 +31,7 @@
                                 @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
                                     @php
                                         $isCustom = $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-                                        $subOfSubSlug = $isCustom ? $subOfSubMenu->slug : ($subOfSubMenu->page->slug ?? '');
+                                        $subOfSubSlug = $isCustom ? $subOfSubMenu->slug : ($subOfSubMenu->page->slug ?? '#');
                                         $subOfSubTitle = $isCustom ? $subOfSubMenu->name : ($subOfSubMenu->page->title ?? '');
                                     @endphp
 

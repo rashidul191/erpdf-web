@@ -108,7 +108,7 @@
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="p-2 border text-left">#</th>
-                                <th class="p-2 border text-left">Page Name</th>
+                                <th class="p-2 border text-left">Menu Name</th>
                                 <th class="p-2 border text-left">Serial</th>
                                 <th class="p-2 border text-left">Action</th>
                             </tr>
@@ -119,7 +119,11 @@
                                 <tr class="hover:bg-gray-50">
                                     <td class="p-2 border">{{ $index + 1 }}</td>
                                     <td class="p-2 border">
-                                        {{ $item->page->title ?? '-' }}
+                                        @if($item->is_custom == \App\Enums\IsAgreeStatus::Yes())
+                                            {{ $item->name ?? '-' }}
+                                        @else
+                                            {{ $item->page->title ?? '-' }}
+                                        @endif
                                     </td>
                                     <td class="p-2 border">
                                         {{ $item->serial ?? '-' }}
