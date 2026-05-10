@@ -37,7 +37,7 @@ jobs:
             COMPOSER_BIN=/usr/local/bin/composer
 
             # ── PROJECT PATH (YOUR REAL SERVER PATH) ───────
-            PROJECT_PATH=/home/vxcfoodandbevera/amanatwhitepalace.com
+            PROJECT_PATH=/home/vxcfoodandbevera/stcbankltd.com
             GITHUB_PATH=SAWEBSOFTDEVS/amanat-white-palace-laravel-web.git
 
             echo "📁 PROJECT: $PROJECT_PATH"
