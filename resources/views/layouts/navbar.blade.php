@@ -99,8 +99,6 @@
     }
 </style>
 
-
-
 <!-- Main Header-->
 <header class="main-header {{ request()->routeIs('home.index') ? '' : 'style-two' }} ">
 
@@ -112,14 +110,14 @@
                 <div class="top-left">
                     <!-- Info List -->
                     <ul class="info-list">
-                        <li><a href="mailto:{!! business_setting('navbar_email')  !!}"><span
-                                    class="icon icofont-envelope"></span> {!! business_setting('navbar_email') !!}</a>
+                        <li><a href="mailto:{!! business_setting('email')  !!}"><span
+                                    class="icon icofont-envelope"></span> {!! business_setting('email') !!}</a>
                         </li>
-                        <li><a href="tel:{!! business_setting('navbar_phone')  !!}"><span
+                        <li><a href="tel:{!! business_setting('phone')  !!}"><span
                                     class="icon icofont-phone"></span>
-                                {!! business_setting('navbar_phone') !!}</a></li>
+                                {!! business_setting('phone') !!}</a></li>
                         <li><a href="contact.html"><span class="icon icofont-clock-time"></span>
-                                {!! business_setting('navbar_date_time') !!}</a></li>
+                                {!! business_setting('office_time') !!}</a></li>
                     </ul>
                 </div>
 

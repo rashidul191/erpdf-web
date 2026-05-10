@@ -11,7 +11,7 @@
                 <div class="bg-white p-4">
                     <img width="100" id="prevImage" src="">
                     <div class="w-full">
-                        <x-labeled-input label="Image (1900x500)" type="file" accept="image/*" name="image"
+                        <x-labeled-input label="Image (1600x600)" type="file" accept="image/*" name="image"
                             class="w-full p-1" required
                             oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 

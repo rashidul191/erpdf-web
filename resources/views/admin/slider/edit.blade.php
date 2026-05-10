@@ -16,7 +16,7 @@
             <div class="bg-white p-4">
                 <img width="100" id="prevImage" src="{{ $slider->image }}">
                 <div class="w-full">
-                    <x-labeled-input label="Image (1900x500)" type="file"
+                    <x-labeled-input label="Image (1600x600)" type="file"
                         accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                         oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
