@@ -19,14 +19,14 @@ class GalleryController extends Controller
     }
     public function create()
     {
-        return view('admin.gallery.create');
+
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image'         => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'title'   => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'title' => 'nullable|string|max:255',
         ]);
 
         return response()->reportTo(
@@ -38,23 +38,12 @@ class GalleryController extends Controller
 
     public function edit(Gallery $gallery)
     {
-        return view('admin.gallery.edit', compact('gallery'));
+
     }
 
     public function update(Request $request, Gallery $gallery)
     {
 
-        // Validate input
-        $validated = $request->validate([
-            'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'title'   => 'nullable|string|max:255',
-        ]);
-        // Return response
-        return response()->reportTo(
-            $gallery->update($validated),
-            'Updated successfully',
-            route('admin.gallery.index')
-        );
     }
     public function destroy(Gallery $gallery)
     {

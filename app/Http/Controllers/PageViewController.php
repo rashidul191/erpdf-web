@@ -149,8 +149,6 @@ class PageViewController extends Controller
         return view('front-end.pages.faq', compact('faqs'));
     }
 
-
-
     public function documentCategory($id, $slug)
     {
         $data['category'] = DocumentCategory::findOrFail($id);
