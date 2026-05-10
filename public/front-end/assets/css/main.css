@@ -903,7 +903,8 @@ img {
     position: relative;
     float: none;
     display: inline-block;
-    margin-right: 45px;
+    /* margin-right: 45px; */
+    margin-right: 25px;
     text-align: left;
     transition: all 500ms ease;
     -moz-transition: all 500ms ease;
