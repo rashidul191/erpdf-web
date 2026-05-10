@@ -176,12 +176,13 @@
                                 <x-menu-item :menus="$menus" />
                             </ul>
 
-                            <select id="langSwitcher">
+                            {{-- <select id="langSwitcher">
                                 <option value="en" selected>English</option>
                                 <option value="bn">বাংলা</option>
-                            </select>
+                            </select> --}}
                             <!-- hidden loader -->
-                            <div id="google_translate_element" style="visibility: hidden"></div>
+                            <div id="google_translate_element"></div>
+                            {{-- <div id="google_translate_element" style="visibility: hidden"></div> --}}
                         </div>
                     </nav>
                 </div>
