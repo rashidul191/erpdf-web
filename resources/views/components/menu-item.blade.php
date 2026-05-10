@@ -15,9 +15,7 @@
 
         @if($menu->subMenus->isNotEmpty())
             <ul>
-
                 @foreach ($menu->subMenus as $subMenu)
-
                     @php
                         $isCustom = $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
                         $subSlug = $isCustom ? $subMenu->slug : ($subMenu->page->slug ?? '');
@@ -28,7 +26,6 @@
                         <a href="{{ route('page.index', $subSlug) }}">
                             {{ $subTitle }}
                         </a>
-
                         @if($subMenu->subOfSubMenus->isNotEmpty())
                             <ul class="subofsubmenu">
                                 @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)

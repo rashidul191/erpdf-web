@@ -1,12 +1,29 @@
 @php
+    // $menus = \App\Models\MenuItem::whereNull('menu_id')
+    //     ->whereNull('sub_menu_id')
+    //     ->with([
+    //         'page',
+    //         'subMenus.page',
+    //         'subMenus.subOfSubMenus.page' // 🔥 important
+    //     ])
+    //     ->oldest('serial')
+    //     ->get();
+
     $menus = \App\Models\MenuItem::whereNull('menu_id')
         ->whereNull('sub_menu_id')
         ->with([
             'page',
-            'subMenus.page',
-            'subMenus.subOfSubMenus.page' // 🔥 important
+            'subMenus' => function ($q) {
+                $q->orderBy('serial')
+                    ->with([
+                        'page',
+                        'subOfSubMenus' => function ($q) {
+                            $q->orderBy('serial')->with('page');
+                        }
+                    ]);
+            }
         ])
-        ->oldest('serial')
+        ->orderBy('serial')
         ->get();
 @endphp
 <!-- HEADER START -->
