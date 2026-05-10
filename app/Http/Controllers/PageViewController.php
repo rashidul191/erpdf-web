@@ -10,6 +10,8 @@ use App\Models\Admin\TeamJoinTeamCategory;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\Document;
+use App\Models\DocumentCategory;
 use App\Models\FAQ;
 use App\Models\Gallery;
 use App\Models\OurStory;
@@ -128,6 +130,8 @@ class PageViewController extends Controller
         return view('front-end.pages.team-details', $data);
     }
 
+
+
     public function galleryPage()
     {
         $data['galleryImages'] = Gallery::latest()->paginate(12);
@@ -145,6 +149,14 @@ class PageViewController extends Controller
         return view('front-end.pages.faq', compact('faqs'));
     }
 
+
+
+    public function documentCategory($id, $slug)
+    {
+        $data['category'] = DocumentCategory::findOrFail($id);
+        $data['documents'] = Document::where('document_category_id', $id)->get();
+        return view('front-end.pages.document-details', $data);
+    }
 
 
 }

@@ -3,10 +3,7 @@
     <!-- CONTENT START -->
     <div class="page-content">
         <!-- INNER PAGE BANNER -->
-        @php
-            $pageBannerImage = getRawImage($content, 'page_banner_image', true);
-        @endphp
-        <x-page-banner :image="$pageBannerImage ?? null" />
+        <x-page-banner :image="getRawImage($content, 'page_banner_image', true) ?? null" />
 
         <!-- INNER PAGE BANNER END -->
         @if($content != null)
@@ -69,7 +66,7 @@
             <!-- SECTION CONTENT END -->
         @else
         <div class="section-full py-5 my-5 text-center">
-            <h2 class="text-danger py-5 my-5">Content Not Aviable!</h2>
+            <h3 class="text-danger">Content Not Aviable!</h3>
         </div>
     @endif
 

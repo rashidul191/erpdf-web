@@ -31,6 +31,8 @@ Route::get('/blog-search', [PageViewController::class, 'blogSearch'])->name('blo
 
 Route::get('/team-category/{id}/{slug}', [PageViewController::class, 'teamCategory'])->name('team-category.show');
 
+Route::get('/document-category/{id}/{slug}', [PageViewController::class, 'documentCategory'])->name('document-category.show');
+
 Route::get('/team', [PageViewController::class, 'teamPage'])->name('team.index');
 Route::get('/team/{id}/{slug}', [PageViewController::class, 'teamDetails'])->name('team.show');
 
