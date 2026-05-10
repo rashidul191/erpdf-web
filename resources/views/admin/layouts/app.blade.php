@@ -42,7 +42,7 @@
         <sidebar class="bg-slate-800 h-screen w-64 overflow-y-scroll scrollbar-hide fixed z-10 transition duration-300"
             :class="{ '-translate-x-64': !sidebarOpen }">
             <div class="p-4 md:pl-4 flex md:flex-row-reverse justify-between items-center flex-wrap">
-                <x-application-logo class="h-10 mx-auto mt-4 mb-4" />
+                <x-application-logo class="h-16 mx-auto mt-4 mb-4" />
             </div>
 
             <div class="w-full flex flex-col text-slate-300 nav-links">

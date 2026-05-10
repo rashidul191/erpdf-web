@@ -16,6 +16,10 @@ class DocumentController extends Controller
         if ($request->ajax()) {
             return datatables(Document::with('category:id,name')->oldest('serial'))
                 ->addIndexColumn()
+                ->addColumn('file', function ($row) {
+                    return '<iframe src="' . asset($row->file) . '" width="100px" height="60px"></iframe>';
+                })
+                ->rawColumns(['file'])
                 ->toJson();
         }
         return view('admin.document.index');
@@ -31,9 +35,9 @@ class DocumentController extends Controller
     {
 
         $validated = $request->validate([
-            'document_category_id' => 'nullable|integer|exists:document_categories,id',
-            'name' => 'required|string',
-            'file' => 'required',
+            'document_category_id' => 'required|exists:document_categories,id',
+            'name' => 'required|string|max:255',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:20480',
             'serial' => 'nullable|numeric',
             'status' => 'required|numeric',
         ]);
@@ -59,9 +63,9 @@ class DocumentController extends Controller
     {
         // Validate input
         $validated = $request->validate([
-            'document_category_id' => 'nullable|integer|exists:document_categories,id',
-            'name' => 'required|string',
-            'file' => 'nullable',
+            'document_category_id' => 'required|exists:document_categories,id',
+            'name' => 'required|string|max:255',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:20480',
             'serial' => 'nullable|numeric',
             'status' => 'required|numeric',
         ]);
