@@ -187,12 +187,12 @@
                 </div>
 
                 <!-- Outer Box -->
-                <div class="outer-box">
+                {{-- <div class="outer-box">
                     <!-- Search Btn -->
                     <div class="search-box-btn search-box-outer"><span class="icon icofont-search"></span></div>
                     <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
