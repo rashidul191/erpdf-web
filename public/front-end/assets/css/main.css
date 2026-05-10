@@ -760,7 +760,7 @@ img {
     line-height: 26px;
     cursor: pointer;
     background: none;
-    margin: 36px 0px 15px;
+    margin: 15px 0px;
     transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     -webkit-transition: all 500ms ease;
