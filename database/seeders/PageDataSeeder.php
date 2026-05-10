@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin\BusinessSetting;
 use App\Models\Page;
 use Illuminate\Database\Seeder;
 
@@ -10,7 +9,6 @@ class PageDataSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
      * @return void
      */
     public function run()
@@ -20,6 +18,10 @@ class PageDataSeeder extends Seeder
             [
                 'title' => 'News',
                 'slug' => 'news',
+            ],
+            [
+                'title' => 'Term Member',
+                'slug' => 'team-member',
             ],
             [
                 'title' => 'About Us',
@@ -41,8 +43,8 @@ class PageDataSeeder extends Seeder
         );
         foreach ($pages as $page) {
             Page::firstOrCreate(
-                ['slug' => $page['slug']], // ✅ correct
-                $page // ✅ direct pass
+                ['slug' => $page['slug']],
+                $page
             );
         }
     }

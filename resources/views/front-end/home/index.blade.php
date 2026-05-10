@@ -47,13 +47,6 @@
         <!-- End Reputation Section -->
     {{-- @endif --}}
 
-    {{-- @if($isShow->value == business_setting('team_is_show')) --}}
-        <!-- Experts Section -->
-        @include('front-end.team-page-section.teams')
-        <!-- End Experts Section -->
-    {{-- @endif --}}
-
-
     {{-- @if($isShow->value == business_setting('blog_is_show')) --}}
         <!-- Blog Section -->
         <div class="blog-section">

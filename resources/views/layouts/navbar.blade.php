@@ -12,6 +12,36 @@
 <!-- HEADER START -->
 
 <style>
+    /* Google Tranlate Switch CSS Code Start */
+    .goog-logo-link {
+        display: none !important;
+    }
+
+    .goog-te-gadget {
+        color: transparent !important;
+        font-size: 0;
+    }
+
+    .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+    }
+
+    .skiptranslate iframe {
+        display: none !important;
+    }
+
+    body {
+        top: 0px !important;
+    }
+
+    #langSwitcher {
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    /* Google Tranlate Switch CSS Code End */
+
     .submenu:hover ul.subofsubmenu {
         visibility: visible !important;
         opacity: 100 !important;
@@ -51,6 +81,8 @@
         }
     }
 </style>
+
+
 
 <!-- Main Header-->
 <header class="main-header {{ request()->routeIs('home.index') ? '' : 'style-two' }} ">
@@ -125,9 +157,14 @@
                                     <a href="{{ route('home.index') }}">Home</a>
                                 </li>
                                 <x-menu-item :menus="$menus" />
-
-                              
                             </ul>
+
+                            <select id="langSwitcher">
+                                <option value="en" selected>English</option>
+                                <option value="bn">বাংলা</option>
+                            </select>
+                            <!-- hidden loader -->
+                            <div id="google_translate_element" style="visibility: hidden"></div>
                         </div>
                     </nav>
                 </div>
@@ -164,6 +201,7 @@
 <!--End Main Header -->
 
 <script>
+    // Menu js code Start
     document.addEventListener("DOMContentLoaded", function () {
 
         if (window.innerWidth <= 991) {
@@ -198,4 +236,5 @@
             });
         }
     });
+    // Menu js code Start
 </script>

@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer border-top">
     <div class="auto-container">
         <!--Widgets Section-->
         <div class="widgets-section">

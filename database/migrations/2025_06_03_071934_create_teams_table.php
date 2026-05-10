@@ -19,7 +19,8 @@ class CreateTeamsTable extends Migration
             // $table->foreignId('team_category_id')->nullable()->constrained('team_categories');
             $table->unsignedTinyInteger('serial')->nullable();
             $table->string('image')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->string('designation')->nullable();
             $table->longText('description')->nullable();
             $table->unsignedTinyInteger('status')->nullable()->default(CommonStatus::Active);

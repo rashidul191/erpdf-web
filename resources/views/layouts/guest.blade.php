@@ -155,6 +155,48 @@
             }
         });
     </script>
+
+
+    {{-- Google Langulate Switch JS Codes Start --}}
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,bn',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        document.getElementById("langSwitcher").addEventListener("change", function () {
+            const lang = this.value;
+            localStorage.setItem("selectedLang", lang);
+            changeLang(lang);
+        });
+
+        function changeLang(lang) {
+            const googTransCookie = "/en/" + lang;
+
+            document.cookie = "googtrans=" + googTransCookie + ";path=/";
+            document.cookie = "googtrans=" + googTransCookie + ";domain=" + window.location.hostname + ";path=/";
+
+            location.reload();
+        }
+
+
+
+        window.addEventListener("load", function () {
+            const savedLang = localStorage.getItem("selectedLang");
+
+            if (savedLang) {
+                document.getElementById("langSwitcher").value = savedLang;
+            }
+        });
+
+    </script>
+    {{-- Google Langulate Switch JS Codes End --}}
     {{ $script ?? '' }}
 </body>
 

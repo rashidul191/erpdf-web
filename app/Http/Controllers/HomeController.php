@@ -20,9 +20,6 @@ class HomeController extends Controller
         $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
         $data['services'] = Service::oldest()->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
-
-        $data['teams'] = Team::orderBy('serial', 'asc')->get();
-
         $data['faqs'] = FAQ::latest()->limit(4)->get();
 
         return view('front-end.home.index')->with($data);

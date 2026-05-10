@@ -31,6 +31,9 @@ Route::get('/blog-search', [PageViewController::class, 'blogSearch'])->name('blo
 
 Route::get('/team-category/{id}/{slug}', [PageViewController::class, 'teamCategory'])->name('team-category.show');
 
+Route::get('/team', [PageViewController::class, 'teamPage'])->name('team.index');
+Route::get('/team/{id}/{slug}', [PageViewController::class, 'teamDetails'])->name('team.show');
+
 Route::middleware(['auth.multi', 'no-cache'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');
 

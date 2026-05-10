@@ -17,6 +17,7 @@ class Team extends Model
         'serial',
         'image',
         'name',
+        'slug',
         'designation',
         'description',
         'status',

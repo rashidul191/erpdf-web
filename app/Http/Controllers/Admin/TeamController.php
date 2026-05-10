@@ -77,6 +77,8 @@ class TeamController extends Controller
             $data = $validated;
             unset($data['team_category_id']);
 
+            $validated['slug'] = generateSlug(Team::class, $validated['name']);
+
             // create team
             $team = Team::create($data);
 
@@ -103,10 +105,7 @@ class TeamController extends Controller
     public function edit(Team $team)
     {
         $teamCategories = TeamCategory::all();
-
         $selectedCategories = $team->categories->pluck('id');
-
-
         return view('admin.team.edit', compact('team', 'teamCategories', 'selectedCategories'));
     }
 
@@ -141,6 +140,7 @@ class TeamController extends Controller
 
             unset($data['team_category_id']);
 
+            $validated['slug'] = generateSlug(Team::class, $validated['name'], $team);
             // update team
             $team->update($data);
 

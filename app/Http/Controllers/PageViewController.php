@@ -25,6 +25,8 @@ class PageViewController extends Controller
         // custom page
         if ($slug === 'news' || $slug === 'blog') {
             return $this->blogPage();
+        } elseif ($slug === 'team' || $slug === 'teams' || $slug === 'team-member') {
+            return $this->teamPage();
         } elseif ($slug === 'about-us' || $slug === 'about') {
             return $this->aboutPage();
         } elseif ($slug === 'contact-us' || $slug === 'contact') {
@@ -53,7 +55,6 @@ class PageViewController extends Controller
         $data['teams'] = Team::orderBy('serial', 'asc')->get();
         return view('front-end.pages.about', $data);
     }
-
 
     public function blogPage()
     {
@@ -116,6 +117,16 @@ class PageViewController extends Controller
         return view('front-end.pages.team-category', $data);
     }
 
+    public function teamPage()
+    {
+        $data['teams'] = Team::oldest('serial')->paginate(12);
+        return view('front-end.pages.team', $data);
+    }
+    public function teamDetails($id, $slug)
+    {
+        $data['team'] = Team::findOrFail($id);
+        return view('front-end.pages.team-details', $data);
+    }
 
     public function galleryPage()
     {
