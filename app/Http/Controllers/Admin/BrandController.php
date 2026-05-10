@@ -32,7 +32,7 @@ class BrandController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
+        $validated['slug'] = generateSlug(Brand::class, $validated['name']);
 
         return response()->reportTo(
             Brand::create($validated),
@@ -55,7 +55,7 @@ class BrandController extends Controller
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $validated['slug'] = generateSlug(Brand::class, $validated['name'], $brand);
         }
 
         // Return response

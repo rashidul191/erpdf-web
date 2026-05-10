@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\BusinessSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DocumentCategoryController;
+use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
@@ -135,6 +137,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('our-story', OurStoryController::class);
         Route::resource('team-categories', TeamCategoryController::class);
         Route::resource('team', TeamController::class);
+
+        Route::resource('document-categories', DocumentCategoryController::class);
+        Route::resource('document', DocumentController::class);
 
         Route::resource('faq', FAQController::class);
         Route::resource('contact-message', ContactFormMessageController::class);

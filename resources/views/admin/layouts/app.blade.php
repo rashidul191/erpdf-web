@@ -77,12 +77,15 @@
                     <x-navigation-link :href="route('admin.team-categories.index')" :text="__('Team Categories')" />
                 </x-navigation-link>
 
+                <x-navigation-link :text="__('Document')" :icon="icon('about')">
+                    <x-navigation-link :href="route('admin.document.index')" :text="__('Document')" />
+                    <x-navigation-link :href="route('admin.document-categories.index')" :text="__('Document Categories')" />
+                </x-navigation-link>
+
                 <x-navigation-link :text="__('News')" :icon="icon('website')">
                     <x-navigation-link :href="route('admin.blog.index')" :text="__('News List')" />
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
-
-
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
                 <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />

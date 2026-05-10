@@ -38,13 +38,13 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'      => ['required', 'string', 'max:255'],
-            'is_home'   => ['nullable', 'numeric'],
-            'position'  => ['nullable', 'numeric', Rule::unique('tags', 'position')],
+            'name' => ['required', 'string', 'max:255'],
+            'is_home' => ['nullable', 'numeric'],
+            'position' => ['nullable', 'numeric', Rule::unique('tags', 'position')],
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $validated['slug'] = generateSlug(Tag::class, $validated['name']);
         }
         try {
             return response()->reportTo(
@@ -67,13 +67,13 @@ class TagController extends Controller
     {
         // Validate input
         $validated = $request->validate([
-            'name'      => ['required', 'string', 'max:255'],
-            'is_home'   => ['nullable', 'numeric'],
-            'position'  => ['nullable', 'numeric'],
+            'name' => ['required', 'string', 'max:255'],
+            'is_home' => ['nullable', 'numeric'],
+            'position' => ['nullable', 'numeric'],
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $validated['slug'] = generateSlug(Tag::class, $validated['name'], $tag);
         }
 
         // Return response
@@ -82,7 +82,8 @@ class TagController extends Controller
             'Updated successfully',
             route('admin.tag.index')
         );
-    }      public function destroy(Tag $tag)
+    }
+    public function destroy(Tag $tag)
     {
         return response()->reportTo(
             $tag->delete(),

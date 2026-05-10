@@ -46,18 +46,20 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image'             => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
-            'gallery_image'     => 'nullable|array',
-            'gallery_image.*'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
+            'gallery_image' => 'nullable|array',
+            'gallery_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
-            'name'              => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'short_description' => 'nullable|string|max:255',
-            'description'       => 'nullable|string',
+            'description' => 'nullable|string',
 
-            'blog_category_id'       => 'nullable|exists:blog_categories,id',
+            'blog_category_id' => 'nullable|exists:blog_categories,id',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
+
+        $validated['slug'] = generateSlug(Blog::class, $validated['name']);
+
         $blog = Blog::create($validated);
 
         return response()->reportTo(
@@ -79,23 +81,25 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $validated = $request->validate([
-            'image'               => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             // OLD gallery images (hidden inputs)
-            'gallery_image'       => 'nullable|array',
-            'gallery_image.*'     => 'nullable|string', // old image paths
+            'gallery_image' => 'nullable|array',
+            'gallery_image.*' => 'nullable|string', // old image paths
 
             // NEW gallery images (file uploads)
-            'gallery_image_new'   => 'nullable|array',
+            'gallery_image_new' => 'nullable|array',
             'gallery_image_new.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
-            'name'                => 'required|string|max:255',
-            'short_description'   => 'nullable|string|max:255',
-            'description'         => 'nullable|string',
-            'blog_category_id'    => 'nullable|exists:blog_categories,id',
+            'name' => 'required|string|max:255',
+            'short_description' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'blog_category_id' => 'nullable|exists:blog_categories,id',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
+        if (!empty($validated['name'])) {
+            $validated['slug'] = generateSlug(Blog::class, $validated['name'], $blog);
+        }
 
         $oldGallery = $validated['gallery_image'] ?? [];       // old images (strings)
         $newGallery = $validated['gallery_image_new'] ?? [];   // new uploads (UploadedFile)

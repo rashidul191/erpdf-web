@@ -30,8 +30,7 @@ class BlogCategoryController extends Controller
             'name' => 'required|string|max:255|unique:blog_categories,name',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
-
-        $validated['slug'] = Str::slug($validated['name']);
+        $validated['slug'] = generateSlug(BlogCategory::class, $validated['name']);
 
         return response()->reportTo(
             BlogCategory::create($validated),
@@ -54,7 +53,7 @@ class BlogCategoryController extends Controller
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $validated['slug'] = generateSlug(BlogCategory::class, $validated['name'], $blogCategory);
         }
 
         // Return response

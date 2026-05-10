@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\TeamCategory;
+use App\Models\DocumentCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class TeamCategoryController extends Controller
+class DocumentCategoryController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(TeamCategory::oldest('name'))
+            return datatables(DocumentCategory::oldest('name'))
                 ->addIndexColumn()
                 ->addColumn('custom_slug', function ($row) {
-                    return '/team-category/' . $row->id . '/' . $row->slug;
+                    return '/document-category/' . $row->id . '/' . $row->slug;
                 })
                 ->toJson();
         }
-        return view('admin.team-category.index');
+        return view('admin.document-category.index');
     }
 
     public function create()
@@ -30,27 +30,27 @@ class TeamCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        if (!empty($validated['name'])) {
-            $validated['slug'] = generateSlug(TeamCategory::class, $validated['name']);
-        }
+
+        $validated['slug'] = generateSlug(DocumentCategory::class, $validated['name']);
+
 
         return response()->reportTo(
-            TeamCategory::create($validated),
+            DocumentCategory::create($validated),
             'Created successfully',
-            route('admin.team-categories.index')
+            route('admin.document-categories.index')
         );
     }
 
-    public function edit(TeamCategory $teamCategory)
+    public function edit(DocumentCategory $documentCategory)
     {
-        return view('admin.team-category.edit', compact('teamCategory'));
+        return view('admin.document-category.edit', compact('documentCategory'));
     }
 
-    public function update(Request $request, TeamCategory $teamCategory)
+    public function update(Request $request, DocumentCategory $documentCategory)
     {
         // Validate input
         $validated = $request->validate([
@@ -59,22 +59,22 @@ class TeamCategoryController extends Controller
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = generateSlug(TeamCategory::class, $validated['name'], $teamCategory);
+            $validated['slug'] = generateSlug(DocumentCategory::class, $validated['name'], $documentCategory);
         }
 
         // Return response
         return response()->reportTo(
-            $teamCategory->update($validated),
+            $documentCategory->update($validated),
             'Updated successfully',
-            route('admin.team-categories.index')
+            route('admin.document-categories.index')
         );
     }
-    public function destroy(TeamCategory $teamCategory)
+    public function destroy(DocumentCategory $documentCategory)
     {
         return response()->reportTo(
-            $teamCategory->delete(),
+            $documentCategory > delete(),
             'Deleted successfully',
-            route('admin.team-categories.index')
+            route('admin.document-categories.index')
         );
     }
 }

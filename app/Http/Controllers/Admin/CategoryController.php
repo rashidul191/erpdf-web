@@ -31,7 +31,9 @@ class CategoryController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
+
+        $validated['slug'] = generateSlug(Category::class, $validated['name']);
+
 
         return response()->reportTo(
             Category::create($validated),
@@ -54,7 +56,7 @@ class CategoryController extends Controller
         ]);
 
         if (!empty($validated['name'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $validated['slug'] = generateSlug(Category::class, $validated['name'], $category);
         }
 
         // Return response
