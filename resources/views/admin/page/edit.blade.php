@@ -14,7 +14,7 @@
             @method('PUT')
 
             <div class="w-full pt-4 flex justify-end">
-                <x-button>{{ __('Create') }}</x-button>
+                <x-button>{{ __('Update') }}</x-button>
             </div>
             <div class="w-full flex flex-wrap">
                 <div class="w-full md:w-2/3 p-1">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="w-full pt-4 flex justify-end">
-                <x-button>{{ __('Create') }}</x-button>
+                <x-button>{{ __('Update') }}</x-button>
             </div>
         </form>
     </div>
