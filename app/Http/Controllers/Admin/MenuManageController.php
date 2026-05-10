@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\IsAgreeStatus;
 use App\Http\Controllers\Controller;
-use App\Models\FooterMenu;
+use App\Models\MenuItem;
 use App\Models\MenuManage;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -41,15 +42,10 @@ class MenuManageController extends Controller
 
     public function show($id)
     {
-        $menuMange = MenuManage::with('menus')->findOrFail($id);
-        $menuManages = MenuManage::oldest('serial')->get();
-        $pages = Page::whereNotIn('id', function ($query) use ($menuMange) {
-            $query->select('page_id')
-                ->from('footer_menus')
-                ->where('menu_manage_id', $menuMange->id);
-        })->get();
-        // dd($menuMange);
 
+        $menuMange = MenuManage::with('menuItems')->findOrFail($id);
+        $menuManages = MenuManage::oldest('serial')->get();
+        $pages = Page::get();
         return view('admin.menu-manage.show', compact('menuMange', 'menuManages', 'pages'));
     }
 
@@ -72,26 +68,44 @@ class MenuManageController extends Controller
     }
 
 
-    public function footerMenuStore(Request $request)
+    public function dynamicMenuStore(Request $request)
     {
-        $validated = $request->validate([
-            'menu_manage_id' => 'required|integer|exists:menu_manages,id',
-            'page_id' => 'required|integer|exists:pages,id',
+        $rules = [
+            'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',
-        ]);
+            'status' => 'nullable|integer',
+            'menu_manage_id' => 'required|integer|exists:menu_manages,id',
+        ];
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $rules['name'] = 'required|string';
+            $rules['slug'] = 'nullable|string';
+
+        } else {
+            $rules['page_id'] = 'required|integer|exists:pages,id';
+        }
+
+        $validated = $request->validate($rules);
+
+
+        if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['slug'] = !empty($validated['slug'])
+                ? generateSlug(MenuItem::class, $validated['slug'])
+                : generateSlug(MenuItem::class, $validated['name']);
+        }
 
         return response()->reportTo(
-            FooterMenu::create($validated),
+            MenuItem::create($validated),
             'Add successfully',
             route('admin.menu-manage.show', $validated['menu_manage_id'])
         );
     }
 
-    public function footerMenuDestroy($menu_manage_id, $id)
+    public function dynamicMenuDestroy($menu_manage_id, $id)
     {
-        $footerMenu = FooterMenu::findOrFail($id);
+        $menu = MenuItem::findOrFail($id);
         return response()->reportTo(
-            $footerMenu->delete(),
+            $menu->delete(),
             'Delete successfully',
             route('admin.menu-manage.show', $menu_manage_id)
         );

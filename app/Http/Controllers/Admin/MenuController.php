@@ -62,9 +62,6 @@ class MenuController extends Controller
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
-            // $page = Page::findOrFail($validated['page_id']);
-            // $validated['name'] = $page->title;
-            // $validated['slug'] = $page->slug;
 
             $validated['slug'] = !empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])

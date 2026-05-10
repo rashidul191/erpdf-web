@@ -32,6 +32,13 @@ class CreateMenuItemsTable extends Migration
                 ->nullable()
                 ->constrained('menu_items')
                 ->cascadeOnDelete();
+
+            $table->foreignId('menu_manage_id')
+                ->nullable()
+                ->constrained('menu_manages')
+                ->cascadeOnDelete();
+
+
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->integer('serial')->nullable();

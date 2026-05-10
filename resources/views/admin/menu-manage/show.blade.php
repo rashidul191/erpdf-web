@@ -19,11 +19,9 @@
                 <ul class="space-y-2">
                     @foreach ($menuManages as $item)
                         <li class="flex justify-between items-center">
-
                             <a href="{{ route('admin.menu-manage.show', $item->id) }}"
                                 class="flex-1 px-3 py-2 rounded-md text-sm font-medium transition hover:bg-blue-500 hover:text-white {{ $item->id == $menuMange->id ? 'bg-blue-500 text-white' : ''}}">
                                 {{ $item->name }}
-
                             </a>
 
                             <a href=" {{ route('admin.menu-manage.index', ['id' => $item->id]) }}"
@@ -46,32 +44,55 @@
                     Selected Menu Section: <span class="text-blue-600">{{ $menuMange->name }}</span>
                 </h3>
 
-                <form action="{{ route('admin.footer-menu.store') }}" method="POST">
+                <form action="{{ route('admin.dynamic-menu.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <input type="hidden" name="menu_manage_id" value="{{ $menuMange->id }}">
+                    <div x-data="{ isCustom: false }" class="flex flex-wrap justify-center w-full">
 
-                    <div class="w-full flex flex-wrap items-end">
-                        <x-labeled-select label="Select Page" name="page_id" required class="w-full md:w-1/2 p-1">
-                            <option value="">Select Page</option>
+                        <input type="hidden" name="menu_manage_id" value="{{ $menuMange->id }}">
 
-                            @foreach ($pages as $item)
-                                <option value="{{ $item->id }}">
-                                    {{ $item->title }}
+                        <!-- Checkbox -->
+                        <div class="w-full flex items-center space-x-4 p-2">
+                            <input type="checkbox" id="is_custom" name="is_custom" x-model="isCustom"
+                                value="{{ \App\Enums\IsAgreeStatus::Yes }}">
+                            <label for="is_custom" class="text-lg font-semibold">Is Custom</label>
+                        </div>
+
+                        <!-- If NOT custom -->
+                        <div class="w-full" x-show="!isCustom">
+                            <x-labeled-select label="Select Menu Name" name="page_id" class="w-full p-1"
+                                x-bind:required="!isCustom">
+                                <option value="" disabled selected>Select Menu Name</option>
+                                @foreach ($pages as $page)
+                                    <option value="{{ $page->id }}">
+                                        {{ $page->title }}
+                                    </option>
+                                @endforeach
+                            </x-labeled-select>
+                        </div>
+
+                        <!-- If custom -->
+                        <div class="w-full flex flex-wrap" x-show="isCustom">
+                            <x-labeled-input label="Menu Name" name="name" class="w-full p-1 md:w-1/2"
+                                x-bind:required="isCustom" />
+                            <x-labeled-input label="Menu Slug" name="slug" class="w-full p-1 md:w-1/2" />
+                        </div>
+
+                        <!-- Status -->
+                        <x-labeled-select name="status" required class="w-full md:w-1/2 p-1">
+                            @foreach (\App\Enums\CommonStatus::getInstances() as $value)
+                                <option value="{{ $value->value }}" {{ \App\Enums\CommonStatus::Active()->value == $value->value ? 'selected' : '' }}>
+                                    {{ $value->key }}
                                 </option>
                             @endforeach
                         </x-labeled-select>
 
-                        <div class="w-full md:w-1/2 flex flex-wrap items-end">
-                            <x-labeled-input name="serial" type="number" value="{{ $editMenu->serial ?? '' }}"
-                                class="w-full md:w-2/3 p-1" />
+                        <!-- Serial -->
+                        <x-labeled-input name="serial" type="number" class="w-full p-1 md:w-1/2" />
 
-                            <div class="w-full md:w-1/3">
-                                <button type="submit"
-                                    class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
-                                    Add
-                                </button>
-                            </div>
+                        <!-- Submit -->
+                        <div class="w-full pt-4 flex justify-end">
+                            <x-button>Create</x-button>
                         </div>
 
                     </div>
@@ -94,7 +115,7 @@
                         </thead>
 
                         <tbody>
-                            @forelse ($menuMange->menus as $index => $item)
+                            @forelse ($menuMange->menuItems as $index => $item)
                                 <tr class="hover:bg-gray-50">
                                     <td class="p-2 border">{{ $index + 1 }}</td>
                                     <td class="p-2 border">
@@ -105,7 +126,8 @@
                                     </td>
                                     <td class="p-2 border">
 
-                                        <form action="{{ route('admin.footer-menu.destroy', [$menuMange->id, $item->id]) }}"
+                                        <form
+                                            action="{{ route('admin.dynamic-menu.destroy', [$menuMange->id, $item->id]) }}"
                                             method="POST">
 
                                             @csrf

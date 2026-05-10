@@ -15,6 +15,7 @@ class MenuItem extends Model
         'page_id',
         'menu_id',
         'sub_menu_id',
+        'footer_menu_id',
         'name',
         'slug',
         'serial',
@@ -59,5 +60,11 @@ class MenuItem extends Model
     public function subMenu()
     {
         return $this->belongsTo(MenuItem::class, 'sub_menu_id', 'id');
+    }
+
+    // Footer menu
+    public function footerMenu()
+    {
+        return $this->belongsTo(MenuManage::class, 'footer_menu_id', 'id');
     }
 }

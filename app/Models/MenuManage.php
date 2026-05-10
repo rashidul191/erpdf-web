@@ -21,9 +21,9 @@ class MenuManage extends Model
         'menu_type' => CommonStatus::class,
     ];
 
-    public function menus()
+    public function menuItems()
     {
-        return $this->hasMany(FooterMenu::class);
+        return $this->hasMany(MenuItem::class, 'menu_manage_id');
     }
 
 }

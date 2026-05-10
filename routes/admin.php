@@ -101,12 +101,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
 
-
         Route::resource('navmenu', MenuController::class);
-
         Route::resource('menu-manage', MenuManageController::class);
-        Route::post('footer-menu', [MenuManageController::class, 'footerMenuStore'])->name('footer-menu.store');
-        Route::delete('footer-menu/{menu_manage_id}/{id}', [MenuManageController::class, 'footerMenuDestroy'])->name('footer-menu.destroy');
+
+        Route::post('dynamic-menu', [MenuManageController::class, 'dynamicMenuStore'])->name('dynamic-menu.store');
+        Route::delete('dynamic-menu/{menu_manage_id}/{id}', [MenuManageController::class, 'dynamicMenuDestroy'])->name('dynamic-menu.destroy');
 
         Route::resource('menu', MenuController::class);
         Route::resource('sub-menu', SubMenuController::class);
