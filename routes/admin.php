@@ -122,6 +122,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         /* Home Page Routes  */
         Route::resource('slider', SliderController::class);
+        Route::get('about-section', [AboutController::class, 'homeAboutSection'])->name('home-about-section.index');
 
         Route::resource('client-say', ClientSayController::class);
         Route::resource('client-brand', ClientBrandController::class);

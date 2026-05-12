@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    public function homeAboutSection()
+    {
+        return view('admin.about.home-about-section');
+    }
     public function index()
     {
-        $data['aboutLeftSideContents'] = AboutLeftSide::oldest()->get();
-        $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
-        return view('admin.about.index', $data);
+        return view('admin.about.index');
     }
 
     /*  About Section Left Side Methods */
