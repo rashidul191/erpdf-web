@@ -63,14 +63,11 @@
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                 </x-navigation-link>
+                {{-- <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Say')" /> --}}
+                {{-- <x-navigation-link :href="route('admin.client-brand.index')" :text="__('Client Brand')" /> --}}
 
-                <x-navigation-link :text="__('About Page')" :icon="icon('about')">
-                    <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')" />
-                    <x-navigation-link :href="route('admin.specialization.index')" :text="__('Our Specialization')" />
-                    <x-navigation-link :href="route('admin.services.index')" :text="__('Our Services')" />
-
-
-                </x-navigation-link>
+                <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')"
+                    :icon="icon('about')" />
 
                 <x-navigation-link :text="__('Team')" :icon="icon('about')">
                     <x-navigation-link :href="route('admin.team.index')" :text="__('Team Members')" />

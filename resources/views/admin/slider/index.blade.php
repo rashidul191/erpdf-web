@@ -3,7 +3,11 @@
         <div class="text-xl">{{ __('Sliders') }}</div>
     </div>
 
-    <div class="flex flex-wrap justify-between">
+    <x-business-setting-form>
+        <x-is-show name="slider_is_show" />
+    </x-business-setting-form>
+
+    <div class="flex flex-wrap justify-between mt-4">
         <div class="w-full md:w-2/5 md:pr-3">
             <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -49,7 +53,10 @@
                 </thead>
             </table>
         </div>
-    </div> <x-slot name="script">
+    </div>
+
+
+    <x-slot name="script">
         <script type="text/javascript" src="{{ mix('js/datatable.js') }}"></script>
         <script type="text/javascript">
             $('#categories-table').DataTable({

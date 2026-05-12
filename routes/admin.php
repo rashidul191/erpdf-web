@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessSettingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClientBrandController;
 use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
@@ -102,15 +103,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('user/portal/{user}', [\App\Http\Controllers\Admin\UserController::class, 'portal'])->middleware('role:admin')->name('user.portal');
 
-        Route::resource('navmenu', MenuController::class);
+        /* Menu Routes Start */
         Route::resource('menu-manage', MenuManageController::class);
-
         Route::post('dynamic-menu', [MenuManageController::class, 'dynamicMenuStore'])->name('dynamic-menu.store');
         Route::delete('dynamic-menu/{menu_manage_id}/{id}', [MenuManageController::class, 'dynamicMenuDestroy'])->name('dynamic-menu.destroy');
-
+        Route::resource('navmenu', MenuController::class);
         Route::resource('menu', MenuController::class);
         Route::resource('sub-menu', SubMenuController::class);
         Route::resource('sub-of-sub-menu', SubOfSubMenuController::class);
+
+        /* Menu Routes End */
 
         Route::resource('page', PageController::class);
 
@@ -118,13 +120,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('brands', BrandController::class);
 
-
         /* Home Page Routes  */
         Route::resource('slider', SliderController::class);
+
         Route::resource('client-say', ClientSayController::class);
+        Route::resource('client-brand', ClientBrandController::class);
 
         /* About Page Routes */
         Route::get('about', [AboutController::class, 'index'])->name('about.index');
+
         Route::post('about-left-side', [AboutController::class, 'aboutLeftSideStore'])->name('about.left-side.store');
         Route::get('about-left-side/{id}', [AboutController::class, 'aboutLeftSideEdit'])->name('about.left-side.edit');
         Route::post('about-left-side/{id}', [AboutController::class, 'aboutLeftSideUpdate'])->name('about.left-side.update');
