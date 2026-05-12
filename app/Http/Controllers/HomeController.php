@@ -9,6 +9,7 @@ use App\Models\Admin\Slider;
 use App\Models\Admin\Team;
 use App\Models\Blog;
 use App\Models\FAQ;
+use App\Models\Notice;
 use App\Models\Service;
 
 class HomeController extends Controller
@@ -16,6 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->latest()->get();
+        $data['notices'] = Notice::latest()->get();
         $data['services'] = Service::oldest()->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
         $data['faqs'] = FAQ::latest()->limit(4)->get();

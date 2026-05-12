@@ -8,19 +8,25 @@
             </a>
         </div>
     </div>
-    <x-business-setting-form>
-        <x-is-show name="client_brand_is_show" />
-    </x-business-setting-form>
+    <div class="w-full flex flex-wrap">
+        <div class="w-full md:w-1/3 p-2">
+            <x-business-setting-form>
+                <x-is-show name="notice_is_show" />
+            </x-business-setting-form>
+        </div>
+        <div class="w-full md:w-2/3  p-3 mt-3">
+            <form action="{{ route('admin.notice.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded p-3">
+                @csrf
 
-    <div class="w-full bg-white rounded p-3 mt-3">
-        <form action="{{ route('admin.notice.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <x-labeled-input name="title" class="w-full  p-1" />
-            <div class="w-full pt-2 flex justify-end">
-                <x-button> {{ __('Create') }}</x-button>
-            </div>
-        </form>
+                <x-labeled-textarea label="Notice Content" name="title" required></x-labeled-textarea>
+                <div class="w-full pt-2 flex justify-end">
+                    <x-button> {{ __('Create') }}</x-button>
+                </div>
+            </form>
+        </div>
     </div>
+
+
 
     <div class="w-full mt-2">
         <table class="w-full my_table" id="data-table">

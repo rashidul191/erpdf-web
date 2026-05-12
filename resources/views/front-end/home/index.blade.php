@@ -5,16 +5,24 @@
     @endphp
 
     @if($isShow->value == business_setting('slider_is_show'))
-        <!-- start: Banner Section -->
+        <!-- start: Slider Section -->
         @include('front-end.home-page-section.slider')
-        <!-- end: Banner Section -->
+        <!-- end: Slider Section -->
+    @endif
+
+    @if($isShow->value == business_setting('notice_is_show'))
+        <!-- Start Notice Section -->
+        @include('front-end.home-page-section.notice-section')
+        <!-- End Notice Section -->
     @endif
 
     @if($isShow->value == business_setting('about_is_show'))
-        <!-- About Section -->
+        <!-- Start About Section -->
         @include('front-end.home-page-section.about-section')
         <!-- End About Section -->
     @endif
+
+
 
     {{-- @if($isShow->value == business_setting('service_is_show')) --}}
     <!-- start: Banner Section -->
