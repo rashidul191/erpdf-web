@@ -47,7 +47,7 @@
     <!-- End Reputation Section -->
     {{-- @endif --}}
 
-    {{-- @if($isShow->value == business_setting('blog_is_show')) --}}
+    @if($isShow->value == business_setting('blog_is_show'))
     <!-- Blog Section -->
     <div class="blog-section">
         <div class="auto-container">
@@ -79,7 +79,7 @@
                                         <div class="content-column col-lg-6 col-md-6 col-sm-12">
                                             <div class="inner-column">
                                                 <div class="arrow-one"></div>
-                                                <div class="title">{!! $item->category->name !!}</div>
+                                                <div class="title">{!! $item->category->name ?? '' !!}</div>
                                                 <h4><a
                                                         href="{{ route('blog.show', [$item->id, $item->slug]) }}">{!! $item->name !!}</a>
                                                 </h4>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <!-- End Blog Section -->
-    {{-- @endif --}}
+    @endif
 
     <!-- Map Section -->
     <div class="map-section">

@@ -63,6 +63,7 @@
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                     <x-navigation-link :href="route('admin.home-about-section.index')" :text="__('About Section')" />
+                    <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                 </x-navigation-link>
                 {{-- <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Say')" /> --}}
                 {{-- <x-navigation-link :href="route('admin.client-brand.index')" :text="__('Client Brand')" /> --}}

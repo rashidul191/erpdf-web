@@ -10,6 +10,10 @@
         </div>
     </div>
 
+    <x-business-setting-form>
+        <x-is-show name="blog_is_show" />
+    </x-business-setting-form>
+
     <div class="w-full mt-3">
         <table class="w-full my_table" id="data-table">
             <thead class="text-center">
@@ -33,7 +37,7 @@
                 ajax: {
                     url: '{{ route('admin.blog.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
 
                             item.action = actionIcons({
                                 'edit': '{{ route('admin.blog.edit', '@') }}'.replace('@', item
@@ -48,34 +52,34 @@
                 },
 
                 columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'image',
-                        orderable: false,
-                    },
-                    {
-                        data: 'gallery_image',
-                        orderable: false,
-                        defaultContent: '-',
-                    },
-                    {
-                        data: 'name'
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image',
+                    orderable: false,
+                },
+                {
+                    data: 'gallery_image',
+                    orderable: false,
+                    defaultContent: '-',
+                },
+                {
+                    data: 'name'
+                },
 
-                    {
-                        data: 'category.name',
-                        defaultContent: '-',
-                        orderable: false,
-                    },
+                {
+                    data: 'category.name',
+                    defaultContent: '-',
+                    orderable: false,
+                },
 
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>
