@@ -32,37 +32,46 @@
                 {{-- Preview Image --}}
                 <img width="50" id="prevImage" src="">
                 <!-- Main Image Upload -->
-                <x-labeled-input type="file" accept="image/*" label="Image(800x800px)" name="image"
-                    class="w-full p-1"
+                <x-labeled-input type="file" accept="image/*" label="Image(800x800px)" name="image" class="w-full p-1"
                     input-class="bg-transparent border border-gray-300 text-gray-800 placeholder-gray-500"
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" required />
 
-                <!-- Gallery Images Upload -->
-                <div>
-                    <div>
-                        <label for="gallery_image_input" class="font-semibold text-gray-800 mb-2">Gallery Images (800x800px)</label>
+                {{-- Preview Image --}}
+                <img width="50" id="prevBannerImage" src="">
+                <!-- Main Image Upload -->
+                <x-labeled-input type="file" accept="image/*" label="Page Banner Image (1400x350px)" name="banner_image"
+                    class="w-full p-1"
+                    input-class="bg-transparent border border-gray-300 text-gray-800 placeholder-gray-500"
+                    oninput="prevBannerImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                        <input label="Gallery Images (800x800px)" type="file" accept="image/*"
-                            name="gallery_image[]" class="w-full bg-transparent border-2 border-gray-400 text-gray-800 rounded-md p-2" id="gallery_image_input"
-                            multiple />
+                <!-- Gallery Images Upload -->
+                {{-- <div>
+                    <div>
+                        <label for="gallery_image_input" class="font-semibold text-gray-800 mb-2">Gallery Images
+                            (800x800px)</label>
+
+                        <input label="Gallery Images (800x800px)" type="file" accept="image/*" name="gallery_image[]"
+                            class="w-full bg-transparent border-2 border-gray-400 text-gray-800 rounded-md p-2"
+                            id="gallery_image_input" multiple />
                     </div>
                     <!-- <x-labeled-input label="Gallery Images (800x800px)" type="file" accept="image/*"
                     name="gallery_image[]" class="w-full p-1"
                     input-class="bg-transparent border border-gray-300 text-gray-800 placeholder-gray-500" multiple /> -->
                     <div class="flex flex-wrap gap-2 mt-2" id="gallery_preview"></div>
-                </div>
+                </div> --}}
 
                 <!-- Category Dropdown -->
                 <div class="w-full p-1">
                     <label for="blog_category_id" class="font-semibold">Select Category</label>
-                    <select name="blog_category_id" id="blog_category_id" class="select2 w-full rounded border-gray-300">
+                    <select name="blog_category_id" id="blog_category_id"
+                        class="select2 w-full rounded border-gray-300">
                         <option value="" disabled selected>Select Category</option>
                         @foreach ($blogCategories as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
                     @error('blog_category_id')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -86,14 +95,14 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
 
                 const galleryInput = document.getElementById('gallery_image_input');
                 const previewContainer = document.getElementById('gallery_preview');
 
                 let selectedFiles = [];
 
-                galleryInput.addEventListener('change', function(e) {
+                galleryInput.addEventListener('change', function (e) {
 
                     const newFiles = Array.from(e.target.files);
 
@@ -104,7 +113,7 @@
 
                         const reader = new FileReader();
 
-                        reader.onload = function(event) {
+                        reader.onload = function (event) {
 
                             const wrapper = document.createElement('div');
                             wrapper.className = 'relative w-16 h-16 border rounded overflow-hidden flex items-center justify-center';
@@ -119,7 +128,7 @@
                             closeBtn.className =
                                 'absolute inset-0 bg-black/50 text-white text-xl opacity-0 hover:opacity-100 transition flex items-center justify-center';
 
-                            closeBtn.addEventListener('click', function() {
+                            closeBtn.addEventListener('click', function () {
                                 const index = selectedFiles.indexOf(file);
                                 if (index > -1) {
                                     selectedFiles.splice(index, 1);

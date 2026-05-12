@@ -18,6 +18,9 @@ class BlogController extends Controller
                 ->addColumn('image', function ($row) {
                     return '<img class="w-12 h-12" src="' . $row->image . '" />';
                 })
+                ->addColumn('banner_image', function ($row) {
+                    return $row->banner_image ? '<img class="w-12 h-12" src="' . $row->banner_image . '" />' : 'N/A';
+                })
                 ->addColumn('gallery_image', function ($row) {
                     $html = '<div class="flex">';
 
@@ -31,7 +34,7 @@ class BlogController extends Controller
 
                     return $html;
                 })
-                ->rawColumns(['image', 'gallery_image']) // Mark 'image' and 'action' columns as raw HTML
+                ->rawColumns(['image', 'banner_image', 'gallery_image']) // Mark 'image' and 'action' columns as raw HTML
                 ->toJson();
         }
         return view('admin.blog.index');
@@ -45,8 +48,11 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+
+    // dd($request->all());
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
+            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
             'gallery_image' => 'nullable|array',
             'gallery_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
@@ -56,6 +62,8 @@ class BlogController extends Controller
 
             'blog_category_id' => 'nullable|exists:blog_categories,id',
         ]);
+
+        // dd($validated);
 
 
         $validated['slug'] = generateSlug(Blog::class, $validated['name']);
@@ -82,6 +90,7 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
+            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             // OLD gallery images (hidden inputs)
             'gallery_image' => 'nullable|array',

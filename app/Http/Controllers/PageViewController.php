@@ -63,8 +63,9 @@ class PageViewController extends Controller
         $data['blog'] = Blog::findOrFail($id);
         $data['blogComments'] = BlogComment::where('blog_id', $id)->latest()->take(4)->get();
         $data['recentBlogs'] = Blog::where('id', '!=', $id)->latest()->take(4)->get();
+        
         $data['relatedBlogs'] = Blog::where('blog_category_id', $data['blog']->blog_category_id)->where('id', '!=', $id)->latest()->take(4)->get();
-        $data['galleries'] = Gallery::latest()->take(12)->get();
+
         $data['categories'] = BlogCategory::latest()->take(12)->get();
 
         return view('front-end.pages.blog-details', $data);

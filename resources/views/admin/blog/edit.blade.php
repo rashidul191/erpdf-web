@@ -8,9 +8,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.blog.update', $blog->id) }}"
-        method="POST"
-        enctype="multipart/form-data"
+    <form action="{{ route('admin.blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data"
         class="bg-white p-4 rounded shadow">
         @csrf
         @method('PUT')
@@ -24,18 +22,11 @@
             <div class="w-full md:w-2/3">
 
                 <!-- Blog Name -->
-                <x-labeled-input
-                    name="name"
-                    value="{{ old('name', $blog->name) }}"
-                    required
-                    class="w-full p-1"
+                <x-labeled-input name="name" value="{{ old('name', $blog->name) }}" required class="w-full p-1"
                     input-class="bg-transparent border border-gray-300 text-gray-800" />
 
                 <!-- Description -->
-                <x-labeled-textarea
-                    label="Description"
-                    name="description"
-                    is-editor="is-editor"
+                <x-labeled-textarea label="Description" name="description" is-editor="is-editor"
                     :value="old('description', $blog->description)"></x-labeled-textarea>
 
             </div>
@@ -43,37 +34,32 @@
             <div class="w-full md:w-1/3">
 
                 {{-- Main Image Preview --}}
-                <img id="prevImage"
-                    src="{{ asset($blog->image) }}"
-                    class="w-20 h-20 object-cover border rounded mb-2">
+                <img id="prevImage" src="{{ asset($blog->image) }}" class="w-20 h-20 object-cover border rounded mb-2">
 
                 <!-- Main Image Upload -->
-                <x-labeled-input
-                    type="file"
-                    accept="image/*"
-                    label="Main Image"
-                    name="image"
-                    class="w-full p-1"
+                <x-labeled-input type="file" accept="image/*" label="Image(800x800px)" name="image" class="w-full p-1"
                     input-class="border border-gray-300"
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                <!-- Gallery Image Upload -->
-                <div class="mt-4">
+
+                {{-- Main Image Preview --}}
+                <img id="prevBannerImage" src="{{ asset($blog->banner_image) }}"
+                    class="w-20 h-20 object-cover border rounded mb-2">
+
+                <!-- Main Image Upload -->
+                <x-labeled-input type="file" accept="image/*" label="Page Banner Image (1400x350px)" name="banner_image"
+                    class="w-full p-1" input-class="border border-gray-300"
+                    oninput="prevBannerImage.src=window.URL.createObjectURL(this.files[0])" />
+
+                {{-- <div class="mt-4">
                     <label class="font-semibold">Gallery Images</label>
-                    <input type="file"
-                        id="gallery_image_input"
-                        name="gallery_image_new[]"
-                        multiple
-                        accept="image/*"
+                    <input type="file" id="gallery_image_input" name="gallery_image_new[]" multiple accept="image/*"
                         class="w-full border-2 border-gray-400 rounded p-2">
 
                     <div class="flex flex-wrap gap-2 mt-2" id="gallery_preview">
-                        {{-- OLD GALLERY IMAGES --}}
                         @foreach ($blog->gallery_image as $image)
                         <div class="relative w-16 h-16 border rounded overflow-hidden">
                             <img src="{{ asset($image) }}" class="w-full h-full object-cover">
-
-                            {{-- Hidden input for old image --}}
                             <input type="hidden" name="gallery_image[]" value="{{ $image }}">
 
                             <button type="button"
@@ -84,19 +70,17 @@
                         </div>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
 
 
                 <!-- Category -->
                 <div class="w-full p-1 mt-4">
                     <label class="font-semibold">Select Category</label>
-                    <select name="blog_category_id"
-                        class="w-full rounded border-gray-300">
+                    <select name="blog_category_id" class="w-full rounded border-gray-300">
                         @foreach ($blogCategories as $item)
-                        <option value="{{ $item->id }}"
-                            {{ $blog->blog_category_id == $item->id ? 'selected' : '' }}>
-                            {{ $item->name }}
-                        </option>
+                            <option value="{{ $item->id }}" {{ $blog->blog_category_id == $item->id ? 'selected' : '' }}>
+                                {{ $item->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -120,13 +104,13 @@
 
         <!-- Gallery Image Preview & Remove JS Code -->
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const galleryInput = document.getElementById('gallery_image_input');
                 const preview = document.getElementById('gallery_preview');
                 let selectedFiles = [];
 
                 // New images preview
-                galleryInput.addEventListener('change', function(e) {
+                galleryInput.addEventListener('change', function (e) {
                     Array.from(e.target.files).forEach(file => {
                         if (!file.type.startsWith('image/')) return;
 

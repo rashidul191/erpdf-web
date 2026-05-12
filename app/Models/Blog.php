@@ -15,6 +15,7 @@ class Blog extends Model
         'name',
         'slug',
         'image',
+        'banner_image',
         'gallery_image',
         'short_description',
         'description',
@@ -22,6 +23,7 @@ class Blog extends Model
 
     protected $casts = [
         'image' => ImageField::class . ':blogs,images/no-image.png',
+        'banner_image' => ImageField::class . ':blogs,images/no-image.png',
         'gallery_image' => \App\Casts\MultipleImageField::class . ':blogs/gallery,images/no-image.png',
 
     ];

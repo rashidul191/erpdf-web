@@ -20,7 +20,8 @@
                 <tr>
                     <th>{{ __('SL') }}</th>
                     <th>{{ __('Image') }}</th>
-                    <th>{{ __('Gallery Image') }}</th>
+                    <th>{{ __('Banner Image') }}</th>
+                    {{-- <th>{{ __('Gallery Image') }}</th> --}}
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Category') }}</th>
                     <th>{{ __('Action') }}</th>
@@ -61,10 +62,14 @@
                     orderable: false,
                 },
                 {
-                    data: 'gallery_image',
+                    data: 'banner_image',
                     orderable: false,
-                    defaultContent: '-',
                 },
+                // {
+                //     data: 'gallery_image',
+                //     orderable: false,
+                //     defaultContent: '-',
+                // },
                 {
                     data: 'name'
                 },
