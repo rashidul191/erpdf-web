@@ -10,12 +10,19 @@
             </div>
 
             <!-- Scrolling Area -->
-            <div class="notice-wrapper flex-grow-1 py-1">
+            <div class="notice-wrapper">
                 <div class="notice-track">
 
                     @foreach ($notices as $item)
                         <span class="notice-item">
-                            {!! $item->title ?? '' !!}
+                            {!! $item->title !!}
+                        </span>
+                    @endforeach
+
+                    {{-- duplicate for smooth infinite loop --}}
+                    @foreach ($notices as $item)
+                        <span class="notice-item">
+                            {!! $item->title !!}
                         </span>
                     @endforeach
 
@@ -29,42 +36,42 @@
 <style>
     .notice-wrapper {
         overflow: hidden;
-        position: relative;
         white-space: nowrap;
-        background-color: #ffffbf;
+        position: relative;
+        background: #ffffbf;
     }
 
     .notice-track {
-        display: inline-block;
-        white-space: nowrap;
-        animation: noticeScroll 40s linear infinite;
+        padding-top: 5px;
+        display: inline-flex;
+        align-items: center;
+        width: max-content;
+        animation: ticker 50s linear infinite;
     }
 
     .notice-item {
         display: inline-block;
+        padding-right: 80px;
         color: #000;
         font-size: 16px;
-        font-weight: 400;
-        position: relative;
     }
 
     .notice-item::before {
         content: "➤";
+        margin-right: 5px;
         font-size: 12px;
-        margin-left: 25px;
     }
 
-    @keyframes noticeScroll {
-        0% {
-            transform: translateX(100%);
+    @keyframes ticker {
+        from {
+            transform: translateX(0);
         }
 
-        100% {
-            transform: translateX(-100%);
+        to {
+            transform: translateX(-50%);
         }
     }
 
-    /* Hover করলে pause হবে */
     .notice-wrapper:hover .notice-track {
         animation-play-state: paused;
     }

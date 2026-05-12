@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Notice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class NoticeController extends Controller
 {
@@ -13,6 +14,9 @@ class NoticeController extends Controller
         if ($request->ajax()) {
             return datatables(Notice::latest())
                 ->addIndexColumn()
+                ->addColumn('title', function ($row) {
+                    return Str::limit($row->title, 100, );
+                })
                 ->toJson();
         }
         return view('admin.notice.index');

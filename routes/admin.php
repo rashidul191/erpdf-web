@@ -134,7 +134,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /* About Page Routes */
         Route::get('about', [AboutController::class, 'index'])->name('about.index');
 
-
         Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');
 
         Route::resource('services', ServiceController::class);
@@ -154,7 +153,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /* Blog Routes */
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
-
 
         Route::resource('dynamic-seo', DynamicSEOController::class);
 

@@ -34,8 +34,8 @@
                 <x-labeled-input label="Navbar Email" name="navbar_email" type="text"
                     value="{!! business_setting('navbar_email') !!}" class="w-full md:w-1/2 p-1" />
 
-                <x-labeled-input label="Office Date And Time" name="navbar_date_time" type="text"
-                    value="{!! business_setting('navbar_date_time') !!}" class="w-full md:w-1/2 p-1" />
+                <x-labeled-input label="Office Date And Time" name="office_time" type="text"
+                    value="{!! business_setting('office_time') !!}" class="w-full md:w-1/2 p-1" />
             </div>
         </div>
 
@@ -50,8 +50,8 @@
                         onchange="footerPrevImage.src=window.URL.createObjectURL(this.files[0])"
                         value="{{ business_setting('footer_logo') }}" />
                 </div>
-                <x-labeled-textarea label="Company Summary" name="company_summary" type="text"
-                    value="{!! business_setting('company_summary') !!}" class="w-full md:w-1/2  p-1 " />
+                {{-- <x-labeled-textarea label="Company Summary" name="company_summary" type="text"
+                    value="{!! business_setting('company_summary') !!}" class="w-full md:w-1/2  p-1 " /> --}}
 
                 <x-labeled-input name="footer_phone" type="text" value="{!! business_setting('footer_phone') !!}"
                     class="w-full md:w-1/2 p-1" />
@@ -59,17 +59,14 @@
                 <x-labeled-input name="footer_email" type="text" value="{!! business_setting('footer_email') !!}"
                     class="w-full md:w-1/2 p-1" />
 
-                <x-labeled-input label="Main Send Email" name="admin_email" type="text"
-                    value="{!! business_setting('admin_email') !!}" class="w-full md:w-1/2 p-1" />
+                {{-- <x-labeled-input label="Main Send Email" name="admin_email" type="text"
+                    value="{!! business_setting('admin_email') !!}" class="w-full md:w-1/2 p-1" /> --}}
 
                 <x-labeled-input name="footer_address" type="text" value="{!! business_setting('footer_address') !!}"
                     class="w-full md:w-1/2 p-1" />
 
                 <x-labeled-input name="copyright_text" type="text" value="{!! business_setting('copyright_text') !!}"
                     class="w-full md:w-1/2 p-1" />
-
-                <!-- <x-labeled-textarea label="Other Address" name="other_address" type="text" value="{!! business_setting('other_address') !!}"
-                    class="w-full p-1 " is-editor="is-editor" /> -->
             </div>
         </div>
     </x-business-setting-form>
