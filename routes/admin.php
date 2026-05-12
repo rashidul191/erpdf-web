@@ -142,6 +142,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('about-right-side/{id}', [AboutController::class, 'aboutRightSideDelete'])->name('about.right-side.destroy');
 
         Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');
+        
         Route::resource('services', ServiceController::class);
         Route::resource('our-story', OurStoryController::class);
         Route::resource('team-categories', TeamCategoryController::class);

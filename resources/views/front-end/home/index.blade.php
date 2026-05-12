@@ -24,17 +24,17 @@
 
 
 
-    {{-- @if($isShow->value == business_setting('service_is_show')) --}}
-    <!-- start: Banner Section -->
-    @include('front-end.about-page-section.services')
-    <!-- End Services Section -->
-    {{-- @endif --}}
+    @if($isShow->value == business_setting('service_is_show'))
+        <!-- start: Banner Section -->
+        @include('front-end.about-page-section.services')
+        <!-- End Services Section -->
+    @endif
 
-    {{-- @if($isShow->value == business_setting('project_is_show')) --}}
-    <!-- Project Section -->
-    {{-- @include('front-end.project-page-section.projects') --}}
-    <!-- End Project Section -->
-    {{-- @endif --}}
+    @if($isShow->value == business_setting('gallery_is_show'))
+        <!-- Project Section -->
+        @include('front-end.home-page-section.gallery-section')
+        <!-- End Project Section -->
+    @endif
 
     {{-- @if($isShow->value == business_setting('client_review_is_show')) --}}
     <!-- Testimonial Section -->
@@ -42,18 +42,6 @@
     <!-- End Testimonial Section -->
     {{-- @endif --}}
 
-    {{-- @if($isShow->value == business_setting('client_brand_is_show')) --}}
-    <!-- Sponsors Section -->
-    {{-- @include('front-end.home-page-section.client-brand') --}}
-    <!--End Sponsors Section-->
-    {{-- @endif --}}
-
-
-    {{-- @if($isShow->value == business_setting('faq_is_show')) --}}
-    <!-- Reputation Section Two -->
-    {{-- @include('front-end.home-page-section.faq') --}}
-    <!-- End Reputation Section -->
-    {{-- @endif --}}
 
     @if($isShow->value == business_setting('blog_is_show'))
         <!-- Blog Section -->

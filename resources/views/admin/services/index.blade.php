@@ -8,8 +8,12 @@
                 + {{ __('Create Service') }}
             </a>
         </div>
-
     </div>
+
+    <x-business-setting-form>
+        <x-is-show name="service_is_show"></x-is-show>
+    </x-business-setting-form>
+
     <div class="w-full mt-8">
         <table class="w-full my_table" id="data-table">
             <thead class="text-center">

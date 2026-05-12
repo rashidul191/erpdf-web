@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -14,9 +13,6 @@ class ServiceController extends Controller
         if ($request->ajax()) {
             return datatables(Service::oldest())
                 ->addIndexColumn()
-                // ->addColumn('sub_title', function ($row) {
-                //     return Str::limit(strip_tags($row->sub_title ?? '--'), 50);
-                // })
                 ->toJson();
         }
         return view('admin.services.index');

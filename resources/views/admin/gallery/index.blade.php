@@ -10,23 +10,15 @@
         </div>
     </div>
 
-    <div class="w-full mt-4 bg-white p-4 rounded">
-        <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data"
-            class="w-full">
-            @csrf
-            <img width="50" height="50" id="preGalleryBannerImg" src="{{ business_image('gallery_page_banner_img') }}">
+    <x-business-setting-form>
+        <x-is-show name="gallery_is_show"></x-is-show>
+
+         <img width="50" height="50" id="preGalleryBannerImg" src="{{ business_image('gallery_page_banner_img') }}">
             <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
                 accept="image/jpeg,image/png,image/jpg,image/webp" name="gallery_page_banner_img" class="w-full p-1"
                 onchange="preGalleryBannerImg.src=window.URL.createObjectURL(this.files[0])"
                 value="{{ business_setting('gallery_page_banner_img') }}" />
-            <div class="w-full pt-2 flex justify-end">
-                <x-button>
-                    {{ __('Submit') }}
-                </x-button>
-            </div>
-
-        </form>
-    </div>
+    </x-business-setting-form>
 
     <div class="mt-3">
         <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
