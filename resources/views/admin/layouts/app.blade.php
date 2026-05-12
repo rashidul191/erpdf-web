@@ -97,6 +97,7 @@
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />
+                    <x-navigation-link :href="route('admin.dynamic-seo.index')" :text="__('Dynamic SEO')" />
                     <!-- <x-navigation-link :href="route('admin.apps.index')" :text="__('Apps')" /> -->
                     {{-- @if (auth()->user()->isA('admin'))
                     <x-navigation-link :href="route('laratrust.roles-assignment.index')" :text="__('Access management')"

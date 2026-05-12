@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\DynamicSEOController;
 use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
@@ -149,6 +150,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /* Blog Routes */
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
+
+
+        Route::resource('dynamic-seo', DynamicSEOController::class);
 
         /* Business setting routes  */
         Route::get('basic-info', [BusinessSettingController::class, 'index'])->name('basic-info.index');

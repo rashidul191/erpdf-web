@@ -7,23 +7,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ business_image('meta_icon') }}" type="image/x-icon">
 
+
     @php
         $page_link = request()->path();
-        // $dynamicSEO = \App\Models\DynamicSEO::where('page_link', $page_link)->first();
+        $dynamicSEO = \App\Models\DynamicSEO::where('page_link', $page_link)->first();
     @endphp
 
-    {{-- @if($dynamicSEO)
+    @if($dynamicSEO)
     <!--- Dynamic SEO Mete Start --->
     {!! $dynamicSEO->meta_script !!}
     <!--- Dynamic SEO Mete End --->
-    @else --}}
-
+    @else
     <!--- Generated Mete Start --->
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="keyword" content="Laravel Dynamic Websit">
     <meta name="description" content="Laravel Dynamic Websit">
     <!--- Generated Mete End --->
-    {{-- @endif --}}
+    @endif
 
     <!-- Stylesheets -->
     <link href="{{ asset('front-end/assets/css/bootstrap.min.css') }}" rel="stylesheet">
