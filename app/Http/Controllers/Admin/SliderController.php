@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    public function homeGoogleMap()
+    {
+        return view('admin.slider.home-google-map');
+    }
 
     public function index(Request $request)
     {
@@ -15,10 +19,10 @@ class SliderController extends Controller
             return datatables(Slider::latest())
                 ->addIndexColumn()
                 ->addColumn('page_link', function ($row) {
-                    return $row->page_link  ? url($row->page_link) : '--';
+                    return $row->page_link ? url($row->page_link) : '--';
                 })
                 ->addColumn('image', function ($row) {
-                    return '<img class="w-12 h-12" src="' .  $row->image . '" />';
+                    return '<img class="w-12 h-12" src="' . $row->image . '" />';
                 })
                 ->rawColumns(['image'])
                 ->toJson();
