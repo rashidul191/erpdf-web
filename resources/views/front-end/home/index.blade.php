@@ -10,11 +10,11 @@
         <!-- end: Banner Section -->
     @endif
 
-    {{-- @if($isShow->value == business_setting('about_is_show')) --}}
+    @if($isShow->value == business_setting('about_is_show'))
     <!-- About Section -->
     @include('front-end.home-page-section.about-section')
     <!-- End About Section -->
-    {{-- @endif --}}
+    @endif
 
     {{-- @if($isShow->value == business_setting('service_is_show')) --}}
     <!-- start: Banner Section -->

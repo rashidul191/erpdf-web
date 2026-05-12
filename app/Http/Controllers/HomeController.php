@@ -16,8 +16,6 @@ class HomeController extends Controller
     public function index()
     {
         $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->latest()->get();
-        $data['aboutLeftSideContents'] = AboutLeftSide::oldest()->get();
-        $data['aboutRightSideContents'] = AboutRightSide::oldest()->get();
         $data['services'] = Service::oldest()->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
         $data['faqs'] = FAQ::latest()->limit(4)->get();
