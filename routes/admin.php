@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\FAQController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MenuManageController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OurStoryController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -128,6 +129,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('client-say', ClientSayController::class);
         Route::resource('client-brand', ClientBrandController::class);
+        Route::resource('notice', NoticeController::class);
 
         /* About Page Routes */
         Route::get('about', [AboutController::class, 'index'])->name('about.index');
