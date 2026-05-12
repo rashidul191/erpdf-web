@@ -1,62 +1,30 @@
-<div class="section-full p-tb90 bg-white overflow-hide">
-
-    <div class="container">
-        <div class="section-content">
-
-            <div class="row d-flex align-items-center">
-
-                <div class="col-lg-6 col-md-12 text-black">
-                    <!-- TITLE START -->
-                    <div class="section-head text-left">
-                        <h2 class=" m-b5" data-title="About">About</h2>
-                        <div class="wt-separator-outer">
-                            <div class="wt-separator site-bg-primary"></div>
-                        </div>
-                    </div>
-                    <!-- TITLE END -->
-                    <h4 class=" m-t0">
-                        {!! business_setting('about_title') !!}
-                    </h4>
-                    <p>{!! business_setting('about_description') !!}</p>
-
-                    <div class="row equal-wraper">
-                        @foreach ($aboutLeftSideContents as $item)
-                        <div class="col-md-6 m-b30">
-                            <div class="wt-icon-box-wraper left bg-gray p-a20 hover-box-effect v-icon-effect  equal-col">
-                                <div class="icon-md m-b20">
-                                    <!-- <span class="icon-cell"><i class="flaticon-room-service v-icon"></i></span> -->
-                                    <img src="{{ asset($item->image) }}" alt="">
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte">{!! $item->title !!}</h4>
-                                    <p>{!! $item->short_description !!}</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    @if(request()->routeIs('home.index') && request()->route('slug') == 'about-us' ? 'active' : '' )
-                    <a href="{{ route('page.index', 'about-us') }}" class="btn-half site-button button-lg m-b30"><span>More About</span><em></em></a>
-                    @endif
-                </div>
-
-                <div class="col-lg-6 col-md-12">
-                    <div class="home-about-block-outer bg-repeat bg-white" style="background-image:url(images/background/bg-dot.jpg);">
-                        <div class="home-about-block-inner">
-                            <div class="home-about-slider owl-carousel owl-btn-vertical-center">
-                                @foreach ($aboutRightSideContents as $item )
-                                <div class="item">
-                                    <div class="home-about-slider-pic">
-                                        <img src="{{ asset($item->image) }}" alt="">
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
+<div class="about-section">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="row align-items-center clearfix">
+                <!-- Image Column -->
+                <div class="image-column col-lg-6">
+                    <div class="about-image">
+                        <div class="about-inner-image">
+                            <img src="{{ business_image('about_page_left_img') }}" alt="about">
                         </div>
                     </div>
                 </div>
+
+                <!-- Content Column -->
+                <div class="content-column col-lg-6 col-md-12 col-sm-12 mb-0">
+                    <div class="about-column">
+                        <div class="sec-title">
+                            <div class="title">{!! business_setting('about_page_sub_title') !!}</div>
+                            <h2><span>{!! business_setting('about_page_title') !!}</span> </h2>
+                        </div>
+                        <div class="text" style="text-align: justify;">
+                            {!! business_setting('about_page_content') !!}
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
         </div>
     </div>
 </div>

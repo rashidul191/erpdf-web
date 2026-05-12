@@ -22,8 +22,6 @@
         <!-- End About Section -->
     @endif
 
-
-
     @if($isShow->value == business_setting('service_is_show'))
         <!-- start: Banner Section -->
         @include('front-end.about-page-section.services')

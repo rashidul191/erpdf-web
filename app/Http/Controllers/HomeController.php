@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\IsHomeStatus;
-use App\Models\AboutLeftSide;
-use App\Models\AboutRightSide;
 use App\Models\Admin\Slider;
-use App\Models\Admin\Team;
 use App\Models\Blog;
-use App\Models\FAQ;
 use App\Models\Gallery;
 use App\Models\Notice;
 use App\Models\Service;

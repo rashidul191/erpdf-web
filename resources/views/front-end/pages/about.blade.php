@@ -11,13 +11,6 @@
         @include('front-end.about-page-section.about-section')
         <!-- WELCOME  SECTION END -->
 
-        <!-- OUR SPECIALLIZATION START -->
-        {{-- @include('front-end.about-page-section.specialization') --}}
-        <!-- OUR SPECIALLIZATION END -->
-
-        <!-- OUR SERVICES START -->
-        {{-- @include('front-end.about-page-section.services') --}}
-        <!-- OUR SERVICES END -->
 
         <!-- OUR STORY SECTION START -->
         {{-- @include('front-end.about-page-section.ourstory') --}}
@@ -26,7 +19,6 @@
         <!-- OUR TEAM START -->
         {{-- @include('front-end.about-page-section.ourteam') --}}
         <!-- OUR TEAM END -->
-
 
 
     </div>
