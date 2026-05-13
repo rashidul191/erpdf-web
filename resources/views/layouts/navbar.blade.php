@@ -176,12 +176,14 @@
                 </div>
 
                 <!-- Outer Box -->
-                {{-- <div class="outer-box">
+                <div class="outer-box">
                     <!-- Search Btn -->
-                    <div class="search-box-btn search-box-outer"><span class="icon icofont-search"></span></div>
+                    {{-- <div class="search-box-btn search-box-outer">
+                        <span class="icon icofont-search"></span>
+                    </div> --}}
                     <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
-                </div> --}}
+                </div>
 
             </div>
         </div>
@@ -198,7 +200,8 @@
                 <a href="{{ route('home.index') }}">
                     <img src="{{ business_image('logo') }}" alt="" title=""></a>
             </div>
-            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+            <div class="menu-outer">
+                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
             </div>
         </nav>
     </div><!-- End Mobile Menu -->
