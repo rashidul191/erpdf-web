@@ -14,12 +14,12 @@
                         <div class="call">
                             <li>
                                 <a class="footer_phone" href="tel:{!! business_setting('footer_phone') !!}">
-                                    <span class="icon icofont-envelope"></span>
+                                    <span class="icon icofont-phone"></span>
                                     {!! business_setting('footer_phone') !!}</a>
                             </li>
                             <li>
                                 <a class="footer_email" href="mailto:{!! business_setting('footer_email') !!}">
-                                    <span class="icon icofont-phone"></span>
+                                    <span class="icon icofont-envelope"></span>
                                     {!! business_setting('footer_email') !!}</a>
                             </li>
                             <li>
