@@ -16,7 +16,7 @@ class SubMenuController extends Controller
     {
 
         if ($request->ajax()) {
-            return datatables(MenuItem::whereNotNull('menu_id')->whereNull('sub_menu_id')->with(['page', 'menu.page'])->oldest('serial'))
+            return datatables(MenuItem::whereNotNull('menu_id')->whereNull('sub_menu_id')->whereNull('menu_manage_id')->with(['page', 'menu.page'])->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('main_menu_name', function ($row) {
                     return $row->menu->is_custom == IsAgreeStatus::Yes() ? $row->menu->name : $row->menu->page->title;

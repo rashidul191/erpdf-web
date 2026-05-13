@@ -8,14 +8,13 @@ use App\Http\Controllers\Controller;
 use App\Models\MenuItem;
 use App\Models\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->oldest('serial'))
+            return datatables(MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->whereNull('menu_manage_id')->with('page')->oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('menu_name', function ($row) {
                     return $row->is_custom == IsAgreeStatus::Yes() ? $row->name : $row->page->title;
@@ -37,8 +36,10 @@ class MenuController extends Controller
 
     public function create()
     {
-        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
-        // dd($pages);
+        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu', function ($q) {
+            $q->whereNotNull('menu_manage_id');
+        })->oldest('title')->get();
+
         return view('admin.menu.create', compact('pages'));
     }
 
