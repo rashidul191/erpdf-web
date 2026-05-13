@@ -126,7 +126,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('google-map', [SliderController::class, 'homeGoogleMap'])->name('home-google-map.index');
         Route::get('about-section', [AboutController::class, 'homeAboutSection'])->name('home-about-section.index');
 
-
         Route::resource('client-say', ClientSayController::class);
         Route::resource('client-brand', ClientBrandController::class);
         Route::resource('notice', NoticeController::class);

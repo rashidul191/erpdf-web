@@ -44,7 +44,17 @@ class MenuManageController extends Controller
     {
         $menuMange = MenuManage::with('menuItems')->findOrFail($id);
         $menuManages = MenuManage::oldest('serial')->get();
-        $pages = Page::get();
+
+
+        // সব used page_id collect করো
+        $usedPageIds = $menuMange->menuItems
+            ->pluck('page_id')
+            ->filter()
+            ->unique()
+            ->toArray();
+
+        // unused pages
+        $pages = Page::whereNotIn('id', $usedPageIds)->get();
         return view('admin.menu-manage.show', compact('menuMange', 'menuManages', 'pages'));
     }
 
