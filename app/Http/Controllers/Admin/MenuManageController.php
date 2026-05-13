@@ -42,9 +42,12 @@ class MenuManageController extends Controller
 
     public function show($id)
     {
-        $menuMange = MenuManage::with('menuItems')->findOrFail($id);
+        $menuMange = MenuManage::with([
+            'menuItems' => function ($q) {
+                $q->orderBy('serial');
+            }
+        ])->findOrFail($id);
         $menuManages = MenuManage::oldest('serial')->get();
-
 
         // সব used page_id collect করো
         $usedPageIds = $menuMange->menuItems
