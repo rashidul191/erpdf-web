@@ -38,18 +38,12 @@
                                             {{ $subOfSubTitle }}
                                         </a>
                                     </li>
-
                                 @endforeach
-
                             </ul>
                         @endif
-
                     </li>
-
                 @endforeach
-
             </ul>
         @endif
-
     </li>
 @endforeach

@@ -22,6 +22,7 @@
                         <x-labeled-input name="title" class="w-full p-1" />
 
                         <x-labeled-input label="Page Link" name="page_link" class="w-full p-1" />
+                        <x-labeled-input type="number" name="serial" class="w-full p-1" />
 
                         <label class="inline-flex items-center mt-2">
                             <input type="checkbox" checked name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"
@@ -47,6 +48,7 @@
                         <th>{{ __('Image') }}</th>
                         <th>{{ __('Title') }}</th>
                         <th>{{ __('Page Link') }}</th>
+                        <th>{{ __('Serial') }}</th>
                         <th>{{ __('Is Home') }}</th>
                         <th>{{ __('Action') }}</th>
                     </tr>
@@ -96,7 +98,12 @@
                     defaultContent: '--'
                 },
                 {
-                    data: 'page_link'
+                    data: 'page_link',
+                    defaultContent: '--'
+                },
+                {
+                    data: 'serial',
+                    defaultContent: '--'
                 },
                 {
                     data: 'is_home',

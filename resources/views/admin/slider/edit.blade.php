@@ -8,22 +8,25 @@
         </div>
     </div>
 
-    <div class="w-full md:w-2/5 md:pr-3">
+    <div class="w-full md:pr-3">
         <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="bg-white p-4">
                 <img width="100" id="prevImage" src="{{ $slider->image }}">
-                <div class="w-full">
+                <div class="w-full flex flex-wrap">
                     <x-labeled-input label="Image (1600x600)" type="file"
-                        accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
+                        accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full md:w-1/2 p-1"
                         oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                    <x-labeled-input name="title" value="{!! $slider->title !!}" class="w-full p-1" />
+                    <x-labeled-input name="title" value="{!! $slider->title !!}" class="w-full md:w-1/2 p-1" />
 
                     <x-labeled-input label="Page Link" name="page_link"
-                        value="{!! $slider->page_link !!}" class="w-full p-1" />
+                        value="{!! $slider->page_link !!}" class="w-full md:w-1/2 p-1" />
+
+                    <x-labeled-input type="number" name="serial"
+                        value="{{ $slider->serial }}" class="w-full md:w-1/2 p-1" />
 
                     <label class="inline-flex items-center mt-2">
                         <input type="checkbox" name="is_home" value="{{ \App\Enums\IsHomeStatus::Yes }}"

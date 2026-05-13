@@ -16,7 +16,7 @@ class SliderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Slider::latest())
+            return datatables(Slider::oldest('serial'))
                 ->addIndexColumn()
                 ->addColumn('page_link', function ($row) {
                     return $row->page_link ? url($row->page_link) : '--';
@@ -36,10 +36,9 @@ class SliderController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'nullable|string',
             'page_link' => 'nullable|string',
-            'is_home' => 'nullable|boolean',
+            'is_home' => 'nullable|numeric',
+            'serial' => 'nullable|numeric',
         ]);
-
-
 
         $path = $validated['page_link'] ?? null;
 
@@ -75,13 +74,16 @@ class SliderController extends Controller
 
     public function update(Request $request, Slider $slider)
     {
+
         // Validate input
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'nullable|string',
             'page_link' => 'nullable|string',
-            'is_home' => 'nullable|boolean',
+            'is_home' => 'nullable|numeric',
+            'serial' => 'nullable|numeric',
         ]);
+
 
         if (empty($validated['is_home'])) {
             $validated['is_home'] = IsHomeStatus::Yes;

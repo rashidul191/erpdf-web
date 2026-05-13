@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->latest()->get();
+        $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->oldest('serial')->get();
         $data['notices'] = Notice::latest()->get();
         $data['services'] = Service::oldest()->get();
         $data['galleryImages'] = Gallery::latest()->take(12)->get();

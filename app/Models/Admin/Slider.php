@@ -16,7 +16,8 @@ class Slider extends Model
         'image',
         'title',
         'page_link',
-        'is_home'
+        'is_home',
+        'serial',
     ];
 
     protected $casts = [
