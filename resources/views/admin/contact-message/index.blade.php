@@ -4,8 +4,8 @@
     </div>
     <x-business-setting-form>
         <div class="flex flex-wrap w-full">
-            <x-labeled-input label="Title" name="contact_title" type="text"
-                value="{!! business_setting('contact_title') !!}" class="w-full md:w-1/2 p-1" />
+            {{-- <x-labeled-input label="Title" name="contact_title" type="text"
+                value="{!! business_setting('contact_title') !!}" class="w-full md:w-1/2 p-1" /> --}}
 
             <x-labeled-input label="Contact Page Phone" name="contact_phone" type="text"
                 value="{!! business_setting('contact_phone') !!}" class="w-full md:w-1/2 p-1" />
@@ -17,8 +17,8 @@
                 value="{!! business_setting('contact_address') !!}" class="w-full md:w-1/2 p-1" />
 
             <x-labeled-textarea label="Google Map (script code)" name="google_map_code" type="text"
-                value="{!! business_setting('google_map_code') !!}" class="w-full p-1" />
-                
+                value="{!! business_setting('contact_google_map_code') !!}" class="w-full p-1" />
+
             <!-- <x-labeled-textarea label="Other Address" name="other_address" type="text" value="{!! business_setting('other_address') !!}"
                     class="w-full p-1 " is-editor="is-editor" /> -->
         </div>

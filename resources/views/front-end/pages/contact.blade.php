@@ -7,7 +7,7 @@
     <!-- Map Section -->
     <div class="map-section">
         <div class="contact-map-area">
-            {!! business_setting('google_map_code') !!}
+            {!! business_setting('contact_google_map_code') !!}
         </div>
     </div>
     <!-- End Map Section -->
@@ -22,24 +22,23 @@
                     <!-- Column -->
                     <div class="column col-lg-6 col-md-6 col-sm-12">
                         <!-- <h2>Brooklyn, <span>New York</span></h2> -->
-                        <div class="text mb-4"><strong>Address:</strong> {!! business_setting('address') !!}</div>
+                        <div class="text mb-4"><strong>Address:</strong> {!! business_setting('contact_address') !!}
+                        </div>
                         <div class="email">Email: <a
-                                href="mailto:{!! business_setting('email') !!}">{!! business_setting('email') !!}</a>
+                                href="mailto:{!! business_setting('email') !!}">{!! business_setting('contact_email') !!}</a>
                         </div>
                     </div>
 
                     <!-- Column -->
                     <div class="column col-lg-6 col-md-6 col-sm-12">
                         <div class="email mb-4">Call directly:
-                            <a href="tel:{!! business_setting('phone') !!}">{!! business_setting('phone') !!}</a>
+                            <a
+                                href="tel:{!! business_setting('phone') !!}">{!! business_setting('contact_phone') !!}</a>
                         </div>
                         <div>
-                            <ul class="location-list">
-                                <li><span>Work Hours:</span>{{ business_setting('office_time') }}</li>
-                            </ul>
+                            <p class="text-white"><strong>Work Hours:</strong> {{ business_setting('office_time') }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
 
