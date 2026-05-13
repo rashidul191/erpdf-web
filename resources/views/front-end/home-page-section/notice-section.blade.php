@@ -109,7 +109,7 @@
     let duration = contentWidth / 80;
 
     // minimum smooth speed
-    duration = Math.max(duration, 50);
+    duration = Math.max(duration, 40);
 
     track.style.animationDuration = `${duration}s`;
 </script>
