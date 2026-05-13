@@ -36,9 +36,16 @@ class MenuController extends Controller
 
     public function create()
     {
-        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu', function ($q) {
-            $q->whereNotNull('menu_manage_id');
-        })->oldest('title')->get();
+
+        $pages = Page::where('status', CommonStatus::Active())
+            ->where(function ($q) {
+                $q->whereDoesntHave('menu')
+                    ->orWhereHas('menu', function ($q2) {
+                        $q2->whereNotNull('menu_manage_id');
+                    });
+            })
+            ->orderBy('title', 'asc')
+            ->get();
 
         return view('admin.menu.create', compact('pages'));
     }

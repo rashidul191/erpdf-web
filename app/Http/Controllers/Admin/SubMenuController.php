@@ -42,7 +42,16 @@ class SubMenuController extends Controller
 
     public function create()
     {
-        $pages = Page::where('status', CommonStatus::Active())->whereDoesntHave('menu')->oldest('title')->get();
+        $pages = Page::where('status', CommonStatus::Active())
+            ->where(function ($q) {
+                $q->whereDoesntHave('menu')
+                    ->orWhereHas('menu', function ($q2) {
+                        $q2->whereNotNull('menu_manage_id');
+                    });
+            })
+            ->orderBy('title', 'asc')
+            ->get();
+
         $menus = MenuItem::whereNull('menu_id')->whereNull('sub_menu_id')->with('page')->get();
         return view('admin.sub-menu.create', compact('menus', 'pages'));
     }
