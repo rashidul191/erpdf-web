@@ -31,21 +31,21 @@
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENTG START -->
-        <div class="section-full p-tb80">
+        <div class="section-full py-5">
             <div class="container">
                 <!-- LOCATION BLOCK-->
                 <div class="accordion" id="faqAccordion">
                     @forelse ($faqs as $item)
                         <div class="accordion-item border-0 mb-3 shadow-sm rounded-3 overflow-hidden">
 
-                            <h2 class="accordion-header" id="heading{{ $item->id }}">
+                            <h4 class="accordion-header" id="heading{{ $item->id }}">
                                 <button class="accordion-button fw-semibold {{ !$loop->first ? 'collapsed' : '' }}"
                                     type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}"
                                     aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
                                     aria-controls="collapse{{ $item->id }}">
                                     {{ $item->question }}
                                 </button>
-                            </h2>
+                            </h4>
 
                             <div id="collapse{{ $item->id }}"
                                 class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"

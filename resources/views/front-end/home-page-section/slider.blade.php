@@ -11,16 +11,16 @@
                                 <div class="title">{!! $item->sub_title ?? '' !!}</div>
                                 <h1>{!! $item->title ?? '' !!}</h1>
                                 <div class="text">{!! $item->short_description ?? '' !!}</div>
-                                <div class="btn-box">
-                                    <a href="{{ $item->link ?? 'javascript:void(0)' }}"
-                                        class="theme-btn btn-style-one"><span
-                                            class="txt">{!! $item->btn_text ?? '' !!}</span></a>
-                                </div>
+                                @if($item->btn_text)
+                                    <div class="btn-box">
+                                        <a href="{{ $item->link ?? 'javascript:void(0)' }}" class="theme-btn btn-style-one">
+                                            <span class="txt">{!! $item->btn_text ?? '' !!}</span>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         @endforeach
