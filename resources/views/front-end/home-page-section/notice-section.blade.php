@@ -1,16 +1,79 @@
-<div class="notice-section mt-4 overflow-hidden">
-    <div class="container ">
-        <div class="d-flex align-items-cente shadow-sm">
+<style>
+    .notice-bar {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: #fff8cc;
+        border-radius: 10px;
+        border: 1px solid #eee;
+    }
 
-            <!-- Notice Label -->
-            <div class="bg-black text-white px-4 py-1 d-flex align-items-center">
-                <p class="mb-0 fw-semibold text-uppercase">
-                    Notice
-                </p>
+    .notice-label {
+        background: #000;
+        color: #fff;
+        padding: 14px 22px;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        flex-shrink: 0;
+    }
+
+    .notice-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* ONLY ONE TRACK */
+    .notice-track {
+        position: absolute;
+        white-space: nowrap;
+        left: 100%;
+    }
+
+    .notice-item {
+        display: inline-block;
+        padding-right: 80px;
+        color: #111;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .notice-item::before {
+        content: "➤";
+        margin-right: 8px;
+    }
+
+    @keyframes noticeMove {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(calc(-100% - 100vw));
+        }
+    }
+
+    .notice-wrapper:hover .notice-track {
+        animation-play-state: paused;
+    }
+</style>
+
+<div class="notice-section mt-4">
+    <div class="container">
+
+        <div class="notice-bar shadow-sm">
+
+            <div class="notice-label">
+                Notice
             </div>
 
-            <!-- Scrolling Area -->
             <div class="notice-wrapper">
+
+                <!-- SINGLE TRACK -->
                 <div class="notice-track">
 
                     @foreach ($notices as $item)
@@ -19,61 +82,30 @@
                         </span>
                     @endforeach
 
-                    {{-- duplicate for smooth infinite loop --}}
-                    @foreach ($notices as $item)
-                        <span class="notice-item">
-                            {!! $item->title !!}
-                        </span>
-                    @endforeach
-
                 </div>
+
             </div>
 
         </div>
+
     </div>
 </div>
 
-<style>
-    .notice-wrapper {
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        position: relative;
-        background: #ffffbf;
-    }
+<script>
+    const track = document.querySelector('.notice-track');
 
-    .notice-track {
-        padding-top: 5px;
-        display: inline-flex;
-        align-items: center;
-        width: max-content;
-        animation: ticker 50s linear infinite;
-    }
+    const textWidth = track.offsetWidth;
 
-    .notice-item {
-        display: inline-block;
-        padding-right: 80px;
-        color: #000;
-        font-size: 16px;
-    }
+    /*
+        Smart smooth speed
+        small text not too fast
+        large text auto slower
+    */
 
-    .notice-item::before {
-        content: "➤";
-        margin-right: 5px;
-        font-size: 12px;
-    }
+    let duration = (textWidth + window.innerWidth) / 120;
 
-    @keyframes ticker {
-        from {
-            transform: translateX(0);
-        }
+    duration = Math.max(duration, 50);
 
-        to {
-            transform: translateX(-50%);
-        }
-    }
-
-    .notice-wrapper:hover .notice-track {
-        animation-play-state: paused;
-    }
-</style>
+    track.style.animation =
+        `noticeMove ${duration}s linear infinite`;
+</script>
