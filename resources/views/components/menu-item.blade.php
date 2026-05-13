@@ -34,7 +34,7 @@
                                     @endphp
 
                                     <li>
-                                        <a href="{{ pageUrl($subMenu->subOfSubMenus) }}">
+                                        <a href="{{ pageUrl($subOfSubMenu) }}">
                                             {{ $subOfSubTitle }}
                                         </a>
                                     </li>
