@@ -3205,6 +3205,10 @@ img {
     margin-bottom: 30px;
 }
 
+.main-footer .footer-widget ul li{
+    margin: 10px 0;
+}
+
 .main-footer .widgets-section {
     position: relative;
     padding: 50px 0px 30px;
