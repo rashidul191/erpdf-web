@@ -35,6 +35,7 @@
 
 <style>
     .notice-wrapper {
+        width: 100%;
         overflow: hidden;
         white-space: nowrap;
         position: relative;
