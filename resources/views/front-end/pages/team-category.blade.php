@@ -7,9 +7,13 @@
         <x-page-banner :title="\Str::title($categoryName) ?? null" />
         <!-- INNER PAGE BANNER END -->
 
-        <!-- OUR TEAM START -->
-        @include('front-end.about-page-section.ourteam')
-        <!-- OUR TEAM END -->
+        @if($teams->count() > 0)
+            <!-- OUR TEAM START -->
+            @include('front-end.about-page-section.ourteam')
+            <!-- OUR TEAM END -->
+        @else
+            <x-no-data-found></x-no-data-found>
+        @endif
 
     </div>
     <!-- CONTENT END -->
