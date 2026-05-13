@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap">
 
         <!-- LEFT SIDEBAR -->
         <div class="w-full md:w-1/3 p-2">
@@ -147,7 +147,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="p-3 text-center text-gray-500">
+                                    <td colspan="4" class="p-3 text-center text-red-600 bg-red-200">
                                         No menu items found
                                     </td>
                                 </tr>
