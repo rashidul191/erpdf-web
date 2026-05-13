@@ -46,9 +46,9 @@
 
                     <x-labeled-input label="Menu Name" name="name" class="w-full p-1 md:w-1/2"
                         x-bind:required="isCustom" value="{!!  $menu->name !!}" />
-
+                        
                     <x-labeled-input label="Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
-                        value="{!! $menu->slug !!}" />
+                        value="{!! $menu->custom_url ? $menu->custom_url : $menu->slug !!}" />
 
                 </div>
 

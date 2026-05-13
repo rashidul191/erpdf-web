@@ -3,7 +3,6 @@
 use App\Models\Admin\BusinessSetting;
 use Illuminate\Support\Str;
 
-
 if (!function_exists('icon')) {
     function icon($name)
     {
@@ -104,31 +103,53 @@ if (!function_exists('business_image')) {
 }
 
 
+
+if (!function_exists('getRawImage')) {
+
+    function getRawImage($model, string $field = 'image', bool $raw = false)
+    {
+        if (!$model) {
+            return null;
+        }
+
+        // RAW DB value
+        if ($raw) {
+            $value = $model->getRawOriginal($field);
+            return $value ?: null;
+        }
+
+        // normal value
+        $value = $model->$field ?? null;
+        return $value;
+
+    }
+}
+
+
 /*
 |--------------------------------------------------------------------------
 | Slug Generator Helper
 |--------------------------------------------------------------------------
 */
 
+if (!function_exists('isCustomUrl')) {
+    function isCustomUrl($slug = null)
+    {
+        if (!$slug) {
+            return null;
+        }
+        // check: http/https OR domain pattern
+        $isExternal = Str::startsWith($slug, ['http://', 'https://'])
+            || preg_match('/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/.*)?$/', $slug);
+        if ($isExternal) {
+            return $slug;
+        }
+
+        return null;
+    }
+}
+
 if (!function_exists('generateSlug')) {
-
-    // function generateSlug($modelName, $name, $column = 'slug')
-    // {
-
-    //     $slug = Str::slug($name);
-    //     $original = $slug;
-    //     $count = 1;
-
-    //     $query = $modelName::query();
-
-    //     while ($query->where($column, $slug)->exists()) {
-    //         $slug = $original . '-' . $count;
-    //         $count++;
-    //     }
-
-    //     return $slug;
-    // }
-
 
     function generateSlug($modelName, $inputSlug, $storeSingleData = null, $column = 'slug')
     {
@@ -159,23 +180,24 @@ if (!function_exists('generateSlug')) {
 }
 
 
-if (!function_exists('getRawImage')) {
-
-    function getRawImage($model, string $field = 'image', bool $raw = false)
+if (!function_exists('pageUrl')) {
+    function pageUrl($item)
     {
-        if (!$model) {
-            return null;
+        $isCustom = $item->is_custom->value == \App\Enums\IsAgreeStatus::Yes;
+
+        $slug = '#';
+        if ($isCustom) {
+            if ($item->custom_url) {
+                return $item->custom_url;
+            } else {
+                $slug = $item->slug;
+            }
+        } else {
+            $slug = $item->page?->slug;
         }
 
-        // RAW DB value
-        if ($raw) {
-            $value = $model->getRawOriginal($field);
-            return $value ?: null;
-        }
-
-        // normal value
-        $value = $model->$field ?? null;
-        return $value;
-
+        return route('page.index', ['slug' => $slug]);
     }
 }
+
+

@@ -20,6 +20,7 @@ class MenuItem extends Model
         'slug',
         'serial',
         'is_custom',
+        'custom_url',
         'status',
     ];
 

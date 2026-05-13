@@ -2,14 +2,14 @@
 @foreach ($menus as $menu)
 
     @php
-        $isCustom = $menu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-        $slug = $isCustom ? $menu->slug : ($menu->page->slug ?? '#');
+        $isCustom = $menu->is_custom->value == \App\Enums\IsAgreeStatus::Yes;
         $title = $isCustom ? $menu->name : ($menu->page->title ?? '');
     @endphp
-    <li
-        class="{{ request()->routeIs('page.index') && request()->route('slug') == $slug ? 'active' : ''   }} {{ $menu->subMenus->isNotEmpty() ? 'dropdown' : '' }}">
+    <li class=" {{ $menu->subMenus->isNotEmpty() ? 'dropdown' : '' }}">
+        {{-- class="{{ request()->routeIs('page.index') && request()->route('slug') == pageUrl($menu) ? 'active' : '' }} {{
+        $menu->subMenus->isNotEmpty() ? 'dropdown' : '' }}"> --}}
 
-        <a href="{{ route('page.index', $slug) }}">
+        <a href="{{ pageUrl($menu)  }}">
             {{ $title }}
         </a>
 
@@ -18,12 +18,11 @@
                 @foreach ($menu->subMenus as $subMenu)
                     @php
                         $isCustom = $subMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-                        $subSlug = $isCustom ? $subMenu->slug : ($subMenu->page->slug ?? '#');
                         $subTitle = $isCustom ? $subMenu->name : ($subMenu->page->title ?? '');
                     @endphp
 
                     <li class="{{ $subMenu->subOfSubMenus->isNotEmpty() ? 'submenu' : ''  }} ">
-                        <a href="{{ route('page.index', $subSlug) }}">
+                        <a href="{{ pageUrl($subMenu)  }}">
                             {{ $subTitle }}
                         </a>
                         @if($subMenu->subOfSubMenus->isNotEmpty())
@@ -31,12 +30,11 @@
                                 @foreach ($subMenu->subOfSubMenus as $subOfSubMenu)
                                     @php
                                         $isCustom = $subOfSubMenu->is_custom == \App\Enums\IsAgreeStatus::Yes();
-                                        $subOfSubSlug = $isCustom ? $subOfSubMenu->slug : ($subOfSubMenu->page->slug ?? '#');
                                         $subOfSubTitle = $isCustom ? $subOfSubMenu->name : ($subOfSubMenu->page->title ?? '');
                                     @endphp
 
                                     <li>
-                                        <a href="{{ route('page.index', $subOfSubSlug) }}">
+                                        <a href="{{ pageUrl($subMenu->subOfSubMenus) }}">
                                             {{ $subOfSubTitle }}
                                         </a>
                                     </li>

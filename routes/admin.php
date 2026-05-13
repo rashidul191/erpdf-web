@@ -108,6 +108,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('menu-manage', MenuManageController::class);
         Route::post('dynamic-menu', [MenuManageController::class, 'dynamicMenuStore'])->name('dynamic-menu.store');
         Route::delete('dynamic-menu/{menu_manage_id}/{id}', [MenuManageController::class, 'dynamicMenuDestroy'])->name('dynamic-menu.destroy');
+        
         Route::resource('navmenu', MenuController::class);
         Route::resource('menu', MenuController::class);
         Route::resource('sub-menu', SubMenuController::class);

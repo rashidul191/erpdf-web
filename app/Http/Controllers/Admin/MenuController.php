@@ -54,7 +54,6 @@ class MenuController extends Controller
         if ($request->is_custom == IsAgreeStatus::Yes) {
             $rules['name'] = 'required|string';
             $rules['slug'] = 'nullable|string';
-
         } else {
             $rules['page_id'] = 'required|integer|exists:pages,id';
         }
@@ -62,13 +61,14 @@ class MenuController extends Controller
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
+            $validated['custom_url'] = !empty($validated['slug'])
+                ? isCustomUrl($validated['slug'])
+                : null;
 
-            $validated['slug'] = !empty($validated['slug'])
+            $validated['slug'] = $validated['custom_url'] ? null : (!empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])
-                : generateSlug(MenuItem::class, $validated['name']);
+                : generateSlug(MenuItem::class, $validated['name']));
         }
-
-
 
         return response()->reportTo(
             MenuItem::create($validated),
@@ -112,16 +112,18 @@ class MenuController extends Controller
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::No) {
-            // dd('no');
             $validated['name'] = null;
             $validated['slug'] = null;
 
             $validated['is_custom'] = IsAgreeStatus::No;
         } else {
-            // dd('yes', $menu, $validated['slug']);
-            $validated['slug'] = !empty($validated['slug'])
+            $validated['custom_url'] = !empty($validated['slug'])
+                ? isCustomUrl($validated['slug'])
+                : null;
+
+            $validated['slug'] = $validated['custom_url'] ? null : (!empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'], $menu)
-                : generateSlug(MenuItem::class, $validated['name'], $menu);
+                : generateSlug(MenuItem::class, $validated['name'], $menu));
         }
 
 

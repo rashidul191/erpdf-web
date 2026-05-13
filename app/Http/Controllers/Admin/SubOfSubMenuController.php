@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\MenuItem;
 use App\Models\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class SubOfSubMenuController extends Controller
 {
@@ -69,13 +68,13 @@ class SubOfSubMenuController extends Controller
         $validated = $request->validate($rules);
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
-            // $page = Page::findOrFail($validated['page_id']);
-            // $validated['name'] = $page->title;
-            // $validated['slug'] = $page->slug;
+            $validated['custom_url'] = !empty($validated['slug'])
+                ? isCustomUrl($validated['slug'])
+                : null;
 
-            $validated['slug'] = !empty($validated['slug'])
+            $validated['slug'] = $validated['custom_url'] ? null : (!empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])
-                : generateSlug(MenuItem::class, $validated['name']);
+                : generateSlug(MenuItem::class, $validated['name']));
         }
 
         return response()->reportTo(
@@ -126,9 +125,13 @@ class SubOfSubMenuController extends Controller
             $validated['slug'] = null;
             $validated['is_custom'] = IsAgreeStatus::No;
         } else {
-            $validated['slug'] = !empty($validated['slug'])
+            $validated['custom_url'] = !empty($validated['slug'])
+                ? isCustomUrl($validated['slug'])
+                : null;
+
+            $validated['slug'] = $validated['custom_url'] ? null : (!empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'], $subOfSubMenu)
-                : generateSlug(MenuItem::class, $validated['name'], $subOfSubMenu);
+                : generateSlug(MenuItem::class, $validated['name'], $subOfSubMenu));
         }
         // Return response
         return response()->reportTo(

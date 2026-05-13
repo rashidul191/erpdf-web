@@ -68,7 +68,7 @@
                         value="{!! $subOfSubMenu->name !!}" x-bind:required="isCustom" />
 
                     <x-labeled-input label="Sub Of Sub Menu Slug" name="slug" class="w-full p-1 md:w-1/2"
-                        value="{!! $subOfSubMenu->slug !!}" />
+                        value="{!!$subOfSubMenu->custom_url ? $subOfSubMenu->custom_url : $subOfSubMenu->slug  !!}" />
 
                 </div>
 

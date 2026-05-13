@@ -98,9 +98,13 @@ class MenuManageController extends Controller
 
 
         if ($request->is_custom == IsAgreeStatus::Yes) {
-            $validated['slug'] = !empty($validated['slug'])
+            $validated['custom_url'] = !empty($validated['slug'])
+                ? isCustomUrl($validated['slug'])
+                : null;
+
+            $validated['slug'] = $validated['custom_url'] ? null : (!empty($validated['slug'])
                 ? generateSlug(MenuItem::class, $validated['slug'])
-                : generateSlug(MenuItem::class, $validated['name']);
+                : generateSlug(MenuItem::class, $validated['name']));
         }
 
         return response()->reportTo(

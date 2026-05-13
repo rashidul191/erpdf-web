@@ -44,7 +44,7 @@
 
                                     @if($menu->is_custom == \App\Enums\IsAgreeStatus::Yes())
                                         <li>
-                                            <a href="{{ route('page.index', $menu->slug) }}">
+                                            <a href="{{ pageUrl($menu) }}">
                                                 {{ $menu->name }}
                                             </a>
                                         </li>

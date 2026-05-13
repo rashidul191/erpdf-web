@@ -43,6 +43,7 @@ class CreateMenuItemsTable extends Migration
             $table->string('slug')->nullable();
             $table->integer('serial')->nullable();
             $table->unsignedTinyInteger('is_custom')->nullable()->default(IsAgreeStatus::No);
+            $table->string('custom_url')->nullable();
             $table->unsignedTinyInteger('status')->nullable()->default(CommonStatus::Active);
             $table->timestamps();
         });
