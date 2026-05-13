@@ -1,4 +1,73 @@
-<div class="section-full p-t90 p-b60 bg-white">
+<style>
+    /* Blog Card */
+    .blog-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid #f1f1f1;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    }
+
+    /* Same Image Size */
+    .blog-img {
+        width: 100%;
+        height: 260px;
+        overflow: hidden;
+    }
+
+    .blog-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s ease;
+    }
+
+    .blog-card:hover .blog-img img {
+        transform: scale(1.08);
+    }
+
+    /* Content */
+    .blog-content {
+        padding: 24px;
+        height: calc(100% - 260px);
+    }
+
+    .blog-title {
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 14px;
+    }
+
+    .blog-title a {
+        color: #111;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .blog-title a:hover {
+        color: #0d6efd;
+    }
+
+    /* Equal Description Height */
+    .blog-desc p {
+        color: #666;
+        line-height: 28px;
+        margin-bottom: 0;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+<div class="section-full py-5 bg-white">
 
     <div class="container">
 
@@ -17,54 +86,61 @@
         <div class="section-content">
 
             <div class="row">
-                @forelse($blogs as $item)
-                    <div class="col-lg-6 col-md-6">
-                        <div class="blog-post latest-blog-1 date-style-2">
-                            <div class="wt-post-media wt-img-effect zoom-slow">
+                <div class="row g-4">
 
-                                <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
-                                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
-                                </a>
-                            </div>
-                            <div class="wt-post-info">
-                                <div class="post-date"> <strong>{{ $item->created_at->format('d M Y') }} </strong></div>
+                    @forelse($blogs as $item)
+                        <div class="col-lg-6 col-md-6">
+                            <div class="blog-card h-100">
 
-                                <div class="wt-post-meta">
-                                    <ul class="clearfix">
-                                        <li class="post-author">
-                                            <div class="post-author-pic">
-                                                <!-- <span><img src="images/testimonials/pic1.jpg" alt=""></span> -->
-                                                <span><strong> By</strong> <a href="javascript:void(0)">Admin</a></span>
-                                            </div>
-                                        </li>
-                                        <!-- <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="post-right-sidebar.html">10 Comment</a> </li> -->
-                                    </ul>
+                                <!-- Image -->
+                                <div class="blog-img">
+                                    <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
+                                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
+                                    </a>
                                 </div>
 
-                                <div class="wt-post-title mt-2">
-                                    <h3 class="post-title">
+                                <!-- Content -->
+                                <div class="blog-content d-flex flex-column">
+
+                                    <div class="d-flex justify-content-between">
+                                        <div class="mb-2 text-muted small">
+                                            <i class="fa fa-calendar-alt me-1 text-primary"></i>
+                                            {{ $item->created_at->format('d M Y') }}
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <span class="small">
+                                                <i class="fa fa-user me-1 text-primary"></i> <a href="javascript:void(0)"
+                                                    class="text-dark fw-semibold">Admin</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="blog-title">
                                         <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
-                                            {{ $item->name }}</a>
+                                            {{ $item->name }}
+                                        </a>
                                     </h3>
-                                </div>
 
-                                <div class="wt-post-text" style="text-align: justify">
-                                    <p>{!! $item->short_description !!}</p>
-                                </div>
+                                    <div class="blog-desc">
+                                        <p>{!! $item->short_description !!}</p>
+                                    </div>
 
-                                <div class="readmore-line">
-                                    <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
-                                        class="site-button-ink site-text-primary font-weight-900 ">Read More</a>
-                                </div>
+                                    <div class="mt-auto pt-3">
+                                        <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
+                                            class="btn btn-outline-dark btn-sm rounded-pill px-4">
+                                            Read More
+                                        </a>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="text-center">
-                        <h3 class="text-danger">Data Not Found!</h3>
-                    </div>
-                @endforelse
+                    @empty
+                        <x-no-data-found></x-no-data-found>
+                    @endforelse
+
+                </div>
             </div>
             @if (request()->routeIs('blog.index'))
                 <!-- Pagination Start -->
