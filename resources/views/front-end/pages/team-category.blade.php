@@ -4,7 +4,7 @@
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :title="\Str::title($categoryName) ?? null" />
+        <x-page-banner :title="\Str::headline($categoryName) ?? null" />
         <!-- INNER PAGE BANNER END -->
 
         @if($teams->count() > 0)
