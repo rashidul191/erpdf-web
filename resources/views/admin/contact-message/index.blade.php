@@ -16,7 +16,7 @@
             <x-labeled-input label="Contact Page Address" name="contact_address" type="text"
                 value="{!! business_setting('contact_address') !!}" class="w-full md:w-1/2 p-1" />
 
-            <x-labeled-textarea label="Google Map (script code)" name="google_map_code" type="text"
+            <x-labeled-textarea label="Google Map (script code)" name="contact_google_map_code" type="text"
                 value="{!! business_setting('contact_google_map_code') !!}" class="w-full p-1" />
 
             <!-- <x-labeled-textarea label="Other Address" name="other_address" type="text" value="{!! business_setting('other_address') !!}"
