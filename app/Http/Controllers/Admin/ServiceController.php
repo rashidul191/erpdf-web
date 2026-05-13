@@ -11,7 +11,7 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Service::oldest())
+            return datatables(Service::oldest('serial'))
                 ->addIndexColumn()
                 ->toJson();
         }
@@ -25,9 +25,10 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image'         => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'title'   => 'required|string|max:255',
-            'sub_title'  => 'nullable|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'title' => 'required|string|max:255',
+            'sub_title' => 'nullable|string',
+            'serial' => 'nullable|numeric',
         ]);
 
         return response()->reportTo(
@@ -47,11 +48,10 @@ class ServiceController extends Controller
 
         // Validate input
         $validated = $request->validate([
-            'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'title'   => 'nullable|string|max:255',
-            'sub_title'  => 'nullable|string',
-
-
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string',
+            'serial' => 'nullable|numeric',
         ]);
         // Return response
         return response()->reportTo(

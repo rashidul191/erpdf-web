@@ -15,10 +15,10 @@
             <img width="50" id="prevImage" src="">
             <div class="flex flex-wrap justify-center w-full">
                 <x-labeled-input label="Image (100x100px)" type="file"
-                    accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full md:w-1/2 p-1" required
+                    accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1" required
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
+                <x-labeled-input type="number" name="serial" class="w-full md:w-1/2 p-1" />
                 <x-labeled-input name="title" required class="w-full md:w-1/2 p-1" />
-                {{-- <x-labeled-input name="sub_title" class="w-full p-1" /> --}}
 
                 <x-labeled-textarea label="Short Description" name="short_description" is-editor="is-editor"
                     :value="old('short_description')" class="w-full p-1"></x-labeled-textarea>

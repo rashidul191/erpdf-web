@@ -21,6 +21,7 @@
                     <th>{{ __('SL') }}</th>
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Title') }}</th>
+                    <th>{{ __('Serial') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -63,6 +64,11 @@
                 {
                     data: 'title',
                     orderable: false,
+                },
+                {
+                    data: 'serial',
+                    defaultContent: "--"
+
                 },
                 {
                     data: 'action',

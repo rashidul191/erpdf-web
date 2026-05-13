@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->oldest('serial')->get();
         $data['notices'] = Notice::latest()->get();
-        $data['services'] = Service::oldest()->get();
+        $data['services'] = Service::oldest('serial')->get();
         $data['galleryImages'] = Gallery::latest()->take(12)->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
 

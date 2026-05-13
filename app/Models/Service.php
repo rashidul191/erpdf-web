@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory, DeletesImage;
-    protected $fillable = ['image', 'title', 'short_description'];
+    protected $fillable = [
+        'image',
+        'title',
+        'short_description',
+        'serial',
+    ];
 
     protected $casts = [
         'image' => ImageField::class . ':services,images/no-image.png',
