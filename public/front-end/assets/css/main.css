@@ -584,7 +584,7 @@ img {
 ***/
 
 .main-header {
-    position: absolute;
+    /* position: absolute; */
     z-index: 999;
     width: 100%;
     -ms-animation-duration: 500ms;
