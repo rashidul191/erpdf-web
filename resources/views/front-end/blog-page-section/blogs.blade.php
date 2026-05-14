@@ -67,8 +67,7 @@
         overflow: hidden;
     }
 </style>
-<div class="section-full py-5 bg-white">
-
+<div class="section-full bg-white">
     <div class="container">
 
         @if(request()->routeIs('home.index'))

@@ -31,7 +31,7 @@ class BusinessSettingController extends Controller
             if ($request->hasFile($key)) {
                 // Optional: validate the file
                 $request->validate([
-                   $key => 'image|mimes:jpeg,png,jpg,gif,svg|max:102400'
+                   $key => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:102400'
                 ]);
 
                 // Delete old image if exists
