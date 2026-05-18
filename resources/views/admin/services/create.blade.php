@@ -14,7 +14,7 @@
         <div class="bg-white p-4">
             <img width="50" id="prevImage" src="">
             <div class="flex flex-wrap justify-center w-full">
-                <x-labeled-input label="Image (100x100px)" type="file"
+                <x-labeled-input label="Image (350x250px)" type="file"
                     accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1" required
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
                 <x-labeled-input type="number" name="serial" class="w-full md:w-1/2 p-1" />

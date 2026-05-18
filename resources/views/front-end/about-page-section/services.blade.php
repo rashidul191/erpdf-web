@@ -1,3 +1,19 @@
+<style>
+    .service-image-box {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
 <div class="section-full p-tb90">
     <div class="container">
         <!-- TITLE START -->
@@ -11,12 +27,10 @@
         <div class="row">
             @foreach ($services as $item)
 
-
                 <div class="col-lg-4 col-md-6">
                     <div
                         class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
-                        <div class="icon-md m-b20">
-                            <!-- <span class="icon-cell"><i class="flaticon-wifi v-icon"></i></span> -->
+                        <div class="icon-md m-b20 service-image-box">
                             <img src="{{ asset($item->image) }}" alt="{{ $item->title }}">
                         </div>
                         <div class="icon-content">

@@ -15,7 +15,7 @@
         <div class="bg-white p-4">
             <img width="50" id="prevImage" src="{{ $service->image }}">
             <div class="flex flex-wrap justify-center w-full">
-                <x-labeled-input label="Image (100x100px)" type="file"
+                <x-labeled-input label="Image (3500x250px)" type="file"
                     accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1"
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
