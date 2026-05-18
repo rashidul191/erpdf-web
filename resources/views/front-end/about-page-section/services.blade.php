@@ -14,7 +14,7 @@
         object-fit: cover;
     }
 </style>
-<div class="section-full p-tb90">
+<div class="section-full py-5">
     <div class="container">
         <!-- TITLE START -->
         <div class="section-head text-left">
