@@ -11,14 +11,11 @@
 
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-body p-4">
-
-                        <h3 class="text-center mb-4 fw-bold">Career Application Form</h3>
-
+                        <h3 class="text-center mb-4 fw-bold">Application Form</h3>
                         <form method="POST" action="{{ route('career-form.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row g-3">
-
                                 <!-- Name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Name *</label>

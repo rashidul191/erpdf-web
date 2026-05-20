@@ -1,4 +1,4 @@
-# stc-bank-web
+# erpdf-web
 
 - Laravel 8.0
 - TailwindCSS v3
@@ -9,4 +9,3 @@
 ## Copyright
 
 2026 All rights reserved by [Rashidul Islam](https://github.com/rashidul191).
-# erpdf-web

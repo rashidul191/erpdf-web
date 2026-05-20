@@ -9,7 +9,7 @@
     </div>
 
     <!-- Details Card -->
-    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+    <div class="bg-white border border-gray-100 rounded shadow overflow-hidden mt-4">
 
         {{-- Header --}}
         <div
