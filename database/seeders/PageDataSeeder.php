@@ -32,6 +32,10 @@ class PageDataSeeder extends Seeder
                 'slug' => 'contact-us',
             ],
             [
+                'title' => 'Career',
+                'slug' => 'career',
+            ],
+            [
                 'title' => 'Gallery',
                 'slug' => 'gallery',
             ],
