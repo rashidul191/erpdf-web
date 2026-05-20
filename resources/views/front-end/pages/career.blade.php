@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
-                <div class="card shadow-sm border-0 rounded-4">
+                <div class="card shadow-sm border-0 rounded">
                     <div class="card-body p-4">
                         <h3 class="text-center mb-4 fw-bold">Application Form</h3>
                         <form method="POST" action="{{ route('career-form.store') }}" enctype="multipart/form-data">
@@ -72,7 +72,7 @@
 
                                 <!-- Submit -->
                                 <div class="col-12 text-center mt-3">
-                                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-3">
+                                    <button type="submit" class="theme-btn btn-style-one">
                                         Apply Now
                                     </button>
                                 </div>
