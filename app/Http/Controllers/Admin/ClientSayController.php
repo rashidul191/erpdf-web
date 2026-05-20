@@ -15,8 +15,8 @@ class ClientSayController extends Controller
         if ($request->ajax()) {
             return datatables(ClientSay::latest())
                 ->addIndexColumn()
-                ->addColumn('description', function ($row) {
-                    return Str::limit(strip_tags($row->description ?? '--'), 50);
+                ->addColumn('review_text', function ($row) {
+                    return Str::limit(strip_tags($row->review_text ?? '--'), 50);
                 })
                 ->toJson();
         }
@@ -30,11 +30,10 @@ class ClientSayController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
-            'image'         => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'name'          => 'required|string|max:255',
-            'address'       => 'required|string|max:255',
-            'description'   => 'required|string|max:1000',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'name' => 'required|string|max:255',
+            'designation' => 'nullable|string',
+            'review_text' => 'nullable|string',
         ]);
 
         return response()->reportTo(
@@ -54,13 +53,12 @@ class ClientSayController extends Controller
 
         // Validate input
         $validated = $request->validate([
-            'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'name'          => 'nullable|string|max:255',
-            'address'       => 'nullable|string|max:255',
-            'description'   => 'nullable|string|max:1000',
-
-
-        ]);          // Return response
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'name' => 'required|string|max:255',
+            'designation' => 'nullable|string',
+            'review_text' => 'nullable|string',
+        ]);
+        // Return response
         return response()->reportTo(
             $clientSay->update($validated),
             'Updated successfully',

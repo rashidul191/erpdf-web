@@ -17,8 +17,8 @@ class CreateClientSaysTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('name')->nullable();
-            $table->string('address')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('designation')->nullable();
+            $table->longText('review_text')->nullable();
             $table->timestamps();
         });
     }

@@ -5,29 +5,23 @@
         <div>
             <a href="{{ route('admin.client-say.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                + {{ __('Create Client Review') }}
+                + {{ __('Create') }}
             </a>
         </div>
     </div>
 
-    <div class="bg-white p-4 mt-3 rounded">
-        <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data" class="w-full">
-            @csrf
-            <div class="w-full">
-                <img width="50" height="50" id="prevMetaIcon" src="{{ business_image('client_say_bg_img') }}">
-                <x-labeled-input label="Client Review BG Image (1900x570px)" type="file"
-                    accept="image/jpeg,image/png,image/jpg,image/webp" name="client_say_bg_img"
-                    class="w-full p-1"
-                    onchange="prevMetaIcon.src=window.URL.createObjectURL(this.files[0])"
-                    value="{{ business_setting('client_say_bg_img') }}" />
-            </div>
-            <div class="w-full pt-4 flex justify-end">
-                <x-button>
-                    {{ __('Add') }}
-                </x-button>
-            </div>
-        </form>
-    </div>
+    <x-business-setting-form>
+        <x-is-show name="client_review_is_show"></x-is-show>
+
+        <div class="w-full flex flex-wrap">
+            <x-labeled-input label="Section Title" name="cr_title" value="{!! business_setting('cr_title') !!}"
+                class="w-full md:w-1/2 p-1" />
+
+            <x-labeled-input label="Section Sub Title" name="cr_sub_title"
+                value="{!! business_setting('cr_sub_title') !!}" class="w-full md:w-1/2 p-1" />
+        </div>
+
+    </x-business-setting-form>
 
 
     <div class="w-full mt-3">
@@ -37,8 +31,8 @@
                     <th>{{ __('SL') }}</th>
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Name') }}</th>
-                    <th>{{ __('Address') }}</th>
-                    <th>{{ __('Description') }}</th>
+                    <th>{{ __('Designation') }}</th>
+                    <th>{{ __('Review Text') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -53,7 +47,7 @@
                 ajax: {
                     url: '{{ route('admin.client-say.index') }}',
                     dataSrc(response) {
-                        response.data.map(function(item) {
+                        response.data.map(function (item) {
                             item.action = actionIcons({
                                 'edit': '{{ route('admin.client-say.edit', '@') }}'.replace('@', item
                                     .id),
@@ -70,32 +64,32 @@
                 },
 
                 columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'image',
-                        orderable: false,
-                    },
-                    {
-                        data: 'name',
-                        orderable: false,
-                    },
-                    {
-                        data: 'address',
-                        orderable: false,
-                    },
-                    {
-                        data: 'description',
-                        orderable: false,
-                    },
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'image',
+                    orderable: false,
+                },
+                {
+                    data: 'name',
+                    orderable: false,
+                },
+                {
+                    data: 'designation',
+                    orderable: false,
+                },
+                {
+                    data: 'review_text',
+                    orderable: false,
+                },
 
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
                 ]
             });
         </script>

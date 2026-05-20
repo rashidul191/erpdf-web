@@ -14,8 +14,8 @@ class ClientSay extends Model
     protected $fillable = [
         'image',
         'name',
-        'address',
-        'description',
+        'designation',
+        'review_text',
     ];
 
     protected $casts = [

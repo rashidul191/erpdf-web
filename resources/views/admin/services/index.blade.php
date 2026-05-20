@@ -5,7 +5,7 @@
         <div>
             <a href="{{ route('admin.services.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                + {{ __('Create Service') }}
+                + {{ __('Create') }}
             </a>
         </div>
     </div>

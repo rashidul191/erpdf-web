@@ -34,11 +34,11 @@
         <!-- End Project Section -->
     @endif
 
-    {{-- @if($isShow->value == business_setting('client_review_is_show')) --}}
+    @if($isShow->value == business_setting('client_review_is_show'))
     <!-- Testimonial Section -->
-    {{-- @include('front-end.home-page-section.testimonial') --}}
+    @include('front-end.home-page-section.testimonial')
     <!-- End Testimonial Section -->
-    {{-- @endif --}}
+    @endif
 
 
     @if($isShow->value == business_setting('blog_is_show'))
