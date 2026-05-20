@@ -1777,6 +1777,18 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
+.pl-5 {
+  padding-left: 1.25rem;
+}
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pe-5 {
+  padding-inline-end: 1.25rem;
+}
+.ps-5 {
+  padding-inline-start: 1.25rem;
+}
 .text-left {
   text-align: left;
 }

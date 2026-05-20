@@ -54,13 +54,13 @@
                     <div class="clearfix row g-0">
                         <!-- Column -->
                         @foreach ($blogs as $item)
-                            <div class="column col-lg-6 col-md-12 col-sm-12">
+                            <div class="column col-12 p-3 border bg-white">
                                 <!-- News Block -->
                                 <div class="news-block">
                                     <div class="inner-box">
                                         <div class="clearfix">
                                             <!-- Image Column -->
-                                            <div class="image-column col-lg-6 col-md-6 col-sm-12">
+                                            <div class="image-column col-lg-4 col-sm-12">
                                                 <div class="inner-column">
                                                     <div class="image">
                                                         <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
@@ -70,16 +70,16 @@
                                                 </div>
                                             </div>
                                             <!-- Content Column -->
-                                            <div class="content-column col-lg-6 col-md-6 col-sm-12">
-                                                <div class="inner-column">
+                                            <div class="content-column col-lg-8 col-sm-12">
+                                                <div class="p-3 p-md-5">
                                                     <div class="arrow-one"></div>
-                                                    <div class="title">{!! $item->category->name ?? '' !!}</div>
-                                                    <h4><a
-                                                            href="{{ route('blog.show', [$item->id, $item->slug]) }}">{!! $item->name !!}</a>
-                                                    </h4>
-                                                    <div class="post-date">{!! $item->created_at->format('M d, Y') !!} by
-                                                        <span>Admin</span>
+                                                    <div class="title">
+                                                        <h4>
+                                                            <a
+                                                                href="{{ route('blog.show', [$item->id, $item->slug]) }}">{!! $item->name !!}</a>
+                                                        </h4>
                                                     </div>
+                                                    <p class="post-date">{!! $item->short_description !!} </p>
                                                 </div>
                                             </div>
                                         </div>
