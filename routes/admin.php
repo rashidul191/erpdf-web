@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessSettingController;
+use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientBrandController;
 use App\Http\Controllers\Admin\ClientSayController;
@@ -115,7 +116,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('sub-of-sub-menu', SubOfSubMenuController::class);
 
         /* Menu Routes End */
-
         Route::resource('page', PageController::class);
 
         Route::resource('tag', TagController::class);
@@ -154,6 +154,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('blog', BlogController::class);
         Route::resource('blog-categories', BlogCategoryController::class);
 
+        // Career
+        Route::resource('career', CareerController::class);
+
+        // Dynamic SEO
         Route::resource('dynamic-seo', DynamicSEOController::class);
 
         /* Business setting routes  */

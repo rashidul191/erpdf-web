@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="col-lg-4 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" placeholder="Subject (Optional)" required>
+                                    <input type="text" name="subject" placeholder="Subject (Optional)">
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">

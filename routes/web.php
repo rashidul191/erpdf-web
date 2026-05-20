@@ -23,6 +23,7 @@ Route::redirect('/home', '/');
 Route::get('/{slug}', [PageViewController::class, 'page'])->name('page.index');
 
 Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
+Route::post('/career-form', [PageViewController::class, 'careerForm'])->name('career-form.store');
 
 /* Blog Routes */
 Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');

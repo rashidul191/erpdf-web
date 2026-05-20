@@ -95,6 +95,8 @@
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')"
                     :icon="icon('message')" />
 
+                      <x-navigation-link :href="route('admin.career.index')" :text="__('Career')" :icon="icon('gallery')" />
+
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />

@@ -7,6 +7,7 @@ use App\Models\Admin\Team;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\Career;
 use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\FAQ;
@@ -30,6 +31,8 @@ class PageViewController extends Controller
             return $this->aboutPage();
         } elseif ($slug === 'contact-us' || $slug === 'contact') {
             return $this->contactPage();
+        } elseif ($slug === 'career') {
+            return $this->careerPage();
         } elseif ($slug === 'gallery') {
             return $this->galleryPage();
         } elseif ($slug === 'faq') {
@@ -63,7 +66,7 @@ class PageViewController extends Controller
         $data['blog'] = Blog::findOrFail($id);
         $data['blogComments'] = BlogComment::where('blog_id', $id)->latest()->take(4)->get();
         $data['recentBlogs'] = Blog::where('id', '!=', $id)->latest()->take(4)->get();
-        
+
         $data['relatedBlogs'] = Blog::where('blog_category_id', $data['blog']->blog_category_id)->where('id', '!=', $id)->latest()->take(4)->get();
 
         $data['categories'] = BlogCategory::latest()->take(12)->get();
@@ -136,6 +139,26 @@ class PageViewController extends Controller
     public function contactPage()
     {
         return view('front-end.pages.contact');
+    }
+    public function careerPage()
+    {
+        return view('front-end.pages.career');
+    }
+    public function careerForm(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'education' => 'nullable|string|max:255',
+            'occupation' => 'nullable|string|max:255',
+            'birth_date' => 'required|string',
+            'address' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+        ]);
+
+        Career::create($validated);
+        return redirect()->back()->with('success', 'Successfully Apply Done.');
     }
 
     public function faqPage()
