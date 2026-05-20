@@ -67,7 +67,7 @@
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                     <x-navigation-link :href="route('admin.home-google-map.index')" :text="__('Google Map Section')" />
                 </x-navigation-link>
-                {{-- <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Say')" /> --}}
+                {{-- <x-navigation-link :href="route('admin.testimonial.index')" :text="__('Client Say')" /> --}}
                 {{-- <x-navigation-link :href="route('admin.client-brand.index')" :text="__('Client Brand')" /> --}}
 
                 <x-navigation-link :href="route('admin.about.index')" :text="__('About Section')"
@@ -90,7 +90,7 @@
 
                 <x-navigation-link :href="route('admin.gallery.index')" :text="__('Gallery')" :icon="icon('gallery')" />
                 <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />
-                <x-navigation-link :href="route('admin.client-say.index')" :text="__('Client Review')"
+                <x-navigation-link :href="route('admin.testimonial.index')" :text="__('Testimonial')"
                     :icon="icon('review')" />
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')"
                     :icon="icon('message')" />

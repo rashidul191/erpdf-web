@@ -7,7 +7,7 @@ use App\Traits\DeletesImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClientSay extends Model
+class Testimonial extends Model
 {
     use HasFactory, DeletesImage;
 
@@ -19,6 +19,6 @@ class ClientSay extends Model
     ];
 
     protected $casts = [
-        'image' => ImageField::class . ':client',
+        'image' => ImageField::class . ':testimonial',
     ];
 }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Enums\IsHomeStatus;
 use App\Models\Admin\Slider;
 use App\Models\Blog;
-use App\Models\ClientSay;
 use App\Models\Gallery;
 use App\Models\Notice;
 use App\Models\Service;
+use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
@@ -18,7 +18,7 @@ class HomeController extends Controller
         $data['notices'] = Notice::latest()->get();
         $data['services'] = Service::oldest('serial')->get();
         $data['galleryImages'] = Gallery::latest()->take(12)->get();
-        $data['clientReviews'] = ClientSay::latest()->take(12)->get();
+        $data['testimonials'] = Testimonial::latest()->take(12)->get();
         $data['blogs'] = Blog::latest()->limit(2)->get();
 
         return view('front-end.home.index')->with($data);

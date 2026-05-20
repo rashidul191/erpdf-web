@@ -16,7 +16,7 @@
             <div class="section-content">
                 <div class="testimonial-home owl-carousel  owl-btn-top-right">
 
-                    @foreach ($clientSays as $item)
+                    @foreach ($testimonials as $item)
                     <div class="item">
                         <div class="testimonial-6">
                             <div class="testimonial-pic-block">

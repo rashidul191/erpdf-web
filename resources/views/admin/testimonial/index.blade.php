@@ -1,9 +1,9 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between">
-        <div class="text-xl">{{ __('Client Review') }}</div>
+        <div class="text-xl">{{ __('Testimonial') }}</div>
 
         <div>
-            <a href="{{ route('admin.client-say.create') }}"
+            <a href="{{ route('admin.testimonial.create') }}"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 text-sm font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 + {{ __('Create') }}
             </a>
@@ -11,7 +11,7 @@
     </div>
 
     <x-business-setting-form>
-        <x-is-show name="client_review_is_show"></x-is-show>
+        <x-is-show name="testimonial_is_show"></x-is-show>
 
         <div class="w-full flex flex-wrap">
             <x-labeled-input label="Section Title" name="cr_title" value="{!! business_setting('cr_title') !!}"
@@ -45,13 +45,13 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route('admin.client-say.index') }}',
+                    url: '{{ route('admin.testimonial.index') }}',
                     dataSrc(response) {
                         response.data.map(function (item) {
                             item.action = actionIcons({
-                                'edit': '{{ route('admin.client-say.edit', '@') }}'.replace('@', item
+                                'edit': '{{ route('admin.testimonial.edit', '@') }}'.replace('@', item
                                     .id),
-                                'delete': '{{ route('admin.client-say.destroy', '@') }}'.replace('@',
+                                'delete': '{{ route('admin.testimonial.destroy', '@') }}'.replace('@',
                                     item.id),
                             });
 

@@ -20,7 +20,7 @@
             <h2><span> {!! business_setting('cr_title') !!} </span></h2>
         </div>
         <div class="testimonial-carousel owl-carousel owl-theme">
-            @foreach ($clientReviews as $item)
+            @foreach ($testimonials as $item)
                 <!-- Testimonial Block -->
                 <div class="testimonial-block text-center">
                     <div class="inner-box">

@@ -15,7 +15,6 @@ use App\Http\Controllers\Admin\BusinessSettingController;
 use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientBrandController;
-use App\Http\Controllers\Admin\ClientSayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentController;
@@ -35,6 +34,7 @@ use App\Http\Controllers\Admin\SubOfSubMenuController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamCategoryController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ContactFormMessageController;
 use Illuminate\Support\Facades\Route;
 
@@ -127,7 +127,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('google-map', [SliderController::class, 'homeGoogleMap'])->name('home-google-map.index');
         Route::get('about-section', [AboutController::class, 'homeAboutSection'])->name('home-about-section.index');
 
-        Route::resource('client-say', ClientSayController::class);
+        Route::resource('testimonial', TestimonialController::class);
         Route::resource('client-brand', ClientBrandController::class);
         Route::resource('notice', NoticeController::class);
 

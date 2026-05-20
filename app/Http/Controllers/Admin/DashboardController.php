@@ -23,13 +23,11 @@ class DashboardController extends Controller
 
         // Show all cards
         $cards = [
-            // Card::make('Total Users', User::count()),
             Card::make('Total Slider', Slider::count()),
             Card::make('Total News', Blog::count()),
             // Card::make('Total Galleries', Gallery::count()),
             Card::make('Total Members', Team::count()),
             // Card::make('Total Services', Service::count()),
-            // Card::make('Total Reviews', ClientSay::count()),
         ];
 
         return view('admin.dashboard', compact('cards'));
