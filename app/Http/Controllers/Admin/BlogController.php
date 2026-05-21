@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -48,8 +47,6 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-
-    // dd($request->all());
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
@@ -62,9 +59,6 @@ class BlogController extends Controller
 
             'blog_category_id' => 'nullable|exists:blog_categories,id',
         ]);
-
-        // dd($validated);
-
 
         $validated['slug'] = generateSlug(Blog::class, $validated['name']);
 

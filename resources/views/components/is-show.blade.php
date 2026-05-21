@@ -2,7 +2,7 @@
 
 <div class="w-full mb-3">
     <p class="text-lg font-semibold text-gray-700 mb-4">
-        {{ __('Section Is Show') }}
+        {{ __('Section Is Show In Home Page') }}
     </p>
 
     <div class="flex flex-wrap gap-6">

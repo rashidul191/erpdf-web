@@ -20,6 +20,7 @@ class CreatePagesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('page_banner_image')->nullable();
             $table->unsignedTinyInteger('status')->nullable()->default(CommonStatus::Active);
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();

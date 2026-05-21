@@ -27,7 +27,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
             'title' => 'required|string|max:255',
-            'sub_title' => 'nullable|string',
+            'short_description' => 'nullable|string',
             'serial' => 'nullable|numeric',
         ]);
 
@@ -50,7 +50,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
             'title' => 'nullable|string|max:255',
-            'sub_title' => 'nullable|string',
+            'short_description' => 'nullable|string',
             'serial' => 'nullable|numeric',
         ]);
         // Return response

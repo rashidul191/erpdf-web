@@ -1,6 +1,6 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between">
-        <div class="text-xl">{{ __('News List') }}</div>
+        <div class="text-xl">{{ __('Blog List') }}</div>
 
         <div>
             <a href="{{ route('admin.blog.create') }}"

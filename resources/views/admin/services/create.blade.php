@@ -20,7 +20,7 @@
                 <x-labeled-input type="number" name="serial" class="w-full md:w-1/2 p-1" />
                 <x-labeled-input name="title" required class="w-full md:w-1/2 p-1" />
 
-                <x-labeled-textarea label="Short Description" name="short_description" is-editor="is-editor"
+                <x-labeled-textarea label="Description" name="short_description" is-editor="is-editor"
                     :value="old('short_description')" class="w-full p-1"></x-labeled-textarea>
 
                 <div class="w-full pt-4 flex justify-end">

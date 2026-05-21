@@ -6,6 +6,12 @@
             color: #111827;
         }
 
+        .blog-main-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
         .blog-description {
             font-size: 16px;
             line-height: 1.9;
@@ -48,10 +54,16 @@
             margin-bottom: 0 !important;
         }
 
+
+
         @media(max-width: 768px) {
 
             .blog-title {
                 font-size: 24px;
+            }
+
+            .blog-main-image {
+                height: 220px;
             }
 
             .gallery-item img {
@@ -61,6 +73,8 @@
             .related-blog-image {
                 height: 180px;
             }
+
+
         }
     </style>
 
@@ -68,8 +82,8 @@
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        {{-- <x-page-banner :image="getRawImage($blog, 'banner_image', true)" /> --}}
-        <x-page-banner :image="$blog->banner_image ?? null" />
+        <x-page-banner :title="$blog->name" :image="getRawImage($blog, 'banner_image', true)" />
+        {{-- <x-page-banner :image="$blog->banner_image ?? null" /> --}}
 
         <!-- INNER PAGE BANNER END -->
 
@@ -77,15 +91,14 @@
         <div class="blog-details-page py-5 bg-light">
             <div class="container">
                 <div class="row g-4">
-
                     <!-- Main Content -->
                     <div class="col-lg-8">
-
                         <div class="bg-white shadow-sm rounded-3 overflow-hidden">
 
                             <!-- Featured Image -->
-                            <div class="blog-thumbnail">
-                                <img src="{{ asset($blog->image) }}" alt="{{ $blog->name }}" class="img-fluid w-100">
+                            <div class="blog-thumbnail overflow-hidden">
+                                <img src="{{ asset($blog->image) }}" alt="{{ $blog->name }}"
+                                    class="img-fluid w-100 blog-main-image">
                             </div>
 
                             <!-- Content -->
@@ -94,45 +107,28 @@
                                 <!-- Meta -->
                                 <div class="d-flex flex-wrap align-items-center gap-3 mb-3 text-muted small">
                                     <span>
-                                        <i class="fa fa-calendar-alt me-1 text-primary"></i>
+                                        <i class="fa fa-calendar-alt me-1"></i>
                                         {{ $blog->created_at->format('d M Y') }}
                                     </span>
 
                                     <span>
-                                        <i class="fa fa-user me-1 text-primary"></i>
+                                        <i class="fa fa-user me-1"></i>
                                         Admin
                                     </span>
                                 </div>
 
                                 <!-- Title -->
-                                <h2 class="fw-bold mb-4 blog-title">
+                                <h3 class="fw-bold mb-4 blog-title">
                                     {{ $blog->name }}
-                                </h2>
+                                </h3>
 
                                 <!-- Description -->
                                 <div class="blog-description">
-                                    {!! $blog->description !!}
+                                    {!! $blog->description ? $blog->description : $blog->short_description  !!}
                                 </div>
-
                             </div>
                         </div>
 
-                        <!-- Gallery -->
-                        {{-- @if (!empty($blog->gallery_image))
-                        <div class="bg-white shadow-sm rounded-3 p-4 mt-4">
-                            <h4 class="fw-bold mb-4">Gallery</h4>
-
-                            <div class="row g-3">
-                                @foreach ($blog->gallery_image as $image)
-                                <div class="col-md-4 col-6">
-                                    <div class="gallery-item">
-                                        <img src="{{ asset($image) }}" class="img-fluid rounded-3" alt="">
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endif --}}
 
                         @if($relatedBlogs->count() > 0)
                             <!-- Related Blogs -->
@@ -174,7 +170,8 @@
                                                     </p>
 
                                                     <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
-                                                        class="btn btn-primary btn-sm rounded-pill px-4">
+                                                        class="btn rounded-0 px-4 py-2 text-white"
+                                                        style="background-color: #024e99">
                                                         Read More
                                                     </a>
 
@@ -192,7 +189,6 @@
 
                     <!-- Sidebar -->
                     <div class="col-lg-4">
-
                         <!-- Search -->
                         <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
                             <h4 class="fw-bold mb-3">Search</h4>
@@ -202,55 +198,59 @@
                                     <input type="text" name="search_text" class="form-control"
                                         placeholder="Search blog...">
 
-                                    <button class="btn btn-primary">
+                                    <button class="btn text-white" style="background-color: #024e99">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
                             </form>
                         </div>
 
-                        <!-- Recent Posts -->
-                        <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
-                            <h4 class="fw-bold mb-4">Recent Posts</h4>
+                        @if($recentBlogs->count() > 0)
+                            <!-- Recent Posts -->
+                            <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
+                                <h4 class="fw-bold mb-4">Recent Posts</h4>
 
-                            @foreach ($recentBlogs as $item)
-                                <div class="d-flex gap-3 mb-4 recent-post">
+                                @foreach ($recentBlogs as $item)
+                                    <div class="d-flex gap-3 mb-4 recent-post">
 
-                                    <div class="recent-post-image">
-                                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}"
-                                            class="img-fluid rounded">
+                                        <div class="recent-post-image">
+                                            <img src="{{ asset($item->image) }}" alt="{{ $item->name }}"
+                                                class="img-fluid rounded">
+                                        </div>
+
+                                        <div>
+                                            <small class="text-muted d-block mb-1">
+                                                {{ $item->created_at->format('d M Y') }}
+                                            </small>
+
+                                            <h6 class="mb-0">
+                                                <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
+                                                    class="text-dark text-decoration-none">
+                                                    {{ $item->name }}
+                                                </a>
+                                            </h6>
+                                        </div>
+
                                     </div>
-
-                                    <div>
-                                        <small class="text-muted d-block mb-1">
-                                            {{ $item->created_at->format('d M Y') }}
-                                        </small>
-
-                                        <h6 class="mb-0">
-                                            <a href="{{ route('blog.show', [$item->id, $item->slug]) }}"
-                                                class="text-dark text-decoration-none">
-                                                {{ $item->name }}
-                                            </a>
-                                        </h6>
-                                    </div>
-
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Categories -->
-                        <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
-                            <h4 class="fw-bold mb-3">Categories</h4>
-
-                            <div class="d-flex flex-wrap gap-2">
-                                @foreach ($categories as $item)
-                                    <a href="javascript:void(0)" class="btn btn-light border rounded-pill px-3 py-2">
-                                        {{ $item->name }}
-                                    </a>
                                 @endforeach
                             </div>
-                        </div>
+                        @endif
 
+
+                        @if($categories->count() > 0)
+                            <!-- Categories -->
+                            <div class="bg-white shadow-sm rounded-3 p-4 mb-4">
+                                <h4 class="fw-bold mb-3">Categories</h4>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    @foreach ($categories as $item)
+                                        <a href="javascript:void(0)" class="btn btn-light border rounded-pill px-3 py-2">
+                                            {{ $item->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
 
                     </div>
 

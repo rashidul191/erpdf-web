@@ -14,13 +14,6 @@
                         <div class="card shadow-sm border-0">
                             <div class="row">
                                 <!-- Title -->
-                                {{-- <div
-                                    class="col-12 {{ $content->page_layout_type->value == \App\Enums\PageLayoutType::OneColumn ? 'col-md-12' : 'col-md-6' }}">
-                                    <h3 class="card-title mb-3 fw-bold p-5">
-                                        {{ $content->title }}
-                                    </h3>
-                                </div> --}}
-
                                 @if($content->getRawOriginal('image')) <!-- Image -->
                                     <div
                                         class="col-12 {{ $content->page_layout_type->value == \App\Enums\PageLayoutType::OneColumn ? 'col-md-12' : 'col-md-4' }} overflow-hidden">

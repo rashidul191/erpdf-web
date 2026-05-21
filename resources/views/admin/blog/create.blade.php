@@ -1,7 +1,7 @@
-<x-admin-app-layout :title="__('Create News')">
+<x-admin-app-layout :title="__('Create Blog')">
 
     <div class="pb-3 flex justify-between">
-        <div class="text-md md:text-2xl">{{ __('Create News') }}</div>
+        <div class="text-md md:text-2xl">{{ __('Create Blog') }}</div>
         <div>
             <a class="text-primary-700 font-semibold bg-red-200 py-2 px-3 rounded"
                 href="{{ route('admin.blog.index') }}">{{ __('Back') }}</a>
@@ -32,7 +32,7 @@
                 {{-- Preview Image --}}
                 <img width="50" id="prevImage" src="">
                 <!-- Main Image Upload -->
-                <x-labeled-input type="file" accept="image/*" label="Image(800x800px)" name="image" class="w-full p-1"
+                <x-labeled-input type="file" accept="image/*" label="Image(800x450px)" name="image" class="w-full p-1"
                     input-class="bg-transparent border border-gray-300 text-gray-800 placeholder-gray-500"
                     oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" required />
 

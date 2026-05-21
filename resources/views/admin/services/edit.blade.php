@@ -21,11 +21,9 @@
 
                 <x-labeled-input type="number" name="serial" value="{!! $service->serial !!}"
                     class="w-full md:w-1/2 p-1" />
-                <x-labeled-input name="title" value="{!! $service->title !!}" class="w-full p-1 md:w-1/2" />
-                {{-- <x-labeled-input name="sub_title" value="{{ $service->sub_title }}" class="w-full p-1 md:w-1/2" />
-                --}}
+                <x-labeled-input name="title" value="{!! $service->title !!}" required class="w-full p-1 md:w-1/2" />
 
-                <x-labeled-textarea label="Short Description" name="short_description" is-editor="is-editor"
+                <x-labeled-textarea label="Description" name="short_description" is-editor="is-editor"
                     :value="old('short_description', $service->short_description)"
                     class="w-full p-1"></x-labeled-textarea>
 

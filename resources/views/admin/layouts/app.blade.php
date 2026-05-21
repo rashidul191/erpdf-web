@@ -63,9 +63,9 @@
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                     <x-navigation-link :href="route('admin.notice.index')" :text="__('Notice')" />
-                    <x-navigation-link :href="route('admin.home-about-section.index')" :text="__('About Section')" />
+                    {{-- <x-navigation-link :href="route('admin.home-about-section.index')" :text="__('About Section')" /> --}}
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
-                    <x-navigation-link :href="route('admin.home-google-map.index')" :text="__('Google Map Section')" />
+                    {{-- <x-navigation-link :href="route('admin.home-google-map.index')" :text="__('Google Map Section')" /> --}}
                 </x-navigation-link>
                 {{-- <x-navigation-link :href="route('admin.testimonial.index')" :text="__('Client Say')" /> --}}
                 {{-- <x-navigation-link :href="route('admin.client-brand.index')" :text="__('Client Brand')" /> --}}
@@ -84,7 +84,7 @@
                 </x-navigation-link>
 
                 <x-navigation-link :text="__('News')" :icon="icon('website')">
-                    <x-navigation-link :href="route('admin.blog.index')" :text="__('News List')" />
+                    <x-navigation-link :href="route('admin.blog.index')" :text="__('Blog List')" />
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 

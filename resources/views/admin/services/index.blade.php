@@ -12,6 +12,13 @@
 
     <x-business-setting-form>
         <x-is-show name="service_is_show"></x-is-show>
+        <div class="w-full flex flex-wrap">
+            <x-labeled-input label="Section Title" name="service_section_title"
+                value="{!! business_setting('service_section_title') !!}" class="w-full md:w-1/2 p-1" />
+
+            <x-labeled-input label="Section Sub Title" name="service_section_sub_title"
+                value="{!! business_setting('service_section_sub_title') !!}" class="w-full md:w-1/2 p-1" />
+        </div>
     </x-business-setting-form>
 
     <div class="w-full mt-8">

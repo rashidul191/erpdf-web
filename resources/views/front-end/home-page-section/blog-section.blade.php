@@ -1,3 +1,21 @@
+<style>
+    .blog-list-image {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .image:hover .blog-list-image {
+        transform: scale(1.05);
+    }
+
+    @media(max-width: 768px) {
+        .blog-list-image {
+            height: 200px;
+        }
+    }
+</style>
 <div class="blog-section">
     <div class="auto-container">
         <!-- Sec Title -->
@@ -17,9 +35,10 @@
                                     <!-- Image Column -->
                                     <div class="image-column col-lg-4 col-sm-12">
                                         <div class="inner-column">
-                                            <div class="image">
+                                            <div class="image bg-white overflow-hidden">
                                                 <a href="{{ route('blog.show', [$item->id, $item->slug]) }}">
-                                                    <img src="{{ asset($item->image) }}" alt="{!! $item->name !!}" />
+                                                    <img src="{{ asset($item->image) }}" alt="{!! $item->name !!}"
+                                                        class="blog-list-image" />
                                                 </a>
                                             </div>
                                         </div>

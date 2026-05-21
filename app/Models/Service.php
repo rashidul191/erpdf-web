@@ -11,10 +11,10 @@ class Service extends Model
 {
     use HasFactory, DeletesImage;
     protected $fillable = [
+        'serial',
         'image',
         'title',
         'short_description',
-        'serial',
     ];
 
     protected $casts = [

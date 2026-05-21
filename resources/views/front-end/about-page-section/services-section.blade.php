@@ -17,11 +17,9 @@
 <div class="section-full py-5">
     <div class="container">
         <!-- TITLE START -->
-        <div class="section-head text-left">
-            <h2 class="m-b5" data-title="Services">Our Services</h2>
-            <div class="wt-separator-outer">
-                <div class="wt-separator site-bg-primary"></div>
-            </div>
+        <div class="sec-title">
+            <div class="title">{!! business_setting('service_section_sub_title') !!}</div>
+            <h2><span> {!! business_setting('service_section_title') !!} </span></h2>
         </div>
         <!-- TITLE END -->
         <div class="row">

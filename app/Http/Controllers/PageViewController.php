@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
 class PageViewController extends Controller
 {
-    public function page($slug)
+    public function dynamicPage($slug)
     {
         // custom page
         if ($slug === 'news' || $slug === 'blog') {
@@ -39,13 +39,13 @@ class PageViewController extends Controller
             return $this->faqPage();
         }
         // dynamic page
-        return $this->pageDetail($slug);
+        return $this->dynamicPageDetail($slug);
     }
 
-    public function pageDetail($slug)
+    public function dynamicPageDetail($slug)
     {
         $content = Page::where('slug', $slug)->first();
-        return view('front-end.pages.page-detail', compact('content'));
+        return view('front-end.pages.dynamic-page-detail', compact('content'));
     }
 
     public function aboutPage()
@@ -67,7 +67,7 @@ class PageViewController extends Controller
         $data['blogComments'] = BlogComment::where('blog_id', $id)->latest()->take(4)->get();
         $data['recentBlogs'] = Blog::where('id', '!=', $id)->latest()->take(4)->get();
 
-        $data['relatedBlogs'] = Blog::where('blog_category_id', $data['blog']->blog_category_id)->where('id', '!=', $id)->latest()->take(4)->get();
+        $data['relatedBlogs'] = Blog::where('blog_category_id', $data['blog']->blog_category_id)->whereNotNull('blog_category_id')->where('id', '!=', $id)->latest()->take(4)->get();
 
         $data['categories'] = BlogCategory::latest()->take(12)->get();
 

@@ -24,7 +24,7 @@
 
     @if($isShow->value == business_setting('service_is_show'))
         <!-- start: Banner Section -->
-        @include('front-end.about-page-section.services')
+        @include('front-end.about-page-section.services-section')
         <!-- End Services Section -->
     @endif
 
@@ -36,7 +36,7 @@
 
     @if($isShow->value == business_setting('testimonial_is_show'))
         <!-- Testimonial Section -->
-        @include('front-end.home-page-section.testimonial')
+        @include('front-end.home-page-section.testimonial-section')
         <!-- End Testimonial Section -->
     @endif
 
