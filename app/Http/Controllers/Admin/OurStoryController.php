@@ -14,9 +14,6 @@ class OurStoryController extends Controller
         if ($request->ajax()) {
             return datatables(OurStory::latest())
                 ->addIndexColumn()
-                ->addColumn('description', function ($row) {
-                    return Str::limit(strip_tags($row->description ?? '--'), 50);
-                })
                 ->toJson();
         }
         return view('admin.our-story.index');
@@ -29,10 +26,10 @@ class OurStoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image'         => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'date'          => 'nullable|string|max:255',
-            'title'   => 'required|string|max:255',
-            'description'  => 'required|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'date' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
 
         return response()->reportTo(
@@ -51,10 +48,10 @@ class OurStoryController extends Controller
     {
         // Validate input
         $validated = $request->validate([
-            'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
-            'date'          => 'nullable|string|max:255',
-            'title'   => 'nullable|string|max:255',
-            'description'  => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
+            'date' => 'nullable|string|max:255',
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
         ]);
         // Return response
         return response()->reportTo(

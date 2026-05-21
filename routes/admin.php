@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -136,7 +137,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('specialization', [SpecializationController::class, 'index'])->name('specialization.index');
 
-        Route::resource('activity', ServiceController::class);
+        Route::resource('activity', ActivityController::class);
         Route::resource('services', ServiceController::class);
         Route::resource('our-story', OurStoryController::class);
         Route::resource('team-categories', TeamCategoryController::class);

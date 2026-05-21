@@ -35,7 +35,6 @@
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Year') }}</th>
                     <th>{{ __('Title') }}</th>
-                    <th>{{ __('Description') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -81,10 +80,6 @@
                 },
                 {
                     data: 'title',
-                    orderable: false,
-                },
-                {
-                    data: 'description',
                     orderable: false,
                 },
 

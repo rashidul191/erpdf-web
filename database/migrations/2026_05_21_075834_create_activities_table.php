@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('name')->nullable();
-            $table->decimal('count')->nullable()->default(0);
+            $table->integer('count')->nullable()->default(0);
             $table->integer('serial')->nullable();
             $table->timestamps();
         });
