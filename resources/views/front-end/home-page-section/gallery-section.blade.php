@@ -16,13 +16,41 @@
         width: 100%;
         height: 250px;
         overflow: hidden;
+        position: relative;
     }
 
+    /* zoom icon overlay */
+    .gallery_img_box::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 55px;
+        height: 55px;
+        background: rgba(2, 78, 153, 0.75);
+        border-radius: 50%;
+        opacity: 0;
+        transition: 0.3s;
+        pointer-events: none;
+
+        /* SVG icon */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 22px;
+    }
+
+    .gallery_img_box:hover::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* image */
     .gallery-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* 🔥 important */
         cursor: pointer;
         transition: 0.3s;
     }
@@ -106,6 +134,15 @@
 @if($galleryImages->isNotEmpty())
     <div class="py-5">
         <div class="container">
+
+            @if(request()->routeIs('home.index'))
+                <!-- Sec Title -->
+                <div class="sec-title">
+                    <div class="title"> {!! business_setting('gallery_section_sub_title') !!}</div>
+                    <h2><span> {!! business_setting('gallery_section_title') !!} </span></h2>
+                </div>
+            @endif
+
             <ul class="custom-gallery">
                 @foreach ($galleryImages as $item)
                     <li>

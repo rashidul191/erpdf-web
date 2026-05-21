@@ -35,11 +35,18 @@
         <!-- End Blog Section -->
     @endif
 
-    @if($isShow->value == business_setting('gallery_is_show'))
-        <!-- Project Section -->
-        @include('front-end.home-page-section.gallery-section')
-        <!-- End Project Section -->
-    @endif
+    <div>
+        @if($isShow->value == business_setting('gallery_is_show'))
+            <!-- Project Section -->
+            @include('front-end.home-page-section.gallery-section')
+            <!-- End Project Section -->
+        @endif
+        @if($isShow->value == business_setting('video_gallery_is_show'))
+            <!-- Project Section -->
+            @include('front-end.home-page-section.video-gallery-section')
+            <!-- End Project Section -->
+        @endif
+    </div>
 
 
     @if($isShow->value == business_setting('about_is_show'))

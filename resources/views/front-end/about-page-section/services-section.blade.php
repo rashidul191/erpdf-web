@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="text-center mt-2">
-                                <a href="#" class="service-btn">
+                                <a href="{{ route('service.show', $item->id) }}" class="service-btn">
                                     Read More
                                 </a>
                             </div>

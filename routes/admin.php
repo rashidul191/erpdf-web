@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamCategoryController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\ContactFormMessageController;
 use Illuminate\Support\Facades\Route;
 
@@ -151,6 +152,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         /* Gallery Page Routes */
         Route::resource('gallery', GalleryController::class);
+        Route::resource('video-gallery', VideoGalleryController::class);
 
         /* Blog Routes */
         Route::resource('blog', BlogController::class);

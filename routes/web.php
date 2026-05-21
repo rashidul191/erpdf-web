@@ -25,6 +25,7 @@ Route::get('/{slug}', [PageViewController::class, 'dynamicPage'])->name('page.in
 Route::post('/contact-form-message', [\App\Http\Controllers\ContactFormMessageController::class, 'store'])->name('contact-form-message.store');
 Route::post('/career-form', [PageViewController::class, 'careerForm'])->name('career-form.store');
 
+Route::get('/service/{id}', [PageViewController::class, 'serviceDetails'])->name('service.show');
 /* Blog Routes */
 Route::get('/blog/{id}/{slug}', [PageViewController::class, 'blogDetails'])->name('blog.show');
 Route::post('/blog-comment', [PageViewController::class, 'blogCommentStore'])->name('blog.comment.store');

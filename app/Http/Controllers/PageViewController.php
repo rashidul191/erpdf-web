@@ -55,6 +55,12 @@ class PageViewController extends Controller
         return view('front-end.pages.about', $data);
     }
 
+    public function serviceDetails($id)
+    {
+        $data['service'] = Service::findOrFail($id);
+        return view('front-end.pages.service-details', $data);
+    }
+
     public function blogPage()
     {
         $data['blogs'] = Blog::latest()->paginate(10);

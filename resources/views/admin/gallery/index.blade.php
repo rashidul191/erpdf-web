@@ -1,6 +1,6 @@
 <x-admin-app-layout>
     <div class="w-full flex justify-between">
-        <div class="text-xl">{{ __('Galleries') }}</div>
+        <div class="text-xl">{{ __('Image Galleries') }}</div>
 
         <div>
             <a href="{{ route('admin.gallery.create') }}"
@@ -10,35 +10,46 @@
         </div>
     </div>
 
-    <x-business-setting-form>
-        <x-is-show name="gallery_is_show"></x-is-show>
+    <div class="w-full flex flex-wrap items-center">
+        <div class="w-full md:w-1/2 p-1">
+            <x-business-setting-form>
+                <x-is-show name="gallery_is_show"></x-is-show>
 
-         <img width="50" height="50" id="preGalleryBannerImg" src="{{ business_image('gallery_page_banner_img') }}">
-            <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
-                accept="image/jpeg,image/png,image/jpg,image/webp" name="gallery_page_banner_img" class="w-full p-1"
-                onchange="preGalleryBannerImg.src=window.URL.createObjectURL(this.files[0])"
-                value="{{ business_setting('gallery_page_banner_img') }}" />
-    </x-business-setting-form>
+                <img width="50" height="50" id="preGalleryBannerImg"
+                    src="{{ business_image('gallery_page_banner_img') }}">
+                <x-labeled-input label="Page Banner Image (1400x350px)" type="file"
+                    accept="image/jpeg,image/png,image/jpg,image/webp" name="gallery_page_banner_img" class="w-full p-1"
+                    onchange="preGalleryBannerImg.src=window.URL.createObjectURL(this.files[0])"
+                    value="{{ business_setting('gallery_page_banner_img') }}" />
 
-    <div class="mt-3">
-        <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                <div class="w-full flex flex-wrap">
+                    <x-labeled-input label="Section Title" name="gallery_section_title"
+                        value="{{ business_setting('gallery_section_title') }}" class="w-full md:w-1/2 p-1" />
+                    <x-labeled-input label="Section Sub Title" name="gallery_section_sub_title"
+                        value="{{ business_setting('gallery_section_sub_title') }}" class="w-full md:w-1/2 p-1" />
+                </div>
+            </x-business-setting-form>
+        </div>
 
-            <div class="bg-white p-4 rounded ">
-                <img width="50" id="prevImage" src="">
-                <div class="flex flex-wrap justify-center w-full">
-                    <x-labeled-input label="Image (800x500px)" type="file"
-                        accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full md:w-1/2 p-1"
-                        required oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
+        <div class="w-full md:w-1/2 p-1">
+            <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="bg-white p-4 rounded ">
+                    <img width="50" id="prevImage" src="">
+                    <div class="flex flex-wrap justify-center w-full">
+                        <x-labeled-input label="Image (800x500px)" type="file"
+                            accept="image/jpeg,image/png,image/jpg,image/webp" name="image" class="w-full p-1" required
+                            oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
-                    <x-labeled-input name="title" class="w-full md:w-1/2 p-1" />
+                        <x-labeled-input name="title" class="w-full p-1" />
 
-                    <div class="w-full pt-2 flex justify-end">
-                        <x-button>{{ __('Create') }}</x-button>
+                        <div class="w-full pt-2 flex justify-end">
+                            <x-button>{{ __('Create') }}</x-button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <div class="w-full mt-2">
