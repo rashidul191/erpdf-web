@@ -58,6 +58,29 @@
         right: 10px;
     }
 
+    /* dots */
+.video-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.video-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.video-dot.active {
+    width: 30px;
+    border-radius: 20px;
+    background: #024e99;
+}
+
     @media(max-width: 768px) {
 
         .video-card iframe {
@@ -126,6 +149,15 @@
 
                 </div>
 
+                <!-- dots -->
+<div class="video-dots">
+    @foreach ($videoGalleries as $index => $item)
+        <span class="video-dot {{ $index == 0 ? 'active' : '' }}"
+              data-slide="{{ $index }}">
+        </span>
+    @endforeach
+</div>
+
             </div>
 
         </div>
@@ -141,50 +173,62 @@
 <!-- CONTENT END -->
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-        const slider = document.querySelector(".video-slider");
-        const slides = document.querySelectorAll(".video-slide");
-        const nextBtn = document.querySelector(".video-next");
-        const prevBtn = document.querySelector(".video-prev");
+    const slider = document.querySelector(".video-slider");
+    const slides = document.querySelectorAll(".video-slide");
+    const nextBtn = document.querySelector(".video-next");
+    const prevBtn = document.querySelector(".video-prev");
+    const dots = document.querySelectorAll(".video-dot");
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function updateSlider() {
-            slider.style.transform =
-                `translateX(-${currentIndex * 100}%)`;
+    function updateSlider() {
+
+        slider.style.transform =
+            `translateX(-${currentIndex * 100}%)`;
+
+        // active dot
+        dots.forEach(dot => dot.classList.remove("active"));
+
+        dots[currentIndex].classList.add("active");
+    }
+
+    // next
+    nextBtn.addEventListener("click", function () {
+
+        currentIndex++;
+
+        if (currentIndex >= slides.length) {
+            currentIndex = 0;
         }
 
-        nextBtn.addEventListener("click", function () {
-            currentIndex++;
+        updateSlider();
+    });
 
-            if (currentIndex >= slides.length) {
-                currentIndex = 0;
-            }
+    // prev
+    prevBtn.addEventListener("click", function () {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = slides.length - 1;
+        }
+
+        updateSlider();
+    });
+
+    // dots click
+    dots.forEach(dot => {
+
+        dot.addEventListener("click", function () {
+
+            currentIndex = parseInt(this.dataset.slide);
 
             updateSlider();
         });
-
-        prevBtn.addEventListener("click", function () {
-            currentIndex--;
-
-            if (currentIndex < 0) {
-                currentIndex = slides.length - 1;
-            }
-
-            updateSlider();
-        });
-
-        // autoplay
-        setInterval(() => {
-            currentIndex++;
-
-            if (currentIndex >= slides.length) {
-                currentIndex = 0;
-            }
-
-            updateSlider();
-        }, 5000);
 
     });
+
+});
 </script>
