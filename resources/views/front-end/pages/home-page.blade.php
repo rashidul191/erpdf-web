@@ -16,6 +16,12 @@
         <!-- End Notice Section -->
     @endif
 
+    @if($isShow->value == business_setting('about_is_show'))
+        <!-- Start About Section -->
+        @include('front-end.home-page-section.about-section')
+        <!-- End About Section -->
+    @endif
+
     @if($isShow->value == business_setting('service_is_show'))
         <!-- start: Banner Section -->
         @include('front-end.about-page-section.services-section')
@@ -54,12 +60,6 @@
         </div>
     </div>
 
-
-    @if($isShow->value == business_setting('about_is_show'))
-        <!-- Start About Section -->
-        @include('front-end.home-page-section.about-section')
-        <!-- End About Section -->
-    @endif
 
     @if($isShow->value == business_setting('testimonial_is_show'))
         <!-- Testimonial Section -->

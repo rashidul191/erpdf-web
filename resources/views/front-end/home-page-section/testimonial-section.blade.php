@@ -1,4 +1,9 @@
 <style>
+    .testimonial-section {
+        padding: 100px 0;
+        background-color: #eef1f3;
+    }
+
     .img-box {
         width: 120px;
         height: 120px;

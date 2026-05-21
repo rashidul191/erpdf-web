@@ -63,8 +63,8 @@
                 <x-navigation-link :text="__('Home Page')" :icon="icon('home')">
                     <x-navigation-link :href="route('admin.slider.index')" :text="__('Slider')" />
                     <x-navigation-link :href="route('admin.notice.index')" :text="__('Notice')" />
-                    <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                     <x-navigation-link :href="route('admin.home-about-section.index')" :text="__('About Section')" />
+                    <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                     <x-navigation-link :href="route('admin.activity.index')" :text="__('Activity Section')" />
                     {{-- <x-navigation-link :href="route('admin.home-google-map.index')"
                         :text="__('Google Map Section')" /> --}}
@@ -93,19 +93,20 @@
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>
 
+                <x-navigation-link :href="route('admin.testimonial.index')" :text="__('Testimonial')"
+                    :icon="icon('review')" />
+
                 <x-navigation-link :text="__('Gallery')" :icon="icon('gallery')">
                     <x-navigation-link :href="route('admin.gallery.index')" :text="__('Image Gallery')" />
                     <x-navigation-link :href="route('admin.video-gallery.index')" :text="__('Video Gallery')" />
                 </x-navigation-link>
 
-                <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />
-                <x-navigation-link :href="route('admin.testimonial.index')" :text="__('Testimonial')"
-                    :icon="icon('review')" />
                 <x-navigation-link :href="route('admin.contact-message.index')" :text="__('Contact Messages')"
                     :icon="icon('message')" />
 
                 <x-navigation-link :href="route('admin.career.index')" :text="__('Career')" :icon="icon('gallery')" />
 
+                <x-navigation-link :href="route('admin.faq.index')" :text="__('FAQ')" :icon="icon('message')" />
                 <x-navigation-link :text="__('Setting')" :icon="icon('setting')">
                     <x-navigation-link :href="route('admin.basic-info.index')" :text="__('Basic Info')" />
                     <x-navigation-link :href="route('admin.social-links.index')" :text="__('Social Links')" />

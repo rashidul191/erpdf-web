@@ -1,6 +1,7 @@
 <style>
     .activity_section {
-        background: linear-gradient(135deg, #f8fafc, #eef2ff);
+        padding: 80px 0;
+        /* background: linear-gradient(135deg, #f8fafc, #eef2ff); */
     }
 
     .counter-box {
@@ -44,15 +45,15 @@
         margin-bottom: 10px;
     }
 
-    .counter-box p {
-        font-size: 15px;
-        color: #6b7280;
+    .counter-box h5 {
+        font-size: 20px;
+        color: #000;
         font-weight: 500;
         letter-spacing: 0.3px;
     }
 </style>
 
-<div class="activity_section py-5">
+<div class="activity_section">
     <div class="container">
 
         <div class="row text-center">
@@ -62,13 +63,13 @@
 
                     <div class="counter-box">
 
-                        <h2 class="counter-number fw-bold text-primary" data-count="{{ $item->count }}">
+                        <h2 class="counter-number fw-bold" data-count="{{ $item->count }}">
                             0
                         </h2>
 
-                        <p class="mb-0">
+                        <h5 class="mb-0">
                             {{ $item->name }}
-                        </p>
+                        </h5>
 
                     </div>
 

@@ -2818,6 +2818,7 @@ img {
 }
 
 .testimonial-block .inner-box {
+    background-color: #fff;
     position: relative;
     padding: 45px 45px;
     border: 1px solid #e1e1e1;
@@ -3237,8 +3238,7 @@ img {
     font-weight: 600;
     color: #000000;
     line-height: 1.2em;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     text-transform: capitalize;
 }
 
@@ -3248,7 +3248,9 @@ img {
 
 .main-footer .logo-widget .logo {
     position: relative;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
+    width: 150px;
+
 }
 
 .main-footer .logo-widget .call {

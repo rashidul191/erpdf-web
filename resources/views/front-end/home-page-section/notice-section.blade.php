@@ -9,7 +9,7 @@
     }
 
     .notice-label {
-        background: #000;
+        background: #024e99;
         color: #fff;
         padding: 10px 25px;
         font-size: 15px;

@@ -1,4 +1,17 @@
-<footer class="main-footer border-top">
+<style>
+    .main-footer {
+        background-color: #024e99;
+        background-size: cover;
+
+    }
+
+    .main-footer a,
+    .social-nav li a,
+    .main-footer .footer-widget h5 {
+        color: #fff !important;
+    }
+</style>
+<footer class="main-footer border-top" style="background-image: url('{{ asset('images/pattern-bg.png') }}')">
     <div class="auto-container">
         <!--Widgets Section-->
         <div class="widgets-section">
@@ -74,10 +87,10 @@
                     <div class="row clearfix">
 
                         <div class="col-lg-8 col-md-12 col-sm-12">
-                            <div class="copyright">Copyright &copy; {{ date('Y') }}
+                            <div class="copyright text-white">Copyright &copy; {{ date('Y') }}
                                 {{business_setting('copyright_text') ?? business_setting('website_name') }} All rights
                                 reserved | Developed <i class="icon-heart text-danger" aria-hidden="true"></i> by <a
-                                    href="https://sawebsoft.com/" target="_blank">SA WebSoft</a>
+                                    href="https://sawebsoft.com/" target="_blank" class="text-white">SA WebSoft</a>
                             </div>
                         </div>
 

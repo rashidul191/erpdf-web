@@ -1,11 +1,11 @@
 <style>
-    .section-full {
+    .service-section {
         padding: 100px 0;
+        background-color: #eef1f3;
     }
 
     .service-card {
         height: 100%;
-        border: 2px solid #024e99;
         border-radius: 5px;
         overflow: hidden;
         transition: 0.4s;
@@ -35,7 +35,7 @@
     }
 
     .service-content {
-        padding: 22px;
+        padding: 22px 22px 30px;
         display: flex;
         flex-direction: column;
         height: calc(100% - 240px);
@@ -54,19 +54,7 @@
         flex-grow: 1;
     }
 
-    .service-btn {
-        display: inline-block;
-        background: #024e99;
-        color: #fff !important;
-        padding: 10px 24px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
 
-    .service-btn:hover {
-        background: #01366b;
-    }
 
     @media(max-width: 768px) {
         .service-image-box {
@@ -79,7 +67,7 @@
     }
 </style>
 
-<div class="section-full">
+<div class="service-section">
     <div class="container">
 
         <!-- TITLE START -->
@@ -110,11 +98,11 @@
                             </h4>
 
                             <div class="service-description">
-                                {!! \Str::limit(strip_tags($item->short_description), 80) !!}
+                                {!! \Str::limit(strip_tags($item->short_description), 120) !!}
                             </div>
 
-                            <div class="text-center mt-2">
-                                <a href="{{ route('service.show', $item->id) }}" class="service-btn">
+                            <div class="text-center mt-4">
+                                <a href="{{ route('service.show', $item->id) }}" class="more-btn">
                                     Read More
                                 </a>
                             </div>
