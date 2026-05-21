@@ -63,18 +63,18 @@ jobs:
 
             # ── Protect env file ignore ────────────────────────────
             git update-index --assume-unchanged .env 2>/dev/null || true
-            # git update-index --assume-unchanged public 2>/dev/null || true
-            # git update-index --assume-unchanged public/storage 2>/dev/null || true
-            # git update-index --assume-unchanged storage 2>/dev/null || true
+            git update-index --assume-unchanged public 2>/dev/null || true
+            git update-index --assume-unchanged public/storage 2>/dev/null || true
+            git update-index --assume-unchanged storage 2>/dev/null || true
 
             # ── Install dependencies ────────────────────────
             $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
 
             # ── Laravel Commands ────────────────────────────
 
-            $PHP_BIN artisan migrate:fresh --seed --force
-            # $PHP_BIN artisan migrate --force
-            # $PHP_BIN artisan db:seed --force || true
+
+            $PHP_BIN artisan migrate --force
+            $PHP_BIN artisan db:seed --force || true
 
             $PHP_BIN artisan optimize:clear
 
