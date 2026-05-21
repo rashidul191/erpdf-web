@@ -23,7 +23,11 @@
     @endif
 
 
-
+    @if($isShow->value == business_setting('activity_is_show'))
+        <!-- Blog Section -->
+        @include('front-end.home-page-section.activity')
+        <!-- End Blog Section -->
+    @endif
 
     @if($isShow->value == business_setting('blog_is_show'))
         <!-- Blog Section -->

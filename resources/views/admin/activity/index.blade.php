@@ -10,9 +10,9 @@
         </div>
     </div>
 
-   <x-business-setting-form>
-    <x-is-show name="activity_is_show"></x-is-show>
-   </x-business-setting-form>
+    <x-business-setting-form>
+        <x-is-show name="activity_is_show"></x-is-show>
+    </x-business-setting-form>
 
     <div class="w-full mt-4">
         <table class="w-full my_table" id="data-table">

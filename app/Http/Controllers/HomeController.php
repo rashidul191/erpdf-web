@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\IsHomeStatus;
+use App\Models\Activity;
 use App\Models\Admin\Slider;
 use App\Models\Blog;
 use App\Models\Gallery;
@@ -16,6 +17,7 @@ class HomeController extends Controller
     {
         $data['sliders'] = Slider::where('is_home', IsHomeStatus::Yes)->oldest('serial')->get();
         $data['notices'] = Notice::latest()->get();
+        $data['activities'] = Activity::oldest('serial')->get();
         $data['services'] = Service::oldest('serial')->get();
         $data['galleryImages'] = Gallery::latest()->take(12)->get();
         $data['testimonials'] = Testimonial::latest()->take(12)->get();
