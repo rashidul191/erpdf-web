@@ -19,7 +19,7 @@ class HomeController extends Controller
         $data['services'] = Service::oldest('serial')->get();
         $data['galleryImages'] = Gallery::latest()->take(12)->get();
         $data['testimonials'] = Testimonial::latest()->take(12)->get();
-        $data['blogs'] = Blog::latest()->limit(2)->get();
+        $data['blogs'] = Blog::latest()->take(5)->get();
 
         return view('front-end.home.index')->with($data);
     }

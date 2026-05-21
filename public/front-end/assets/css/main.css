@@ -3046,9 +3046,20 @@ img {
     background-color: #024e99;
 }
 
+.news-block .inner-box .blog-more-btn {
+    background-color: #024e99;
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+}
+
+.news-block .inner-box:hover .blog-more-btn {
+    background-color: white;
+    color: #024e99;
+}
+
 .news-block .inner-box .post-date {
     position: relative;
-    color: #999999;
     font-size: 14px;
     transition: all 500ms ease;
     -moz-transition: all 500ms ease;

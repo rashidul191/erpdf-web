@@ -16,8 +16,8 @@
     <div class="auto-container">
         <!-- Sec Title -->
         <div class="sec-title">
-            <div class="title">{!! business_setting('cr_sub_title') !!}</div>
-            <h2><span> {!! business_setting('cr_title') !!} </span></h2>
+            <div class="title">{!! business_setting('testimonial_section_sub_title') !!}</div>
+            <h2><span> {!! business_setting('testimonial_section_title') !!} </span></h2>
         </div>
         <div class="testimonial-carousel owl-carousel owl-theme">
             @foreach ($testimonials as $item)

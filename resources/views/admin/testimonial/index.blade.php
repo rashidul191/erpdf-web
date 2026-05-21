@@ -14,11 +14,11 @@
         <x-is-show name="testimonial_is_show"></x-is-show>
 
         <div class="w-full flex flex-wrap">
-            <x-labeled-input label="Section Title" name="cr_title" value="{!! business_setting('cr_title') !!}"
-                class="w-full md:w-1/2 p-1" />
+            <x-labeled-input label="Section Title" name="testimonial_section_title"
+                value="{!! business_setting('testimonial_section_title') !!}" class="w-full md:w-1/2 p-1" />
 
-            <x-labeled-input label="Section Sub Title" name="cr_sub_title"
-                value="{!! business_setting('cr_sub_title') !!}" class="w-full md:w-1/2 p-1" />
+            <x-labeled-input label="Section Sub Title" name="testimonial_section_sub_title"
+                value="{!! business_setting('testimonial_section_sub_title') !!}" class="w-full md:w-1/2 p-1" />
         </div>
 
     </x-business-setting-form>
