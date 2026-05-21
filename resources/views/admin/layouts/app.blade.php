@@ -83,7 +83,7 @@
                     <x-navigation-link :href="route('admin.document-categories.index')" :text="__('Document Categories')" />
                 </x-navigation-link>
 
-                <x-navigation-link :text="__('News')" :icon="icon('website')">
+                <x-navigation-link :text="__('Blog')" :icon="icon('website')">
                     <x-navigation-link :href="route('admin.blog.index')" :text="__('Blog List')" />
                     <x-navigation-link :href="route('admin.blog-categories.index')" :text="__('Categories')" />
                 </x-navigation-link>

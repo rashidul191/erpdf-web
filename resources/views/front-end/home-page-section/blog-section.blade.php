@@ -55,7 +55,7 @@
                                             </div>
                                             <p class="post-date">{!! $item->short_description !!} </p>
                                             <div class="mt-4">
-                                                <a class="blog-more-btn"
+                                                <a class="more-btn"
                                                     href="{{ route('blog.show', [$item->id, $item->slug]) }}">
                                                     Read More</a>
                                             </div>

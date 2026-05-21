@@ -19,10 +19,7 @@ class BusinessSettingController extends Controller
     {
         return view('admin.generale-setting.social-link');
     }
-    public function news()
-    {
-        return view('admin.generale-setting.news');
-    }
+
     public function businessSettingUpdate(Request $request)
     {
         $data = $request->except('_token');
@@ -31,7 +28,7 @@ class BusinessSettingController extends Controller
             if ($request->hasFile($key)) {
                 // Optional: validate the file
                 $request->validate([
-                   $key => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:102400'
+                    $key => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:102400'
                 ]);
 
                 // Delete old image if exists

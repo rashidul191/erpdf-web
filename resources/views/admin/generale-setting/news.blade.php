@@ -6,7 +6,7 @@
                 @csrf
                 <div class="bg-white p-4">
                     <x-labeled-input name="news" type="text" value="{{ business_setting('news') }}"
-                        class="w-full p-1"  />
+                        class="w-full p-1" />
 
                     <div class="w-full pt-4 flex justify-end">
                         <x-button>
@@ -16,4 +16,6 @@
                 </div>
 
             </form>
-        </div>      </div>  </x-admin-app-layout>
+        </div>
+    </div>
+</x-admin-app-layout>

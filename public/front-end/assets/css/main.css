@@ -111,7 +111,7 @@
 
 body {
     font-family: "Work Sans", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: #393939;
     line-height: 1.7em;
     font-weight: 400;
@@ -3046,21 +3046,32 @@ img {
     background-color: #024e99;
 }
 
-.news-block .inner-box .blog-more-btn {
+.more-btn {
     background-color: #024e99;
+    border: 1px solid #024e99;
     color: white;
     padding: 15px 20px;
     font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
-.news-block .inner-box:hover .blog-more-btn {
+.more-btn:hover {
+    background-color: #fff;
+    border: 1px solid #024e99;
+}
+
+.news-block .inner-box:hover .more-btn {
     background-color: white;
     color: #024e99;
 }
 
 .news-block .inner-box .post-date {
     position: relative;
-    font-size: 14px;
+    font-size: 16px;
     transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     -webkit-transition: all 500ms ease;
