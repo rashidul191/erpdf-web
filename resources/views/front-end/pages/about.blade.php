@@ -13,7 +13,7 @@
 
 
         <!-- OUR STORY SECTION START -->
-        {{-- @include('front-end.about-page-section.ourstory') --}}
+        @include('front-end.about-page-section.ourstory')
         <!-- OUR STORY SECTION END -->
 
         <!-- OUR TEAM START -->

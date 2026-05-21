@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data"
+    {{-- <form action="{{ route('admin.business-setting.update') }}" method="POST" enctype="multipart/form-data"
         class="w-full bg-white p-2 rounded mt-4">
         @csrf
         <img width="50" height="50" id="prePPBannerImg" src="{{ business_image('pp_page_banner_img') }}">
@@ -25,7 +25,7 @@
             </x-button>
         </div>
 
-    </form>
+    </form> --}}
 
     <div class="w-full mt-4">
         <table class="w-full my_table" id="data-table">

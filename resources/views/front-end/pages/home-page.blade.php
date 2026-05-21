@@ -16,22 +16,32 @@
         <!-- End Notice Section -->
     @endif
 
-    @if($isShow->value == business_setting('about_is_show'))
-        <!-- Start About Section -->
-        @include('front-end.home-page-section.about-section')
-        <!-- End About Section -->
-    @endif
-
     @if($isShow->value == business_setting('service_is_show'))
         <!-- start: Banner Section -->
         @include('front-end.about-page-section.services-section')
         <!-- End Services Section -->
     @endif
 
+
+
+
+    @if($isShow->value == business_setting('blog_is_show'))
+        <!-- Blog Section -->
+        @include('front-end.home-page-section.blog-section')
+        <!-- End Blog Section -->
+    @endif
+
     @if($isShow->value == business_setting('gallery_is_show'))
         <!-- Project Section -->
         @include('front-end.home-page-section.gallery-section')
         <!-- End Project Section -->
+    @endif
+
+
+    @if($isShow->value == business_setting('about_is_show'))
+        <!-- Start About Section -->
+        @include('front-end.home-page-section.about-section')
+        <!-- End About Section -->
     @endif
 
     @if($isShow->value == business_setting('testimonial_is_show'))
@@ -41,11 +51,7 @@
     @endif
 
 
-    @if($isShow->value == business_setting('blog_is_show'))
-        <!-- Blog Section -->
-        @include('front-end.home-page-section.blog-section')
-        <!-- End Blog Section -->
-    @endif
+
 
     @if($isShow->value == business_setting('google_map_is_show'))
         <!-- Map Section -->
