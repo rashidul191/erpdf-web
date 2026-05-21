@@ -18,7 +18,7 @@
                 <div class="w-full flex flex-wrap">
                     <x-labeled-input label="Section Title" name="video_gallery_section_title"
                         value="{{ business_setting('video_gallery_section_title') }}" class="w-full p-1" />
-                    <x-labeled-input label="Section Sub Title" name="video_gallery_section_sub_title"
+                    <x-labeled-input label="Section Sub Title (optional)" name="video_gallery_section_sub_title"
                         value="{{ business_setting('video_gallery_section_sub_title') }}" class="w-full p-1" />
                 </div>
             </x-business-setting-form>

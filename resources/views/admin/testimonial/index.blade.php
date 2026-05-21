@@ -17,7 +17,7 @@
             <x-labeled-input label="Section Title" name="testimonial_section_title"
                 value="{!! business_setting('testimonial_section_title') !!}" class="w-full md:w-1/2 p-1" />
 
-            <x-labeled-input label="Section Sub Title" name="testimonial_section_sub_title"
+            <x-labeled-input label="Section Sub Title (optional)" name="testimonial_section_sub_title"
                 value="{!! business_setting('testimonial_section_sub_title') !!}" class="w-full md:w-1/2 p-1" />
         </div>
 
