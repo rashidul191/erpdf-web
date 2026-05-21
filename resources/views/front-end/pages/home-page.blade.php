@@ -35,17 +35,23 @@
         <!-- End Blog Section -->
     @endif
 
-    <div>
-        @if($isShow->value == business_setting('gallery_is_show'))
-            <!-- Project Section -->
-            @include('front-end.home-page-section.gallery-section')
-            <!-- End Project Section -->
-        @endif
-        @if($isShow->value == business_setting('video_gallery_is_show'))
-            <!-- Project Section -->
-            @include('front-end.home-page-section.video-gallery-section')
-            <!-- End Project Section -->
-        @endif
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-7">
+                @if($isShow->value == business_setting('gallery_is_show'))
+                    <!-- Project Section -->
+                    @include('front-end.home-page-section.gallery-section')
+                    <!-- End Project Section -->
+                @endif
+            </div>
+            <div class="col-12 col-md-12 col-lg-5">
+                @if($isShow->value == business_setting('video_gallery_is_show'))
+                    <!-- Project Section -->
+                    @include('front-end.home-page-section.video-gallery-section')
+                    <!-- End Project Section -->
+                @endif
+            </div>
+        </div>
     </div>
 
 
@@ -60,8 +66,6 @@
         @include('front-end.home-page-section.testimonial-section')
         <!-- End Testimonial Section -->
     @endif
-
-
 
 
     @if($isShow->value == business_setting('google_map_is_show'))

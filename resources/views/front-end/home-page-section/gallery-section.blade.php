@@ -14,7 +14,9 @@
     /* 👉 সব image same size */
     .gallery_img_box {
         width: 100%;
-        height: 250px;
+        height:
+            {{ request()->routeIs('home.index') ? '150px' : '250px' }}
+        ;
         overflow: hidden;
         position: relative;
     }
@@ -133,7 +135,7 @@
 <!-- CONTENT START -->
 @if($galleryImages->isNotEmpty())
     <div class="py-5">
-        <div class="container">
+        <div class="{{ request()->routeIs('home.index') ? '' : 'container' }}">
 
             @if(request()->routeIs('home.index'))
                 <!-- Sec Title -->

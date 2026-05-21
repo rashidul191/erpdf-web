@@ -10,6 +10,7 @@ use App\Models\Gallery;
 use App\Models\Notice;
 use App\Models\Service;
 use App\Models\Testimonial;
+use App\Models\VideoGallery;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,8 @@ class HomeController extends Controller
         $data['notices'] = Notice::latest()->get();
         $data['activities'] = Activity::oldest('serial')->get();
         $data['services'] = Service::oldest('serial')->get();
-        $data['galleryImages'] = Gallery::latest()->take(12)->get();
+        $data['galleryImages'] = Gallery::latest()->take(8)->get();
+        $data['videoGalleries'] = VideoGallery::oldest('serial')->get();
         $data['testimonials'] = Testimonial::latest()->take(12)->get();
         $data['blogs'] = Blog::latest()->take(5)->get();
 

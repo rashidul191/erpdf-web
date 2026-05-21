@@ -66,7 +66,6 @@
                     <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                     <x-navigation-link :href="route('admin.home-about-section.index')" :text="__('About Section')" />
                     <x-navigation-link :href="route('admin.activity.index')" :text="__('Activity Section')" />
-                    <x-navigation-link :href="route('admin.services.index')" :text="__('Services')" />
                     {{-- <x-navigation-link :href="route('admin.home-google-map.index')"
                         :text="__('Google Map Section')" /> --}}
                 </x-navigation-link>
