@@ -1,4 +1,8 @@
 <style>
+    .section-full {
+        padding: 100px 0;
+    }
+
     .service-card {
         height: 100%;
         border: 2px solid #024e99;
@@ -75,7 +79,7 @@
     }
 </style>
 
-<div class="section-full py-5">
+<div class="section-full">
     <div class="container">
 
         <!-- TITLE START -->
