@@ -20,7 +20,7 @@ class HomeController extends Controller
         $data['notices'] = Notice::latest()->get();
         $data['activities'] = Activity::oldest('serial')->get();
         $data['services'] = Service::oldest('serial')->get();
-        $data['galleryImages'] = Gallery::latest()->take(8)->get();
+        $data['galleryImages'] = Gallery::latest()->take(12)->get();
         $data['videoGalleries'] = VideoGallery::oldest('serial')->get();
         $data['testimonials'] = Testimonial::latest()->take(12)->get();
         $data['blogs'] = Blog::latest()->take(5)->get();
