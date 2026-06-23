@@ -77,7 +77,7 @@ class TeamController extends Controller
             $data = $validated;
             unset($data['team_category_id']);
 
-            $validated['slug'] = generateSlug(Team::class, $validated['name']);
+            $data['slug'] = generateSlug(Team::class, $validated['name']);
 
             // create team
             $team = Team::create($data);
