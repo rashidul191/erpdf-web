@@ -140,7 +140,7 @@ class TeamController extends Controller
 
             unset($data['team_category_id']);
 
-            $validated['slug'] = generateSlug(Team::class, $validated['name'], $team);
+            $data['slug'] = generateSlug(Team::class, $validated['name'], $team);
             // update team
             $team->update($data);
 
