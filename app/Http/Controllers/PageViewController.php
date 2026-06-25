@@ -118,7 +118,8 @@ class PageViewController extends Controller
         })
             ->where('status', CommonStatus::Active)
             ->orderBy('serial', )
-            ->paginate(12);
+            // ->paginate(12);
+            ->get();
 
         return view('front-end.pages.team-category', $data);
     }
