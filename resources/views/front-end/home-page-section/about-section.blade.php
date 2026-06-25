@@ -1,7 +1,7 @@
 <div class="about-section">
     <div class="auto-container">
         <div class="inner-container">
-            <div class="row align-items-center clearfix">
+            <div class="row clearfix">
                 <!-- Image Column -->
                 <div class="col-lg-5 col-12">
                     @if($isShow->value == business_setting('video_gallery_is_show'))
