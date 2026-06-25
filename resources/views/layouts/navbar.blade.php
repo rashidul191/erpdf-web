@@ -107,7 +107,8 @@
 </style>
 
 <!-- Main Header-->
-<header class="main-header {{ request()->routeIs('home.index') ? '' : 'style-two' }} ">
+<header class="main-header style-two">
+{{-- <header class="main-header {{ request()->routeIs('home.index') ? '' : 'style-two' }} "> --}}
 
     <!-- Header Top -->
     <x-top-navbar></x-top-navbar>

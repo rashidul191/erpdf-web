@@ -43,20 +43,18 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-12 col-lg-7">
+            <div class="col-12 col-md-12 col-lg-12">
                 @if($isShow->value == business_setting('gallery_is_show'))
                     <!-- Project Section -->
                     @include('front-end.home-page-section.gallery-section')
                     <!-- End Project Section -->
                 @endif
             </div>
-            <div class="col-12 col-md-12 col-lg-5">
+            {{-- <div class="col-12 col-md-12 col-lg-5">
                 @if($isShow->value == business_setting('video_gallery_is_show'))
-                    <!-- Project Section -->
                     @include('front-end.home-page-section.video-gallery-section')
-                    <!-- End Project Section -->
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
 

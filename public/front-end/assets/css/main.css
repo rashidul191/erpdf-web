@@ -2124,7 +2124,7 @@ img {
 
 .about-image {
     display: flex;
-    margin-left: -90px;
+    /* margin-left: -90px; */
 }
 .max-width-470 {
     max-width: 470px;

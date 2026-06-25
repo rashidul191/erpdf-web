@@ -31,6 +31,8 @@
 
                 <x-labeled-input label="Navbar Phone" name="navbar_phone" type="text"
                     value="{!! business_setting('navbar_phone') !!}" class="w-full md:w-1/2 p-1" />
+                <x-labeled-input label="Navbar Phone 2" name="navbar_phone_2" type="text"
+                    value="{!! business_setting('navbar_phone_2') !!}" class="w-full md:w-1/2 p-1" />
                 <x-labeled-input label="Navbar Email" name="navbar_email" type="text"
                     value="{!! business_setting('navbar_email') !!}" class="w-full md:w-1/2 p-1" />
 

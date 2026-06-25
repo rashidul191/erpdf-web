@@ -98,7 +98,7 @@
 <!-- CONTENT START -->
 @if($videoGalleries->isNotEmpty())
 
-    <div class="py-5">
+    <div class="pb-5">
         <div class="{{ request()->routeIs('home.index') ? '' : 'container' }}">
 
             @if(request()->routeIs('home.index'))
@@ -128,7 +128,6 @@
                     @foreach ($videoGalleries as $item)
 
                         <div class="video-slide">
-
                             <div class="video-card">
 
                                @php

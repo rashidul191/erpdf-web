@@ -3,10 +3,15 @@
         <div class="inner-container">
             <div class="row align-items-center clearfix">
                 <!-- Image Column -->
-                <div class="image-column col-lg-5 col-12">
-                    <div class="about-image">
-                        <div class="about-inner-image">
-                            <img src="{{ business_image('ha_left_img') }}" alt="about">
+                <div class="col-lg-5 col-12">
+                    @if($isShow->value == business_setting('video_gallery_is_show'))
+                        @include('front-end.home-page-section.video-gallery-section')
+                    @endif
+                    <div class="image-column">
+                        <div class="about-image">
+                            <div class="about-inner-image">
+                                <img src="{{ business_image('ha_left_img') }}" alt="about">
+                            </div>
                         </div>
                     </div>
                 </div>
