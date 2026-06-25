@@ -19,6 +19,13 @@
                                 {!! business_setting('navbar_phone') !!}</a>
                         </li>
                     @endif
+                    @if(business_setting('navbar_phone_2'))
+                        <li>
+                            <a href="tel:{!! business_setting('navbar_phone_2')  !!}">
+                                <span class="icon icofont-phone"></span>
+                                {!! business_setting('navbar_phone_2') !!}</a>
+                        </li>
+                    @endif
 
                     @if(business_setting('office_time'))
                         <li>

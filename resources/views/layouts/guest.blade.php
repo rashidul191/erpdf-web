@@ -169,7 +169,8 @@
     </script>
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
+
+    {{-- <script>
         document.getElementById("langSwitcher").addEventListener("change", function () {
             const lang = this.value;
             localStorage.setItem("selectedLang", lang);
@@ -195,7 +196,54 @@
             }
         });
 
-    </script>
+    </script> --}}
+<script>
+    function setActiveButton(lang) {
+        document.getElementById("btnBn").classList.remove("active");
+        document.getElementById("btnEn").classList.remove("active");
+
+        if (lang === "bn") {
+            document.getElementById("btnBn").classList.add("active");
+        } else {
+            document.getElementById("btnEn").classList.add("active");
+        }
+    }
+
+    function changeLang(lang) {
+        const googTransCookie = "/bn/" + lang;
+
+        document.cookie = "googtrans=" + googTransCookie + ";path=/";
+        document.cookie = "googtrans=" + googTransCookie + ";domain=" + window.location.hostname + ";path=/";
+
+        localStorage.setItem("selectedLang", lang);
+
+        setActiveButton(lang);
+
+        location.reload();
+    }
+
+    document.getElementById("btnBn").addEventListener("click", function () {
+        changeLang("bn");
+    });
+
+    document.getElementById("btnEn").addEventListener("click", function () {
+        changeLang("en");
+    });
+
+    window.addEventListener("load", function () {
+        let savedLang = localStorage.getItem("selectedLang");
+
+        if (!savedLang) {
+            savedLang = "bn";
+            localStorage.setItem("selectedLang", "bn");
+        }
+
+        document.cookie = "googtrans=/bn/" + savedLang + ";path=/";
+
+        setActiveButton(savedLang);
+    });
+</script>
+
     {{-- Google Langulate Switch JS Codes End --}}
     {{ $script ?? '' }}
 </body>

@@ -48,6 +48,22 @@
         cursor: pointer;
     }
 
+     .language-switcher{
+        display: flex;
+     }
+
+    .language-switcher button {
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .language-switcher button.active {
+        background: #198754;
+        color: #fff;
+    }
+
     /* Google Tranlate Switch CSS Code End */
 
     .submenu:hover ul.subofsubmenu {
@@ -130,10 +146,18 @@
                                 <x-menu-item :menus="$menus" />
                             </ul>
 
-                            {{-- <select id="langSwitcher">
-                                <option value="en" selected>English</option>
-                                <option value="bn">বাংলা</option>
-                            </select> --}}
+                            {{-- translate sytem --}}
+                            <div>
+                                <div class="language-switcher">
+                                    <button type="button" id="btnBn">বাংলা</button>
+                                    <button type="button" id="btnEn">English</button>
+                                </div>
+                                {{-- <select id="langSwitcher">
+                                    <option value="en" selected>English</option>
+                                    <option value="bn">বাংলা</option>
+                                </select> --}}
+                            </div>
+
                             <!-- hidden loader -->
                             <div id="google_translate_element" style="visibility: hidden"></div>
                         </div>
@@ -143,9 +167,9 @@
                 <!-- Outer Box -->
                 <div class="outer-box">
                     <!-- Search Btn -->
-                    <div class="search-box-btn search-box-outer">
+                    {{-- <div class="search-box-btn search-box-outer">
                         <span class="icon icofont-search"></span>
-                    </div>
+                    </div> --}}
                     <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
                 </div>
