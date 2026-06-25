@@ -159,7 +159,7 @@
                             <span class="icon icofont-search"></span>
                         </div> --}}
                         {{-- translate sytem --}}
-                        <div class="mt-3">
+                        <div style="margin-top: 20px">
                             <div class="language-switcher">
                                 <button type="button" id="btnBn">বাংলা</button>
                                 <button type="button" id="btnEn">English</button>
