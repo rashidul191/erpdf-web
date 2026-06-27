@@ -142,12 +142,10 @@
 
                                 <ul class="navigation clearfix">
                                     <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
-                                        <a href="{{ route('home.index') }}">Home</a>
+                                        <a href="{{ route('home.index') }}">হোম</a>
                                     </li>
                                     <x-menu-item :menus="$menus" />
                                 </ul>
-
-
                             </div>
                         </nav>
                     </div>

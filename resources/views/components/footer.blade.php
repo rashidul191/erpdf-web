@@ -25,21 +25,35 @@
                             </a>
                         </div>
                         <div class="call">
-                            <li>
-                                <a class="footer_phone" href="tel:{!! business_setting('footer_phone') !!}">
-                                    <span class="icon icofont-phone"></span>
-                                    {!! business_setting('footer_phone') !!}</a>
-                            </li>
-                            <li>
-                                <a class="footer_email" href="mailto:{!! business_setting('footer_email') !!}">
-                                    <span class="icon icofont-envelope"></span>
-                                    {!! business_setting('footer_email') !!}</a>
-                            </li>
-                            <li>
-                                <a class="address" href="javascript:void(0)">
-                                    <span class="icon icofont-google-map"></span>
-                                    {!! business_setting('footer_address') !!}</a>
-                            </li>
+                            @if(business_setting('footer_phone'))
+                                <li>
+                                    <a class="footer_phone" href="tel:{!! business_setting('footer_phone') !!}">
+                                        <span class="icon icofont-phone"></span>
+                                        {!! business_setting('footer_phone') !!}</a>
+                                </li>
+                            @endif
+                            @if(business_setting('footer_phone_2'))
+                                <li>
+                                    <a class="footer_phone" href="tel:{!! business_setting('footer_phone_2') !!}">
+                                        <span class="icon icofont-phone"></span>
+                                        {!! business_setting('footer_phone_2') !!}</a>
+                                </li>
+                            @endif
+                            @if(business_setting('footer_email'))
+                                <li>
+                                    <a class="footer_email" href="mailto:{!! business_setting('footer_email') !!}">
+                                        <span class="icon icofont-envelope"></span>
+                                        {!! business_setting('footer_email') !!}</a>
+                                </li>
+                            @endif
+                            @if(business_setting('footer_address'))
+                                <li>
+                                    <a class="address" href="javascript:void(0)">
+                                        <span class="icon icofont-google-map"></span>
+                                        {!! business_setting('footer_address') !!}</a>
+                                </li>
+                            @endif
+
                         </div>
                     </div>
                 </div>

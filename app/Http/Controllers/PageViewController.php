@@ -23,17 +23,17 @@ class PageViewController extends Controller
     public function dynamicPage($slug)
     {
         // custom page
-        if ($slug === 'news' || $slug === 'blog') {
+        if ($slug === 'news' || $slug === 'blog' || $slug === 'ব্লগ') {
             return $this->blogPage();
-        } elseif ($slug === 'team' || $slug === 'teams' || $slug === 'team-member') {
+        } elseif ($slug === 'team' || $slug === 'teams' || $slug === 'team-member' || $slug === 'মেয়াদ-সদস্য') {
             return $this->teamPage();
-        } elseif ($slug === 'about-us' || $slug === 'about') {
+        } elseif ($slug === 'about-us' || $slug === 'about' || $slug === 'আমাদের-সম্পর্কে' || $slug === 'আমাদের-কথা') {
             return $this->aboutPage();
-        } elseif ($slug === 'contact-us' || $slug === 'contact') {
+        } elseif ($slug === 'contact-us' || $slug === 'contact' || $slug === 'যোগাযোগ' || $slug === 'যোগাযোগ-করুন') {
             return $this->contactPage();
-        } elseif ($slug === 'career') {
+        } elseif ($slug === 'career' || $slug === 'কর্মজীবন') {
             return $this->careerPage();
-        } elseif ($slug === 'gallery') {
+        } elseif ($slug === 'gallery' || $slug === 'গ্যালারি') {
             return $this->galleryPage();
         } elseif ($slug === 'faq') {
             return $this->faqPage();

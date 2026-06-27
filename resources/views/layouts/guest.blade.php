@@ -161,8 +161,10 @@
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,bn',
+                // pageLanguage: 'en',
+                // includedLanguages: 'en,bn',
+                   pageLanguage: 'bn',
+        includedLanguages: 'en,bn',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
         }
@@ -216,9 +218,7 @@
         document.cookie = "googtrans=" + googTransCookie + ";domain=" + window.location.hostname + ";path=/";
 
         localStorage.setItem("selectedLang", lang);
-
         setActiveButton(lang);
-
         location.reload();
     }
 
@@ -237,9 +237,7 @@
             savedLang = "bn";
             localStorage.setItem("selectedLang", "bn");
         }
-
         document.cookie = "googtrans=/bn/" + savedLang + ";path=/";
-
         setActiveButton(savedLang);
     });
 </script>

@@ -27,17 +27,17 @@
                 </div>
 
                 <x-labeled-input name="website_name" type="text" value="{!! business_setting('website_name') !!}"
-                    class="w-full md:w-1/2 p-1" />
+                    class="w-full p-1" />
 
-                <x-labeled-input label="Navbar Phone" name="navbar_phone" type="text"
-                    value="{!! business_setting('navbar_phone') !!}" class="w-full md:w-1/2 p-1" />
-                <x-labeled-input label="Navbar Phone 2" name="navbar_phone_2" type="text"
-                    value="{!! business_setting('navbar_phone_2') !!}" class="w-full md:w-1/2 p-1" />
-                <x-labeled-input label="Navbar Email" name="navbar_email" type="text"
-                    value="{!! business_setting('navbar_email') !!}" class="w-full md:w-1/2 p-1" />
+                {{-- <x-labeled-input label="Navbar Phone" name="navbar_phone" type="text"
+                    value="{!! business_setting('navbar_phone') !!}" class="w-full md:w-1/2 p-1" /> --}}
+                {{-- <x-labeled-input label="Navbar Phone 2" name="navbar_phone_2" type="text"
+                    value="{!! business_setting('navbar_phone_2') !!}" class="w-full md:w-1/2 p-1" /> --}}
+                {{-- <x-labeled-input label="Navbar Email" name="navbar_email" type="text"
+                    value="{!! business_setting('navbar_email') !!}" class="w-full md:w-1/2 p-1" /> --}}
 
-                <x-labeled-input label="Office Date And Time" name="office_time" type="text"
-                    value="{!! business_setting('office_time') !!}" class="w-full md:w-1/2 p-1" />
+                <x-labeled-input name="extra_text" type="text"
+                    value="{!! business_setting('extra_text') !!}" class="w-full p-1" />
             </div>
         </div>
 
@@ -56,6 +56,9 @@
                     value="{!! business_setting('company_summary') !!}" class="w-full md:w-1/2  p-1 " /> --}}
 
                 <x-labeled-input name="footer_phone" type="text" value="{!! business_setting('footer_phone') !!}"
+                    class="w-full md:w-1/2 p-1" />
+
+                <x-labeled-input name="footer_phone_2" type="text" value="{!! business_setting('footer_phone_2') !!}"
                     class="w-full md:w-1/2 p-1" />
 
                 <x-labeled-input name="footer_email" type="text" value="{!! business_setting('footer_email') !!}"

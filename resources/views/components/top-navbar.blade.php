@@ -5,33 +5,33 @@
             <div class="top-left">
                 <!-- Info List -->
                 <ul class="info-list">
-                    @if(business_setting('navbar_email'))
+                    {{-- @if(business_setting('navbar_email'))
                         <li>
                             <a href="mailto:{!! business_setting('navbar_email')  !!}">
                                 <span class="icon icofont-envelope"></span>
                                 {!! business_setting('navbar_email') !!}</a>
                         </li>
-                    @endif
-                    @if(business_setting('navbar_phone'))
+                    @endif --}}
+                    {{-- @if(business_setting('navbar_phone'))
                         <li>
                             <a href="tel:{!! business_setting('navbar_phone')  !!}">
                                 <span class="icon icofont-phone"></span>
                                 {!! business_setting('navbar_phone') !!}</a>
                         </li>
-                    @endif
-                    @if(business_setting('navbar_phone_2'))
+                    @endif --}}
+                    {{-- @if(business_setting('navbar_phone_2'))
                         <li>
                             <a href="tel:{!! business_setting('navbar_phone_2')  !!}">
                                 <span class="icon icofont-phone"></span>
                                 {!! business_setting('navbar_phone_2') !!}</a>
                         </li>
-                    @endif
+                    @endif --}}
 
-                    @if(business_setting('office_time'))
+                    @if(business_setting('extra_text'))
                         <li>
                             <a href="#">
-                                <span class="icon icofont-clock-time"></span>
-                                {!! business_setting('office_time') !!}</a>
+                                {{-- <span class="icon icofont-clock-time"></span> --}}
+                                {!! business_setting('extra_text') !!}</a>
                         </li>
                     @endif
                 </ul>
