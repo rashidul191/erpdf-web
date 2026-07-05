@@ -117,7 +117,7 @@ class PageViewController extends Controller
             $q->where('team_categories.id', $id);
         })
             ->where('status', CommonStatus::Active)
-            ->orderBy('serial', )
+            ->orderBy('serial')
             // ->paginate(12);
             ->get();
 
@@ -135,11 +135,9 @@ class PageViewController extends Controller
         return view('front-end.pages.team-details', $data);
     }
 
-
-
     public function galleryPage()
     {
-        $data['galleryImages'] = Gallery::latest()->paginate(12);
+        $data['galleryImages'] = Gallery::oldest('serial')->paginate(20);
         return view('front-end.pages.gallery', $data);
     }
 

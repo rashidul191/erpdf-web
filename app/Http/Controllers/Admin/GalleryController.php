@@ -11,7 +11,7 @@ class GalleryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return datatables(Gallery::latest())
+            return datatables(Gallery::orderBy('serial', 'asc'))
                 ->addIndexColumn()
                 ->toJson();
         }
@@ -27,6 +27,7 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120', // if uploading an image
             'title' => 'nullable|string|max:255',
+            'serial' => 'nullable|integer|min:1',
         ]);
 
         return response()->reportTo(
@@ -38,13 +39,27 @@ class GalleryController extends Controller
 
     public function edit(Gallery $gallery)
     {
-
+        return view('admin.gallery.edit', compact('gallery'));
     }
 
     public function update(Request $request, Gallery $gallery)
     {
+        $validated = $request->validate([
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'title' => 'nullable|string|max:255',
+            'serial' => 'nullable|integer|min:1',
+        ]);
 
+        return response()->reportTo(
+            $gallery->update($validated),
+            'Updated successfully',
+            route('admin.gallery.index')
+        );
     }
+
+
+
+
     public function destroy(Gallery $gallery)
     {
         return response()->reportTo(

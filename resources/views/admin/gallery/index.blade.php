@@ -42,6 +42,7 @@
                             oninput="prevImage.src=window.URL.createObjectURL(this.files[0])" />
 
                         <x-labeled-input name="title" class="w-full p-1" />
+                        <x-labeled-input type="number" name="serial" class="w-full p-1" />
 
                         <div class="w-full pt-2 flex justify-end">
                             <x-button>{{ __('Create') }}</x-button>
@@ -59,6 +60,7 @@
                     <th>{{ __('SL') }}</th>
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Title') }}</th>
+                    <th>{{ __('Serial') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
@@ -75,8 +77,9 @@
                     dataSrc(response) {
                         response.data.map(function (item) {
                             item.action = actionIcons({
-                                'delete': '{{ route('admin.gallery.destroy', '
-                                @ ') }}'.replace('@',
+                                'edit': '{{ route('admin.gallery.edit', '@') }}'.replace('@',
+                                    item.id),
+                                'delete': '{{ route('admin.gallery.destroy', '@') }}'.replace('@',
                                     item.id),
                             });
 
@@ -100,6 +103,10 @@
                 {
                     data: 'title',
                     orderable: false,
+                    defaultContent: '--',
+                },
+                {
+                    data: 'serial',
                     defaultContent: '--',
                 },
                 {

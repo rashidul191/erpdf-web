@@ -12,6 +12,7 @@ class Gallery extends Model
     use HasFactory, DeletesImage;
 
     protected $fillable = [
+        'serial',
         'image',
         'title',
     ];
