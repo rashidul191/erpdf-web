@@ -69,8 +69,8 @@
                     class="w-full p-1 md:w-1/2 lg:w-1/3" />
 
 
-                {{-- <x-labeled-textarea label="Description" name="description" is-editor="is-editor"
-                    :value="old('description', $team->description)" class="w-full p-1"></x-labeled-textarea> --}}
+                <x-labeled-textarea label="Description" name="description" is-editor="is-editor"
+                    :value="old('description', $team->description)" class="w-full p-1"></x-labeled-textarea>
 
 
                 <div class="w-full pt-4 flex justify-end">

@@ -63,7 +63,7 @@ class TeamController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             'name' => 'required|string|max:255',
             'designation' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'status' => ['nullable', Rule::in(CommonStatus::getValues())],
             'fb_link' => 'nullable|url|max:255',
             'linkedin_link' => 'nullable|url|max:255',
@@ -123,7 +123,7 @@ class TeamController extends Controller
 
             'name' => 'required|string|max:255',
             'designation' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
 
             'status' => ['nullable', Rule::in(CommonStatus::getValues())],
 

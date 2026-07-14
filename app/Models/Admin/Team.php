@@ -30,7 +30,6 @@ class Team extends Model
     protected $casts = [
         'image' => ImageField::class . ':team,images/avatar.png',
         'status' => CommonStatus::class,
-
     ];
 
     public function categories()

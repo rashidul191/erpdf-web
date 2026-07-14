@@ -68,18 +68,32 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.80);
+        background: rgba(0, 0, 0, 0.85);
         display: none;
         align-items: center;
         justify-content: center;
         z-index: 9999;
+        flex-direction: column;
     }
 
     /* 👉 বড় image */
     #lightbox img {
         max-width: 85%;
-        max-height: 85%;
+        max-height: 75%;
         border-radius: 5px;
+        object-fit: contain;
+    }
+
+    /* Lightbox title */
+    #lightbox-title {
+        color: #fff;
+        font-size: 18px;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        max-width: 80%;
+        text-align: center;
     }
 
     /* Close */
@@ -87,9 +101,23 @@
         position: absolute;
         top: 20px;
         right: 30px;
-        font-size: 35px;
+        font-size: 40px;
         color: #fff;
         cursor: pointer;
+        z-index: 10000;
+        transition: 0.3s;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .close-btn:hover {
+        transform: rotate(90deg);
+        background: rgba(255, 0, 0, 0.3);
     }
 
     /* 👉 Arrow buttons */
@@ -97,11 +125,26 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 40px;
+        font-size: 45px;
         color: #fff;
         cursor: pointer;
-        padding: 10px;
+        padding: 15px;
         user-select: none;
+        z-index: 10000;
+        opacity: 0.7;
+        transition: 0.3s;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-btn:hover {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.6);
     }
 
     .prev-btn {
@@ -129,6 +172,31 @@
         .gallery_img_box {
             height: 200px;
         }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 25px;
+            padding: 5px;
+        }
+
+        #lightbox img {
+            max-height: 60%;
+        }
+
+        #lightbox-title {
+            font-size: 14px;
+            padding: 8px 15px;
+            max-width: 90%;
+        }
+
+        .close-btn {
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+        }
     }
 </style>
 
@@ -149,7 +217,7 @@
                 @foreach ($galleryImages as $item)
                     <li>
                         <div class="wt-post-thum border gallery_img_box">
-                            <img src="{{ $item->image }}" alt="{{ $item->title }}" class="gallery-img">
+                            <img src="{{ $item->image }}" alt="{{ $item->title ?? 'Gallery Image' }}" class="gallery-img" data-title="{{ $item->title ?? '' }}">
                         </div>
                     </li>
                 @endforeach
@@ -157,11 +225,12 @@
 
             <!-- Lightbox -->
             <div id="lightbox">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn" id="closeLightbox">&times;</span>
                 <!-- arrows -->
-                <span class="nav-btn prev-btn">&#10094;</span>
-                <span class="nav-btn next-btn">&#10095;</span>
-                <img id="lightbox-img">
+                <span class="nav-btn prev-btn" id="prevImage">&#10094;</span>
+                <span class="nav-btn next-btn" id="nextImage">&#10095;</span>
+                <img id="lightbox-img" alt="">
+                <div id="lightbox-title"></div>
             </div>
 
             @if (!request()->routeIs('home.index'))
@@ -185,28 +254,56 @@
         const images = document.querySelectorAll(".gallery-img");
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
-        const closeBtn = document.querySelector(".close-btn");
-        const prevBtn = document.querySelector(".prev-btn");
-        const nextBtn = document.querySelector(".next-btn");
+        const lightboxTitle = document.getElementById("lightbox-title");
+        const closeBtn = document.getElementById("closeLightbox");
+        const prevBtn = document.getElementById("prevImage");
+        const nextBtn = document.getElementById("nextImage");
 
         let currentIndex = 0;
 
         // open lightbox
         images.forEach((img, index) => {
-            img.addEventListener("click", function () {
+            img.addEventListener("click", function (e) {
+                e.stopPropagation();
                 currentIndex = index;
                 showImage();
                 lightbox.style.display = "flex";
+                document.body.style.overflow = "hidden"; // prevent scroll
             });
         });
 
         function showImage() {
-            lightboxImg.src = images[currentIndex].src;
+            const img = images[currentIndex];
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+
+            // Show title if exists, otherwise hide
+            const title = img.getAttribute('data-title');
+            if (title && title.trim() !== '') {
+                lightboxTitle.textContent = title;
+                lightboxTitle.style.display = 'block';
+            } else {
+                lightboxTitle.style.display = 'none';
+            }
         }
+
+        // Close function
+        function closeLightbox() {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // close button - fixed
+        closeBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            closeLightbox();
+        });
 
         // next
         nextBtn.addEventListener("click", function (e) {
             e.stopPropagation();
+            e.preventDefault();
             currentIndex = (currentIndex + 1) % images.length;
             showImage();
         });
@@ -214,28 +311,32 @@
         // prev
         prevBtn.addEventListener("click", function (e) {
             e.stopPropagation();
+            e.preventDefault();
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             showImage();
         });
 
-        // close
-        closeBtn.addEventListener("click", function () {
-            lightbox.style.display = "none";
-        });
-
         // click outside বন্ধ
         lightbox.addEventListener("click", function (e) {
-            if (e.target !== lightboxImg) {
-                lightbox.style.display = "none";
+            if (e.target === lightbox) {
+                closeLightbox();
             }
         });
 
-        // 👉 keyboard support (pro feature)
+        // 👉 keyboard support
         document.addEventListener("keydown", function (e) {
             if (lightbox.style.display === "flex") {
-                if (e.key === "ArrowRight") nextBtn.click();
-                if (e.key === "ArrowLeft") prevBtn.click();
-                if (e.key === "Escape") lightbox.style.display = "none";
+                if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    nextBtn.click();
+                }
+                if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    prevBtn.click();
+                }
+                if (e.key === "Escape") {
+                    closeLightbox();
+                }
             }
         });
 

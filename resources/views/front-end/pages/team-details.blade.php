@@ -65,15 +65,11 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
 
                 <!-- Description -->
                 <div style="text-align: justify;">
-                    {!! $team->short_description !!}
+                    {!! $team->description !!}
                 </div>
             </div>
         </div>
