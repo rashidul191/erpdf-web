@@ -8,7 +8,7 @@
         <!-- INNER PAGE BANNER END -->
 
         <!-- SECTION CONTENT START -->
-        <div class="section-full p-tb90">
+        <div class="section-full py-5">
             <div class="container">
                 <div class="row">
 
@@ -30,7 +30,7 @@
                             </div>
                             <hr>
                             <!-- Contact Info -->
-                            <div>
+                            {{-- <div>
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-phone me-2"></i>
                                     <span>{!! $team->phone !!}</span>
@@ -43,34 +43,53 @@
                                     <i class="fa-solid fa-envelope me-2"></i>
                                     <span>{!! $team->email !!}</span>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Social Icons -->
-                            <div class="mt-4">
+                            <div class="my-4">
                                 @if($team->fb_link)
-                                    <a target="_blank" href="{{ $team->fb_link ?? '#' }}" class="btn border me-2">
-                                        <i class="fa-brands fa-facebook-f"></i>
+                                    <a title="Facebook" target="_blank" href="{{ $team->fb_link }}" class="btn border me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M22 12A10 10 0 1 0 10.44 21.88v-6.28H7.9V12h2.54V9.24c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 3.6h-2.34v6.28A10 10 0 0 0 22 12z" />
+                                        </svg>
                                     </a>
                                 @endif
-                                @if($team->twitter_link)
-                                    <a target="_blank" href="{{ $team->twitter_link ?? '#' }}" class="btn border me-2">
-                                        <i class="fa-brands fa-linkedin"></i>
+
+                                @if($team->linkedin_link)
+                                    <a title="LinkedIn" target="_blank" href="{{ $team->linkedin_link }}"
+                                        class="btn border me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                                        </svg>
                                     </a>
                                 @endif
+
                                 @if($team->instagram_link)
-                                    <a target="_blank" href="{{ $team->instagram_link ?? '#' }}" class="btn border">
-                                        <i class="fa-brands fa-instagram"></i>
+                                    <a title="Instagram" target="_blank" href="{{ $team->instagram_link }}"
+                                        class="btn border">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0 1 20 7.75v8.5A3.75 3.75 0 0 1 16.25 20h-8.5A3.75 3.75 0 0 1 4 16.25v-8.5A3.75 3.75 0 0 1 7.75 4zm8.75 1a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
+                                        </svg>
                                     </a>
                                 @endif
                             </div>
+
+                            <!-- Description -->
+                            <div style="text-align: justify;">
+                                {!! $team->description !!}
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
-                <!-- Description -->
-                <div style="text-align: justify;">
-                    {!! $team->description !!}
-                </div>
+
             </div>
         </div>
         <!-- SECTION CONTENT END -->
