@@ -15,7 +15,7 @@
     .gallery_img_box {
         width: 100%;
         height:
-            {{ request()->routeIs('home.index') ? '150px' : '250px' }}
+            {{ request()->routeIs('home.index') ? '190px' : '250px' }}
         ;
         overflow: hidden;
         position: relative;
