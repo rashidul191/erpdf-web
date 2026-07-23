@@ -103,7 +103,7 @@
 
             @if(request()->routeIs('home.index'))
                 <!-- Sec Title -->
-                <div class="sec-title">
+                {{-- <div class="sec-title">
                     <div class="title">
                         {!! business_setting('video_gallery_section_sub_title') !!}
                     </div>
@@ -113,7 +113,7 @@
                             {!! business_setting('video_gallery_section_title') !!}
                         </span>
                     </h2>
-                </div>
+                </div> --}}
             @endif
 
             <!-- VIDEO SLIDER -->

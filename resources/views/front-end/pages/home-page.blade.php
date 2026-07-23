@@ -41,22 +41,47 @@
         <!-- End Blog Section -->
     @endif
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-12">
-                @if($isShow->value == business_setting('gallery_is_show'))
-                    <!-- Project Section -->
-                    @include('front-end.home-page-section.gallery-section')
-                    <!-- End Project Section -->
-                @endif
-            </div>
-            {{-- <div class="col-12 col-md-12 col-lg-5">
-                @if($isShow->value == business_setting('video_gallery_is_show'))
-                    @include('front-end.home-page-section.video-gallery-section')
-                @endif
-            </div> --}}
+    @if($isShow->value == business_setting('gallery_is_show'))
+        <div class="container">
+            <!-- Project Section -->
+            @include('front-end.home-page-section.gallery-section')
+            <!-- End Project Section -->
         </div>
-    </div>
+    @endif
+
+    @if($isShow->value == business_setting('video_gallery_is_show'))
+        <div class="container py-5">
+            <div class="sec-title">
+                <div class="title">
+                    {!! business_setting('video_gallery_section_sub_title') !!}
+                </div>
+                <h2>
+                    <span>
+                        {!! business_setting('video_gallery_section_title') !!}
+                    </span>
+                </h2>
+            </div>
+            <div class="row">
+                 @foreach ($videoGalleries as $item)
+                <div class="col-12 col-md-6 col-lg-4">
+  <div>
+
+                               @php
+    parse_str(parse_url($item->youtube_video_link, PHP_URL_QUERY), $vars);
+    $videoId = $vars['v'] ?? '';
+@endphp
+
+<iframe
+    src="https://www.youtube.com/embed/{{ $videoId }}" width="100%" height="230px"
+    allowfullscreen>
+</iframe>
+
+                            </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
 
 
     @if($isShow->value == business_setting('testimonial_is_show'))
