@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CommonStatus;
+use App\Models\Admin\Category;
 use App\Models\Admin\Team;
+use App\Models\Admin\TeamCategory;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
@@ -111,7 +113,7 @@ class PageViewController extends Controller
 
     public function teamCategory($id, $category_name)
     {
-        $data['categoryName'] = $category_name;
+        $data['category'] = TeamCategory::findOrFail($id);
 
         $data['teams'] = Team::whereHas('categories', function ($q) use ($id) {
             $q->where('team_categories.id', $id);

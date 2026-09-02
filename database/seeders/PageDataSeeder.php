@@ -43,6 +43,7 @@ class PageDataSeeder extends Seeder
                 'title' => 'FAQ',
                 'slug' => 'faq',
             ],
+         
 
         );
         foreach ($pages as $page) {

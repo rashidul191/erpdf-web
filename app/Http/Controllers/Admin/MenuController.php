@@ -52,7 +52,6 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-
         $rules = [
             'is_custom' => 'nullable|integer',
             'serial' => 'nullable|integer',

@@ -2,9 +2,8 @@
 
     <!-- CONTENT START -->
     <div class="page-content">
-
         <!-- INNER PAGE BANNER -->
-        <x-page-banner :title="\Str::headline($categoryName) ?? null" />
+        <x-page-banner :title="\Str::headline($category->name) ?? null" :image="getRawImage($category, 'image', true) ? $category->image : null" />
         <!-- INNER PAGE BANNER END -->
 
         @if($teams->count() > 0)
