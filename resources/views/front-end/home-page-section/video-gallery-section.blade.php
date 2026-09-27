@@ -98,7 +98,7 @@
 <!-- CONTENT START -->
 @if($videoGalleries->isNotEmpty())
 
-    <div class="py-5">
+    <div class="pb-5 pb-md-0 py-md-5">
         <div class="{{ request()->routeIs('home.index') ? '' : 'container' }}">
 
             @if(request()->routeIs('home.index'))

@@ -38,3 +38,10 @@
         </div>
     </div>
 </section>
+
+
+{{-- Mobile menu taggle button --}}
+<div class="mobile-nav-toggler d-flex align-items-center d-md-none bg-success px-2 py-3">
+    <span class="icon ti-menu bg-secondary text-white fs-5 px-3 py-1 rounded rounded-1 me-2"></span>
+    <span class="fw-semibold text-black">মেনু নির্বাচন করুন</span>
+</div>

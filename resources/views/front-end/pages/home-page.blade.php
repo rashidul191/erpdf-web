@@ -10,6 +10,13 @@
         <!-- end: Slider Section -->
     @endif
 
+    {{-- Mobile menu taggle button --}}
+    <div class="mobile-nav-toggler d-flex align-items-center d-md-none bg-success px-2 py-3">
+        <span class="icon ti-menu bg-secondary text-white fs-5 px-3 py-1 rounded rounded-1 me-2"></span>
+        <span class="fw-semibold text-black">মেনু নির্বাচন করুন</span>
+    </div>
+
+
     @if($isShow->value == business_setting('notice_is_show'))
         <!-- Start Notice Section -->
         @include('front-end.home-page-section.notice-section')
@@ -62,22 +69,21 @@
                 </h2>
             </div>
             <div class="row">
-                 @foreach ($videoGalleries as $item)
-                <div class="col-12 col-md-6 col-lg-4">
-  <div>
+                @foreach ($videoGalleries as $item)
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div>
 
-                               @php
-    parse_str(parse_url($item->youtube_video_link, PHP_URL_QUERY), $vars);
-    $videoId = $vars['v'] ?? '';
-@endphp
+                            @php
+                                parse_str(parse_url($item->youtube_video_link, PHP_URL_QUERY), $vars);
+                                $videoId = $vars['v'] ?? '';
+                            @endphp
 
-<iframe
-    src="https://www.youtube.com/embed/{{ $videoId }}" width="100%" height="230px"
-    allowfullscreen>
-</iframe>
+                            <iframe src="https://www.youtube.com/embed/{{ $videoId }}" width="100%" height="230px"
+                                allowfullscreen>
+                            </iframe>
 
-                            </div>
-                </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>

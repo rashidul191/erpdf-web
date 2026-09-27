@@ -171,7 +171,9 @@
                         <div id="google_translate_element" style="visibility: hidden"></div>
                     </div>
                     <!-- Mobile Navigation Toggler -->
-                    <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
+                    <div  class="mobile-nav-toggler d-none">
+                        <span class="icon ti-menu"></span>
+                    </div>
                 </div>
 
             </div>
