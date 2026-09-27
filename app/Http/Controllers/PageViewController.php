@@ -15,7 +15,6 @@ use App\Models\FAQ;
 use App\Models\Gallery;
 use App\Models\OurStory;
 use App\Models\Page;
-;
 use App\Models\Service;
 use Illuminate\Http\Request;
 

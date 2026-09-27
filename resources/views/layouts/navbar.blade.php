@@ -108,54 +108,54 @@
 
 <!-- Main Header-->
 <header class="main-header style-two">
-    {{-- <header class="main-header {{ request()->routeIs('home.index') ? '' : 'style-two' }} "> --}}
 
-        <!-- Header Top -->
-        <x-top-navbar></x-top-navbar>
+    <!-- Header Top -->
+    <x-top-navbar></x-top-navbar>
 
-        <!-- Header Upper -->
-        <div class="header-upper">
-            <div class="auto-container">
-                <div class="inner-container clearfix">
-                    <div class="pull-left logo-box">
-                        <div class="logo">
-                            <a href="{{ route('home.index') }}">
-                                <img src="{{ business_image('logo') }}" alt="" title="">
-                            </a>
+    <!-- Header Upper -->
+    <div class="header-upper">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <div class="pull-left logo-box">
+                    <div class="logo">
+                        <a href="{{ route('home.index') }}">
+                            <img src="{{ business_image('logo') }}" alt="" title="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-outer pull-left clearfix">
+                    <!-- Main Menu -->
+                    <nav class="main-menu navbar-expand-md">
+                        <div class="navbar-header">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
-                    </div>
 
-                    <div class="nav-outer pull-left clearfix">
-                        <!-- Main Menu -->
-                        <nav class="main-menu navbar-expand-md">
-                            <div class="navbar-header">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
+                        <div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
 
-                            <div class="navbar-collapse show collapse clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
+                                    <a href="{{ route('home.index') }}">হোম</a>
+                                </li>
+                                <x-menu-item :menus="$menus" />
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
 
-                                <ul class="navigation clearfix">
-                                    <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
-                                        <a href="{{ route('home.index') }}">হোম</a>
-                                    </li>
-                                    <x-menu-item :menus="$menus" />
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-
-                    <!-- Outer Box -->
-                    <div class="outer-box">
-                        <!-- Search Btn -->
-                        {{-- <div class="search-box-btn search-box-outer">
-                            <span class="icon icofont-search"></span>
-                        </div> --}}
+                <!-- Outer Box -->
+                <div class="outer-box">
+                    <!-- Search Btn -->
+                    {{-- <div class="search-box-btn search-box-outer">
+                        <span class="icon icofont-search"></span>
+                    </div> --}}
+                    <div>
                         {{-- translate sytem --}}
                         <div style="margin-top: 20px">
                             <div class="language-switcher">
@@ -169,69 +169,70 @@
                         </div>
                         <!-- hidden loader -->
                         <div id="google_translate_element" style="visibility: hidden"></div>
-                        <!-- Mobile Navigation Toggler -->
-                        <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
                     </div>
-
+                    <!-- Mobile Navigation Toggler -->
+                    <div class="mobile-nav-toggler"><span class="icon ti-menu"></span></div>
                 </div>
+
             </div>
         </div>
-        <!--End Header Upper-->
+    </div>
+    <!--End Header Upper-->
 
-        <!-- Mobile Menu  -->
-        <div class="mobile-menu">
-            <div class="menu-backdrop"></div>
-            <div class="close-btn"><span class="icon lnr lnr-cross"></span></div>
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <div class="close-btn"><span class="icon lnr lnr-cross"></span></div>
 
-            <nav class="menu-box">
-                <div class="nav-logo">
-                    <a href="{{ route('home.index') }}">
-                        <img src="{{ business_image('logo') }}" alt="" title=""></a>
-                </div>
-                <div class="menu-outer">
-                    <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-                </div>
-            </nav>
-        </div><!-- End Mobile Menu -->
+        <nav class="menu-box">
+            <div class="nav-logo">
+                <a href="{{ route('home.index') }}">
+                    <img src="{{ business_image('logo') }}" alt="" title=""></a>
+            </div>
+            <div class="menu-outer">
+                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+            </div>
+        </nav>
+    </div><!-- End Mobile Menu -->
 
-    </header>
-    <!--End Main Header -->
+</header>
+<!--End Main Header -->
 
-    <script>
-        // Menu js code Start
-        document.addEventListener("DOMContentLoaded", function () {
+<script>
+    // Menu js code Start
+    document.addEventListener("DOMContentLoaded", function () {
 
-            if (window.innerWidth <= 991) {
-                document.querySelectorAll(".submenu").forEach(function (item) {
-                    let childMenu = item.querySelector(".subofsubmenu");
-                    if (!childMenu) return;
-                    // avoid duplicate arrow
-                    if (!item.querySelector(".submenu-arrow")) {
+        if (window.innerWidth <= 991) {
+            document.querySelectorAll(".submenu").forEach(function (item) {
+                let childMenu = item.querySelector(".subofsubmenu");
+                if (!childMenu) return;
+                // avoid duplicate arrow
+                if (!item.querySelector(".submenu-arrow")) {
 
-                        let arrow = document.createElement("span");
-                        arrow.classList.add("submenu-arrow");
-                        arrow.innerHTML = "&#9656;";
+                    let arrow = document.createElement("span");
+                    arrow.classList.add("submenu-arrow");
+                    arrow.innerHTML = "&#9656;";
 
-                        item.appendChild(arrow);
+                    item.appendChild(arrow);
 
-                        arrow.addEventListener("click", function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
+                    arrow.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                            // close siblings
-                            let parent = item.closest("ul");
-                            parent.querySelectorAll(".submenu").forEach(function (el) {
-                                if (el !== item) {
-                                    el.classList.remove("open");
-                                }
-                            });
-
-                            // toggle current
-                            item.classList.toggle("open");
+                        // close siblings
+                        let parent = item.closest("ul");
+                        parent.querySelectorAll(".submenu").forEach(function (el) {
+                            if (el !== item) {
+                                el.classList.remove("open");
+                            }
                         });
-                    }
-                });
-            }
-        });
-        // Menu js code Start
-    </script>
+
+                        // toggle current
+                        item.classList.toggle("open");
+                    });
+                }
+            });
+        }
+    });
+    // Menu js code Start
+</script>

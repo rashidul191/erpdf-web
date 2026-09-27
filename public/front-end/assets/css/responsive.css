@@ -171,6 +171,7 @@
 	.main-header .header-upper .outer-box{
 		padding:0px;
 		margin-left:30px;
+        display: flex;
 	}
 
 	.banner-section .slide{
@@ -568,7 +569,7 @@
 	.outer-box .mobile-nav-toggler{
 		display: block;
 		margin: 0;
-		padding: 24px 0px;
+		padding: 13px 0px;
 		margin-left: 0px;
 		font-size:32px;
 		margin-top:0px;
