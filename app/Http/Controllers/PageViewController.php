@@ -23,19 +23,19 @@ class PageViewController extends Controller
     public function dynamicPage($slug)
     {
         // custom page
-        if ($slug === 'news' || $slug === 'blog' || $slug === 'ব্লগ') {
+        if (in_array($slug, ['blog', 'ব্লগ', 'news', 'সংবাদ'])) {
             return $this->blogPage();
-        } elseif ($slug === 'team' || $slug === 'teams' || $slug === 'team-member' || $slug === 'মেয়াদ-সদস্য') {
+        } elseif (in_array($slug, ['team', 'teams', 'team-member', 'মেয়াদ-সদস্য'])) {
             return $this->teamPage();
-        } elseif ($slug === 'about-us' || $slug === 'about' || $slug === 'আমাদের-সম্পর্কে' || $slug === 'আমাদের-কথা') {
+        } elseif (in_array($slug, ['about-us', 'about', 'আমাদের-সম্পর্কে', 'আমাদের-কথা'])) {
             return $this->aboutPage();
-        } elseif ($slug === 'contact-us' || $slug === 'contact' || $slug === 'যোগাযোগ' || $slug === 'যোগাযোগ-করুন') {
+        } elseif (in_array($slug, ['contact-us', 'contact', 'যোগাযোগ', 'যোগাযোগ-করুন'])) {
             return $this->contactPage();
-        } elseif ($slug === 'career' || $slug === 'কর্মজীবন') {
+        } elseif (in_array($slug, ['career', 'কর্মজীবন'])) {
             return $this->careerPage();
-        } elseif ($slug === 'gallery' || $slug === 'গ্যালারি') {
+        } elseif (in_array($slug, ['gallery', 'গ্যালারি'])) {
             return $this->galleryPage();
-        } elseif ($slug === 'faq') {
+        } elseif (in_array($slug, ['faq']) ) {
             return $this->faqPage();
         }
         // dynamic page
